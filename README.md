@@ -18,6 +18,7 @@ This appears to construct two "near-miss" three dimensional forms out of the two
 1. Not-as-near: two of these objects almost fit into each other to form a truncated tetrahedron
 
 To run:
+	
 	python3 m -venv venv
 	source venv bin activate
 	pip3 install -r requirements.txt
