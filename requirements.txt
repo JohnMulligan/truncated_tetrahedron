@@ -1,0 +1,4 @@
+member==0.0.1
+mpmath==1.2.1
+six==1.11.0
+sympy==1.8
