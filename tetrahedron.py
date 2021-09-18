@@ -14,12 +14,16 @@ a={i:None for i in 'ABCDEFGHIJKLMNOPQRST'}
 
 def rotate_list(point_list,axisp1,axisp2,angle):
 	for point_label in point_list:
+		axis=Line3D(axisp1,axisp2)
 		point=a[point_label]
-		new_point=rotate(axisp1,axisp2,point,angle)
+		new_point=rotate(axis,point,angle)
 		a[point_label]=new_point
 
 def graph(triangles,pointstr='ABCDEFGHIJKLMNOPQRST'):
-	p=[i for i in pointstr]
+	pa=[i for i in pointstr.split('|')[0]]
+	pb=[i+'i' for i in pointstr.split('|')[1].split('i') if i!='']
+	p=pa+pb
+	print(p)
 	points_array=[[a[i].x,a[i].y,a[i].z] for i in p]
 	triangles_idx=[[p.index(i[0]),p.index(i[1]),p.index(i[2])] for i in triangles]
 	test = graphics.engine.Engine3D(points_array, triangles_idx, title='dodecagon')
@@ -146,6 +150,19 @@ rotate_list('ARBMCDNEFOGHPIJKQ',L,R,-magical_angle)
 print("\n\n-------\nclose hits: A~G (T~G) | R~O (S~O) | M~P | B~H\n-------")
 for i in a:
 	print("\n%s = %s\n" %(i,a[i].evalf()))
-graph(triangles)
+#graph(triangles)
 
 
+#now fold off the first one
+#I believe the first open trapezoid is ABLM
+
+p=Plane(A,B,M)
+
+l=p.perpendicular_line(B)
+Bi=rotate(l,A,math.pi*2/3)
+
+a['Ci']=Bi
+
+triangles.append(['B','Ci','N'])
+
+graph(triangles,'ABCDEFGHIJKLMNOPQRST|Ci')

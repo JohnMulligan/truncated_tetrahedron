@@ -1,7 +1,7 @@
 from sympy.geometry import Point,Point3D, Line3D
 from math import cos, sin, sqrt  
     
-def rotate(p1,p2,p0,theta):
+def rotate(axis,p0,theta):
 	## PointRotate.py Version 1.02
 	## Copyright (c) 2006 Bruce Vaughan, BV Detailing & Design, Inc.
 	## All rights reserved.
@@ -18,7 +18,8 @@ def rotate(p1,p2,p0,theta):
 
 		Reference 'Rotate A Point About An Arbitrary Axis (3D)' - Paul Bourke        
 	"""
-
+	
+	p1,p2=axis.points
 
 	# Translate so axis is at origin    
 	p = p0 - p1
