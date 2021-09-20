@@ -55,7 +55,7 @@ def rotate(axis,p0,theta):
 	qy = d21*p.x + d22*p.y + d23*p.z
 	qz = d31*p.x + d32*p.y + d33*p.z
 
-	q=Point(qx,qy,qz)
+	q=Point3D(qx,qy,qz)
 	# Translate axis and rotated point back to original location    
 	endpoint=q+p1
 	return endpoint
