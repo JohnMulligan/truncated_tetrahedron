@@ -1,3 +1,5 @@
+## Intro
+
 This was put together from 3 separate repo's:
 
 PyEngine3D for rendering the model (can probably use something better now): https://medium.com/quick-code/3d-graphics-using-the-python-standard-library-99914447760c
@@ -25,3 +27,11 @@ To run:
 	python tetrahedron.py
 
 It should print out the vertices and then render the model.
+
+## Sept 20
+
+It was a little off with my sqrt(2) folding angle, so I ran a multithreaded optimizer to try different folding angles.
+
+No guarantee that there is a correct angle -- but the first run suggests there might be, around 1.415-ish radians. Running a second time.
+
+See results in the optimization folder.
