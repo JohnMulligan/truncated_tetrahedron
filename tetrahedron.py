@@ -14,8 +14,8 @@ import os
 
 
 
-magical_angle=math.sqrt(2)
-
+#magical_angle=166563979225162923748770640501998485171/117675500839377502664900100000000000000
+magical_angle=1.415471962374
 
 a={i:None for i in 'ABCDEFGHIJKLMNOPQRST'}
 
@@ -164,16 +164,8 @@ rotate_list('ARBMCDNEFOGHPIJKQ','L','R',-magical_angle)
 print("\n\n-------\nclose hits: A~G (T~G) | R~O (S~O) | M~P | B~H\n-------")
 
 
-graph(triangles)
+#graph(triangles)
 
-
-
-
-
-
-
-
-'''
 
 
 ##### SECOND RING FORM -- I WAS TRYING TO MAKE THIS USING NORMALS OFF THE PLANES BUT THE NORMALS WERE BEING IMPROPERLY CALCULATED NO MATTER WHAT I DID
@@ -205,12 +197,12 @@ for i in range(len(s)):
 ##### BUT HERE WE HAVE TO SNIP THE TRIANGLE HALFWAY THROUGH BECAUSE WE'RE BASING OFF THE OTHER'S STARTING POINT
 
 
-a['Si']=Ri
-a['Ti']=Ai
+a['Si']=Qi
+a['Ti']=Ki
 
 
 triangles2=[
-	['Li','Si','Ti'],
+	['Ji','Si','Ti'],
 	['Ai','Ri','Mi'],['Ai','Mi','Bi'],
 	['Bi','Mi','Ci'],
 	['Ci','Mi','Ni'],['Ci','Ni','Di'],
@@ -219,9 +211,9 @@ triangles2=[
 	['Fi','Oi','Gi'],
 	['Gi','Hi','Oi'],['Pi','Oi','Hi'],
 	['Hi','Ii','Pi'],
-	['Ji','Ii','Pi'],['Ji','Pi','Qi'],
-	['Ji','Qi','Ki'],
-	['Ki','Qi','Si'],['Ki','Li','Si']	
+	['Ji','Ii','Pi'],['Ji','Pi','Si'],
+	['Li','Ai','Ri'],
+	['Ki','Qi','Ri'],['Ki','Li','Ri']	
 	]
 
 ##############
@@ -239,18 +231,38 @@ for pair in [['A','G'],['F','Hi'],['Pi','R'],['L','Ii']]:
 	i,j=pair
 	print(i,j,a[i].distance(a[j]).evalf())
 
-rotate_list('AiBiCiDiEiFiGiHiIiJiKiLiMiNiOiPiQiRiSiTi','Ii','Pi',(math.pi/2-math.sqrt(2))*2)
+rotate_list('AiBiCiDiEiFiGiHiIiJiKiLiMiNiOiPiQiRiSiTi','Ii','Pi',(math.pi/2-magical_angle)*2)
 
 for pair in [['A','G'],['F','Hi'],['Pi','R'],['L','Ii']]:
 	i,j=pair
 	print(i,j,a[i].distance(a[j]).evalf())
 
-rotate_list(['Ji','Qi','Ki','Li','Si','Ti'],'Ii','Pi',math.sqrt(2))
 
-rotate_list(['Gi','Oi','Fi','Ni','Ei','Di','Ci','Mi','Bi','Ri','Ai'],Hi,Pi,-math.sqrt(2))
-'''
+rotate_list(['Ji','Si','Ti'],'Ii','Pi',magical_angle)
+rotate_list(['Ti'],'Ji','Si',magical_angle)
 
-#graph(triangles+triangles2,'ABCDEFGHIJKLMNOPQRST|AiBiCiDiEiFiGiHiIiJiKiLiMiNiOiPiQiRiSiTi')
+
+
+rotate_list(['Gi','Oi','Fi','Ni','Ei','Di','Ci','Mi','Bi','Ri','Ai','Li','Ki','Qi'],'Hi','Pi',-magical_angle)
+rotate_list(['Fi','Ni','Ei','Di','Ci','Mi','Bi','Ri','Ai','Li','Qi','Ki'],'Gi','Oi',-magical_angle)
+rotate_list(['Ni','Ei','Di','Ci','Mi','Bi','Ri','Ai','Li','Qi','Ki'],'Fi','Oi',-magical_angle)
+rotate_list(['Di','Ci','Mi','Bi','Ri','Ai','Li','Qi','Ki'],'Ni','Ei',-magical_angle)
+rotate_list(['Ci','Mi','Bi','Ri','Ai','Li','Qi','Ki'],'Ni','Di',-magical_angle)
+rotate_list(['Bi','Ri','Ai','Li','Qi','Ki'],'Ci','Mi',magical_angle)
+rotate_list(['Ri','Ai','Li','Qi','Ki'],'Bi','Mi',magical_angle)
+rotate_list(['Li','Qi','Ki'],'Ai','Ri',magical_angle)
+rotate_list(['Qi','Ki'],'Li','Ri',magical_angle)
+#rotate_list(['Ni','Ei','Di','Ci','Mi','Bi','Ri','Ai','Li','Si','Ti'],'Fi','Oi',-magical_angle)
+
+
+
+
+#print(triangles+triangles2)
+
+graph(triangles+triangles2,'ABCDEFGHIJKLMNOPQRST|AiBiCiDiEiFiGiHiIiJiKiLiMiNiOiPiQiRiSiTi')
+
+
+
 
 
 #this is the rotational code that wouldn't work

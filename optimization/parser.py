@@ -3,7 +3,7 @@ import os
 
 input_files=[i for i in os.listdir('.') if i.endswith('.txt')]
 e=open('output.csv','a')
-d.write("SEGMENT,DISTANCE,ANGLE\n")
+e.write("SEGMENT,DISTANCE,ANGLE\n")
 for f in input_files:
 	print(f)
 	d=open(f,'r')

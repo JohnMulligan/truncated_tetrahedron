@@ -35,3 +35,7 @@ It was a little off with my sqrt(2) folding angle, so I ran a multithreaded opti
 No guarantee that there is a correct angle -- but the first run suggests there might be, around 1.415-ish radians. Running a second time.
 
 See results in the optimization folder.
+
+It's a very ugly optimization script that I ran but it's yielding good results. 1.415471962374 is very close to the "correct" angle, I think.
+
+It's close enough, at least, that the folding of the second shape now worked well enough for me to polish off. The script generates the full form now, with the small gaps. Running a third optimization now on a very tight band of values.
