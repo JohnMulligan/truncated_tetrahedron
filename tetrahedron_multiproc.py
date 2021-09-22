@@ -189,18 +189,12 @@ def f(angle):
 
 if __name__ == '__main__':
 	base_angle=math.sqrt(2)
-
 	step=.000001
-
 	domain=0.001
-
 	angle=base_angle-domain
-
 	work=[]
-
 	while angle<base_angle+domain:
 		work.append(angle)
 		angle+=step
-
 	with Pool(processes=8) as pool:
 		pool.map(f,work)

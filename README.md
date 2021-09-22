@@ -28,7 +28,7 @@ To run:
 
 It should print out the vertices and then render the model.
 
-## Sept 20
+## Sept 20 -- "tetrahedron multiproc"
 
 It was a little off with my sqrt(2) folding angle, so I ran a multithreaded optimizer to try different folding angles.
 
@@ -39,3 +39,7 @@ See results in the optimization folder.
 It's a very ugly optimization script that I ran but it's yielding good results. 1.415471962374 is very close to the "correct" angle, I think.
 
 It's close enough, at least, that the folding of the second shape now worked well enough for me to polish off. The script generates the full form now, with the small gaps. Running a third optimization now on a very tight band of values.
+
+## Sept 22 -- "tetrahedron multiproc precision"
+
+I believe I have improved the optimization script. Rather than test every angle in a domain, I find the best match at a certain level of precision, then zoom in on that "address" and try its "subdomain" of 10 integer values at the next level of precision. I also check the n-1 value in case of rounding. So that should save about 80% of the work the computer was doing before.
