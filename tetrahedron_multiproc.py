@@ -188,10 +188,10 @@ def f(angle):
 
 
 if __name__ == '__main__':
-	base_angle=math.sqrt(2)
-	step=.000001
-	domain=0.001
-	angle=base_angle-domain
+	base_angle= 1.41547207300000001
+	end_angle=  1.41547207599999991
+	step=       0.00000000000000001
+	angle=base_angle
 	work=[]
 	while angle<base_angle+domain:
 		work.append(angle)

@@ -131,45 +131,43 @@ def f(angle):
 	rotate_list('AR','B','M',magical_angle)
 
 	#graph(triangles,'ABCDEFGHIJKLMNOPQRST')
-	print(1)
+
 	rotate_list('ARB','C','M',magical_angle)
 
 	#graph(triangles)
-	print(2)
+
 	rotate_list('ARBMC','D','N',magical_angle)
 
 	#graph(triangles)
-	print(3)
+
 	rotate_list('ARBCMD','N','E',-magical_angle)
 
 	#graph(triangles)
-	print(4)
+
 	rotate_list('ARBMCDNE','O','F',-magical_angle)
-	print(5)
+
 	#graph(triangles)
 
 	rotate_list('ARBMCDNEF','O','G',-magical_angle)
-	print(6)
+
 	#graph(triangles)
 
 	rotate_list('ARBMCDNEFOG','P','H',magical_angle)
-	print(7)
+
 	#graph(triangles)
 
 	rotate_list('ARBMCDNEFOGH','P','I',magical_angle)
 
 	#graph(triangles)
-	print(8)
+
 	rotate_list('ARBMCDNEFOGHPI','J','Q',-magical_angle)
 
 	#graph(triangles)
-	print(9)
 
 	rotate_list('ARBMCDNEFOGHPIJ','K','Q',-magical_angle)
 
 	#graph(triangles)
-	print(10)
-	
+
 	rotate_list('ARBMCDNEFOGHPIJKQ','L','R',-magical_angle)
 
 	'''print("\n\n-------\nclose hits: A~G (T~G) | R~O (S~O) | M~P | B~H\n-------")
@@ -206,11 +204,14 @@ if __name__ == '__main__':
 		
 		batch=[]
 		
-		for x in [prev_digit-1,prev_digit]:
+		
+		
+		for x in [(prev_digit-1)%10,prev_digit]:
 			
 			a=angle[:-1]+str(x)
 			
 			for i in range(10):
+				#print(a+str(i),type(a+str(i)))
 				b=str(Decimal(a+str(i)))
 				batch.append(b)
 				#print(N(a+str(i)),n))
@@ -220,17 +221,15 @@ if __name__ == '__main__':
 		
 		with Pool(6) as p:
 			distances=p.map(f,batch)
-		print(distances)
-		distances={i[0]:i[1] for i in distances}
+		distances={float(i[0]):i[1] for i in distances}
 		
-				
+		min_distance=min(distances)
+		best_angle=distances[min_distance]
 		
-		'''for b in batch:
-			AT_distance,this_angle=f(b)
-			distances[AT_distance]=this_angle
-			print(distances)'''
-				
-		best_angle=distances[min(distances)]
+		print("best angle is --> ",best_angle)
+		
+		
+		
 		angle=str(best_angle)
 		
 	

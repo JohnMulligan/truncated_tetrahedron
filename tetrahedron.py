@@ -15,8 +15,10 @@ import os
 
 
 #magical_angle=166563979225162923748770640501998485171/117675500839377502664900100000000000000
-magical_angle=1.415472
-
+#magical_angle=1.415652449
+#magical_angle=1.4157
+#magical_angle=1.41547207
+magical_angle=1.4155
 a={i:None for i in 'ABCDEFGHIJKLMNOPQRST'}
 
 def rotate_list(point_list,axisp1label,axisp2label,angle):
