@@ -1,4 +1,4 @@
-import graphics.engine
+from graph import main as graph
 from transforms import rotate
 import math
 from sympy.geometry import Point,Point3D, Line3D,Plane,Segment3D
@@ -14,11 +14,13 @@ import os
 
 
 
+
 #magical_angle=166563979225162923748770640501998485171/117675500839377502664900100000000000000
 #magical_angle=1.415652449
 #magical_angle=1.4157
 #magical_angle=1.41547207
-magical_angle=1.4155
+magical_angle=1.415471989998
+#magical_angle=1.4155
 a={i:None for i in 'ABCDEFGHIJKLMNOPQRST'}
 
 def rotate_list(point_list,axisp1label,axisp2label,angle):
@@ -32,21 +34,7 @@ def rotate_list(point_list,axisp1label,axisp2label,angle):
 		new_point=rotate(axis,point,angle)
 		a[point_label]=new_point
 
-def graph(triangles,pointstr='ABCDEFGHIJKLMNOPQRST'):
-	pa=[i for i in pointstr.split('|')[0]]
-	try:
-		pb=[i+'i' for i in pointstr.split('|')[1].split('i') if i!='']
-		p=pa+pb
-	except:
-		p=pa
-	print(p)
-	points_array=[[a[i].x,a[i].y,a[i].z] for i in p]
-	triangles_idx=[[p.index(i[0]),p.index(i[1]),p.index(i[2])] for i in triangles]
-	test = graphics.engine.Engine3D(points_array, triangles_idx, title='dodecagon')
-	test.render()
-	test.screen.window.mainloop()
-
-r=3
+r=100000.00000
 
 
 
@@ -64,7 +52,7 @@ for i in range(len(s)):
 	#print(i,points[i])
 	a[s[i]]=points[i]
 
-#graph(triangles,s)
+
 ##############
 
 
@@ -86,7 +74,11 @@ for i in range(len(s)):
 	#print(i,points[i])
 	a[s[i]]=points[i]
 
-#graph(triangles,s)
+s='ABCDEFGHIJKLMNOPQR'
+
+#print(a,triangles,s)
+
+graph(a,triangles,s)
 ##############
 
 
@@ -104,7 +96,7 @@ a['T']=A
 
 triangles=[
 	['L','S','T'],
-	['A','S','M'],['A','M','B'],
+	['A','R','M'],['A','M','B'],
 	['B','M','C'],
 	['C','M','N'],['C','N','D'],
 	['D','N','E'],
@@ -117,56 +109,56 @@ triangles=[
 	['K','Q','S'],['K','L','S']	
 	]
 
-#graph(triangles,'ABCDEFGHIJKLMNOPQRST')
+graph(a,triangles,'ABCDEFGHIJKLMNOPQRST')
 
 
 
 rotate_list('AR','B','M',magical_angle)
 
-#graph(triangles,'ABCDEFGHIJKLMNOPQRST')
+graph(a,triangles,'ABCDEFGHIJKLMNOPQRST')
 
 rotate_list('ARB','C','M',magical_angle)
 
-#graph(triangles)
+graph(a,triangles)
 
 rotate_list('ARBMC','D','N',magical_angle)
 
-#graph(triangles)
+graph(a,triangles)
 
 rotate_list('ARBCMD','N','E',-magical_angle)
 
-#graph(triangles)
+graph(a,triangles)
 
 rotate_list('ARBMCDNE','O','F',-magical_angle)
 
-#graph(triangles)
+graph(a,triangles)
 
 rotate_list('ARBMCDNEF','O','G',-magical_angle)
 
-#graph(triangles)
+graph(a,triangles)
 
 rotate_list('ARBMCDNEFOG','P','H',magical_angle)
 
-#graph(triangles)
+graph(a,triangles)
 
 rotate_list('ARBMCDNEFOGH','P','I',magical_angle)
 
-#graph(triangles)
+graph(a,triangles)
 
 rotate_list('ARBMCDNEFOGHPI','J','Q',-magical_angle)
 
-#graph(triangles)
+graph(a,triangles)
 
 rotate_list('ARBMCDNEFOGHPIJ','K','Q',-magical_angle)
 
-#graph(triangles)
+graph(a,triangles)
 
 rotate_list('ARBMCDNEFOGHPIJKQ','L','R',-magical_angle)
 
 print("\n\n-------\nclose hits: A~G (T~G) | R~O (S~O) | M~P | B~H\n-------")
 
 
-#graph(triangles)
+graph(a,triangles)
 
 
 
@@ -221,14 +213,6 @@ triangles2=[
 ##############
 
 
-#triangles2=[['Hi','Ii','Pi']]
-
-#graph(triangles+triangles2,'ABCDEFGHIJKLMNOPQRST|AiBiCiDiEiFiGiHiIiJiKiLiMiNiOiPiQiRiSiTi')
-
-#pairs=['A','Gi','F','H']
-
-#for pair in [[i,j] for i in pairs for j in pairs]:
-
 for pair in [['A','G'],['F','Hi'],['Pi','R'],['L','Ii']]:
 	i,j=pair
 	print(i,j,a[i].distance(a[j]).evalf())
@@ -239,60 +223,48 @@ for pair in [['A','G'],['F','Hi'],['Pi','R'],['L','Ii']]:
 	i,j=pair
 	print(i,j,a[i].distance(a[j]).evalf())
 
+graph(a,triangles+triangles2,'ABCDEFGHIJKLMNOPQRST|AiBiCiDiEiFiGiHiIiJiKiLiMiNiOiPiQiRiSiTi')
+
 
 rotate_list(['Ji','Si','Ti'],'Ii','Pi',magical_angle)
+
+graph(a,triangles+triangles2,'ABCDEFGHIJKLMNOPQRST|AiBiCiDiEiFiGiHiIiJiKiLiMiNiOiPiQiRiSiTi')
+
+
 rotate_list(['Ti'],'Ji','Si',magical_angle)
 
+graph(a,triangles+triangles2,'ABCDEFGHIJKLMNOPQRST|AiBiCiDiEiFiGiHiIiJiKiLiMiNiOiPiQiRiSiTi')
 
 
 rotate_list(['Gi','Oi','Fi','Ni','Ei','Di','Ci','Mi','Bi','Ri','Ai','Li','Ki','Qi'],'Hi','Pi',-magical_angle)
+graph(a,triangles+triangles2,'ABCDEFGHIJKLMNOPQRST|AiBiCiDiEiFiGiHiIiJiKiLiMiNiOiPiQiRiSiTi')
+
 rotate_list(['Fi','Ni','Ei','Di','Ci','Mi','Bi','Ri','Ai','Li','Qi','Ki'],'Gi','Oi',-magical_angle)
+graph(a,triangles+triangles2,'ABCDEFGHIJKLMNOPQRST|AiBiCiDiEiFiGiHiIiJiKiLiMiNiOiPiQiRiSiTi')
+
 rotate_list(['Ni','Ei','Di','Ci','Mi','Bi','Ri','Ai','Li','Qi','Ki'],'Fi','Oi',-magical_angle)
+graph(a,triangles+triangles2,'ABCDEFGHIJKLMNOPQRST|AiBiCiDiEiFiGiHiIiJiKiLiMiNiOiPiQiRiSiTi')
+
 rotate_list(['Di','Ci','Mi','Bi','Ri','Ai','Li','Qi','Ki'],'Ni','Ei',-magical_angle)
+graph(a,triangles+triangles2,'ABCDEFGHIJKLMNOPQRST|AiBiCiDiEiFiGiHiIiJiKiLiMiNiOiPiQiRiSiTi')
+
 rotate_list(['Ci','Mi','Bi','Ri','Ai','Li','Qi','Ki'],'Ni','Di',-magical_angle)
+graph(a,triangles+triangles2,'ABCDEFGHIJKLMNOPQRST|AiBiCiDiEiFiGiHiIiJiKiLiMiNiOiPiQiRiSiTi')
+
 rotate_list(['Bi','Ri','Ai','Li','Qi','Ki'],'Ci','Mi',magical_angle)
+graph(a,triangles+triangles2,'ABCDEFGHIJKLMNOPQRST|AiBiCiDiEiFiGiHiIiJiKiLiMiNiOiPiQiRiSiTi')
+
 rotate_list(['Ri','Ai','Li','Qi','Ki'],'Bi','Mi',magical_angle)
+graph(a,triangles+triangles2,'ABCDEFGHIJKLMNOPQRST|AiBiCiDiEiFiGiHiIiJiKiLiMiNiOiPiQiRiSiTi')
+
 rotate_list(['Li','Qi','Ki'],'Ai','Ri',magical_angle)
+graph(a,triangles+triangles2,'ABCDEFGHIJKLMNOPQRST|AiBiCiDiEiFiGiHiIiJiKiLiMiNiOiPiQiRiSiTi')
+
 rotate_list(['Qi','Ki'],'Li','Ri',magical_angle)
-#rotate_list(['Ni','Ei','Di','Ci','Mi','Bi','Ri','Ai','Li','Si','Ti'],'Fi','Oi',-magical_angle)
+graph(a,triangles+triangles2,'ABCDEFGHIJKLMNOPQRST|AiBiCiDiEiFiGiHiIiJiKiLiMiNiOiPiQiRiSiTi')
 
 
 
-
-#print(triangles+triangles2)
-
-graph(triangles+triangles2,'ABCDEFGHIJKLMNOPQRST|AiBiCiDiEiFiGiHiIiJiKiLiMiNiOiPiQiRiSiTi')
+graph(a,triangles+triangles2,'ABCDEFGHIJKLMNOPQRST|AiBiCiDiEiFiGiHiIiJiKiLiMiNiOiPiQiRiSiTi')
 
 
-
-
-
-#this is the rotational code that wouldn't work
-'''origin=np.array(K,dtype=np.float64)
-
-V1=np.array(J,dtype=np.float64)
-V2=np.array(Q,dtype=np.float64)
-
-
-
-V1 = V1 / linalg.norm(V1)  # Normalise vectors
-V2 = V2 / linalg.norm(V2)
-
-# Take the cross product
-perp = np.cross(V1, V2)
-
-l=Line3D(K,direction_ratio=list(perp))
-#now fold off the first one
-
-p=Plane(J,K,Q)
-
-l=p.perpendicular_line(K)
-Ai=rotate(l,K,math.pi/3)
-
-#Ai,Bi=l.points
-
-a['Ai']=Ai
-#a['Bi']=Bi
-
-graph([['J','K','Q'],['Ai','K','Q']],'ABCDEFGHIJKLMNOPQRST|Ai')
-'''

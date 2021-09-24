@@ -38,19 +38,6 @@ def f(angle):
 			new_point=rotate(axis,point,angle)
 			a[point_label]=new_point
 
-	def graph(triangles,pointstr='ABCDEFGHIJKLMNOPQRST'):
-		pa=[i for i in pointstr.split('|')[0]]
-		try:
-			pb=[i+'i' for i in pointstr.split('|')[1].split('i') if i!='']
-			p=pa+pb
-		except:
-			p=pa
-		print(p)
-		points_array=[[a[i].x,a[i].y,a[i].z] for i in p]
-		triangles_idx=[[p.index(i[0]),p.index(i[1]),p.index(i[2])] for i in triangles]
-		test = graphics.engine.Engine3D(points_array, triangles_idx, title='dodecagon')
-		test.render()
-		test.screen.window.mainloop()
 
 	r=100000
 
@@ -70,7 +57,7 @@ def f(angle):
 		#print(i,points[i])
 		a[s[i]]=points[i]
 
-	#graph(triangles,s)
+	
 	##############
 
 
@@ -92,7 +79,7 @@ def f(angle):
 		#print(i,points[i])
 		a[s[i]]=points[i]
 
-	#graph(triangles,s)
+	
 	##############
 
 
@@ -110,7 +97,7 @@ def f(angle):
 
 	triangles=[
 		['L','S','T'],
-		['A','S','M'],['A','M','B'],
+		['A','R','M'],['A','M','B'],
 		['B','M','C'],
 		['C','M','N'],['C','N','D'],
 		['D','N','E'],
@@ -123,56 +110,56 @@ def f(angle):
 		['K','Q','S'],['K','L','S']	
 		]
 
-	#graph(triangles,'ABCDEFGHIJKLMNOPQRST')
+	
 
 
 
 	rotate_list('AR','B','M',magical_angle)
 
-	#graph(triangles,'ABCDEFGHIJKLMNOPQRST')
+	
 
 	rotate_list('ARB','C','M',magical_angle)
 
-	#graph(triangles)
+	
 
 	rotate_list('ARBMC','D','N',magical_angle)
 
-	#graph(triangles)
+	
 
 	rotate_list('ARBCMD','N','E',-magical_angle)
 
-	#graph(triangles)
+	
 
 	rotate_list('ARBMCDNE','O','F',-magical_angle)
 
-	#graph(triangles)
+	
 
 	rotate_list('ARBMCDNEF','O','G',-magical_angle)
 
-	#graph(triangles)
+	
 
 	rotate_list('ARBMCDNEFOG','P','H',magical_angle)
 
-	#graph(triangles)
+	
 
 	rotate_list('ARBMCDNEFOGH','P','I',magical_angle)
 
-	#graph(triangles)
+	
 
 	rotate_list('ARBMCDNEFOGHPI','J','Q',-magical_angle)
 
-	#graph(triangles)
+	
 
 	rotate_list('ARBMCDNEFOGHPIJ','K','Q',-magical_angle)
 
-	#graph(triangles)
+	
 
 	rotate_list('ARBMCDNEFOGHPIJKQ','L','R',-magical_angle)
 
 	'''print("\n\n-------\nclose hits: A~G (T~G) | R~O (S~O) | M~P | B~H\n-------")
 	for i in a:
 		print("\n%s = %s\n" %(i,a[i].evalf()))
-	#graph(triangles)'''
+	
 	
 	d.write("RADIUS: "+str(r)+"\n")
 	d.write("ANGLE: "+str(angle)+"\n")
@@ -188,12 +175,12 @@ def f(angle):
 
 
 if __name__ == '__main__':
-	base_angle= 1.41547207300000001
-	end_angle=  1.41547207599999991
+	base_angle= 1.415471989998
+	end_angle=  1.415471990000
 	step=       0.00000000000000001
 	angle=base_angle
 	work=[]
-	while angle<base_angle+domain:
+	while angle<end_angle:
 		work.append(angle)
 		angle+=step
 	with Pool(processes=8) as pool:
