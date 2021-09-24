@@ -78,7 +78,7 @@ s='ABCDEFGHIJKLMNOPQR'
 
 #print(a,triangles,s)
 
-graph(a,triangles,s)
+#graph(a,triangles,s)
 ##############
 
 
@@ -109,56 +109,56 @@ triangles=[
 	['K','Q','S'],['K','L','S']	
 	]
 
-graph(a,triangles,'ABCDEFGHIJKLMNOPQRST')
+#graph(a,triangles,'ABCDEFGHIJKLMNOPQRST')
 
 
 
 rotate_list('AR','B','M',magical_angle)
 
-graph(a,triangles,'ABCDEFGHIJKLMNOPQRST')
+#graph(a,triangles,'ABCDEFGHIJKLMNOPQRST')
 
 rotate_list('ARB','C','M',magical_angle)
 
-graph(a,triangles)
+#graph(a,triangles)
 
 rotate_list('ARBMC','D','N',magical_angle)
 
-graph(a,triangles)
+#graph(a,triangles)
 
 rotate_list('ARBCMD','N','E',-magical_angle)
 
-graph(a,triangles)
+#graph(a,triangles)
 
 rotate_list('ARBMCDNE','O','F',-magical_angle)
 
-graph(a,triangles)
+#graph(a,triangles)
 
 rotate_list('ARBMCDNEF','O','G',-magical_angle)
 
-graph(a,triangles)
+#graph(a,triangles)
 
 rotate_list('ARBMCDNEFOG','P','H',magical_angle)
 
-graph(a,triangles)
+#graph(a,triangles)
 
 rotate_list('ARBMCDNEFOGH','P','I',magical_angle)
 
-graph(a,triangles)
+#graph(a,triangles)
 
 rotate_list('ARBMCDNEFOGHPI','J','Q',-magical_angle)
 
-graph(a,triangles)
+#graph(a,triangles)
 
 rotate_list('ARBMCDNEFOGHPIJ','K','Q',-magical_angle)
 
-graph(a,triangles)
+#graph(a,triangles)
 
 rotate_list('ARBMCDNEFOGHPIJKQ','L','R',-magical_angle)
 
 print("\n\n-------\nclose hits: A~G (T~G) | R~O (S~O) | M~P | B~H\n-------")
 
 
-graph(a,triangles)
+#graph(a,triangles)
 
 
 
@@ -213,13 +213,13 @@ triangles2=[
 ##############
 
 
-for pair in [['A','G'],['F','Hi'],['Pi','R'],['L','Ii']]:
+for pair in [['Ii','L'],['Pi','R'],['O','Pi'],['Hi','F'],['O','R'],['S','O'],['G','A'],['A','T'],['M','P'],['B','H']]:
 	i,j=pair
 	print(i,j,a[i].distance(a[j]).evalf())
 
 rotate_list('AiBiCiDiEiFiGiHiIiJiKiLiMiNiOiPiQiRiSiTi','Ii','Pi',(math.pi/2-magical_angle)*2)
 
-for pair in [['A','G'],['F','Hi'],['Pi','R'],['L','Ii']]:
+for pair in [['Ii','L'],['Pi','R'],['O','Pi'],['Hi','F']]:
 	i,j=pair
 	print(i,j,a[i].distance(a[j]).evalf())
 
