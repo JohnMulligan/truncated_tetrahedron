@@ -8,4 +8,4 @@ The shorter side on the longer trapezoid has the same length as the longer side 
 
 Both trapezoids have interior angles of 60 and 120 degrees.
 
-_i wrote this forgetting that this means there are three lengths involved. this is just a first attempt and does not yet work._
+Appears to be working now. Refactored my multiproc scripts while applying them here.

@@ -1,12 +1,16 @@
 import re
 import os
+import sys
 
-input_files=[i for i in os.listdir('.') if i.endswith('.txt')]
+filedir=sys.argv[1]
+
+
+input_files=[i for i in os.listdir(filedir) if i.endswith('.txt')]
 e=open('output.csv','a')
 e.write("SEGMENT,DISTANCE,ANGLE\n")
 for f in input_files:
 	print(f)
-	d=open(f,'r')
+	d=open(os.path.join(filedir,f),'r')
 	t=d.read()
 	d.close()
 	blocks=t.split('ANGLE: ')

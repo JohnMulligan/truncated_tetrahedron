@@ -1,7 +1,7 @@
 import plotly.graph_objects as go
 from sympy.geometry import Point,Point3D, Line3D,Plane,Segment3D
 
-def main(a,triangles,pointstr='ABCDEFGHIJKLMNOPQRST'):
+def main(a,triangles,pointstr='ABCDEFGHIJKLMN'):
 	pa=[i for i in pointstr.split('|')[0]]
 	try:
 		pb=[i+'i' for i in pointstr.split('|')[1].split('i') if i!='']

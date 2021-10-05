@@ -4,8 +4,8 @@ from sympy.geometry import Point,Point3D, Line3D,Plane,Segment3D
 from math import cos, sin, sqrt
 import sys
 import os
-from multiprocessing import Pool, TimeoutError
 import time
+from env import *
 
 #OUTER, DODECAGON VERTICES: ABCDEFGHIJKL + T
 #INNER, HEXAGON VERTICES: MNOPQR + S 
@@ -18,12 +18,12 @@ import time
 
 
 
-def f(angle):
+def main(angle):
 	start_time=time.time()
 	magical_angle=angle
 	
 	p_id=os.getpid()
-	d=open(str(p_id)+'.txt','a')
+	d=open(os.path.join(outdir,str(p_id)+'.txt'),'a')
 
 	a={i:None for i in 'ABCDEFGHIJKLMNOPQRST'}
 
@@ -155,11 +155,6 @@ def f(angle):
 	
 
 	rotate_list('ARBMCDNEFOGHPIJKQ','L','R',-magical_angle)
-
-	'''print("\n\n-------\nclose hits: A~G (T~G) | R~O (S~O) | M~P | B~H\n-------")
-	for i in a:
-		print("\n%s = %s\n" %(i,a[i].evalf()))
-	
 	
 	d.write("RADIUS: "+str(r)+"\n")
 	d.write("ANGLE: "+str(angle)+"\n")
@@ -170,18 +165,5 @@ def f(angle):
 	d.write(statstr)
 	d.write('\t'.join(["LOOP:", str(p_id),str(time.time()-start_time)]))
 	d.close()
-
-
-
-
-if __name__ == '__main__':
-	base_angle= 1.415471989998
-	end_angle=  1.415471990000
-	step=       0.00000000000000001
-	angle=base_angle
-	work=[]
-	while angle<end_angle:
-		work.append(angle)
-		angle+=step
-	with Pool(processes=8) as pool:
-		pool.map(f,work)
+	AT_distance=str(a['A'].distance(a['T']).evalf())
+	return AT_distance,angle
