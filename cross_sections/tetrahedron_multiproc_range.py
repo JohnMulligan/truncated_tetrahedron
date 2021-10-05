@@ -6,8 +6,8 @@ from tetrahedron_multiproc import main as f
 
 
 if __name__ == '__main__':
-	base_angle= 1.230000000000
-	end_angle=  1.240000000000
+	base_angle= 1.230999000000
+	end_angle=  1.231000100000
 	step=       0.000000000001
 	angle=base_angle
 	work=[]
