@@ -14,7 +14,7 @@ if __name__ == '__main__':
 	angle='1.2'
 	
 	for n in range(1,5):
-		print(angle)
+		#print(angle)
 		start_time=time.time()
 		
 		accuracy=len(angle.split('.')[1])
@@ -32,11 +32,9 @@ if __name__ == '__main__':
 			angle+=step
 			angle=round(angle,accuracy+2)
 		
-		print(work)
-		
-		angle=str(random.choice(work))
-		
-		'''with Pool(6) as p:
+		#print(work)
+				
+		with Pool(6) as p:
 			distances=p.map(f,work)
 		distances={float(i[0]):i[1] for i in distances}
 		
