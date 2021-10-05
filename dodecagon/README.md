@@ -11,15 +11,6 @@ One of these rings appears to be a perfect fit or else very near miss.
 
 Building the second is not a perfect fit but it is still kind of close. There's not quite enough room left over from the first. This is visualizable, but the easy way to see it is to measure the space left for one of the small triangles against the actual size of the small triangle.
 
-To run this:
-	
-	python3 m -venv venv
-	source venv/bin/activate
-	pip3 install -r requirements.txt
-	python tetrahedron.py
-
-It will render each step of the construction as it goes, in your browser, using Plotly.
-
 
 ## Dependencies/credit
 
