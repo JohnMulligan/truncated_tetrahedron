@@ -34,7 +34,7 @@ if __name__ == '__main__':
 		
 		#print(work)
 				
-		with Pool(6) as p:
+		with Pool(8) as p:
 			distances=p.map(f,work)
 		distances={float(i[0]):i[1] for i in distances}
 		
