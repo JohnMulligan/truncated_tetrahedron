@@ -31,7 +31,10 @@ if __name__ == '__main__':
 				batch.append(b)
 				#print(N(a+str(i)),n))
 		
-		batch=[Float(i,n+2) for i in batch]		
+		batch=[Float(i,n+2) for i in batch]
+		
+		print(batch)
+		
 		with Pool(6) as p:
 			distances=p.map(f,batch)
 		distances={float(i[0]):i[1] for i in distances}
