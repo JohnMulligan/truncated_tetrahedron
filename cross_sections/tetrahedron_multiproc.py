@@ -8,6 +8,8 @@ import time
 from decimal import Decimal
 from env import *
 
+vertices={i:None for i in 'ABCDEFGHIJKLMN'}
+
 def rotate_list(point_list,axisp1label,axisp2label,angle):
 	axis=Line3D(vertices[axisp1label],vertices[axisp2label])
 	if "i" in point_list:
@@ -22,7 +24,7 @@ def rotate_list(point_list,axisp1label,axisp2label,angle):
 def main(angle):
 	p_id=os.getpid()
 	start_time=time.time()
-	vertices={i:None for i in 'ABCDEFGHIJKLMN'}
+	
 	d=open(os.path.join(outdir,str(p_id)+'.txt'),'a')
 	
 	ll=float(100000)
