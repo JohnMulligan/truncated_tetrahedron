@@ -7,7 +7,6 @@ import math
 from multiprocessing import Pool, TimeoutError
 import time
 from tetrahedron_multiproc import main as f
-from decimal import Decimal
 import random
 
 
@@ -15,31 +14,26 @@ if __name__ == '__main__':
 	angle='1.2'
 	
 	for n in range(1,5):
-		print(angle)
+		#print(angle)
 		start_time=time.time()
 		
-		prev_digit=int(angle[-1])
+		accuracy=len(angle.split('.')[1])
+		pointone='0.'+''.join(['0' for i in range(accuracy)])+'1'
 		
-		batch=[]
 		
-		for x in [(prev_digit-1)%10,prev_digit,(prev_digit+1)%10]:
-			
-			a=angle[:-1]+str(x)
-			
-			for i in range(10):
-				#print(a+str(i),type(a+str(i)))
-				b=str(Decimal(a+str(i)))
-				batch.append(b)
-				#print(N(a+str(i)),n))
+		base_angle= float(angle+'0')-float(pointone)
+		end_angle=  float(angle+'9')+float(pointone)
+		step=       float(pointone)
 		
-		batch=[Float(i,n+2) for i in batch]
-		
-		#print(batch)
-		
-		#angle=str(random.choice(batch))
+		angle=base_angle
+		work=[]
+		while angle<end_angle:
+			work.append(angle)
+			angle+=step
+			angle=round(angle,accuracy+1)
 		
 		with Pool(6) as p:
-			distances=p.map(f,batch)
+			distances=p.map(f,work)
 		distances={float(i[0]):i[1] for i in distances}
 		
 		for d in distances:
@@ -50,4 +44,4 @@ if __name__ == '__main__':
 		loop_time=time.time()-start_time
 		print("best angle is --> ",best_angle, " // with distance -->",min_distance, "in", int(loop_time),"seconds")
 		
-		angle=str(best_angle)
+		angle=str(best_angle)'''
