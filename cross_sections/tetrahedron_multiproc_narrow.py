@@ -8,13 +8,14 @@ from multiprocessing import Pool, TimeoutError
 import time
 from tetrahedron_multiproc import main as f
 from decimal import Decimal
-
+import random
 
 
 if __name__ == '__main__':
 	angle='1.2'
 	
-	for n in range(1,50):
+	for n in range(1,5):
+		print(angle)
 		start_time=time.time()
 		
 		prev_digit=int(angle[-1])
@@ -33,11 +34,16 @@ if __name__ == '__main__':
 		
 		batch=[Float(i,n+2) for i in batch]
 		
-		print(batch)
+		#print(batch)
+		
+		#angle=str(random.choice(batch))
 		
 		with Pool(6) as p:
 			distances=p.map(f,batch)
 		distances={float(i[0]):i[1] for i in distances}
+		
+		for d in distances:
+			print(d,distances[d])
 		
 		min_distance=min(distances)
 		best_angle=distances[min_distance]

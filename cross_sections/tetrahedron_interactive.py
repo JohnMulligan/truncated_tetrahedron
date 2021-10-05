@@ -6,7 +6,7 @@ from math import cos, sin, sqrt
 import sys
 import os
 
-magical_angle=1.2
+magical_angle=1.230958877
 
 
 vertices={i:None for i in 'ABCDEFGHIJKLMN'}
