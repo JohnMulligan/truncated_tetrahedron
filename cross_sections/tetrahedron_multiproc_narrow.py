@@ -13,7 +13,7 @@ import random
 if __name__ == '__main__':
 	angle='1.2'
 	
-	for n in range(1,5):
+	for n in range(1,20):
 		#print(angle)
 		start_time=time.time()
 		
