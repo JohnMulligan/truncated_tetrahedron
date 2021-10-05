@@ -108,6 +108,6 @@ def main(angle):
 	d.write('\t'.join(["LOOP:", str(p_id),str(time.time()-start_time)]))
 	d.close()
 	AG_distance=str(vertices['A'].distance(vertices['G']).evalf())
-	print(AG_distance,angle)
+	#print(AG_distance,angle)
 	return AG_distance,angle
 
