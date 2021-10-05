@@ -14,15 +14,15 @@ if __name__ == '__main__':
 	angle='1.2'
 	
 	for n in range(1,5):
-		#print(angle)
+		print(angle)
 		start_time=time.time()
 		
 		accuracy=len(angle.split('.')[1])
-		pointone='0.'+''.join(['0' for i in range(accuracy)])+'1'
+		pointone='0.'+''.join(['0' for i in range(accuracy+1)])+'1'
 		
 		
-		base_angle= float(angle+'0')-float(pointone)
-		end_angle=  float(angle+'9')+float(pointone)
+		base_angle= float(angle)-float(pointone)*100
+		end_angle=  float(angle)+float(pointone)*100
 		step=       float(pointone)
 		
 		angle=base_angle
@@ -30,14 +30,15 @@ if __name__ == '__main__':
 		while angle<end_angle:
 			work.append(angle)
 			angle+=step
-			angle=round(angle,accuracy+1)
+			angle=round(angle,accuracy+2)
 		
-		with Pool(6) as p:
+		print(work)
+		
+		angle=str(random.choice(work))
+		
+		'''with Pool(6) as p:
 			distances=p.map(f,work)
 		distances={float(i[0]):i[1] for i in distances}
-		
-		for d in distances:
-			print(d,distances[d])
 		
 		min_distance=min(distances)
 		best_angle=distances[min_distance]
