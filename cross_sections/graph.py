@@ -30,7 +30,8 @@ def main(a,triangles,pointstr='ABCDEFGHIJKLMN'):
 			j=J,
 			k=K,
 			name='y',
-			showscale=True
+			showscale=True,
+			colorbar_exponentformat="e"
 		)
 	])
 	#print(fig)
