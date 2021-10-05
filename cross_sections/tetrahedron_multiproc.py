@@ -49,7 +49,7 @@ def main(angle):
 		n=top_vs.index(v)
 		if n!=float(0):
 			previous_offset=vertices[top_vs[n-1]].x
-			print(type(previous_offset))
+			#print(type(previous_offset))
 			x=[ss,ll][n%2]+previous_offset
 		else:
 			x=float(0)
@@ -72,7 +72,7 @@ def main(angle):
 				['E','L','F'],['F','L','M'],['F','M','G'],['G','M','N']
 			]
 	
-	print(vertices)
+	#print(vertices)
 	
 	rotate_list('CDEFGJKLMN','B','I',angle)
 	rotate_list('DEFGKLMN','C','J',angle)
