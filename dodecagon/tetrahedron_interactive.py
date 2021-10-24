@@ -29,12 +29,22 @@ def rotate_list(point_list,axisp1label,axisp2label,angle):
 		point_list=[i+'i' for i in point_list.split('i') if i!='']
 	else:
 		point_list=[i for i in point_list]
+	
 	for point_label in point_list:
 		point=a[point_label]
 		new_point=rotate(axis,point,angle)
 		a[point_label]=new_point
+	'''s=[]
+	for i in a:
+		s.append(i+"x=" + str(a[i].x.evalf()))
+		s.append(i+"y=" + str(a[i].y.evalf()))
+		s.append(i+"z=" + str(a[i].z.evalf()))
+	
+	d=open('testoutput.py','w')
+	d.write('\n'.join(s))
+	d.close()'''
 
-r=100000.00000
+r=1000
 
 
 
@@ -76,9 +86,13 @@ for i in range(len(s)):
 
 s='ABCDEFGHIJKLMNOPQR'
 
+
+
+
+
 #print(a,triangles,s)
 
-graph(a,triangles,s)
+#graph(a,triangles,s)
 ##############
 
 
@@ -112,23 +126,25 @@ triangles=[
 graph(a,triangles,'ABCDEFGHIJKLMNOPQRST')
 
 
-
+print("ONE")
 rotate_list('AR','B','M',magical_angle)
 
 graph(a,triangles,'ABCDEFGHIJKLMNOPQRST')
 
+print("TWO")
 rotate_list('ARB','C','M',magical_angle)
 
 graph(a,triangles)
-
+print("THREE")
 rotate_list('ARBMC','D','N',magical_angle)
 
 graph(a,triangles)
 
+print("FOUR")
 rotate_list('ARBCMD','N','E',-magical_angle)
 
 graph(a,triangles)
-
+print("FIVE")
 rotate_list('ARBMCDNE','O','F',-magical_angle)
 
 graph(a,triangles)
@@ -215,56 +231,54 @@ triangles2=[
 
 for pair in [['Ii','L'],['Pi','R'],['O','Pi'],['Hi','F'],['O','R'],['S','O'],['G','A'],['A','T'],['M','P'],['B','H']]:
 	i,j=pair
-	print(i,j,a[i].distance(a[j]).evalf())
 
 rotate_list('AiBiCiDiEiFiGiHiIiJiKiLiMiNiOiPiQiRiSiTi','Ii','Pi',(math.pi/2-magical_angle)*2)
 
 for pair in [['Ii','L'],['Pi','R'],['O','Pi'],['Hi','F']]:
 	i,j=pair
-	print(i,j,a[i].distance(a[j]).evalf())
 
-graph(a,triangles+triangles2,'ABCDEFGHIJKLMNOPQRST|AiBiCiDiEiFiGiHiIiJiKiLiMiNiOiPiQiRiSiTi')
+#graph(a,triangles+triangles2,'ABCDEFGHIJKLMNOPQRST|AiBiCiDiEiFiGiHiIiJiKiLiMiNiOiPiQiRiSiTi')
 
 
 rotate_list(['Ji','Si','Ti'],'Ii','Pi',magical_angle)
 
-graph(a,triangles+triangles2,'ABCDEFGHIJKLMNOPQRST|AiBiCiDiEiFiGiHiIiJiKiLiMiNiOiPiQiRiSiTi')
+#graph(a,triangles+triangles2,'ABCDEFGHIJKLMNOPQRST|AiBiCiDiEiFiGiHiIiJiKiLiMiNiOiPiQiRiSiTi')
 
 
 rotate_list(['Ti'],'Ji','Si',magical_angle)
 
-graph(a,triangles+triangles2,'ABCDEFGHIJKLMNOPQRST|AiBiCiDiEiFiGiHiIiJiKiLiMiNiOiPiQiRiSiTi')
+#graph(a,triangles+triangles2,'ABCDEFGHIJKLMNOPQRST|AiBiCiDiEiFiGiHiIiJiKiLiMiNiOiPiQiRiSiTi')
 
 
 rotate_list(['Gi','Oi','Fi','Ni','Ei','Di','Ci','Mi','Bi','Ri','Ai','Li','Ki','Qi'],'Hi','Pi',-magical_angle)
-graph(a,triangles+triangles2,'ABCDEFGHIJKLMNOPQRST|AiBiCiDiEiFiGiHiIiJiKiLiMiNiOiPiQiRiSiTi')
+#graph(a,triangles+triangles2,'ABCDEFGHIJKLMNOPQRST|AiBiCiDiEiFiGiHiIiJiKiLiMiNiOiPiQiRiSiTi')
 
 rotate_list(['Fi','Ni','Ei','Di','Ci','Mi','Bi','Ri','Ai','Li','Qi','Ki'],'Gi','Oi',-magical_angle)
-graph(a,triangles+triangles2,'ABCDEFGHIJKLMNOPQRST|AiBiCiDiEiFiGiHiIiJiKiLiMiNiOiPiQiRiSiTi')
+#graph(a,triangles+triangles2,'ABCDEFGHIJKLMNOPQRST|AiBiCiDiEiFiGiHiIiJiKiLiMiNiOiPiQiRiSiTi')
 
 rotate_list(['Ni','Ei','Di','Ci','Mi','Bi','Ri','Ai','Li','Qi','Ki'],'Fi','Oi',-magical_angle)
-graph(a,triangles+triangles2,'ABCDEFGHIJKLMNOPQRST|AiBiCiDiEiFiGiHiIiJiKiLiMiNiOiPiQiRiSiTi')
+#graph(a,triangles+triangles2,'ABCDEFGHIJKLMNOPQRST|AiBiCiDiEiFiGiHiIiJiKiLiMiNiOiPiQiRiSiTi')
 
 rotate_list(['Di','Ci','Mi','Bi','Ri','Ai','Li','Qi','Ki'],'Ni','Ei',-magical_angle)
-graph(a,triangles+triangles2,'ABCDEFGHIJKLMNOPQRST|AiBiCiDiEiFiGiHiIiJiKiLiMiNiOiPiQiRiSiTi')
+#graph(a,triangles+triangles2,'ABCDEFGHIJKLMNOPQRST|AiBiCiDiEiFiGiHiIiJiKiLiMiNiOiPiQiRiSiTi')
 
 rotate_list(['Ci','Mi','Bi','Ri','Ai','Li','Qi','Ki'],'Ni','Di',-magical_angle)
-graph(a,triangles+triangles2,'ABCDEFGHIJKLMNOPQRST|AiBiCiDiEiFiGiHiIiJiKiLiMiNiOiPiQiRiSiTi')
+#graph(a,triangles+triangles2,'ABCDEFGHIJKLMNOPQRST|AiBiCiDiEiFiGiHiIiJiKiLiMiNiOiPiQiRiSiTi')
 
 rotate_list(['Bi','Ri','Ai','Li','Qi','Ki'],'Ci','Mi',magical_angle)
-graph(a,triangles+triangles2,'ABCDEFGHIJKLMNOPQRST|AiBiCiDiEiFiGiHiIiJiKiLiMiNiOiPiQiRiSiTi')
+#graph(a,triangles+triangles2,'ABCDEFGHIJKLMNOPQRST|AiBiCiDiEiFiGiHiIiJiKiLiMiNiOiPiQiRiSiTi')
 
 rotate_list(['Ri','Ai','Li','Qi','Ki'],'Bi','Mi',magical_angle)
-graph(a,triangles+triangles2,'ABCDEFGHIJKLMNOPQRST|AiBiCiDiEiFiGiHiIiJiKiLiMiNiOiPiQiRiSiTi')
+#graph(a,triangles+triangles2,'ABCDEFGHIJKLMNOPQRST|AiBiCiDiEiFiGiHiIiJiKiLiMiNiOiPiQiRiSiTi')
 
 rotate_list(['Li','Qi','Ki'],'Ai','Ri',magical_angle)
-graph(a,triangles+triangles2,'ABCDEFGHIJKLMNOPQRST|AiBiCiDiEiFiGiHiIiJiKiLiMiNiOiPiQiRiSiTi')
+#graph(a,triangles+triangles2,'ABCDEFGHIJKLMNOPQRST|AiBiCiDiEiFiGiHiIiJiKiLiMiNiOiPiQiRiSiTi')
 
 rotate_list(['Qi','Ki'],'Li','Ri',magical_angle)
-graph(a,triangles+triangles2,'ABCDEFGHIJKLMNOPQRST|AiBiCiDiEiFiGiHiIiJiKiLiMiNiOiPiQiRiSiTi')
+#graph(a,triangles+triangles2,'ABCDEFGHIJKLMNOPQRST|AiBiCiDiEiFiGiHiIiJiKiLiMiNiOiPiQiRiSiTi')
 
 
 
-graph(a,triangles+triangles2,'ABCDEFGHIJKLMNOPQRST|AiBiCiDiEiFiGiHiIiJiKiLiMiNiOiPiQiRiSiTi')
+#graph(a,triangles+triangles2,'ABCDEFGHIJKLMNOPQRST|AiBiCiDiEiFiGiHiIiJiKiLiMiNiOiPiQiRiSiTi')
 
 

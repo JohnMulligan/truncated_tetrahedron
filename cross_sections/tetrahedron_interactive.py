@@ -6,8 +6,8 @@ from math import cos, sin, sqrt
 import sys
 import os
 
-magical_angle=1.230959417
-
+#magical_angle=1.2309594173409
+magical_angle=1.3
 
 vertices={i:None for i in 'ABCDEFGHIJKLMN'}
 
@@ -22,8 +22,8 @@ def rotate_list(point_list,axisp1label,axisp2label,angle):
 		new_point=rotate(axis,point,angle)
 		vertices[point_label]=new_point
 
-ll=10000
-r=3000
+ll=10000000
+r=3000000
 
 y_offset=sin(math.pi/3)*r
 x_offsets=cos(math.pi/3)*r

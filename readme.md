@@ -17,6 +17,24 @@ Use python virtual environments. I'm running python 3.6.8
 	source venv/bin/activate
 	pip3 install -r requirements.txt
 
+## Latest developments:
+
+### Animation!
+
+This is a good introduction. To see the dodecagon fold and unfold itself, run graph_auto.py
+
+It is using the precalculated values in the "formal_expressions" subfolder.
+
+### Formal expressions
+
+We do now have formal expressions for the first five folds of the dodecagon. The first point of self-contact happens in fold five. 
+
+The expression for Gx given in dodecagon/formal_expressions/five.py should be equivalent to zero. My current estimate of 1.415471989998 radians gives a value of 1.2246467991473532e-13 for that point.
+
+That means it should be possible to solve for theta, formally. If someone manages that before me, I will happily give you half the credit if I publish on this :)
+
+Same could be done with the "cross sections" fold angle, but I haven't had time to generate the formal equations.
+
 ## Interactive
 
 Both apps contain an interactive script, "tetrahedron_interactive.py", which:
