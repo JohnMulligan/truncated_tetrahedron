@@ -6,21 +6,8 @@
  */
 
 
-//float ax=-100;
-//float ay=-100;
-//float az=0;
 
-//float bx=100;
-//float by=-100;
-//float bz=0;
-
-//float cx=100;
-//float cy=100;
-//float cz=0;
-
-//float dx=-100;
-//float dy=100;
-//float dz=0;
+//from 
 
 float[] ax = {0,109.807620968859,46.4101614245640,299.999999845480,16.9872977352831,-4.87463570874826e-7,-5.62876170874826e-7,-109.807621228527,-46.4101618022789,-300.000000261803,-16.9872976767090,1.08040700000000e-6};
 float[] bx = {150.000000000000,150.000000000000,133.012701917973,340.192378665543,-6.21778265600687,-69.6152423686251,-150.000000435959,-150.000000007968,-133.012702116934,-340.192378516856,6.21778275195500,69.6152422257710};
@@ -109,12 +96,7 @@ void draw() {
 background(0);
 lights();
 
-  // Change height of the camera with mouseY
-  
-  
- // camera(mouseX/2-(width/2),mouseY/2-(height/2), 220.0, // eyeX, eyeY, eyeZ
-   //      0.0, 0.0, 0.0, // centerX, centerY, centerZ
-     //    0.0, 1.0, 0.0); // upX, upY, upZ
+
 
 //from https://discourse.processing.org/t/how-to-rotate-around-a-sphere/25072/24
   float angle = (frameCount%360)*3.141/180;
@@ -158,10 +140,6 @@ beginShape();
 vertex(ax[t],ay[t],az[t]);
 vertex(rx[t],ry[t],rz[t]);
 vertex(mx[t],my[t],mz[t]);
-endShape(CLOSE);
-beginShape();
-vertex(ax[t],ay[t],az[t]);
-vertex(mx[t],my[t],mz[t]);
 vertex(bx[t],by[t],bz[t]);
 endShape(CLOSE);
 beginShape();
@@ -173,10 +151,6 @@ beginShape();
 vertex(cx[t],cy[t],cz[t]);
 vertex(mx[t],my[t],mz[t]);
 vertex(nx[t],ny[t],nz[t]);
-endShape(CLOSE);
-beginShape();
-vertex(cx[t],cy[t],cz[t]);
-vertex(nx[t],ny[t],nz[t]);
 vertex(dx[t],dy[t],dz[t]);
 endShape(CLOSE);
 beginShape();
@@ -187,12 +161,8 @@ endShape(CLOSE);
 beginShape();
 vertex(nx[t],ny[t],nz[t]);
 vertex(ex[t],ey[t],ez[t]);
-vertex(ox[t],oy[t],oz[t]);
-endShape(CLOSE);
-beginShape();
-vertex(ex[t],ey[t],ez[t]);
-vertex(ox[t],oy[t],oz[t]);
 vertex(fx[t],fy[t],fz[t]);
+vertex(ox[t],oy[t],oz[t]);
 endShape(CLOSE);
 beginShape();
 vertex(fx[t],fy[t],fz[t]);
@@ -202,12 +172,8 @@ endShape(CLOSE);
 beginShape();
 vertex(gx[t],gy[t],gz[t]);
 vertex(hx[t],hy[t],hz[t]);
-vertex(ox[t],oy[t],oz[t]);
-endShape(CLOSE);
-beginShape();
 vertex(px[t],py[t],pz[t]);
 vertex(ox[t],oy[t],oz[t]);
-vertex(hx[t],hy[t],hz[t]);
 endShape(CLOSE);
 beginShape();
 vertex(hx[t],hy[t],hz[t]);
@@ -217,10 +183,6 @@ endShape(CLOSE);
 beginShape();
 vertex(jx[t],jy[t],jz[t]);
 vertex(ix[t],iy[t],iz[t]);
-vertex(px[t],py[t],pz[t]);
-endShape(CLOSE);
-beginShape();
-vertex(jx[t],jy[t],jz[t]);
 vertex(px[t],py[t],pz[t]);
 vertex(qx[t],qy[t],qz[t]);
 endShape(CLOSE);
@@ -233,11 +195,7 @@ beginShape();
 vertex(kx[t],ky[t],kz[t]);
 vertex(qx[t],qy[t],qz[t]);
 vertex(sx[t],sy[t],sz[t]);
-endShape(CLOSE);
-beginShape();
-vertex(kx[t],ky[t],kz[t]);
 vertex(lx[t],ly[t],lz[t]);
-vertex(sx[t],sy[t],sz[t]);
 endShape(CLOSE);
 
 // Draw white points
