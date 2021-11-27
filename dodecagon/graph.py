@@ -35,4 +35,4 @@ def main(a,triangles,pointstr='ABCDEFGHIJKLMNOPQRST'):
 	])
 	#print(fig)
 	fig.show()
-	wait = input("Press Enter for next step.")
+	#wait = input("Press Enter for next step.")

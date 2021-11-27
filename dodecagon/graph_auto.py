@@ -124,10 +124,10 @@ def update_figure(n,data):
 		zaxis = dict(nticks=0, range=[-1000,1000],showticklabels=False),
 		xaxis_title='',
 		yaxis_title='',
-		zaxis_title='',
-		width=1500,
-		height=1000
+		zaxis_title=''
 		),
+	width=800,
+	height=800
 	)
 	
 	return(fig,json.dumps({"value":p}))
