@@ -77,20 +77,3 @@ I've also included some graphing functionality.
 	1. renders a graph showing the values
 
 
-## NFS storage
-
-Notes on using NFS storage on an orion vm to write my multiproc results out to.
-
-mount the rdf:
-
-	yum install cifs-utils
-	chmod u+s /bin/mount /bin/umount /usr/sbin/mount.cifs
-	mkdir /mnt/rdf
-
-ADD the below line LINE TO /etc/fstab:
-
-	//smb.rdf.rice.edu/research/ /mnt/rdf cifs mfsymlinks,rw,vers=3.0,sign,noperm,domain=ADRICE,user,noauto 0 0
-
-as our own netid user (not root), run the following and enter your password when prompted
-	
-	mount /mnt/rdf

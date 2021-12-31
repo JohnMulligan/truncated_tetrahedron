@@ -135,53 +135,99 @@ triangles=[
 rotate_list('','A','B',0)
 
 
+print("ZERO")
+graph(a,triangles)
+
 
 print("ONE")
 rotate_list('AR','B','M',magical_angle)
-
-
-#graph(a,triangles,'ABCDEFGHIJKLMNOPQRST')
+graph(a,triangles,'ABCDEFGHIJKLMNOPQRST')
 
 print("TWO")
 rotate_list('ARB','C','M',magical_angle)
+graph(a,triangles)
 
-
-#graph(a,triangles)
 print("THREE")
 rotate_list('ARBMC','D','N',magical_angle)
-
-#graph(a,triangles)
+graph(a,triangles)
 
 print("FOUR")
 rotate_list('ARBCMD','N','E',-magical_angle)
+graph(a,triangles)
 
-#graph(a,triangles)
 print("FIVE")
 rotate_list('ARBMCDNE','O','F',-magical_angle)
+graph(a,triangles)
 
-#graph(a,triangles)
-
+print("SIX")
 rotate_list('ARBMCDNEF','O','G',-magical_angle)
+graph(a,triangles)
 
-#graph(a,triangles)
+#---->inverting
+print("SEVEN")
+rotate_list('T','L','S',magical_angle)
+graph(a,triangles)
+
+print("EIGHT")
+rotate_list('TLS','K','Q',magical_angle)
+graph(a,triangles)
+
+
+print("NINE")
+rotate_list('TLSKQ','J','Q',magical_angle)
+graph(a,triangles)
+
+print("TEN")
+rotate_list('TLSKQJ','I','P',magical_angle)
+graph(a,triangles)
+
+print("ELEVEN")
+rotate_list('TLSKQJI','H','P',magical_angle)
+graph(a,triangles)
+
+
+
+
+
+
+exit()
+
+
+
+
+rotate_list('J','K','Q',-magical_angle)
+
+graph(a,triangles)
+
+rotate_list('PI','J','Q',-magical_angle)
+
+graph(a,triangles)
+
+rotate_list('H','P','I',magical_angle)
+
+graph(a,triangles)
 
 rotate_list('ARBMCDNEFOG','P','H',magical_angle)
 
-#graph(a,triangles)
+graph(a,triangles)
 
-rotate_list('ARBMCDNEFOGH','P','I',magical_angle)
 
-#graph(a,triangles)
 
-rotate_list('ARBMCDNEFOGHPI','J','Q',-magical_angle)
 
-#graph(a,triangles)
 
-rotate_list('ARBMCDNEFOGHPIJ','K','Q',-magical_angle)
+
 
 #graph(a,triangles)
 
-rotate_list('ARBMCDNEFOGHPIJKQ','L','R',-magical_angle)
+
+#graph(a,triangles)
+
+
+#graph(a,triangles)
+
+
+#graph(a,triangles)
+
 
 
 varnames='ARBMCDNEFOGHPIJKQ'
