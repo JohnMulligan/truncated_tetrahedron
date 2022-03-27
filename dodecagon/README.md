@@ -40,3 +40,7 @@ It's close enough, at least, that the folding of the second shape now worked wel
 I believe I have improved the optimization script. Rather than test every angle in a domain, I find the best match at a certain level of precision, then zoom in on that "address" and try its "subdomain" of 10 integer values at the next level of precision. I also check the n-1 value in case of rounding. So that should save about 80% of the work the computer was doing before.
 
 This works, up to around 6 decimal places. It looks like it might be a very near miss? I am going to use the full sweep (non-optimized) multiprocessing script again, between radians: (1.415472073,1.415472075)
+
+## March 22 -- formal expressions
+
+The best approach to solving for theta is to use the equivalence of R and O at step 4, given in formal_expressions/four.py
