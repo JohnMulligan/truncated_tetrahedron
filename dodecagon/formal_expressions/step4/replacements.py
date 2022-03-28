@@ -1,7 +1,118 @@
-#set r=1 to eliminate large chunks of multiplication
-step_2=[
-["\*r",""]
-["r\*",""]
-["[^a-z]r","1"]
-]
+replacements={
+0:{
+	"replacements":
+		[
+			["1.415471989998","THT"]
+		],
+	"label":"sub in variable for value"
+},
+
+1:{
+	"replacements":[
+	["(((1-cos(1.415471989998))*(((((r*sin(11*pi/6)*r*cos(2*pi/6)-r*cos(11*pi/6)*r*sin(2*pi/6))*(r*cos(pi/6)-r*cos(4*pi/6))-(r*cos(11*pi/6)-r*cos(2*pi/6))*(r*sin(pi/6)*r*cos(4*pi/6)-r*cos(pi/6)*r*sin(4*pi/6)))/((r*sin(11*pi/6)-r*sin(2*pi/6))*(r*cos(pi/6)-r*cos(4*pi/6))-(r*cos(11*pi/6)-r*cos(2*pi/6))*(r*sin(pi/6)-r*sin(4*pi/6)))-r*cos(pi/6)))/(sqrt((((((r*sin(11*pi/6)*r*cos(2*pi/6)-r*cos(11*pi/6)*r*sin(2*pi/6))*(r*sin(pi/6)-r*sin(4*pi/6))-(r*sin(11*pi/6)-r*sin(2*pi/6))*(r*sin(pi/6)*r*cos(4*pi/6)-r*cos(pi/6)*r*sin(4*pi/6)))/((r*sin(11*pi/6)-r*sin(2*pi/6))*(r*cos(pi/6)-r*cos(4*pi/6))-(r*cos(11*pi/6)-r*cos(2*pi/6))*(r*sin(pi/6)-r*sin(4*pi/6)))-r*sin(pi/6)))**2)+(((((r*sin(11*pi/6)*r*cos(2*pi/6)-r*cos(11*pi/6)*r*sin(2*pi/6))*(r*cos(pi/6)-r*cos(4*pi/6))-(r*cos(11*pi/6)-r*cos(2*pi/6))*(r*sin(pi/6)*r*cos(4*pi/6)-r*cos(pi/6)*r*sin(4*pi/6)))/((r*sin(11*pi/6)-r*sin(2*pi/6))*(r*cos(pi/6)-r*cos(4*pi/6))-(r*cos(11*pi/6)-r*cos(2*pi/6))*(r*sin(pi/6)-r*sin(4*pi/6)))-r*cos(pi/6)))**2)+(((0-0))**2))))*(((0-0))/(sqrt((((((r*sin(11*pi/6)*r*cos(2*pi/6)-r*cos(11*pi/6)*r*sin(2*pi/6))*(r*sin(pi/6)-r*sin(4*pi/6))-(r*sin(11*pi/6)-r*sin(2*pi/6))*(r*sin(pi/6)*r*cos(4*pi/6)-r*cos(pi/6)*r*sin(4*pi/6)))/((r*sin(11*pi/6)-r*sin(2*pi/6))*(r*cos(pi/6)-r*cos(4*pi/6))-(r*cos(11*pi/6)-r*cos(2*pi/6))*(r*sin(pi/6)-r*sin(4*pi/6)))-r*sin(pi/6)))**2)+(((((r*sin(11*pi/6)*r*cos(2*pi/6)-r*cos(11*pi/6)*r*sin(2*pi/6))*(r*cos(pi/6)-r*cos(4*pi/6))-(r*cos(11*pi/6)-r*cos(2*pi/6))*(r*sin(pi/6)*r*cos(4*pi/6)-r*cos(pi/6)*r*sin(4*pi/6)))/((r*sin(11*pi/6)-r*sin(2*pi/6))*(r*cos(pi/6)-r*cos(4*pi/6))-(r*cos(11*pi/6)-r*cos(2*pi/6))*(r*sin(pi/6)-r*sin(4*pi/6)))-r*cos(pi/6)))**2)+(((0-0))**2)))))-(sin(1.415471989998)*(((((r*sin(11*pi/6)*r*cos(2*pi/6)-r*cos(11*pi/6)*r*sin(2*pi/6))*(r*sin(pi/6)-r*sin(4*pi/6))-(r*sin(11*pi/6)-r*sin(2*pi/6))*(r*sin(pi/6)*r*cos(4*pi/6)-r*cos(pi/6)*r*sin(4*pi/6)))/((r*sin(11*pi/6)-r*sin(2*pi/6))*(r*cos(pi/6)-r*cos(4*pi/6))-(r*cos(11*pi/6)-r*cos(2*pi/6))*(r*sin(pi/6)-r*sin(4*pi/6)))-r*sin(pi/6)))/(sqrt((((((r*sin(11*pi/6)*r*cos(2*pi/6)-r*cos(11*pi/6)*r*sin(2*pi/6))*(r*sin(pi/6)-r*sin(4*pi/6))-(r*sin(11*pi/6)-r*sin(2*pi/6))*(r*sin(pi/6)*r*cos(4*pi/6)-r*cos(pi/6)*r*sin(4*pi/6)))/((r*sin(11*pi/6)-r*sin(2*pi/6))*(r*cos(pi/6)-r*cos(4*pi/6))-(r*cos(11*pi/6)-r*cos(2*pi/6))*(r*sin(pi/6)-r*sin(4*pi/6)))-r*sin(pi/6)))**2)+(((((r*sin(11*pi/6)*r*cos(2*pi/6)-r*cos(11*pi/6)*r*sin(2*pi/6))*(r*cos(pi/6)-r*cos(4*pi/6))-(r*cos(11*pi/6)-r*cos(2*pi/6))*(r*sin(pi/6)*r*cos(4*pi/6)-r*cos(pi/6)*r*sin(4*pi/6)))/((r*sin(11*pi/6)-r*sin(2*pi/6))*(r*cos(pi/6)-r*cos(4*pi/6))-(r*cos(11*pi/6)-r*cos(2*pi/6))*(r*sin(pi/6)-r*sin(4*pi/6)))-r*cos(pi/6)))**2)+(((0-0))**2))))))*(0-0)","0"],
+	["((0-0))/(sqrt((((((r*sin(11*pi/6)*r*cos(2*pi/6)-r*cos(11*pi/6)*r*sin(2*pi/6))*(r*sin(pi/6)-r*sin(4*pi/6))-(r*sin(11*pi/6)-r*sin(2*pi/6))*(r*sin(pi/6)*r*cos(4*pi/6)-r*cos(pi/6)*r*sin(4*pi/6)))/((r*sin(11*pi/6)-r*sin(2*pi/6))*(r*cos(pi/6)-r*cos(4*pi/6))-(r*cos(11*pi/6)-r*cos(2*pi/6))*(r*sin(pi/6)-r*sin(4*pi/6)))-r*sin(pi/6)))**2)+(((((r*sin(11*pi/6)*r*cos(2*pi/6)-r*cos(11*pi/6)*r*sin(2*pi/6))*(r*cos(pi/6)-r*cos(4*pi/6))-(r*cos(11*pi/6)-r*cos(2*pi/6))*(r*sin(pi/6)*r*cos(4*pi/6)-r*cos(pi/6)*r*sin(4*pi/6)))/((r*sin(11*pi/6)-r*sin(2*pi/6))*(r*cos(pi/6)-r*cos(4*pi/6))-(r*cos(11*pi/6)-r*cos(2*pi/6))*(r*sin(pi/6)-r*sin(4*pi/6)))-r*cos(pi/6)))**2)+(((0-0))**2)))","0"],
+	["(sin(THT)*(0))","0"],
+	["((1-cos(THT))*(((((r*sin(11*pi/6)*r*cos(2*pi/6)-r*cos(11*pi/6)*r*sin(2*pi/6))*(r*sin(pi/6)-r*sin(4*pi/6))-(r*sin(11*pi/6)-r*sin(2*pi/6))*(r*sin(pi/6)*r*cos(4*pi/6)-r*cos(pi/6)*r*sin(4*pi/6)))/((r*sin(11*pi/6)-r*sin(2*pi/6))*(r*cos(pi/6)-r*cos(4*pi/6))-(r*cos(11*pi/6)-r*cos(2*pi/6))*(r*sin(pi/6)-r*sin(4*pi/6)))-r*sin(pi/6)))/(sqrt((((((r*sin(11*pi/6)*r*cos(2*pi/6)-r*cos(11*pi/6)*r*sin(2*pi/6))*(r*sin(pi/6)-r*sin(4*pi/6))-(r*sin(11*pi/6)-r*sin(2*pi/6))*(r*sin(pi/6)*r*cos(4*pi/6)-r*cos(pi/6)*r*sin(4*pi/6)))/((r*sin(11*pi/6)-r*sin(2*pi/6))*(r*cos(pi/6)-r*cos(4*pi/6))-(r*cos(11*pi/6)-r*cos(2*pi/6))*(r*sin(pi/6)-r*sin(4*pi/6)))-r*sin(pi/6)))**2)+(((((r*sin(11*pi/6)*r*cos(2*pi/6)-r*cos(11*pi/6)*r*sin(2*pi/6))*(r*cos(pi/6)-r*cos(4*pi/6))-(r*cos(11*pi/6)-r*cos(2*pi/6))*(r*sin(pi/6)*r*cos(4*pi/6)-r*cos(pi/6)*r*sin(4*pi/6)))/((r*sin(11*pi/6)-r*sin(2*pi/6))*(r*cos(pi/6)-r*cos(4*pi/6))-(r*cos(11*pi/6)-r*cos(2*pi/6))*(r*sin(pi/6)-r*sin(4*pi/6)))-r*cos(pi/6)))**2)+(((0-0))**2))))*(0))","0"],
+	["r*cos(9*pi/6)*0","0"],
+	["(((((r*sin(11*pi/6)*r*cos(2*pi/6)-r*cos(11*pi/6)*r*sin(2*pi/6))*(r*cos(pi/6)-r*cos(4*pi/6))-(r*cos(11*pi/6)-r*cos(2*pi/6))*(r*sin(pi/6)*r*cos(4*pi/6)-r*cos(pi/6)*r*sin(4*pi/6)))/((r*sin(11*pi/6)-r*sin(2*pi/6))*(r*cos(pi/6)-r*cos(4*pi/6))-(r*cos(11*pi/6)-r*cos(2*pi/6))*(r*sin(pi/6)-r*sin(4*pi/6)))-r*cos(pi/6)))/(sqrt((((((r*sin(11*pi/6)*r*cos(2*pi/6)-r*cos(11*pi/6)*r*sin(2*pi/6))*(r*sin(pi/6)-r*sin(4*pi/6))-(r*sin(11*pi/6)-r*sin(2*pi/6))*(r*sin(pi/6)*r*cos(4*pi/6)-r*cos(pi/6)*r*sin(4*pi/6)))/((r*sin(11*pi/6)-r*sin(2*pi/6))*(r*cos(pi/6)-r*cos(4*pi/6))-(r*cos(11*pi/6)-r*cos(2*pi/6))*(r*sin(pi/6)-r*sin(4*pi/6)))-r*sin(pi/6)))**2)+(((((r*sin(11*pi/6)*r*cos(2*pi/6)-r*cos(11*pi/6)*r*sin(2*pi/6))*(r*cos(pi/6)-r*cos(4*pi/6))-(r*cos(11*pi/6)-r*cos(2*pi/6))*(r*sin(pi/6)*r*cos(4*pi/6)-r*cos(pi/6)*r*sin(4*pi/6)))/((r*sin(11*pi/6)-r*sin(2*pi/6))*(r*cos(pi/6)-r*cos(4*pi/6))-(r*cos(11*pi/6)-r*cos(2*pi/6))*(r*sin(pi/6)-r*sin(4*pi/6)))-r*cos(pi/6)))**2)+(((0-0))**2))))*(0)","0"],
+	["(0+(sin(THT)*(((((r*sin(11*pi/6)*r*cos(2*pi/6)-r*cos(11*pi/6)*r*sin(2*pi/6))*(r*cos(pi/6)-r*cos(4*pi/6))-(r*cos(11*pi/6)-r*cos(2*pi/6))*(r*sin(pi/6)*r*cos(4*pi/6)-r*cos(pi/6)*r*sin(4*pi/6)))/((r*sin(11*pi/6)-r*sin(2*pi/6))*(r*cos(pi/6)-r*cos(4*pi/6))-(r*cos(11*pi/6)-r*cos(2*pi/6))*(r*sin(pi/6)-r*sin(4*pi/6)))-r*cos(pi/6)))/(sqrt((((((r*sin(11*pi/6)*r*cos(2*pi/6)-r*cos(11*pi/6)*r*sin(2*pi/6))*(r*sin(pi/6)-r*sin(4*pi/6))-(r*sin(11*pi/6)-r*sin(2*pi/6))*(r*sin(pi/6)*r*cos(4*pi/6)-r*cos(pi/6)*r*sin(4*pi/6)))/((r*sin(11*pi/6)-r*sin(2*pi/6))*(r*cos(pi/6)-r*cos(4*pi/6))-(r*cos(11*pi/6)-r*cos(2*pi/6))*(r*sin(pi/6)-r*sin(4*pi/6)))-r*sin(pi/6)))**2)+(((((r*sin(11*pi/6)*r*cos(2*pi/6)-r*cos(11*pi/6)*r*sin(2*pi/6))*(r*cos(pi/6)-r*cos(4*pi/6))-(r*cos(11*pi/6)-r*cos(2*pi/6))*(r*sin(pi/6)*r*cos(4*pi/6)-r*cos(pi/6)*r*sin(4*pi/6)))/((r*sin(11*pi/6)-r*sin(2*pi/6))*(r*cos(pi/6)-r*cos(4*pi/6))-(r*cos(11*pi/6)-r*cos(2*pi/6))*(r*sin(pi/6)-r*sin(4*pi/6)))-r*cos(pi/6)))**2)+(((0-0))**2))))))*(0-0)","0"],
+	["(((0-0))/(sqrt((((((r*sin(11*pi/6)*r*cos(2*pi/6)-r*cos(11*pi/6)*r*sin(2*pi/6))*(r*sin(pi/6)-r*sin(4*pi/6))-(r*sin(11*pi/6)-r*sin(2*pi/6))*(r*sin(pi/6)*r*cos(4*pi/6)-r*cos(pi/6)*r*sin(4*pi/6)))/((r*sin(11*pi/6)-r*sin(2*pi/6))*(r*cos(pi/6)-r*cos(4*pi/6))-(r*cos(11*pi/6)-r*cos(2*pi/6))*(r*sin(pi/6)-r*sin(4*pi/6)))-r*sin(2*pi/6)))**2)+(((((r*sin(11*pi/6)*r*cos(2*pi/6)-r*cos(11*pi/6)*r*sin(2*pi/6))*(r*cos(pi/6)-r*cos(4*pi/6))-(r*cos(11*pi/6)-r*cos(2*pi/6))*(r*sin(pi/6)*r*cos(4*pi/6)-r*cos(pi/6)*r*sin(4*pi/6)))/((r*sin(11*pi/6)-r*sin(2*pi/6))*(r*cos(pi/6)-r*cos(4*pi/6))-(r*cos(11*pi/6)-r*cos(2*pi/6))*(r*sin(pi/6)-r*sin(4*pi/6)))-r*cos(2*pi/6)))**2)+(((0-0))**2))))","0"],
+	["((1-cos(THT))*0)","0"],
+	["(((0-0))**2)","0"],
+	["(((1-cos(THT))*(0)**2+cos(THT))*(0-0))","0"],
+	["(((((r*sin(pi/6)*r*cos(4*pi/6)-r*cos(pi/6)*r*sin(4*pi/6))*(r*cos(3*pi/6)-r*cos(pi))-(r*cos(pi/6)-r*cos(4*pi/6))*(r*sin(3*pi/6)*r*cos(pi)-r*cos(3*pi/6)*r*sin(pi)))/((r*sin(pi/6)-r*sin(4*pi/6))*(r*cos(3*pi/6)-r*cos(pi))-(r*cos(pi/6)-r*cos(4*pi/6))*(r*sin(3*pi/6)-r*sin(pi)))-r*cos(3*pi/6)))/(sqrt((((((r*sin(pi/6)*r*cos(4*pi/6)-r*cos(pi/6)*r*sin(4*pi/6))*(r*sin(3*pi/6)-r*sin(pi))-(r*sin(pi/6)-r*sin(4*pi/6))*(r*sin(3*pi/6)*r*cos(pi)-r*cos(3*pi/6)*r*sin(pi)))/((r*sin(pi/6)-r*sin(4*pi/6))*(r*cos(3*pi/6)-r*cos(pi))-(r*cos(pi/6)-r*cos(4*pi/6))*(r*sin(3*pi/6)-r*sin(pi)))-r*sin(3*pi/6)))**2)+(((((r*sin(pi/6)*r*cos(4*pi/6)-r*cos(pi/6)*r*sin(4*pi/6))*(r*cos(3*pi/6)-r*cos(pi))-(r*cos(pi/6)-r*cos(4*pi/6))*(r*sin(3*pi/6)*r*cos(pi)-r*cos(3*pi/6)*r*sin(pi)))/((r*sin(pi/6)-r*sin(4*pi/6))*(r*cos(3*pi/6)-r*cos(pi))-(r*cos(pi/6)-r*cos(4*pi/6))*(r*sin(3*pi/6)-r*sin(pi)))-r*cos(3*pi/6)))**2)+0)))*(((0-0))/(sqrt((((((r*sin(pi/6)*r*cos(4*pi/6)-r*cos(pi/6)*r*sin(4*pi/6))*(r*sin(3*pi/6)-r*sin(pi))-(r*sin(pi/6)-r*sin(4*pi/6))*(r*sin(3*pi/6)*r*cos(pi)-r*cos(3*pi/6)*r*sin(pi)))/((r*sin(pi/6)-r*sin(4*pi/6))*(r*cos(3*pi/6)-r*cos(pi))-(r*cos(pi/6)-r*cos(4*pi/6))*(r*sin(3*pi/6)-r*sin(pi)))-r*sin(3*pi/6)))**2)+(((((r*sin(pi/6)*r*cos(4*pi/6)-r*cos(pi/6)*r*sin(4*pi/6))*(r*cos(3*pi/6)-r*cos(pi))-(r*cos(pi/6)-r*cos(4*pi/6))*(r*sin(3*pi/6)*r*cos(pi)-r*cos(3*pi/6)*r*sin(pi)))/((r*sin(pi/6)-r*sin(4*pi/6))*(r*cos(3*pi/6)-r*cos(pi))-(r*cos(pi/6)-r*cos(4*pi/6))*(r*sin(3*pi/6)-r*sin(pi)))-r*cos(3*pi/6)))**2)+0)))","0"],
+	["(((((r*sin(11*pi/6)*r*cos(2*pi/6)-r*cos(11*pi/6)*r*sin(2*pi/6))*(r*sin(pi/6)-r*sin(4*pi/6))-(r*sin(11*pi/6)-r*sin(2*pi/6))*(r*sin(pi/6)*r*cos(4*pi/6)-r*cos(pi/6)*r*sin(4*pi/6)))/((r*sin(11*pi/6)-r*sin(2*pi/6))*(r*cos(pi/6)-r*cos(4*pi/6))-(r*cos(11*pi/6)-r*cos(2*pi/6))*(r*sin(pi/6)-r*sin(4*pi/6)))-r*sin(2*pi/6)))/(sqrt((((((r*sin(11*pi/6)*r*cos(2*pi/6)-r*cos(11*pi/6)*r*sin(2*pi/6))*(r*sin(pi/6)-r*sin(4*pi/6))-(r*sin(11*pi/6)-r*sin(2*pi/6))*(r*sin(pi/6)*r*cos(4*pi/6)-r*cos(pi/6)*r*sin(4*pi/6)))/((r*sin(11*pi/6)-r*sin(2*pi/6))*(r*cos(pi/6)-r*cos(4*pi/6))-(r*cos(11*pi/6)-r*cos(2*pi/6))*(r*sin(pi/6)-r*sin(4*pi/6)))-r*sin(2*pi/6)))**2)+(((((r*sin(11*pi/6)*r*cos(2*pi/6)-r*cos(11*pi/6)*r*sin(2*pi/6))*(r*cos(pi/6)-r*cos(4*pi/6))-(r*cos(11*pi/6)-r*cos(2*pi/6))*(r*sin(pi/6)*r*cos(4*pi/6)-r*cos(pi/6)*r*sin(4*pi/6)))/((r*sin(11*pi/6)-r*sin(2*pi/6))*(r*cos(pi/6)-r*cos(4*pi/6))-(r*cos(11*pi/6)-r*cos(2*pi/6))*(r*sin(pi/6)-r*sin(4*pi/6)))-r*cos(2*pi/6)))**2)+0)))*0","0"],
+	["(sin(THT)*0)","0"],
+	["(0-(sin(THT)*(((((r*sin(11*pi/6)*r*cos(2*pi/6)-r*cos(11*pi/6)*r*sin(2*pi/6))*(r*sin(pi/6)-r*sin(4*pi/6))-(r*sin(11*pi/6)-r*sin(2*pi/6))*(r*sin(pi/6)*r*cos(4*pi/6)-r*cos(pi/6)*r*sin(4*pi/6)))/((r*sin(11*pi/6)-r*sin(2*pi/6))*(r*cos(pi/6)-r*cos(4*pi/6))-(r*cos(11*pi/6)-r*cos(2*pi/6))*(r*sin(pi/6)-r*sin(4*pi/6)))-r*sin(pi/6)))/(sqrt((((((r*sin(11*pi/6)*r*cos(2*pi/6)-r*cos(11*pi/6)*r*sin(2*pi/6))*(r*sin(pi/6)-r*sin(4*pi/6))-(r*sin(11*pi/6)-r*sin(2*pi/6))*(r*sin(pi/6)*r*cos(4*pi/6)-r*cos(pi/6)*r*sin(4*pi/6)))/((r*sin(11*pi/6)-r*sin(2*pi/6))*(r*cos(pi/6)-r*cos(4*pi/6))-(r*cos(11*pi/6)-r*cos(2*pi/6))*(r*sin(pi/6)-r*sin(4*pi/6)))-r*sin(pi/6)))**2)+(((((r*sin(11*pi/6)*r*cos(2*pi/6)-r*cos(11*pi/6)*r*sin(2*pi/6))*(r*cos(pi/6)-r*cos(4*pi/6))-(r*cos(11*pi/6)-r*cos(2*pi/6))*(r*sin(pi/6)*r*cos(4*pi/6)-r*cos(pi/6)*r*sin(4*pi/6)))/((r*sin(11*pi/6)-r*sin(2*pi/6))*(r*cos(pi/6)-r*cos(4*pi/6))-(r*cos(11*pi/6)-r*cos(2*pi/6))*(r*sin(pi/6)-r*sin(4*pi/6)))-r*cos(pi/6)))**2)+0)))))*(0-0)","0"],
+	["(((((r*sin(11*pi/6)*r*cos(2*pi/6)-r*cos(11*pi/6)*r*sin(2*pi/6))*(r*cos(pi/6)-r*cos(4*pi/6))-(r*cos(11*pi/6)-r*cos(2*pi/6))*(r*sin(pi/6)*r*cos(4*pi/6)-r*cos(pi/6)*r*sin(4*pi/6)))/((r*sin(11*pi/6)-r*sin(2*pi/6))*(r*cos(pi/6)-r*cos(4*pi/6))-(r*cos(11*pi/6)-r*cos(2*pi/6))*(r*sin(pi/6)-r*sin(4*pi/6)))-r*cos(2*pi/6)))/(sqrt((((((r*sin(11*pi/6)*r*cos(2*pi/6)-r*cos(11*pi/6)*r*sin(2*pi/6))*(r*sin(pi/6)-r*sin(4*pi/6))-(r*sin(11*pi/6)-r*sin(2*pi/6))*(r*sin(pi/6)*r*cos(4*pi/6)-r*cos(pi/6)*r*sin(4*pi/6)))/((r*sin(11*pi/6)-r*sin(2*pi/6))*(r*cos(pi/6)-r*cos(4*pi/6))-(r*cos(11*pi/6)-r*cos(2*pi/6))*(r*sin(pi/6)-r*sin(4*pi/6)))-r*sin(2*pi/6)))**2)+(((((r*sin(11*pi/6)*r*cos(2*pi/6)-r*cos(11*pi/6)*r*sin(2*pi/6))*(r*cos(pi/6)-r*cos(4*pi/6))-(r*cos(11*pi/6)-r*cos(2*pi/6))*(r*sin(pi/6)*r*cos(4*pi/6)-r*cos(pi/6)*r*sin(4*pi/6)))/((r*sin(11*pi/6)-r*sin(2*pi/6))*(r*cos(pi/6)-r*cos(4*pi/6))-(r*cos(11*pi/6)-r*cos(2*pi/6))*(r*sin(pi/6)-r*sin(4*pi/6)))-r*cos(2*pi/6)))**2)+0)))*0","0"],
+	["(((0-0))/(sqrt((((((r*sin(pi/6)*r*cos(4*pi/6)-r*cos(pi/6)*r*sin(4*pi/6))*(r*sin(3*pi/6)-r*sin(pi))-(r*sin(pi/6)-r*sin(4*pi/6))*(r*sin(3*pi/6)*r*cos(pi)-r*cos(3*pi/6)*r*sin(pi)))/((r*sin(pi/6)-r*sin(4*pi/6))*(r*cos(3*pi/6)-r*cos(pi))-(r*cos(pi/6)-r*cos(4*pi/6))*(r*sin(3*pi/6)-r*sin(pi)))-r*sin(3*pi/6)))**2)+(((((r*sin(pi/6)*r*cos(4*pi/6)-r*cos(pi/6)*r*sin(4*pi/6))*(r*cos(3*pi/6)-r*cos(pi))-(r*cos(pi/6)-r*cos(4*pi/6))*(r*sin(3*pi/6)*r*cos(pi)-r*cos(3*pi/6)*r*sin(pi)))/((r*sin(pi/6)-r*sin(4*pi/6))*(r*cos(3*pi/6)-r*cos(pi))-(r*cos(pi/6)-r*cos(4*pi/6))*(r*sin(3*pi/6)-r*sin(pi)))-r*cos(3*pi/6)))**2)+0)))","0"],
+	["((1-cos(THT))*0)","0"],
+	["(sin(THT)*0)","0"]
+	],
+	"label":"zeroes"
+},
+2:{
+	"replacements":
+		[
+			["-0)",")"],
+			["(0-","(-"],
+			["+0)",")"],
+			["(0+","("],
+			["+(0)",""],
+			["-(0)",""],
+			["(1-cos(THT))*0**2+",""],
+			["((0-0))/(sqrt((((((r*sin(11*pi/6)*r*cos(2*pi/6)-r*cos(11*pi/6)*r*sin(2*pi/6))*(r*sin(pi/6)-r*sin(4*pi/6))-(r*sin(11*pi/6)-r*sin(2*pi/6))*(r*sin(pi/6)*r*cos(4*pi/6)-r*cos(pi/6)*r*sin(4*pi/6)))/((r*sin(11*pi/6)-r*sin(2*pi/6))*(r*cos(pi/6)-r*cos(4*pi/6))-(r*cos(11*pi/6)-r*cos(2*pi/6))*(r*sin(pi/6)-r*sin(4*pi/6)))-r*sin(pi/6)))**2)+(((((r*sin(11*pi/6)*r*cos(2*pi/6)-r*cos(11*pi/6)*r*sin(2*pi/6))*(r*cos(pi/6)-r*cos(4*pi/6))-(r*cos(11*pi/6)-r*cos(2*pi/6))*(r*sin(pi/6)*r*cos(4*pi/6)-r*cos(pi/6)*r*sin(4*pi/6)))/((r*sin(11*pi/6)-r*sin(2*pi/6))*(r*cos(pi/6)-r*cos(4*pi/6))-(r*cos(11*pi/6)-r*cos(2*pi/6))*(r*sin(pi/6)-r*sin(4*pi/6)))-r*cos(pi/6)))**2)+(((0-0))**2)))","0"],
+			["(((((r*sin(pi/6)*r*cos(4*pi/6)-r*cos(pi/6)*r*sin(4*pi/6))*(r*sin(3*pi/6)-r*sin(pi))-(r*sin(pi/6)-r*sin(4*pi/6))*(r*sin(3*pi/6)*r*cos(pi)-r*cos(3*pi/6)*r*sin(pi)))/((r*sin(pi/6)-r*sin(4*pi/6))*(r*cos(3*pi/6)-r*cos(pi))-(r*cos(pi/6)-r*cos(4*pi/6))*(r*sin(3*pi/6)-r*sin(pi)))-r*sin(3*pi/6)))/(sqrt((((((r*sin(pi/6)*r*cos(4*pi/6)-r*cos(pi/6)*r*sin(4*pi/6))*(r*sin(3*pi/6)-r*sin(pi))-(r*sin(pi/6)-r*sin(4*pi/6))*(r*sin(3*pi/6)*r*cos(pi)-r*cos(3*pi/6)*r*sin(pi)))/((r*sin(pi/6)-r*sin(4*pi/6))*(r*cos(3*pi/6)-r*cos(pi))-(r*cos(pi/6)-r*cos(4*pi/6))*(r*sin(3*pi/6)-r*sin(pi)))-r*sin(3*pi/6)))**2)+(((((r*sin(pi/6)*r*cos(4*pi/6)-r*cos(pi/6)*r*sin(4*pi/6))*(r*cos(3*pi/6)-r*cos(pi))-(r*cos(pi/6)-r*cos(4*pi/6))*(r*sin(3*pi/6)*r*cos(pi)-r*cos(3*pi/6)*r*sin(pi)))/((r*sin(pi/6)-r*sin(4*pi/6))*(r*cos(3*pi/6)-r*cos(pi))-(r*cos(pi/6)-r*cos(4*pi/6))*(r*sin(3*pi/6)-r*sin(pi)))-r*cos(3*pi/6)))**2))))*0","0"],
+			["((0))/(sqrt((((r*sin(4*pi/6)-((r*sin(pi/6)*r*cos(4*pi/6)-r*cos(pi/6)*r*sin(4*pi/6))*(r*sin(3*pi/6)-r*sin(pi))-(r*sin(pi/6)-r*sin(4*pi/6))*(r*sin(3*pi/6)*r*cos(pi)-r*cos(3*pi/6)*r*sin(pi)))/((r*sin(pi/6)-r*sin(4*pi/6))*(r*cos(3*pi/6)-r*cos(pi))-(r*cos(pi/6)-r*cos(4*pi/6))*(r*sin(3*pi/6)-r*sin(pi)))))**2)+(((r*cos(4*pi/6)-((r*sin(pi/6)*r*cos(4*pi/6)-r*cos(pi/6)*r*sin(4*pi/6))*(r*cos(3*pi/6)-r*cos(pi))-(r*cos(pi/6)-r*cos(4*pi/6))*(r*sin(3*pi/6)*r*cos(pi)-r*cos(3*pi/6)*r*sin(pi)))/((r*sin(pi/6)-r*sin(4*pi/6))*(r*cos(3*pi/6)-r*cos(pi))-(r*cos(pi/6)-r*cos(4*pi/6))*(r*sin(3*pi/6)-r*sin(pi)))))**2)))","0"],
+			["(((r*sin(4*pi/6)-((r*sin(pi/6)*r*cos(4*pi/6)-r*cos(pi/6)*r*sin(4*pi/6))*(r*sin(3*pi/6)-r*sin(pi))-(r*sin(pi/6)-r*sin(4*pi/6))*(r*sin(3*pi/6)*r*cos(pi)-r*cos(3*pi/6)*r*sin(pi)))/((r*sin(pi/6)-r*sin(4*pi/6))*(r*cos(3*pi/6)-r*cos(pi))-(r*cos(pi/6)-r*cos(4*pi/6))*(r*sin(3*pi/6)-r*sin(pi)))))/(sqrt((((r*sin(4*pi/6)-((r*sin(pi/6)*r*cos(4*pi/6)-r*cos(pi/6)*r*sin(4*pi/6))*(r*sin(3*pi/6)-r*sin(pi))-(r*sin(pi/6)-r*sin(4*pi/6))*(r*sin(3*pi/6)*r*cos(pi)-r*cos(3*pi/6)*r*sin(pi)))/((r*sin(pi/6)-r*sin(4*pi/6))*(r*cos(3*pi/6)-r*cos(pi))-(r*cos(pi/6)-r*cos(4*pi/6))*(r*sin(3*pi/6)-r*sin(pi)))))**2)+(((r*cos(4*pi/6)-((r*sin(pi/6)*r*cos(4*pi/6)-r*cos(pi/6)*r*sin(4*pi/6))*(r*cos(3*pi/6)-r*cos(pi))-(r*cos(pi/6)-r*cos(4*pi/6))*(r*sin(3*pi/6)*r*cos(pi)-r*cos(3*pi/6)*r*sin(pi)))/((r*sin(pi/6)-r*sin(4*pi/6))*(r*cos(3*pi/6)-r*cos(pi))-(r*cos(pi/6)-r*cos(4*pi/6))*(r*sin(3*pi/6)-r*sin(pi)))))**2))))*(0)","0"],
+			["(((r*cos(4*pi/6)-((r*sin(pi/6)*r*cos(4*pi/6)-r*cos(pi/6)*r*sin(4*pi/6))*(r*cos(3*pi/6)-r*cos(pi))-(r*cos(pi/6)-r*cos(4*pi/6))*(r*sin(3*pi/6)*r*cos(pi)-r*cos(3*pi/6)*r*sin(pi)))/((r*sin(pi/6)-r*sin(4*pi/6))*(r*cos(3*pi/6)-r*cos(pi))-(r*cos(pi/6)-r*cos(4*pi/6))*(r*sin(3*pi/6)-r*sin(pi)))))/(sqrt((((r*sin(4*pi/6)-((r*sin(pi/6)*r*cos(4*pi/6)-r*cos(pi/6)*r*sin(4*pi/6))*(r*sin(3*pi/6)-r*sin(pi))-(r*sin(pi/6)-r*sin(4*pi/6))*(r*sin(3*pi/6)*r*cos(pi)-r*cos(3*pi/6)*r*sin(pi)))/((r*sin(pi/6)-r*sin(4*pi/6))*(r*cos(3*pi/6)-r*cos(pi))-(r*cos(pi/6)-r*cos(4*pi/6))*(r*sin(3*pi/6)-r*sin(pi)))))**2)+(((r*cos(4*pi/6)-((r*sin(pi/6)*r*cos(4*pi/6)-r*cos(pi/6)*r*sin(4*pi/6))*(r*cos(3*pi/6)-r*cos(pi))-(r*cos(pi/6)-r*cos(4*pi/6))*(r*sin(3*pi/6)*r*cos(pi)-r*cos(3*pi/6)*r*sin(pi)))/((r*sin(pi/6)-r*sin(4*pi/6))*(r*cos(3*pi/6)-r*cos(pi))-(r*cos(pi/6)-r*cos(4*pi/6))*(r*sin(3*pi/6)-r*sin(pi)))))**2))))*(0)","0"]
+		],
+	"label":"cleanup ... plus"
+},
+
+3:{
+	"replacements":
+		[
+			["r*sin(3*pi/6)*r*cos(pi)-r*cos(3*pi/6)*r*sin(pi)","-r**2"],
+			["cos(2*pi/6)","1/2"],
+			["cos(11*pi/6)","sqrt(3)/2"],
+			["sin(11*pi/6)","-1/2"],
+			["cos(4*pi/6)","-1/2"],
+			["sin(pi/6)","1/2"],
+			["sin(4*pi/6)","sqrt(3)/2"],
+			["sin(2*pi/6)","sqrt(3)/2"],
+			["cos(pi/6)","sqrt(3)/2"],
+			["cos(pi)","-1"],
+			["sin(9*pi/6)","-1"],
+			["sin(pi)","0"],
+			["sin(3*pi/6)","1"],
+			["cos(9*pi/6)","0"],
+			["cos(3*pi/6)","0"]
+		],
+	"label":"identities"
+},
+4:{
+	"replacements":
+		[
+			["(r*0-r)","-r"]
+		],
+	"label":"cleanup"
+},
+
+5:{
+	"replacements":
+		[
+			["(r*sqrt(3)/2-r*1/2)*(r*1/2-r*sqrt(3)/2)","r**2*((sqrt(3)-2)/2)"],
+			["(r*sqrt(3)/2-r*-1/2)","r*((sqrt(3)+1)/2)"],
+			["r*sqrt(3)/2*r*sqrt(3)/2","3*r**2/4"],
+			["r*-1/2*r*1/2-3*r**2/4","-r**2"],
+			["r*1/2*r*-1/2-3*r**2/4","-r**2"],
+			["(r*-1/2-r*sqrt(3)/2)*(-r**2)","r**3*((1+sqrt(3))/2)"],
+			["(r*-1/2-r*sqrt(3)/2)","-r*((1+sqrt(3))/2)"],
+			["r*1/2-r*sqrt(3)/2","r*((1-sqrt(3))/2)"],
+			["(sqrt(3)+1)/2","(1+sqrt(3))/2"],
+			["r**3*((1+sqrt(3))/2)-r**3","r**3*(((1+sqrt(3))/2)-1)"],
+			["r*sqrt(3)/2-r*1/2","r*((sqrt(3)-1)/2)"],
+			["-r*((1+sqrt(3))/2)*r*((1+sqrt(3))/2)","-r**2*((2+sqrt(3))/2)"],
+			["-r**2*((2+sqrt(3))/2)-r**2*((sqrt(3)-2)/2)","-r**2*sqrt(3)"],
+			["(-r**2)*(r*((1-sqrt(3))/2))","-r**3*(1-sqrt(3))/2"],
+			["(r*-1)*(r*((sqrt(3)-1)/2))","r**2*(1-sqrt(3))/2"],
+			["--","+"],
+			["-r**3*(1-sqrt(3))/2-r**3*((1+sqrt(3))/2)","-r**3*((1-sqrt(3))/2+(1+sqrt(3))/2)"],
+			["(-r**3*((1-sqrt(3))/2+(1+sqrt(3))/2))","-r**3"],
+			["((-r**2)*r*((1+sqrt(3))/2)-(r*((sqrt(3)-1)/2))*(-r**2))","-r**3"],
+			["(-r**2)*(r*1-r*0)","-r**3"],
+			["(r*0-r*-1)","r"],
+			["-r**3-(r*((1-sqrt(3))/2))*(-r**2)","-r**3*(1-(1-sqrt(3))/2)"],
+			["r*((1+sqrt(3))/2)*(r*1-r*0)","r**2*(1+sqrt(3))/2"],
+			["((-r**3/(-r**2*sqrt(3))-r*sqrt(3)/2))**2","r**2/12"],
+			["(r*((1-sqrt(3))/2))*r-r**2*(1+sqrt(3))/2","-r**2*sqrt(3)"],
+			["r*sqrt(3)/2-(-r**3*(1-(1-sqrt(3))/2))/(-r**2*sqrt(3))","r*sqrt(3)/2-r*(1/(2*sqrt(3))+1/2)"],
+			["(-r**3*(1-(1-sqrt(3))/2))/(-r**2*sqrt(3))","r*(1-(1-sqrt(3))/2)/sqrt(3)"],
+			["-r**3/(-r**2*sqrt(3))","r/sqrt(3)"]
+		],
+	"label":"opportunities"
+},
+
+}
 
