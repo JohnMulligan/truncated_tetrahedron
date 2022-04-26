@@ -44,3 +44,7 @@ This works, up to around 6 decimal places. It looks like it might be a very near
 ## March 22 -- formal expressions
 
 The best approach to solving for theta is to use the equivalence of R and O at step 4, given in formal_expressions/four.py
+
+## April 25 -- solution
+
+```acos(2*sqrt(3)/3-1)``` radians
