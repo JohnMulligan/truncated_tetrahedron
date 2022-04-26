@@ -2,12 +2,12 @@ from graph import main as graph
 from transforms import rotate
 import math
 from sympy.geometry import Point,Point3D, Line3D,Plane,Segment3D
-from math import cos, sin, sqrt
+from math import cos, sin, sqrt,asin
 import sys
 import os
 
 #magical_angle=1.2309594173409
-magical_angle=1.3
+magical_angle=(asin(sqrt(3)/3)*2)
 
 vertices={i:None for i in 'ABCDEFGHIJKLMN'}
 

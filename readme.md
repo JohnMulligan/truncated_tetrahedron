@@ -1,7 +1,11 @@
 # Solutions:
 
-The dodecagon has been solved. The folding angle is ```acos(2*sqrt(3)/3-1)``` radians.
+The folding angles have been solved (April 25-26, 2022)
 
+* Dodecagon/butterfly form is ```acos(2*sqrt(3)/3-1)``` radians.
+* Cross-section ring form is ```asin(sqrt(3)/3)*2``` radians.
+
+Have fun out there!
 
 # truncated tetrahedra
 
