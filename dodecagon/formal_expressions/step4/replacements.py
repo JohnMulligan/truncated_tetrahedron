@@ -210,6 +210,20 @@ replacements={
 	"label":"RX"
 },
 
+11:{
+	"replacements":
+	[
+		["((1-cos(THT)))*(2-sqrt(3))/4+cos(-THT)","(2+cos(THT)*(sqrt(3)+2)-sqrt(3))/4"],
+		["(-sqrt(1/2))**2","1/2"],
+		["-r*(2-sqrt(3))/(2*sqrt(3))","-1/sqrt(3)+1/2"],
+		["(1-cos(THT))*1/2+cos(THT)","(1+cos(THT))/2"],
+		["((((1-cos(THT))*(-1/4)))*(-1/sqrt(3)+1/2))","-(1-cos(THT))*(-2+sqrt(3))/(8*sqrt(3))"],
+		["((((1-cos(THT))*(-1/4)))*(1/(2*sqrt(3))-1))","-(1-cos(THT))*(1-2*sqrt(3))/(8*sqrt(3))"]
+
+	],
+	"label":"final?"
+}
+
 
 }
 

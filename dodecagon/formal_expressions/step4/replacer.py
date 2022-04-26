@@ -6,7 +6,7 @@ import os
 from four import *
 
 THT=1.415471989998
-r=1000
+r=1
 
 vars=["Rx","Ry","Rz","Ox","Oy","Oz"]
 
@@ -29,11 +29,6 @@ D=sqrt(3)/2
 		],
 	"label":"symbolic"
 },
-
-
-
-
-
 '''
 
 def loadv(v):
