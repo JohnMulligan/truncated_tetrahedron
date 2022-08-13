@@ -123,3 +123,9 @@ for step in steps:
 
 for v in steps_dict:
 	print("float[] " + v.lower() + " = {" + ", ".join([str(i) for i in steps_dict[v]]) + "};")	
+
+
+
+
+for v in steps_dict:
+	print("let " + v.lower() + "=[" + ", ".join([str(i) for i in steps_dict[v]]) + "];")	
