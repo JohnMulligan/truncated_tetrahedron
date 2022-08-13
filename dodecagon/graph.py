@@ -17,6 +17,8 @@ def main(a,triangles,pointstr='ABCDEFGHIJKLMNOPQRST'):
 	J=[p.index(i[1]) for i in triangles]
 	K=[p.index(i[2]) for i in triangles]
 	
+	labels=[i for i in p]
+
 	#triangles_idx=[[p.index(i[0]),p.index(i[1]),p.index(i[2])] for i in triangles]
 	
 	#intensities=[1 for i in range(len(X))]
@@ -29,7 +31,7 @@ def main(a,triangles,pointstr='ABCDEFGHIJKLMNOPQRST'):
 			i=I,
 			j=J,
 			k=K,
-			name='y',
+			text=labels,
 			showscale=True
 		)
 	])

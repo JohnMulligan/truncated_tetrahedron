@@ -123,162 +123,219 @@ triangles=[
 	['K','Q','S'],['K','L','S']	
 	]
 
-graph(a,triangles,'ABCDEFGHIJKLMNOPQRST')
-
-
-print("ONE")
-rotate_list('AR','B','M',magical_angle)
-
-graph(a,triangles,'ABCDEFGHIJKLMNOPQRST')
-
-print("TWO")
-rotate_list('ARB','C','M',magical_angle)
-
-graph(a,triangles)
-print("THREE")
-rotate_list('ARBMC','D','N',magical_angle)
-
-graph(a,triangles)
-
-print("FOUR")
-rotate_list('ARBCMD','N','E',-magical_angle)
-
-graph(a,triangles)
-print("FIVE")
-rotate_list('ARBMCDNE','O','F',-magical_angle)
-
-graph(a,triangles)
-
-rotate_list('ARBMCDNEF','O','G',-magical_angle)
-
-graph(a,triangles)
-
-rotate_list('ARBMCDNEFOG','P','H',magical_angle)
-
-graph(a,triangles)
-
-rotate_list('ARBMCDNEFOGH','P','I',magical_angle)
-
-graph(a,triangles)
-
-rotate_list('ARBMCDNEFOGHPI','J','Q',-magical_angle)
-
-graph(a,triangles)
-
-rotate_list('ARBMCDNEFOGHPIJ','K','Q',-magical_angle)
-
-graph(a,triangles)
-
-rotate_list('ARBMCDNEFOGHPIJKQ','L','R',-magical_angle)
-
-print("\n\n-------\nclose hits: A~G (T~G) | R~O (S~O) | M~P | B~H\n-------")
-
-
-graph(a,triangles)
-
-
-
-##### SECOND RING FORM -- I WAS TRYING TO MAKE THIS USING NORMALS OFF THE PLANES BUT THE NORMALS WERE BEING IMPROPERLY CALCULATED NO MATTER WHAT I DID
-
-
-##### MATCH Pi TO R/S and Ii to L
-Ai,Bi,Ci,Di,Ei,Fi,Gi,Hi,Ii,Ji,Ki,Li=[Point3D(r*sin(i*math.pi/6)-I.x+L.x,r*cos(i*math.pi/6)-I.y+L.y,0) for i in range(12)]
-
-
-points2=[Ai,Bi,Ci,Di,Ei,Fi,Gi,Hi,Ii,Ji,Ki,Li]
-s='ABCDEFGHIJKL'
-
-for i in range(len(s)):
-	#print(i,points[i])
-	a[s[i]+'i']=points2[i]
-
-intersections=[[[Li,Ci],[Bi,Ei]],[[Bi,Ei],[Di,Gi]],[[Di,Gi],[Fi,Ii]],[[Fi,Ii],[Hi,Ki]],[[Hi,Ki],[Ji,Ai]],[[Ji,Ai],[Li,Ci]]]
-intersecting_lines=[[Line3D(i[0][0],i[0][1]),Line3D(i[1][0],i[1][1])] for i in intersections]
-
-Mi,Ni,Oi,Pi,Qi,Ri=[i[0].intersection(i[1])[0] for i in intersecting_lines]
-
-
-points=[Mi,Ni,Oi,Pi,Qi,Ri]
-s='MNOPQR'
-for i in range(len(s)):
-	#print(i,points[i])
-	a[s[i]+'i']=points[i]
-
-##### BUT HERE WE HAVE TO SNIP THE TRIANGLE HALFWAY THROUGH BECAUSE WE'RE BASING OFF THE OTHER'S STARTING POINT
-
-
-a['Si']=Qi
-a['Ti']=Ki
-
-
-triangles2=[
-	['Ji','Si','Ti'],
-	['Ai','Ri','Mi'],['Ai','Mi','Bi'],
-	['Bi','Mi','Ci'],
-	['Ci','Mi','Ni'],['Ci','Ni','Di'],
-	['Di','Ni','Ei'],
-	['Ni','Ei','Oi'],['Ei','Oi','Fi'],
-	['Fi','Oi','Gi'],
-	['Gi','Hi','Oi'],['Pi','Oi','Hi'],
-	['Hi','Ii','Pi'],
-	['Ji','Ii','Pi'],['Ji','Pi','Si'],
-	['Li','Ai','Ri'],
-	['Ki','Qi','Ri'],['Ki','Li','Ri']	
-	]
-
-##############
-
-
-for pair in [['Ii','L'],['Pi','R'],['O','Pi'],['Hi','F'],['O','R'],['S','O'],['G','A'],['A','T'],['M','P'],['B','H']]:
-	i,j=pair
-
-rotate_list('AiBiCiDiEiFiGiHiIiJiKiLiMiNiOiPiQiRiSiTi','Ii','Pi',(math.pi/2-magical_angle)*2)
-
-for pair in [['Ii','L'],['Pi','R'],['O','Pi'],['Hi','F']]:
-	i,j=pair
-
-#graph(a,triangles+triangles2,'ABCDEFGHIJKLMNOPQRST|AiBiCiDiEiFiGiHiIiJiKiLiMiNiOiPiQiRiSiTi')
-
-
-rotate_list(['Ji','Si','Ti'],'Ii','Pi',magical_angle)
-
-#graph(a,triangles+triangles2,'ABCDEFGHIJKLMNOPQRST|AiBiCiDiEiFiGiHiIiJiKiLiMiNiOiPiQiRiSiTi')
-
-
-rotate_list(['Ti'],'Ji','Si',magical_angle)
-
-#graph(a,triangles+triangles2,'ABCDEFGHIJKLMNOPQRST|AiBiCiDiEiFiGiHiIiJiKiLiMiNiOiPiQiRiSiTi')
-
-
-rotate_list(['Gi','Oi','Fi','Ni','Ei','Di','Ci','Mi','Bi','Ri','Ai','Li','Ki','Qi'],'Hi','Pi',-magical_angle)
-#graph(a,triangles+triangles2,'ABCDEFGHIJKLMNOPQRST|AiBiCiDiEiFiGiHiIiJiKiLiMiNiOiPiQiRiSiTi')
-
-rotate_list(['Fi','Ni','Ei','Di','Ci','Mi','Bi','Ri','Ai','Li','Qi','Ki'],'Gi','Oi',-magical_angle)
-#graph(a,triangles+triangles2,'ABCDEFGHIJKLMNOPQRST|AiBiCiDiEiFiGiHiIiJiKiLiMiNiOiPiQiRiSiTi')
-
-rotate_list(['Ni','Ei','Di','Ci','Mi','Bi','Ri','Ai','Li','Qi','Ki'],'Fi','Oi',-magical_angle)
-#graph(a,triangles+triangles2,'ABCDEFGHIJKLMNOPQRST|AiBiCiDiEiFiGiHiIiJiKiLiMiNiOiPiQiRiSiTi')
-
-rotate_list(['Di','Ci','Mi','Bi','Ri','Ai','Li','Qi','Ki'],'Ni','Ei',-magical_angle)
-#graph(a,triangles+triangles2,'ABCDEFGHIJKLMNOPQRST|AiBiCiDiEiFiGiHiIiJiKiLiMiNiOiPiQiRiSiTi')
-
-rotate_list(['Ci','Mi','Bi','Ri','Ai','Li','Qi','Ki'],'Ni','Di',-magical_angle)
-#graph(a,triangles+triangles2,'ABCDEFGHIJKLMNOPQRST|AiBiCiDiEiFiGiHiIiJiKiLiMiNiOiPiQiRiSiTi')
-
-rotate_list(['Bi','Ri','Ai','Li','Qi','Ki'],'Ci','Mi',magical_angle)
-#graph(a,triangles+triangles2,'ABCDEFGHIJKLMNOPQRST|AiBiCiDiEiFiGiHiIiJiKiLiMiNiOiPiQiRiSiTi')
-
-rotate_list(['Ri','Ai','Li','Qi','Ki'],'Bi','Mi',magical_angle)
-#graph(a,triangles+triangles2,'ABCDEFGHIJKLMNOPQRST|AiBiCiDiEiFiGiHiIiJiKiLiMiNiOiPiQiRiSiTi')
-
-rotate_list(['Li','Qi','Ki'],'Ai','Ri',magical_angle)
-#graph(a,triangles+triangles2,'ABCDEFGHIJKLMNOPQRST|AiBiCiDiEiFiGiHiIiJiKiLiMiNiOiPiQiRiSiTi')
-
-rotate_list(['Qi','Ki'],'Li','Ri',magical_angle)
-#graph(a,triangles+triangles2,'ABCDEFGHIJKLMNOPQRST|AiBiCiDiEiFiGiHiIiJiKiLiMiNiOiPiQiRiSiTi')
-
-
-
-#graph(a,triangles+triangles2,'ABCDEFGHIJKLMNOPQRST|AiBiCiDiEiFiGiHiIiJiKiLiMiNiOiPiQiRiSiTi')
-
-
+# graph(a,triangles,'ABCDEFGHIJKLMNOPQRST')
+
+
+
+
+rotations=[
+	['AR','B','M',magical_angle],
+	['ARB','C','M',magical_angle],
+	['ARBMC','D','N',magical_angle],
+	['ARBCMD','N','E',-magical_angle],
+	['ARBMCDNE','O','F',-magical_angle],
+	['ARBMCDNEF','O','G',-magical_angle],
+	['T','L','S',magical_angle],
+	['TLS','K','Q',magical_angle],
+	['TLSKQ','J','Q',magical_angle],
+	['TLSKQJ','I','P',magical_angle],
+	['TLSKQJI','H','P',magical_angle]
+]
+
+
+output_d={p:{'x':[],'y':[],'z':[]} for p in a}
+
+for rotation in rotations:
+	steps=5
+	pointstr,p1,p2,full_angle=rotation
+	print(rotation)
+	for s in range(steps):
+		angle=float((s+1)/steps)*full_angle
+		rotate_list(pointstr,p1,p2,angle)
+		print(angle)
+		for p in a:
+			point=a[p]
+			output_d[p]['x'].append(a[p].x.evalf())
+			output_d[p]['y'].append(a[p].y.evalf())
+			output_d[p]['z'].append(a[p].z.evalf())
+		graph(a,triangles)
+
+for p in a:
+	for axis in ['x','y','z']:
+		print("let %s%s=%s;" %(p.lower(),axis.lower(),output_d[p][axis]))
+
+steplist=[]
+
+for s in range(len(output_d['A']['x'])):
+	steplist.append(s)
+
+steplist2=list(steplist)[1:-1]
+steplist2.reverse()
+
+steplist+=steplist2
+
+print("let steparray=%s;" %(steplist))
+
+print("let sec=floor(millis()/1000);")
+
+print("let t=steparray[sec%"+str(len(steplist))+"];")
+
+
+
+# 
+# print("ONE")
+# rotate_list('AR','B','M',magical_angle)
+# 
+# graph(a,triangles,'ABCDEFGHIJKLMNOPQRST')
+# 
+# print("TWO")
+# rotate_list('ARB','C','M',magical_angle)
+# 
+# graph(a,triangles)
+# print("THREE")
+# rotate_list('ARBMC','D','N',magical_angle)
+# 
+# graph(a,triangles)
+# 
+# print("FOUR")
+# rotate_list('ARBCMD','N','E',-magical_angle)
+# 
+# graph(a,triangles)
+# print("FIVE")
+# rotate_list('ARBMCDNE','O','F',-magical_angle)
+# 
+# graph(a,triangles)
+# 
+# rotate_list('ARBMCDNEF','O','G',-magical_angle)
+# 
+# graph(a,triangles)
+# 
+# rotate_list('ARBMCDNEFOG','P','H',magical_angle)
+# 
+# graph(a,triangles)
+# 
+# rotate_list('ARBMCDNEFOGH','P','I',magical_angle)
+# 
+# graph(a,triangles)
+# 
+# rotate_list('ARBMCDNEFOGHPI','J','Q',-magical_angle)
+# 
+# graph(a,triangles)
+# 
+# rotate_list('ARBMCDNEFOGHPIJ','K','Q',-magical_angle)
+# 
+# graph(a,triangles)
+# 
+# rotate_list('ARBMCDNEFOGHPIJKQ','L','R',-magical_angle)
+# 
+# print("\n\n-------\nclose hits: A~G (T~G) | R~O (S~O) | M~P | B~H\n-------")
+# 
+# 
+# graph(a,triangles)
+# 
+# 
+# 
+# ##### SECOND RING FORM -- I WAS TRYING TO MAKE THIS USING NORMALS OFF THE PLANES BUT THE NORMALS WERE BEING IMPROPERLY CALCULATED NO MATTER WHAT I DID
+# 
+# 
+# ##### MATCH Pi TO R/S and Ii to L
+# Ai,Bi,Ci,Di,Ei,Fi,Gi,Hi,Ii,Ji,Ki,Li=[Point3D(r*sin(i*math.pi/6)-I.x+L.x,r*cos(i*math.pi/6)-I.y+L.y,0) for i in range(12)]
+# 
+# 
+# points2=[Ai,Bi,Ci,Di,Ei,Fi,Gi,Hi,Ii,Ji,Ki,Li]
+# s='ABCDEFGHIJKL'
+# 
+# for i in range(len(s)):
+# 	#print(i,points[i])
+# 	a[s[i]+'i']=points2[i]
+# 
+# intersections=[[[Li,Ci],[Bi,Ei]],[[Bi,Ei],[Di,Gi]],[[Di,Gi],[Fi,Ii]],[[Fi,Ii],[Hi,Ki]],[[Hi,Ki],[Ji,Ai]],[[Ji,Ai],[Li,Ci]]]
+# intersecting_lines=[[Line3D(i[0][0],i[0][1]),Line3D(i[1][0],i[1][1])] for i in intersections]
+# 
+# Mi,Ni,Oi,Pi,Qi,Ri=[i[0].intersection(i[1])[0] for i in intersecting_lines]
+# 
+# 
+# points=[Mi,Ni,Oi,Pi,Qi,Ri]
+# s='MNOPQR'
+# for i in range(len(s)):
+# 	#print(i,points[i])
+# 	a[s[i]+'i']=points[i]
+# 
+# ##### BUT HERE WE HAVE TO SNIP THE TRIANGLE HALFWAY THROUGH BECAUSE WE'RE BASING OFF THE OTHER'S STARTING POINT
+# 
+# 
+# a['Si']=Qi
+# a['Ti']=Ki
+# 
+# 
+# triangles2=[
+# 	['Ji','Si','Ti'],
+# 	['Ai','Ri','Mi'],['Ai','Mi','Bi'],
+# 	['Bi','Mi','Ci'],
+# 	['Ci','Mi','Ni'],['Ci','Ni','Di'],
+# 	['Di','Ni','Ei'],
+# 	['Ni','Ei','Oi'],['Ei','Oi','Fi'],
+# 	['Fi','Oi','Gi'],
+# 	['Gi','Hi','Oi'],['Pi','Oi','Hi'],
+# 	['Hi','Ii','Pi'],
+# 	['Ji','Ii','Pi'],['Ji','Pi','Si'],
+# 	['Li','Ai','Ri'],
+# 	['Ki','Qi','Ri'],['Ki','Li','Ri']	
+# 	]
+# 
+# ##############
+# 
+# 
+# for pair in [['Ii','L'],['Pi','R'],['O','Pi'],['Hi','F'],['O','R'],['S','O'],['G','A'],['A','T'],['M','P'],['B','H']]:
+# 	i,j=pair
+# 
+# rotate_list('AiBiCiDiEiFiGiHiIiJiKiLiMiNiOiPiQiRiSiTi','Ii','Pi',(math.pi/2-magical_angle)*2)
+# 
+# for pair in [['Ii','L'],['Pi','R'],['O','Pi'],['Hi','F']]:
+# 	i,j=pair
+# 
+# #graph(a,triangles+triangles2,'ABCDEFGHIJKLMNOPQRST|AiBiCiDiEiFiGiHiIiJiKiLiMiNiOiPiQiRiSiTi')
+# 
+# 
+# rotate_list(['Ji','Si','Ti'],'Ii','Pi',magical_angle)
+# 
+# #graph(a,triangles+triangles2,'ABCDEFGHIJKLMNOPQRST|AiBiCiDiEiFiGiHiIiJiKiLiMiNiOiPiQiRiSiTi')
+# 
+# 
+# rotate_list(['Ti'],'Ji','Si',magical_angle)
+# 
+# #graph(a,triangles+triangles2,'ABCDEFGHIJKLMNOPQRST|AiBiCiDiEiFiGiHiIiJiKiLiMiNiOiPiQiRiSiTi')
+# 
+# 
+# rotate_list(['Gi','Oi','Fi','Ni','Ei','Di','Ci','Mi','Bi','Ri','Ai','Li','Ki','Qi'],'Hi','Pi',-magical_angle)
+# #graph(a,triangles+triangles2,'ABCDEFGHIJKLMNOPQRST|AiBiCiDiEiFiGiHiIiJiKiLiMiNiOiPiQiRiSiTi')
+# 
+# rotate_list(['Fi','Ni','Ei','Di','Ci','Mi','Bi','Ri','Ai','Li','Qi','Ki'],'Gi','Oi',-magical_angle)
+# #graph(a,triangles+triangles2,'ABCDEFGHIJKLMNOPQRST|AiBiCiDiEiFiGiHiIiJiKiLiMiNiOiPiQiRiSiTi')
+# 
+# rotate_list(['Ni','Ei','Di','Ci','Mi','Bi','Ri','Ai','Li','Qi','Ki'],'Fi','Oi',-magical_angle)
+# #graph(a,triangles+triangles2,'ABCDEFGHIJKLMNOPQRST|AiBiCiDiEiFiGiHiIiJiKiLiMiNiOiPiQiRiSiTi')
+# 
+# rotate_list(['Di','Ci','Mi','Bi','Ri','Ai','Li','Qi','Ki'],'Ni','Ei',-magical_angle)
+# #graph(a,triangles+triangles2,'ABCDEFGHIJKLMNOPQRST|AiBiCiDiEiFiGiHiIiJiKiLiMiNiOiPiQiRiSiTi')
+# 
+# rotate_list(['Ci','Mi','Bi','Ri','Ai','Li','Qi','Ki'],'Ni','Di',-magical_angle)
+# #graph(a,triangles+triangles2,'ABCDEFGHIJKLMNOPQRST|AiBiCiDiEiFiGiHiIiJiKiLiMiNiOiPiQiRiSiTi')
+# 
+# rotate_list(['Bi','Ri','Ai','Li','Qi','Ki'],'Ci','Mi',magical_angle)
+# #graph(a,triangles+triangles2,'ABCDEFGHIJKLMNOPQRST|AiBiCiDiEiFiGiHiIiJiKiLiMiNiOiPiQiRiSiTi')
+# 
+# rotate_list(['Ri','Ai','Li','Qi','Ki'],'Bi','Mi',magical_angle)
+# #graph(a,triangles+triangles2,'ABCDEFGHIJKLMNOPQRST|AiBiCiDiEiFiGiHiIiJiKiLiMiNiOiPiQiRiSiTi')
+# 
+# rotate_list(['Li','Qi','Ki'],'Ai','Ri',magical_angle)
+# #graph(a,triangles+triangles2,'ABCDEFGHIJKLMNOPQRST|AiBiCiDiEiFiGiHiIiJiKiLiMiNiOiPiQiRiSiTi')
+# 
+# rotate_list(['Qi','Ki'],'Li','Ri',magical_angle)
+# #graph(a,triangles+triangles2,'ABCDEFGHIJKLMNOPQRST|AiBiCiDiEiFiGiHiIiJiKiLiMiNiOiPiQiRiSiTi')
+# 
+# 
+# 
+# #graph(a,triangles+triangles2,'ABCDEFGHIJKLMNOPQRST|AiBiCiDiEiFiGiHiIiJiKiLiMiNiOiPiQiRiSiTi')
+# 
+# 

@@ -8,7 +8,6 @@ def main(a,triangles,pointstr='ABCDEFGHIJKLMNOPQ'):
 		p=pa+pb
 	except:
 		p=pa
-	print(p)
 	X=[float(a[i].x.evalf()) for i in p]
 	Y=[float(a[i].y.evalf()) for i in p]
 	Z=[float(a[i].z.evalf()) for i in p]
@@ -17,9 +16,7 @@ def main(a,triangles,pointstr='ABCDEFGHIJKLMNOPQ'):
 	J=[p.index(i[1]) for i in triangles]
 	K=[p.index(i[2]) for i in triangles]
 	
-	#triangles_idx=[[p.index(i[0]),p.index(i[1]),p.index(i[2])] for i in triangles]
-	
-	#intensities=[1 for i in range(len(X))]
+	labels=[i for i in p]
 	
 	fig = go.Figure(data=[
 		go.Mesh3d(
@@ -29,10 +26,9 @@ def main(a,triangles,pointstr='ABCDEFGHIJKLMNOPQ'):
 			i=I,
 			j=J,
 			k=K,
-			name='y',
+			text=labels,
 			showscale=True
 		)
 	])
-	#print(fig)
 	fig.show()
 	#wait = input("Press Enter for next step.")
