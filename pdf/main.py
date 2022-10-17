@@ -2,13 +2,13 @@ from fpdf import FPDF
 import sys
 from math import tan, cos, sin, pi, radians,sqrt
 
-pdf = FPDF()
+pdf = FPDF('P','mm',(300,150))
 # compression is not yet supported in py3k version
 pdf.compress = False
 
 
 
-pdf.add_page('L',(550,425))
+pdf.add_page()
 # Unicode is not yet supported in the py3k version; use windows-1252 standard font
 
 class Point:
@@ -21,8 +21,13 @@ def inchestouserpoints(i):
 	x=i*50
 	return(x)
 
+#math error in here somewhere.
+#actual results are
+#Diameter = D*2
+#Length = L*2
+
 D=inchestouserpoints(1/8)
-L=inchestouserpoints(4)
+L=inchestouserpoints(.75)
 
 a=Point(0,0)
 b=Point((D/2)/tan(radians(30))+a.x,D/2+a.y)
@@ -87,4 +92,4 @@ l(d,c)
 l(c,b)
 l(b,d)
 
-pdf.output('trap.pdf', 'F')
+pdf.output('trapezoid.pdf', 'F')
