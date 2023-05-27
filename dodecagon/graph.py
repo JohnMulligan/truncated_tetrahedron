@@ -1,5 +1,4 @@
 import plotly.graph_objects as go
-from sympy.geometry import Point,Point3D, Line3D,Plane,Segment3D
 
 def main(a,triangles,pointstr='ABCDEFGHIJKLMNOPQRST'):
 	pa=[i for i in pointstr.split('|')[0]]
