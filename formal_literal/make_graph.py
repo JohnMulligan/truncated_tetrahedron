@@ -214,7 +214,9 @@ def main(N):
 	for i in [0,1,2]:
 		G.nodes['last']['pos']=first_inner_node['pos']
 	
-	return G
+	gpositions={node_id:G.nodes[node_id]['pos'] for node_id in G.nodes}
+	
+	return G,gpositions
 
 def make_facia(G):
 	
