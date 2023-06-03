@@ -81,13 +81,9 @@ triangles=[['L','R','A'],['B','M','C'],['D','N','E'],['O','G','F'],['H','I','P']
 points=[M,N,O,P,Q,R]
 s='MNOPQR'
 for i in range(len(s)):
-	#print(i,points[i])
 	a[s[i]]=points[i]
 
 s='ABCDEFGHIJKLMNOPQR'
-
-
-
 
 
 #print(a,triangles,s)
@@ -105,6 +101,12 @@ s='ABCDEFGHIJKLMNOPQR'
 #first, duplicate A and R so we can snip and fold
 a['S']=R
 a['T']=A
+
+for i in 'ABCDEFGHIJKLTMNOPQRS':
+	print('\t'.join([str(l) for l in [i,a[i].x,a[i].y]]))
+
+exit()
+
 
 #then, test the full schmeer because we're going to want to be able to constantly test the look
 
