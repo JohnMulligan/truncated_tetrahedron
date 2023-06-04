@@ -95,10 +95,12 @@ def draw_graph(G):
 	plt.show()
 
 
-def make_processing_animation(file_index,animation_steps_count):
+def make_processing_animation(fname):
 	
-	N=int(re.sub("_[0-9]+","",file_index))
-
+	ints=[int(i) for i in re.findall("[0-9]+",fname)]
+	
+	N,foldings_iteration,steps_count=ints
+	
 	basedirpath='outputs/animations/'
 	os.makedirs(basedirpath+'%s/' %str(N), exist_ok=True)
 
@@ -109,7 +111,7 @@ def make_processing_animation(file_index,animation_steps_count):
 	
 	d.close()
 
-	d=open(basedirpath+ "%s/%s_%s.json" %(str(N),file_index,str(animation_steps_count)),"r")
+	d=open(basedirpath+ "%s/%s" %(str(N),fname),"r")
 	t=d.read()
 	d.close()
 	
@@ -153,6 +155,9 @@ def make_processing_animation(file_index,animation_steps_count):
 	animation_text=re.sub("___STEPARRAY___",steparrayblock,animation_text)	
 	animation_text=re.sub("___FACIABLOCK___",facia_block,animation_text)
 
-	d=open(basedirpath+"%s/%s_%s.js" %(str(N),file_index,str(animation_steps_count)),"w")
+	d=open(basedirpath+"%s/processing_%s" %(str(N),re.sub("\.json",".js",fname)),"w")
 	d.write(animation_text)
 	d.close()
+	
+if __name__=="__main__":
+	make_processing_animation(fname="12_0_10_A__G*A__M*B_C__H_I*B__H*C__I*D_E__J_K*D__J*E__K*F_G__first*F_G__last*F__L*G__A*G__M*H_I__B_C*H__B*I__C*J_K__D_E*J__D*K__E*L__F*M__A*M__G*first__F_G*last__F_G.json")

@@ -1,3 +1,4 @@
+import re
 from math import cos, sin, sqrt, floor, pi
 import sys
 import os
@@ -56,14 +57,13 @@ def evaluate_folding(G):
 	
 	
 
-def main(N=12,worker_number=0,number_of_workers=1,animation_steps=1,angle=1.415471989998):
+def main(fname,animation_steps=10):
 
-	G=make_graph.main(N)
+	N=int(re.search("^[0-9]+",fname).group(0))
+	folding_idx=int(re.search("(?<=_)[0-9]+(?=\.json)",fname).group(0))
 	
+	G=make_graph.main(N)	
 	spokes={e:G.edges[e] for e in G.edges if G.edges[e]['set']=='spokes'}
-	
-	
-	
 	
 	spokes_by_index={spokes[e]['index']:e for e in spokes}
 	
@@ -100,100 +100,68 @@ def main(N=12,worker_number=0,number_of_workers=1,animation_steps=1,angle=1.4154
 # 	
 # 	print(len(list(possible_folds)),"possible folds")
 	
-	tasks_per_worker=floor(number_of_possible_folds/number_of_workers)
-	
 # 	print(tasks_per_worker,"tasks per worker with",number of workers,"workers")
-	
-	worker_start_idx=worker_number*tasks_per_worker
-	worker_end_idx=(worker_number+1)*tasks_per_worker-1
-	
-	if worker_number==number_of_workers-1:
-		worker_end_idx=number_of_possible_folds
 	
 # 	print("worker 1 batch:",worker_start_idx,worker_end_idx)
 # 	
 # 	print("number_of_entries:	",len(list(islice(possible_folds,worker_start_idx,worker_end_idx))),"items")
 	
-	timings=[]
+	for tf in islice(possible_folds,folding_idx,folding_idx+1):
+		this_folding=tf
+		
+	G=make_graph.main(N)
 	
-	timings.append(time.time())
-	c=0	
+	start_time=time.time()
 	
-	for this_folding in islice(possible_folds,worker_start_idx,worker_end_idx):
+	node_idxs=sorted(list(nodes_by_index.keys()))
 		
-		G=make_graph.main(N)
+	illustrator.draw_faces(G,N)
+
+	
+	
+	d=open("../formal_literal_optimizer/outputs/%s/%s" %(str(N),fname))
+	t=d.read()
+	matches=json.loads(t)
+	d.close()
+	
+	for thismatch in matches:
+		animations={node_id:[] for node_id in G.nodes}
+		print(thismatch)
 		
-		folding_id="_".join([str(N),str(worker_start_idx+c)])
+		min_angle=0
+		max_angle=matches[thismatch]["angle"]
 		
-		start_time=time.time()
-		
-		node_idxs=sorted(list(nodes_by_index.keys()))
-		
-		if animation_steps>1:
-			
-			illustrator.draw_faces(G,N)
+		for folding_angle in np.linspace(min_angle,max_angle,animation_steps):
+			G=make_graph.main(N)
 
-			animations={node_id:[] for node_id in G.nodes}
-
-			animation_steps_range=list(range(animation_steps+1))
-			
-			animation_steps_range
-			
-			this_angle=angle/animation_steps
-
-			for a in animation_steps_range:
-
-				if animation_steps_range.index(a)==0:
-					folding_angle=0
-				else:
-					folding_angle=this_angle
-
-				folder.main(
-					G=G,
-					this_folding=this_folding,
-					folding_id=folding_id,
-					angle=folding_angle,
-					fold_spoke_indices=fold_spoke_indices,
-					spokes_by_index=spokes_by_index,
-					nodes_by_index=nodes_by_index
-				)
-				
-# 				illustrator.draw_graph(G)
-				
-				evaluate_folding(G)
-				
-				for node_id in G.nodes:
-					animations[node_id].append([float(p) for p in G.nodes[node_id]['pos']])
-			
-			d=open('outputs/animations/%s/%s_%s.json' %(str(N),folding_id,str(animation_steps)),'w')
-			d.write(json.dumps(animations))
-			d.close()
-
-			illustrator.make_processing_animation(folding_id,animation_steps)
-			
-		else:
-			folder.main(
+			G=folder.main(
 				G=G,
 				this_folding=this_folding,
-				folding_id=folding_id,
-				angle=angle,
+				angle=folding_angle,
 				fold_spoke_indices=fold_spoke_indices,
 				spokes_by_index=spokes_by_index,
 				nodes_by_index=nodes_by_index
 			)
-			illustrator.draw_graph(G)
-			
-			evaluate_folding(G)
+		
+	# 				illustrator.draw_graph(G)
+		
+# 			evaluate_folding(G)
+		
+			for node_id in G.nodes:
+				animations[node_id].append([float(p) for p in G.nodes[node_id]['pos']])
+		outputfilename="_".join([str(N),str(folding_idx),str(animation_steps),thismatch])+'.json'
+		d=open('outputs/animations/%s/%s' %(str(N),outputfilename),'w')
+		d.write(json.dumps(animations))
+		d.close()
 
-		c+=1
-		elapsed_seconds=time.time()-start_time
-		print("time per folding attempt:",elapsed_seconds, 'seconds')
-				
-		exit()
+		illustrator.make_processing_animation(outputfilename)
 	
 if __name__=="__main__":
-	N=int(sys.argv[1])
-	worker_number=int(sys.argv[2])
-	number_of_workers=int(sys.argv[3])
-	animation_steps=int(sys.argv[4])
-	main(N=N,worker_number=worker_number,number_of_workers=number_of_workers,animation_steps=animation_steps)
+	fname=sys.argv[1]
+# 	
+# 	N=int(sys.argv[1])
+# 	worker_number=int(sys.argv[2])
+# 	number_of_workers=int(sys.argv[3])
+	animation_steps=int(sys.argv[2])
+# 	main(N=N,worker_number=worker_number,number_of_workers=number_of_workers,animation_steps=animation_steps)
+	main(fname,animation_steps)

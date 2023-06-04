@@ -3,7 +3,7 @@ import illustrator
 from sympy.geometry import Point,Point3D, Line3D,Plane,Segment3D
 from transforms import rotate
 
-def main(G,this_folding,folding_id,angle,fold_spoke_indices,nodes_by_index,spokes_by_index):
+def main(G,this_folding,angle,fold_spoke_indices,nodes_by_index,spokes_by_index):
 	print("-->",angle)
 	for r in fold_spoke_indices:
 	
@@ -49,3 +49,4 @@ def main(G,this_folding,folding_id,angle,fold_spoke_indices,nodes_by_index,spoke
 				affected_point_post_rotation.y,
 				affected_point_post_rotation.z
 			)
+	return G

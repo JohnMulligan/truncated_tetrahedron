@@ -9,6 +9,5 @@
 
 module load GCCcore/8.3.0
 module load Python/3.7.2
-pip3 install networkx
 
 python3 12 $SLURM_ARRAY_TASK_ID $SLURM_ARRAY_TASK_COUNT 50
