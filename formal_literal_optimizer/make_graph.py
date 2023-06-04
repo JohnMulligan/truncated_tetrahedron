@@ -3,7 +3,6 @@ import sys
 import os
 import networkx as nx
 from sympy.geometry import Point,Point3D, Line3D,Plane,Segment3D
-import matplotlib.pyplot as plt
 import numpy as np
 
 def main(N,r=1000):
@@ -12,7 +11,7 @@ def main(N,r=1000):
 
 	alphabet='ABCDEFGHIJKLMNOPQRSTUVWXYZ'
 
-	acycles=floor((N+2)/len(alphabet))
+	acycles=int(floor((N+2)/len(alphabet)))
 
 
 	G = nx.Graph()
