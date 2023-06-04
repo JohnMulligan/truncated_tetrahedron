@@ -1,0 +1,10 @@
+{
+  "A__G*A__M*B_C__H_I*B__H*C__I*D_E__J_K*D__J*E__K*F_G__first*F_G__last*F__L*G__A*G__M*H_I__B_C*H__B*I__C*J_K__D_E*J__D*K__E*L__F*M__A*M__G*first__F_G*last__F_G": {
+    "angle": -1.4054493450270127,
+    "mean_close_neighborings": 16.27314389787547
+  },
+  "A__M*M__A": {
+    "angle": -0.08267349088394194,
+    "mean_close_neighborings": 35.2089258752229
+  }
+}

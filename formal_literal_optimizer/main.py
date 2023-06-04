@@ -40,7 +40,7 @@ def evaluate_folding(G,closeness_threshold):
 	
 	close_neighborings={}
 	
-	alldistances=[]
+	all_close_distances=[]
 	
 	for n_id_a in nodelist:
 		for n_id_b in nodelist:
@@ -49,10 +49,9 @@ def evaluate_folding(G,closeness_threshold):
 					G.nodes[n_id_a]['pos'],
 					G.nodes[n_id_b]['pos']
 				)
-				
-				alldistances.append(ed)
 			
 				if ed < closeness_threshold:
+					all_close_distances.append(ed)
 				
 					neighboring_id="__".join([n_id_a,n_id_b])
 				
@@ -64,8 +63,12 @@ def evaluate_folding(G,closeness_threshold):
 						if ed < closeness_threshold:
 						
 							close_neighborings[neighboring_id]=ed
-# 	print('min distance',min(alldistances))
-	return close_neighborings,min(alldistances)
+	
+	if len(all_close_distances)>0:
+		mean_close_neighborings=sum(all_close_distances)/len(all_close_distances)
+	else:
+		mean_close_neighborings=None
+	return close_neighborings,mean_close_neighborings
 
 def main(N=12,worker_number=0,number_of_workers=1,sampling_steps=20,threshold_factor=20,min_angle=-pi/2,max_angle=pi/2,r=1000):
 	
@@ -139,21 +142,8 @@ def main(N=12,worker_number=0,number_of_workers=1,sampling_steps=20,threshold_fa
 		
 		node_idxs=sorted(list(nodes_by_index.keys()))
 		
-		anglestep=(max_angle-min_angle)/sampling_steps
-		
-		folder.main(
-			G=G,
-			this_folding=this_folding,
-			folding_id=folding_id,
-			angle=min_angle,
-			fold_spoke_indices=fold_spoke_indices,
-			spokes_by_index=spokes_by_index,
-			nodes_by_index=nodes_by_index
-		)
-	
-		
-		folding_angle=min_angle
 		print("threshold",threshold)
+		print("min angle to max angle",min_angle,max_angle)
 
 		matches={}
 		
@@ -164,8 +154,6 @@ def main(N=12,worker_number=0,number_of_workers=1,sampling_steps=20,threshold_fa
 		for folding_angle in np.linspace(min_angle,max_angle,sampling_steps):
 			
 			G=make_graph.main(N,r)
-		
-			
 			
 			folder.main(
 				G=G,
@@ -177,24 +165,24 @@ def main(N=12,worker_number=0,number_of_workers=1,sampling_steps=20,threshold_fa
 				nodes_by_index=nodes_by_index
 			)
 			
-			close_neighborings,min_distance=evaluate_folding(G,threshold)
+			close_neighborings,mean_close_neighborings=evaluate_folding(G,threshold)
 			
 			if close_neighborings !={}:
 				
+				print("->match at",folding_angle,"=",mean_close_neighborings)
+					
 				close_neighborings_list=sorted(list(close_neighborings.keys()))
 				
 				if "*".join(close_neighborings_list) not in matches:
 					
 					matches["*".join(close_neighborings_list)]={
 						'angle':folding_angle,
-						'min_distance':min_distance
+						'mean_close_neighborings':mean_close_neighborings
 					}
 				
 				else:
-					if min_distance < matches["*".join(close_neighborings_list)]['min_distance']:
-						matches["*".join(close_neighborings_list)]['min_distance']=min_distance
-			
-# 				print("close neighborings:",close_neighborings)
+					if mean_close_neighborings < matches["*".join(close_neighborings_list)]['mean_close_neighborings']:
+						matches["*".join(close_neighborings_list)]['mean_close_neighborings']=mean_close_neighborings
 
 				
 			folds_completed+=1
@@ -203,17 +191,15 @@ def main(N=12,worker_number=0,number_of_workers=1,sampling_steps=20,threshold_fa
 		
 		if matches!={}:
 			os.makedirs('outputs/%s/' %str(N), exist_ok=True)
-			d=open('outputs/%s/%s.txt' %(str(N),str(folding_id)),'a')
-			d.write("\n"+json.dumps(close_neighborings)+"\n")
+			d=open('outputs/%s/%s.json' %(str(N),str(folding_id)),'w')
+			d.write(json.dumps(matches,indent=2))
 			d.close()
 				
 		c+=1
 		elapsed_seconds=time.time()-start_time
 		
-		print("average folding time:",)
+		print(folding_id,"time per folding attempt:",elapsed_seconds/folds_completed, 'seconds.',"total folding time:",int(elapsed_seconds/60),"minutes")
 		
-		print("time per folding attempt:",elapsed_seconds/folds_completed, 'seconds')
-				
 		exit()
 	
 if __name__=="__main__":
@@ -221,4 +207,10 @@ if __name__=="__main__":
 	worker_number=int(sys.argv[2])
 	number_of_workers=int(sys.argv[3])
 	sampling_steps=int(sys.argv[4])
+	try:
+		min_angle=sys.argv[5]
+		max_angle=sys.argv[6]
+	except:
+		min_angle=-pi/2
+		max_angle=pi/2
 	main(N=N,worker_number=worker_number,number_of_workers=number_of_workers,sampling_steps=sampling_steps)
