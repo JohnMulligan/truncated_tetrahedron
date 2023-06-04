@@ -33,7 +33,7 @@ def evaluate_folding(G,closeness_threshold):
 	outernode_labels_sorted=list(outernodes_sorted.keys())
 	
 	first_outernode_label=outernode_labels_sorted[0]
-	last_outernode_label=outernode_labels_sorted[1]
+	last_outernode_label=outernode_labels_sorted[-1]
 	
 	terminal_outernodes=[first_outernode_label,last_outernode_label]
 	

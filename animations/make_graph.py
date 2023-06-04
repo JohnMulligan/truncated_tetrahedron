@@ -56,7 +56,7 @@ def main(N):
 	outernodeslist=[(n,G.nodes[n]['index']) for n in G.nodes]
 	outervertexlabels=[v[0] for v in outernodeslist]
 
-	print("outer nodes:",outernodeslist)
+# 	print("outer nodes:",outernodeslist)
 
 	innernodeslist=[
 		"_".join(
