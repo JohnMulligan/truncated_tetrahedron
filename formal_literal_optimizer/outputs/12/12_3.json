@@ -1,0 +1,22 @@
+{
+  "A__G*B_C__H_I*B__H*C__I*D_E__J_K*D__J*E__K*F_G__first*G__A*H_I__B_C*H__B*I__C*J_K__D_E*J__D*K__E*first__F_G": {
+    "angle": -1.442568055219803,
+    "mean_close_neighborings": 39.691824140405366
+  },
+  "A__H*B__I*C__J*D__K*H__A*I__B*J__C*K__D": {
+    "angle": -1.121997376282069,
+    "mean_close_neighborings": 13.819468371030911
+  },
+  "J_K__last*last__J_K": {
+    "angle": -0.9296549689194287,
+    "mean_close_neighborings": 3.5745327283458197
+  },
+  "B_C__J_K*H_I__first*J_K__B_C*first__H_I": {
+    "angle": -0.8655408331318818,
+    "mean_close_neighborings": 43.6966684917342
+  },
+  "A__M*M__A": {
+    "angle": -0.032057067893773494,
+    "mean_close_neighborings": 15.559310199617341
+  }
+}
