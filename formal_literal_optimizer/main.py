@@ -199,7 +199,7 @@ def main(N=12,worker_number=0,number_of_workers=1,sampling_steps=20,threshold_fa
 		elapsed_seconds=time.time()-start_time
 		
 		print(folding_id,"time per folding attempt:",elapsed_seconds/folds_completed, 'seconds.',"total folding time:",int(elapsed_seconds/60),"minutes")
-		
+
 if __name__=="__main__":
 	N=int(sys.argv[1])
 	worker_number=int(sys.argv[2])
