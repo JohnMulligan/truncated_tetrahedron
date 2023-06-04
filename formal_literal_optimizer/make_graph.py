@@ -6,11 +6,9 @@ from sympy.geometry import Point,Point3D, Line3D,Plane,Segment3D
 import matplotlib.pyplot as plt
 import numpy as np
 
-def main(N):
+def main(N,r=1000):
 
 	N=N
-
-	r=1000
 
 	alphabet='ABCDEFGHIJKLMNOPQRSTUVWXYZ'
 
@@ -56,7 +54,7 @@ def main(N):
 	outernodeslist=[(n,G.nodes[n]['index']) for n in G.nodes]
 	outervertexlabels=[v[0] for v in outernodeslist]
 
-	print("outer nodes:",outernodeslist)
+# 	print("outer nodes:",outernodeslist)
 
 	innernodeslist=[
 		"_".join(

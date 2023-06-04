@@ -21,21 +21,36 @@ def get_euclidean_distance(a,b):
 	return ed
 	
 
-def evaluate_folding(G):
+def evaluate_folding(G,closeness_threshold):
 
 	nodelist={n:0 for n in G.nodes()}
 	
-	closeness_threshold=.001
+# 	closeness_threshold=.001
+	
+	outernodes = {x:y['index'] for x,y in G.nodes(data=True) if y['set']=='outer'}
+	
+	outernodes_sorted={k: v for k, v in sorted(outernodes.items(), key=lambda item: item[1])}
+	
+	outernode_labels_sorted=list(outernodes_sorted.keys())
+	
+	first_outernode_label=outernode_labels_sorted[0]
+	last_outernode_label=outernode_labels_sorted[1]
+	
+	terminal_outernodes=[first_outernode_label,last_outernode_label]
 	
 	close_neighborings={}
 	
+	alldistances=[]
+	
 	for n_id_a in nodelist:
 		for n_id_b in nodelist:
-			if n_id_a!=n_id_b:
+			if n_id_a!=n_id_b and not (n_id_a in terminal_outernodes and n_id_b in terminal_outernodes) and not (n_id_a in ['first','last'] and n_id_b in ['first','last']):
 				ed=get_euclidean_distance(
 					G.nodes[n_id_a]['pos'],
 					G.nodes[n_id_b]['pos']
 				)
+				
+				alldistances.append(ed)
 			
 				if ed < closeness_threshold:
 				
@@ -49,21 +64,16 @@ def evaluate_folding(G):
 						if ed < closeness_threshold:
 						
 							close_neighborings[neighboring_id]=ed
-					
-	print("close neighborings:",close_neighborings)
-		
-		
-	
-	
+# 	print('min distance',min(alldistances))
+	return close_neighborings,min(alldistances)
 
-def main(N=12,worker_number=0,number_of_workers=1,animation_steps=1,angle=1.415471989998):
-
-	G=make_graph.main(N)
+def main(N=12,worker_number=0,number_of_workers=1,sampling_steps=20,threshold_factor=20,min_angle=-pi/2,max_angle=pi/2,r=1000):
+	
+	G=make_graph.main(N,r)
+	
+	threshold=r/threshold_factor
 	
 	spokes={e:G.edges[e] for e in G.edges if G.edges[e]['set']=='spokes'}
-	
-	
-	
 	
 	spokes_by_index={spokes[e]['index']:e for e in spokes}
 	
@@ -121,7 +131,7 @@ def main(N=12,worker_number=0,number_of_workers=1,animation_steps=1,angle=1.4154
 	
 	for this_folding in islice(possible_folds,worker_start_idx,worker_end_idx):
 		
-		G=make_graph.main(N)
+		G=make_graph.main(N,r)
 		
 		folding_id="_".join([str(N),str(worker_start_idx+c)])
 		
@@ -129,65 +139,80 @@ def main(N=12,worker_number=0,number_of_workers=1,animation_steps=1,angle=1.4154
 		
 		node_idxs=sorted(list(nodes_by_index.keys()))
 		
-		if animation_steps>1:
+		anglestep=(max_angle-min_angle)/sampling_steps
+		
+		folder.main(
+			G=G,
+			this_folding=this_folding,
+			folding_id=folding_id,
+			angle=min_angle,
+			fold_spoke_indices=fold_spoke_indices,
+			spokes_by_index=spokes_by_index,
+			nodes_by_index=nodes_by_index
+		)
+	
+		
+		folding_angle=min_angle
+		print("threshold",threshold)
+
+		matches={}
+		
+		folds_completed=0
+		
+		folding_id="_".join([str(N),str(worker_start_idx+c)])		
+		
+		for folding_angle in np.linspace(min_angle,max_angle,sampling_steps):
 			
-			illustrator.draw_faces(G,N)
-
-			animations={node_id:[] for node_id in G.nodes}
-
-			animation_steps_range=list(range(animation_steps+1))
+			G=make_graph.main(N,r)
+		
 			
-			animation_steps_range
 			
-			this_angle=angle/animation_steps
-
-			for a in animation_steps_range:
-
-				if animation_steps_range.index(a)==0:
-					folding_angle=0
-				else:
-					folding_angle=this_angle
-
-				folder.main(
-					G=G,
-					this_folding=this_folding,
-					folding_id=folding_id,
-					angle=folding_angle,
-					fold_spoke_indices=fold_spoke_indices,
-					spokes_by_index=spokes_by_index,
-					nodes_by_index=nodes_by_index
-				)
-				
-# 				illustrator.draw_graph(G)
-				
-				evaluate_folding(G)
-				
-				for node_id in G.nodes:
-					animations[node_id].append([float(p) for p in G.nodes[node_id]['pos']])
-			
-			d=open('outputs/animations/%s/%s_%s.json' %(str(N),folding_id,str(animation_steps)),'w')
-			d.write(json.dumps(animations))
-			d.close()
-
-			illustrator.make_processing_animation(folding_id,animation_steps)
-			
-		else:
 			folder.main(
 				G=G,
 				this_folding=this_folding,
 				folding_id=folding_id,
-				angle=angle,
+				angle=folding_angle,
 				fold_spoke_indices=fold_spoke_indices,
 				spokes_by_index=spokes_by_index,
 				nodes_by_index=nodes_by_index
 			)
-			illustrator.draw_graph(G)
 			
-			evaluate_folding(G)
+			close_neighborings,min_distance=evaluate_folding(G,threshold)
+			
+			if close_neighborings !={}:
+				
+				close_neighborings_list=sorted(list(close_neighborings.keys()))
+				
+				if "*".join(close_neighborings_list) not in matches:
+					
+					matches["*".join(close_neighborings_list)]={
+						'angle':folding_angle,
+						'min_distance':min_distance
+					}
+				
+				else:
+					if min_distance < matches["*".join(close_neighborings_list)]['min_distance']:
+						matches["*".join(close_neighborings_list)]['min_distance']=min_distance
+			
+# 				print("close neighborings:",close_neighborings)
 
+				
+			folds_completed+=1
+			
+		print("MATCHES--->",matches)
+		
+		if matches!={}:
+			os.makedirs('outputs/%s/' %str(N), exist_ok=True)
+			d=open('outputs/%s/%s.txt' %(str(N),str(folding_id)),'a')
+			d.write("\n"+json.dumps(close_neighborings)+"\n")
+			d.close()
+				
 		c+=1
 		elapsed_seconds=time.time()-start_time
-		print("time per folding attempt:",elapsed_seconds, 'seconds')
+		
+		print("average folding time:",)
+		
+		print("time per folding attempt:",elapsed_seconds/folds_completed, 'seconds')
 				
 		exit()
 	
@@ -195,5 +220,5 @@ if __name__=="__main__":
 	N=int(sys.argv[1])
 	worker_number=int(sys.argv[2])
 	number_of_workers=int(sys.argv[3])
-	animation_steps=int(sys.argv[4])
-	main(N=N,worker_number=worker_number,number_of_workers=number_of_workers,animation_steps=animation_steps)
+	sampling_steps=int(sys.argv[4])
+	main(N=N,worker_number=worker_number,number_of_workers=number_of_workers,sampling_steps=sampling_steps)
