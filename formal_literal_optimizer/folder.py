@@ -49,3 +49,4 @@ def main(G,this_folding,folding_id,angle,fold_spoke_indices,nodes_by_index,spoke
 				affected_point_post_rotation.y,
 				affected_point_post_rotation.z
 			)
+	return G

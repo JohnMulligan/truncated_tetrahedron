@@ -41,7 +41,7 @@ def evaluate_folding(G,closeness_threshold):
 	close_neighborings={}
 	
 	all_close_distances=[]
-	
+	all_distances=[]
 	for n_id_a in nodelist:
 		for n_id_b in nodelist:
 			if n_id_a!=n_id_b and not (n_id_a in terminal_outernodes and n_id_b in terminal_outernodes) and not (n_id_a in ['first','last'] and n_id_b in ['first','last']):
@@ -49,7 +49,7 @@ def evaluate_folding(G,closeness_threshold):
 					G.nodes[n_id_a]['pos'],
 					G.nodes[n_id_b]['pos']
 				)
-			
+				all_distances.append(ed)
 				if ed < closeness_threshold:
 					all_close_distances.append(ed)
 				
@@ -64,6 +64,7 @@ def evaluate_folding(G,closeness_threshold):
 						
 							close_neighborings[neighboring_id]=ed
 	
+# 	print(min(all_distances),all_close_distances)
 	if len(all_close_distances)>0:
 		mean_close_neighborings=sum(all_close_distances)/len(all_close_distances)
 	else:
@@ -155,7 +156,7 @@ def main(N=12,worker_number=0,number_of_workers=1,sampling_steps=20,threshold_fa
 			
 			G=make_graph.main(N,r)
 			
-			folder.main(
+			G=folder.main(
 				G=G,
 				this_folding=this_folding,
 				folding_id=folding_id,
