@@ -214,29 +214,9 @@ def main(N):
 	for i in [0,1,2]:
 		G.nodes['last']['pos']=first_inner_node['pos']
 	
-	gpositions={node_id:G.nodes[node_id]['pos'] for node_id in G.nodes}
-	
-	return G,gpositions
+	return G
 
-def make_facia(G):
-	
-	facia=[]
-	
-	for n_id in G.nodes:
-		g_adj=G.adj[n_id].items()
-		
-# 		print(n_id,len(g_adj),g_adj)
-		
-		if n_id!='last' and len(g_adj)<4:
-			this_surface=[n_id]
-			for a in g_adj:
-# 				print(a[0])
-				this_surface.append(a[0])
-			this_surface=sorted(this_surface)
-			if this_surface not in facia:
-				facia.append(this_surface)
-	
-	return facia
+
 	
 
 def draw_graph(G):

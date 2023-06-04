@@ -49,12 +49,3 @@ def main(G,this_folding,folding_id,angle,fold_spoke_indices,nodes_by_index,spoke
 				affected_point_post_rotation.y,
 				affected_point_post_rotation.z
 			)
-	
-	
-# 	for node_id in G.nodes:
-# 		animations[folding_id][node_id].append([float(p) for p in G2.nodes[node_id]['pos']])
-		
-# 	illustrator.draw_graph(G)
-# 	d=open(folding_id+'.json','w')
-# 	d.write(json.dumps(animations))
-# 	d.close()

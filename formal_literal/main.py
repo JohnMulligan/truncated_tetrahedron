@@ -13,9 +13,12 @@ import folder
 
 def main(N=12,worker_number=0,number_of_workers=1,animation_steps=1,angle=1.415471989998):
 
-	G,originalpostitions=make_graph.main(N)
-		
+	G=make_graph.main(N)
+	
 	spokes={e:G.edges[e] for e in G.edges if G.edges[e]['set']=='spokes'}
+	
+	
+	
 	
 	spokes_by_index={spokes[e]['index']:e for e in spokes}
 	
@@ -69,11 +72,11 @@ def main(N=12,worker_number=0,number_of_workers=1,animation_steps=1,angle=1.4154
 	timings=[]
 	
 	timings.append(time.time())
-	c=0
-# 	G,originalpostitions=make_graph.main(N)
-	
+	c=0	
 	
 	for this_folding in islice(possible_folds,worker_start_idx,worker_end_idx):
+		
+		G=make_graph.main(N)
 		
 		folding_id="_".join([str(N),str(worker_start_idx+c)])
 		
@@ -82,39 +85,44 @@ def main(N=12,worker_number=0,number_of_workers=1,animation_steps=1,angle=1.4154
 		node_idxs=sorted(list(nodes_by_index.keys()))
 		
 		if animation_steps>1:
+			
+			illustrator.draw_faces(G,N)
 
-# 			animations={folding_id:{node_id:[] for node_id in G.nodes}}
-# 			
+			animations={node_id:[] for node_id in G.nodes}
+
 			animation_steps_range=list(range(animation_steps+1))
 			
-# 			animation_steps_range=animation_steps_range[-1:]
-			animation_steps_range.reverse()
+			animation_steps_range
 			
-			
-			
-			
-			
-			
+			this_angle=angle/animation_steps
+
 			for a in animation_steps_range:
-			
-				this_angle=angle*(a/(animation_steps))
-			
+
+				if animation_steps_range.index(a)==0:
+					folding_angle=0
+				else:
+					folding_angle=this_angle
+
 				folder.main(
 					G=G,
 					this_folding=this_folding,
 					folding_id=folding_id,
-					angle=this_angle,
+					angle=folding_angle,
 					fold_spoke_indices=fold_spoke_indices,
 					spokes_by_index=spokes_by_index,
 					nodes_by_index=nodes_by_index
 				)
 				
-				illustrator.draw_graph(G)
+# 				illustrator.draw_graph(G)
 				
 				for node_id in G.nodes:
-					G.nodes[node_id]['pos']=originalpostitions[node_id]
+					animations[node_id].append([float(p) for p in G.nodes[node_id]['pos']])
 			
-				
+			d=open('outputs/animations/%s/%s_%s.json' %(str(N),folding_id,str(animation_steps)),'w')
+			d.write(json.dumps(animations))
+			d.close()
+
+			illustrator.make_processing_animation(folding_id,animation_steps)
 			
 		else:
 			folder.main(
@@ -126,6 +134,7 @@ def main(N=12,worker_number=0,number_of_workers=1,animation_steps=1,angle=1.4154
 				spokes_by_index=spokes_by_index,
 				nodes_by_index=nodes_by_index
 			)
+			illustrator.draw_graph(G)
 
 		c+=1
 		elapsed_seconds=time.time()-start_time
