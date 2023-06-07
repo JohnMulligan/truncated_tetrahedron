@@ -1,0 +1,146 @@
+{
+  "AB_AC__O*AB__A*AB__N_O*AC__B*AD__C*AD__P_Q*AE__D*A__AB*A__N_O*B_C__P*B__AC*C__AD*C__P_Q*D_E__R*D__AE*E__R_S*F_G__T*G__T_U*H_I__V*I__V_W*J_K__X*K__X_Y*L_M__Z*M__Z_AA*N_O__A*N_O__AB*N__first*O__AB_AC*P_Q__AD*P_Q__C*P__B_C*Q__last*R_S__E*R__D_E*T_U__G*T__F_G*V_W__I*V__H_I*X_Y__K*X__J_K*Z_AA__M*Z__L_M*first__N*last__Q": {
+    "angle": -1.5707963267948966,
+    "mean_close_neighborings": 16.890822392380155
+  },
+  "AB_AC__A*AB_AC__O*AB__N_O*AB__first*AD__B_C*AD__P_Q*A__AB_AC*A__N_O*B_C__AD*B_C__P*C__P_Q*C__last*D_E__R*E__R_S*F_G__T*G__T_U*H_I__V*I__V_W*J_K__X*K__X_Y*L_M__Z*M__Z_AA*N_O__A*N_O__AB*N__first*O__AB_AC*P_Q__AD*P_Q__C*P__B_C*Q__last*R_S__E*R__D_E*T_U__G*T__F_G*V_W__I*V__H_I*X_Y__K*X__J_K*Z_AA__M*Z__L_M*first__AB*first__N*last__C*last__Q": {
+    "angle": -1.5390630676677268,
+    "mean_close_neighborings": 41.19662799504629
+  },
+  "AA__M*AB_AC__A*AB_AC__N_O*AB__N*AB__first*AC__O*AD__B_C*AD__P*AE__Q*A__AB_AC*A__O*B_C__AD*B_C__P_Q*B__P*C__Q*C__last*D_E__R_S*D__R*E__S*F_G__T_U*F__T*G__U*H_I__V_W*H__V*I__W*J_K__X_Y*J__X*K__Y*L_M__Z_AA*L__Z*M__AA*N_O__AB_AC*N_O__first*N__AB*O__A*O__AC*P_Q__B_C*P_Q__last*P__AD*P__B*Q__AE*Q__C*R_S__D_E*R__D*S__E*T_U__F_G*T__F*U__G*V_W__H_I*V__H*W__I*X_Y__J_K*X__J*Y__K*Z_AA__L_M*Z__L*first__AB*first__N_O*last__C*last__P_Q": {
+    "angle": -1.5073298085405573,
+    "mean_close_neighborings": 32.701973269683464
+  },
+  "AA__M*AB_AC__N_O*AB_AC__first*AB__N*AC__A*AC__O*AD__B*AD__P*AE__C*AE__Q*A__AC*A__O*B_C__P_Q*B_C__last*B__AD*B__P*C__AE*C__Q*D_E__R_S*D__R*E__S*F_G__T_U*F__T*G__U*H_I__V_W*H__V*I__W*J_K__X_Y*J__X*K__Y*L_M__Z_AA*L__Z*M__AA*N_O__AB_AC*N_O__first*N__AB*O__A*O__AC*P_Q__B_C*P_Q__last*P__AD*P__B*Q__AE*Q__C*R_S__D_E*R__D*S__E*T_U__F_G*T__F*U__G*V_W__H_I*V__H*W__I*X_Y__J_K*X__J*Y__K*Z_AA__L_M*Z__L*first__AB_AC*first__N_O*last__B_C*last__P_Q": {
+    "angle": -1.4755965494133876,
+    "mean_close_neighborings": 11.495106776414728
+  },
+  "AC__first*AE__B_C*B_C__AE*B__last*first__AC*last__B": {
+    "angle": -1.443863290286218,
+    "mean_close_neighborings": 21.548524554607187
+  },
+  "AA__L_M*AB_AC__N*AC__N_O*AD__A*AE__B*AE__P_Q*A__AD*B_C__Q*B__AE*B__P_Q*D_E__S*D__R_S*F_G__U*F__T_U*H_I__W*H__V_W*J_K__Y*J__X_Y*L_M__AA*L__Z_AA*N_O__AC*N__AB_AC*O__first*P_Q__AE*P_Q__B*P__last*Q__B_C*R_S__D*S__D_E*T_U__F*U__F_G*V_W__H*W__H_I*X_Y__J*Y__J_K*Z_AA__L*first__O*last__P": {
+    "angle": -1.4121300311590483,
+    "mean_close_neighborings": 23.791393324235987
+  },
+  "AA__L_M*AB_AC__N*AC__N_O*AD__first*AE__P_Q*A__last*B_C__Q*B__P_Q*D_E__S*D__R_S*F_G__U*F__T_U*H_I__W*H__V_W*J_K__Y*J__X_Y*L_M__AA*L__Z_AA*N_O__AC*N__AB_AC*O__first*P_Q__AE*P_Q__B*P__last*Q__B_C*R_S__D*S__D_E*T_U__F*U__F_G*V_W__H*W__H_I*X_Y__J*Y__J_K*Z_AA__L*first__AD*first__O*last__A*last__P": {
+    "angle": -1.3803967720318788,
+    "mean_close_neighborings": 40.79776407063918
+  },
+  "AA__L*AB__M*AC__N*AD__O*AE__P*A__P*B__Q*C__R*D__S*E__T*F__U*G__V*H__W*I__X*J__Y*K__Z*L__AA*M__AB*N__AC*O__AD*P__A*P__AE*Q__B*R__C*S__D*T__E*U__F*V__G*W__H*X__I*Y__J*Z__K": {
+    "angle": -1.348663512904709,
+    "mean_close_neighborings": 23.902979296004126
+  },
+  "AB_AC__M*AB__L_M*AD__N_O*AE__first*A__P_Q*B_C__R*C__R_S*D_E__T*E__T_U*F_G__V*G__V_W*H_I__X*I__X_Y*J_K__Z*K__Z_AA*L_M__AB*M__AB_AC*N_O__AD*O__last*P_Q__A*P__first*R_S__C*R__B_C*T_U__E*T__D_E*V_W__G*V__F_G*X_Y__I*X__H_I*Z_AA__K*Z__J_K*first__AE*first__P*last__O": {
+    "angle": -1.2851969946503699,
+    "mean_close_neighborings": 39.01067188786571
+  },
+  "AB_AC__M*AB__L_M*AD__N_O*A__P_Q*B_C__R*C__R_S*D_E__T*E__T_U*F_G__V*G__V_W*H_I__X*I__X_Y*J_K__Z*K__Z_AA*L_M__AB*M__AB_AC*N_O__AD*O__last*P_Q__A*P__first*R_S__C*R__B_C*T_U__E*T__D_E*V_W__G*V__F_G*X_Y__I*X__H_I*Z_AA__K*Z__J_K*first__P*last__O": {
+    "angle": -1.2534637355232003,
+    "mean_close_neighborings": 30.90354513397208
+  },
+  "AA__K*AB_AC__L_M*AB__L*AC__M*AD__N*AE__O*A__Q*B_C__R_S*B__R*C__S*D_E__T_U*D__T*E__U*F_G__V_W*F__V*G__W*H_I__X_Y*H__X*I__Y*J_K__Z_AA*J__Z*K__AA*L_M__AB_AC*L__AB*M__AC*N_O__last*N__AD*O__AE*P_Q__first*Q__A*R_S__B_C*R__B*S__C*T_U__D_E*T__D*U__E*V_W__F_G*V__F*W__G*X_Y__H_I*X__H*Y__I*Z_AA__J_K*Z__J*first__P_Q*last__N_O": {
+    "angle": -1.2217304763960306,
+    "mean_close_neighborings": 25.522375314649633
+  },
+  "AA__J_K*AB_AC__L*AC__L_M*AE__N_O*B_C__S*B__R_S*D_E__U*D__T_U*F_G__W*F__V_W*H_I__Y*H__X_Y*J_K__AA*J__Z_AA*L_M__AC*L__AB_AC*N_O__AE*N__last*Q__first*R_S__B*S__B_C*T_U__D*U__D_E*V_W__F*W__F_G*X_Y__H*Y__H_I*Z_AA__J*first__Q*last__N": {
+    "angle": -1.1582639581416914,
+    "mean_close_neighborings": 31.770785856010338
+  },
+  "AA__J*AB__K*AC__L*AD__M*AE__N*A__R*B__S*C__T*D__U*E__V*F__W*G__X*H__Y*I__Z*J__AA*K__AB*L__AC*M__AD*N__AE*R__A*S__B*T__C*U__D*V__E*W__F*X__G*Y__H*Z__I": {
+    "angle": -1.0947974398873521,
+    "mean_close_neighborings": 3.738592435333308
+  },
+  "AB_AC__K*AB__J_K*AD__L_M*A__R_S*B_C__T*C__T_U*D_E__V*E__V_W*F_G__X*G__X_Y*H_I__Z*I__Z_AA*J_K__AB*K__AB_AC*L_M__AD*M__last*R_S__A*R__first*T_U__C*T__B_C*V_W__E*V__D_E*X_Y__G*X__F_G*Z_AA__I*Z__H_I*first__R*last__M": {
+    "angle": -1.0630641807601826,
+    "mean_close_neighborings": 33.5363880416755
+  },
+  "AA__I*AB_AC__J_K*AB__J*AC__K*AD__L*AE__M*A__S*B_C__T_U*B__T*C__U*D_E__V_W*D__V*E__W*F_G__X_Y*F__X*G__Y*H_I__Z_AA*H__Z*I__AA*J_K__AB_AC*J__AB*K__AC*L_M__last*L__AD*M__AE*R_S__first*S__A*T_U__B_C*T__B*U__C*V_W__D_E*V__D*W__E*X_Y__F_G*X__F*Y__G*Z_AA__H_I*Z__H*first__R_S*last__L_M": {
+    "angle": -0.9995976625058433,
+    "mean_close_neighborings": 12.24558707389986
+  },
+  "AA__H_I*AB_AC__J*AC__J_K*AE__L_M*B_C__U*B__T_U*D_E__W*D__V_W*F_G__Y*F__X_Y*H_I__AA*H__Z_AA*J_K__AC*J__AB_AC*L_M__AE*L__last*S__first*T_U__B*U__B_C*V_W__D*W__D_E*X_Y__F*Y__F_G*Z_AA__H*first__S*last__L": {
+    "angle": -0.936131144251504,
+    "mean_close_neighborings": 38.33100579942113
+  },
+  "AA__H*AB__I*AC__J*AD__K*AE__L*A__T*B__U*C__V*D__W*E__X*F__Y*G__Z*H__AA*I__AB*J__AC*K__AD*L__AE*T__A*U__B*V__C*W__D*X__E*Y__F*Z__G": {
+    "angle": -0.9043978851243344,
+    "mean_close_neighborings": 1.481982951331444
+  },
+  "AB_AC__I*AB__H_I*AD__J_K*A__T_U*B_C__V*C__V_W*D_E__X*E__X_Y*F_G__Z*G__Z_AA*H_I__AB*I__AB_AC*J_K__AD*K__last*T_U__A*T__first*V_W__C*V__B_C*X_Y__E*X__D_E*Z_AA__G*Z__F_G*first__T*last__K": {
+    "angle": -0.8726646259971648,
+    "mean_close_neighborings": 34.57697607315199
+  },
+  "AA__G*AB_AC__H_I*AB__H*AC__I*AD__J*AE__K*A__U*B_C__V_W*B__V*C__W*D_E__X_Y*D__X*E__Y*F_G__Z_AA*F__Z*G__AA*H_I__AB_AC*H__AB*I__AC*J_K__last*J__AD*K__AE*T_U__first*U__A*V_W__B_C*V__B*W__C*X_Y__D_E*X__D*Y__E*Z_AA__F_G*Z__F*first__T_U*last__J_K": {
+    "angle": -0.8409313668699951,
+    "mean_close_neighborings": 38.390928601128316
+  },
+  "AA__F_G*AB_AC__H*AC__H_I*AE__J_K*B_C__W*B__V_W*D_E__Y*D__X_Y*F_G__AA*F__Z_AA*H_I__AC*H__AB_AC*J_K__AE*J__last*U__first*V_W__B*W__B_C*X_Y__D*Y__D_E*Z_AA__F*first__U*last__J": {
+    "angle": -0.7774648486156558,
+    "mean_close_neighborings": 33.362583976315165
+  },
+  "AA__F*AB__G*AC__H*AD__I*AE__J*A__V*B__W*C__X*D__Y*E__Z*F__AA*G__AB*H__AC*I__AD*J__AE*V__A*W__B*X__C*Y__D*Z__E": {
+    "angle": -0.7457315894884862,
+    "mean_close_neighborings": 6.533066214447432
+  },
+  "AB_AC__G*AB__F_G*AD__H_I*A__V_W*B_C__X*C__X_Y*D_E__Z*E__Z_AA*F_G__AB*G__AB_AC*H_I__AD*I__last*V_W__A*V__first*X_Y__C*X__B_C*Z_AA__E*Z__D_E*first__V*last__I": {
+    "angle": -0.7139983303613165,
+    "mean_close_neighborings": 26.752059721870467
+  },
+  "AA__E*AB_AC__F_G*AB__F*AC__G*AD__H*AE__I*A__W*B_C__X_Y*B__X*C__Y*D_E__Z_AA*D__Z*E__AA*F_G__AB_AC*F__AB*G__AC*H_I__last*H__AD*I__AE*V_W__first*W__A*X_Y__B_C*X__B*Y__C*Z_AA__D_E*Z__D*first__V_W*last__H_I": {
+    "angle": -0.6822650712341469,
+    "mean_close_neighborings": 15.598636781746249
+  },
+  "AA__D_E*AB_AC__F*AC__F_G*AE__H_I*B_C__Y*B__X_Y*D_E__AA*D__Z_AA*F_G__AC*F__AB_AC*H_I__AE*H__last*W__first*X_Y__B*Y__B_C*Z_AA__D*first__W*last__H": {
+    "angle": -0.6505318121069773,
+    "mean_close_neighborings": 35.13561128984426
+  },
+  "AA__D*AB__E*AC__F*AD__G*AE__H*A__X*B__Y*C__Z*D__AA*E__AB*F__AC*G__AD*H__AE*X__A*Y__B*Z__C": {
+    "angle": -0.6187985529798077,
+    "mean_close_neighborings": 29.191530043434085
+  },
+  "AB_AC__E*AB__D_E*AD__F_G*A__X_Y*B_C__Z*C__Z_AA*D_E__AB*E__AB_AC*F_G__AD*G__last*X_Y__A*X__first*Z_AA__C*Z__B_C*first__X*last__G": {
+    "angle": -0.5870652938526381,
+    "mean_close_neighborings": 42.22975978242311
+  },
+  "AA__C*AB_AC__D_E*AB__D*AC__E*AD__F*AE__G*A__Y*B_C__Z_AA*B__Z*C__AA*D_E__AB_AC*D__AB*E__AC*F_G__last*F__AD*G__AE*X_Y__first*Y__A*Z_AA__B_C*Z__B*first__X_Y*last__F_G": {
+    "angle": -0.5553320347254684,
+    "mean_close_neighborings": 35.406199910658316
+  },
+  "AA__B_C*AB_AC__D*AC__D_E*AE__F_G*B_C__AA*B__Z_AA*D_E__AC*D__AB_AC*F_G__AE*F__last*Y__first*Z_AA__B*first__Y*last__F": {
+    "angle": -0.5235987755982987,
+    "mean_close_neighborings": 45.53640979644775
+  },
+  "AA__B*AB__C*AC__D*AD__E*AE__F*A__Z*B__AA*C__AB*D__AC*E__AD*F__AE*Z__A": {
+    "angle": -0.4918655164711292,
+    "mean_close_neighborings": 38.18715473822284
+  },
+  "AB_AC__C*AB__B_C*AD__D_E*A__Z_AA*B_C__AB*C__AB_AC*D_E__AD*E__last*Z_AA__A*Z__first*first__Z*last__E": {
+    "angle": -0.46013225734395946,
+    "mean_close_neighborings": 47.13702803529976
+  },
+  "AA__A*AB_AC__B_C*AB__B*AC__C*AD__D*AE__E*A__AA*B_C__AB_AC*B__AB*C__AC*D_E__last*D__AD*E__AE*Z_AA__first*first__Z_AA*last__D_E": {
+    "angle": -0.42839899821678995,
+    "mean_close_neighborings": 40.245798347642676
+  },
+  "AB__A*AC__B*AD__C*AE__D*A__AB*B__AC*C__AD*D__AE": {
+    "angle": -0.3649324799624507,
+    "mean_close_neighborings": 48.21539606494046
+  },
+  "AB_AC__A*AB__first*AD__B_C*A__AB_AC*B_C__AD*C__last*first__AB*last__C": {
+    "angle": -0.30146596170811146,
+    "mean_close_neighborings": 45.00736000219308
+  },
+  "AB_AC__first*AC__A*AD__B*AE__C*A__AC*B_C__last*B__AD*C__AE*first__AB_AC*last__B_C": {
+    "angle": -0.26973270258094173,
+    "mean_close_neighborings": 18.915471328012153
+  },
+  "AD__A*AE__B*A__AD*B__AE": {
+    "angle": -0.2062661843266025,
+    "mean_close_neighborings": 31.847751418446336
+  },
+  "AD__first*A__last*first__AD*last__A": {
+    "angle": -0.14279966607226324,
+    "mean_close_neighborings": 31.788115357982864
+  }
+}

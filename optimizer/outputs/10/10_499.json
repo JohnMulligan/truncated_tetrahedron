@@ -1,0 +1,10 @@
+{
+  "A__F*B__G*F__A*G__B": {
+    "angle": -1.442568055219803,
+    "mean_close_neighborings": 34.84644778102856
+  },
+  "A__G*F_G__first*G__A*first__F_G": {
+    "angle": -1.121997376282069,
+    "mean_close_neighborings": 28.42917856282016
+  }
+}

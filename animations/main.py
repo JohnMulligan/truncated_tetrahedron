@@ -119,7 +119,7 @@ def main(fname,animation_steps=10):
 
 	
 	
-	d=open("../formal_literal_optimizer/outputs/%s/%s" %(str(N),fname))
+	d=open("../optimizer/outputs/%s/%s" %(str(N),fname))
 	t=d.read()
 	matches=json.loads(t)
 	d.close()

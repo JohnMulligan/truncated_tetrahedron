@@ -1,0 +1,54 @@
+{
+  "A__I*B_C__J_K*B__J*C__K*D_E__L_M*D__L*E__M*F_G__N_O*F__N*G__O*H_I__first*I__A*J_K__B_C*J__B*K__C*L_M__D_E*L__D*M__E*N_O__F_G*N__F*O__G*first__H_I": {
+    "angle": -1.3803967720318788,
+    "mean_close_neighborings": 14.744370297682108
+  },
+  "A__J*B__K*C__L*D__M*E__N*F__O*J__A*K__B*L__C*M__D*N__E*O__F": {
+    "angle": -1.1582639581416914,
+    "mean_close_neighborings": 28.5694679968536
+  },
+  "A__K*B_C__L_M*B__L*C__M*D_E__N_O*D__N*E__O*J_K__first*K__A*L_M__B_C*L__B*M__C*N_O__D_E*N__D*O__E*first__J_K": {
+    "angle": -0.9678644033786736,
+    "mean_close_neighborings": 23.733750626272546
+  },
+  "B_C__L_M*D_E__N_O*J_K__first*L_M__B_C*N_O__D_E*first__J_K": {
+    "angle": -0.936131144251504,
+    "mean_close_neighborings": 47.6729435929955
+  },
+  "N_O__last*last__N_O": {
+    "angle": -0.8409313668699951,
+    "mean_close_neighborings": 1.5843907610374042
+  },
+  "A__L*B__M*C__N*D__O*L__A*M__B*N__C*O__D": {
+    "angle": -0.8091981077428254,
+    "mean_close_neighborings": 17.343589706686267
+  },
+  "D_E__last*last__D_E": {
+    "angle": -0.7139983303613165,
+    "mean_close_neighborings": 42.906235984941276
+  },
+  "A__M*B_C__N_O*B__N*C__O*L_M__first*M__A*N_O__B_C*N__B*O__C*first__L_M": {
+    "angle": -0.6822650712341469,
+    "mean_close_neighborings": 45.82886403848899
+  },
+  "A__O*N_O__first*O__A*first__N_O": {
+    "angle": -0.42839899821678995,
+    "mean_close_neighborings": 41.11061113771937
+  },
+  "N_O__first*first__N_O": {
+    "angle": -0.3966657390896202,
+    "mean_close_neighborings": 49.327634560818126
+  },
+  "M__P*N__Q*P__M*Q__N": {
+    "angle": -0.26973270258094173,
+    "mean_close_neighborings": 28.349988767613485
+  },
+  "N_O__last*N__P*O__Q*P__N*Q__O*last__N_O": {
+    "angle": -0.2062661843266025,
+    "mean_close_neighborings": 23.18491411265295
+  },
+  "O__P*P__O": {
+    "angle": -0.14279966607226324,
+    "mean_close_neighborings": 45.17426470785929
+  }
+}

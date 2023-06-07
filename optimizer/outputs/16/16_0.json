@@ -1,0 +1,38 @@
+{
+  "A__P*B__Q*P__A*Q__B": {
+    "angle": -1.5073298085405573,
+    "mean_close_neighborings": 12.749396935904755
+  },
+  "A__I*B_C__J_K*B__J*C__K*D_E__L_M*D__L*E__M*F_G__N_O*F__N*G__O*H_I__first*H_I__last*H__P*I__A*I__Q*J_K__B_C*J__B*K__C*L_M__D_E*L__D*M__E*N_O__F_G*N__F*O__G*P__H*Q__I*first__H_I*last__H_I": {
+    "angle": -1.3803967720318788,
+    "mean_close_neighborings": 14.748637426762345
+  },
+  "A__J*B__K*C__L*D__M*E__N*F__O*G__P*H__Q*J__A*K__B*L__C*M__D*N__E*O__F*P__G*Q__H": {
+    "angle": -1.1582639581416914,
+    "mean_close_neighborings": 28.569467996846267
+  },
+  "A__K*B_C__L_M*B__L*C__M*D_E__N_O*D__N*E__O*F_G__last*F__P*G__Q*J_K__first*K__A*L_M__B_C*L__B*M__C*N_O__D_E*N__D*O__E*P__F*Q__G*first__J_K*last__F_G": {
+    "angle": -0.9678644033786736,
+    "mean_close_neighborings": 23.753509681145307
+  },
+  "B_C__L_M*D_E__N_O*F_G__last*J_K__first*L_M__B_C*N_O__D_E*first__J_K*last__F_G": {
+    "angle": -0.936131144251504,
+    "mean_close_neighborings": 47.672943592994024
+  },
+  "A__L*B__M*C__N*D__O*E__P*F__Q*L__A*M__B*N__C*O__D*P__E*Q__F": {
+    "angle": -0.8091981077428254,
+    "mean_close_neighborings": 17.343589706686107
+  },
+  "A__M*B_C__N_O*B__N*C__O*D_E__last*D__P*E__Q*L_M__first*M__A*N_O__B_C*N__B*O__C*P__D*Q__E*first__L_M*last__D_E": {
+    "angle": -0.6822650712341469,
+    "mean_close_neighborings": 45.93190426301364
+  },
+  "A__O*B_C__last*B__P*C__Q*N_O__first*O__A*P__B*Q__C*first__N_O*last__B_C": {
+    "angle": -0.42839899821678995,
+    "mean_close_neighborings": 41.51723705625848
+  },
+  "B_C__last*N_O__first*first__N_O*last__B_C": {
+    "angle": -0.3966657390896202,
+    "mean_close_neighborings": 49.32763456079677
+  }
+}

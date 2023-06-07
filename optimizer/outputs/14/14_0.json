@@ -1,0 +1,30 @@
+{
+  "A__N*B__O*N__A*O__B": {
+    "angle": -1.5707963267948966,
+    "mean_close_neighborings": 5.589586375404407
+  },
+  "A__H*B__I*C__J*D__K*E__L*F__M*G__N*H__A*H__O*I__B*J__C*K__D*L__E*M__F*N__G*O__H": {
+    "angle": -1.4121300311590483,
+    "mean_close_neighborings": 11.317549949791426
+  },
+  "A__I*B_C__J_K*B__J*C__K*D_E__L_M*D__L*E__M*F_G__last*F__N*G__O*H_I__first*I__A*J_K__B_C*J__B*K__C*L_M__D_E*L__D*M__E*N__F*O__G*first__H_I*last__F_G": {
+    "angle": -1.1265306990145216,
+    "mean_close_neighborings": 2.775865328031799
+  },
+  "A__J*B__K*C__L*D__M*E__N*F__O*J__A*K__B*L__C*M__D*N__E*O__F": {
+    "angle": -0.936131144251504,
+    "mean_close_neighborings": 28.60600203484695
+  },
+  "A__K*B_C__L_M*B__L*C__M*D_E__last*D__N*E__O*J_K__first*K__A*L_M__B_C*L__B*M__C*N__D*O__E*first__J_K*last__D_E": {
+    "angle": -0.7457315894884862,
+    "mean_close_neighborings": 22.69610503342976
+  },
+  "A__L*B__M*C__N*D__O*L__A*M__B*N__C*O__D": {
+    "angle": -0.5870652938526381,
+    "mean_close_neighborings": 47.53987681997661
+  },
+  "A__M*B_C__last*B__N*C__O*L_M__first*M__A*N__B*O__C*first__L_M*last__B_C": {
+    "angle": -0.46013225734395946,
+    "mean_close_neighborings": 6.614821612956045
+  }
+}
