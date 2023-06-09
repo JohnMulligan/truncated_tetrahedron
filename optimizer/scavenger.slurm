@@ -1,7 +1,7 @@
 #!/bin/bash
 #SBATCH --job-name=dihedral
 #SBATCH --partition=scavenge
-#SBATCH --time=04:00:00
+#SBATCH --time=01:00:00
 #SBATCH --export=ALL
 #SBATCH --mail-user=jcm10@rice.edu
 #SBATCH --mail-type=ALL
