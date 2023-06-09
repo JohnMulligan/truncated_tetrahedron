@@ -32,7 +32,7 @@ let angle=((sec*5)%360);
 
   let latitude = (frameCount%360)*3.141/180;
   let longitude = (((frameCount-(latitude/2))/5)%360)*3.141/180;
-  let radius=2000;
+  let radius=5000;
   
   let cam_x = radius * cos(latitude)*cos(longitude);
   let cam_y = radius * cos(latitude)*sin(longitude);

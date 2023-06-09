@@ -9,4 +9,4 @@
 module load GCCcore/8.3.0
 module load Python/3.7.2
 
-python3 main.py 10 $SLURM_ARRAY_TASK_ID $SLURM_ARRAY_TASK_COUNT 50
+python3 main.py $1 $SLURM_ARRAY_TASK_ID $SLURM_ARRAY_TASK_COUNT $2

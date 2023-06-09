@@ -145,12 +145,11 @@ def main(fname,animation_steps=10):
 			
 # 			if folding_angle!=0:
 # 				illustrator.draw_graph(G)
-		
 # 			evaluate_folding(G)
 		
 			for node_id in G.nodes:
 				animations[node_id].append([float(p) for p in G.nodes[node_id]['pos']])
-		outputfilename="_".join([str(N),str(folding_idx),str(animation_steps),thismatch[:min(0,30)]])+'.json'
+		outputfilename="_".join([str(N),str(folding_idx),str(animation_steps),str(hash(thismatch))])+'.json'
 		d=open('outputs/animations/%s/%s' %(str(N),outputfilename),'w')
 		d.write(json.dumps(animations))
 		d.close()

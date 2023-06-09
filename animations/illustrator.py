@@ -40,7 +40,6 @@ def make_facia(G):
 		print(f)
 
 	return facia
-	
 
 def draw_faces(G,N):
 	basedirpath='outputs/animations/'
@@ -96,12 +95,11 @@ def draw_graph(G):
 	fig.tight_layout()
 	plt.show()
 
-
 def make_processing_animation(fname):
 	
 	ints=[int(i) for i in re.findall("[0-9]+",fname)]
 	
-	N,foldings_iteration,steps_count=ints
+	N,foldings_iteration,steps_count,matchhash=ints
 	
 	basedirpath='outputs/animations/'
 	os.makedirs(basedirpath+'%s/' %str(N), exist_ok=True)
