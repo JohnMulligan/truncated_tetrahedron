@@ -2,9 +2,8 @@ from math import cos, sin, sqrt, floor, pi
 import sys
 import os
 import networkx as nx
-from sympy.geometry import Point,Point3D, Line3D,Plane,Segment3D
+from sympy.geometry import Point,Point3D, Line3D,Plane,Segment3
 import numpy as np
-import matplotlib.pyplot as plt
 
 def main(N,r=1000):
 
