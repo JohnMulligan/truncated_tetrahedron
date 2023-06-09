@@ -4,17 +4,22 @@ from sympy.geometry import Point,Point3D, Line3D,Plane,Segment3D
 from transforms import rotate
 
 def main(G,this_folding,angle,fold_spoke_indices,nodes_by_index,spokes_by_index):
-	print("-->",angle)
+# 	print("-->",angle)
+# 	print("fold spoke indices:")
+# 	print(len(this_folding),fold_spoke_indices)
+	fold_spoke_indices=[f for f in fold_spoke_indices if f>0]
+# 	print("this folding:")
+# 	print(len(this_folding),this_folding)
 	for r in fold_spoke_indices:
 	
-# 			print("---")
+# 		print("---")
 		this_spoke_name=spokes_by_index[r]
 	
-# 			print("this spoke",r,this_spoke_name)
+# 		print("this spoke",r,this_spoke_name)
 	
 		subsequent_spoke_idxs=fold_spoke_indices[r:]
 	
-# 			print("subsequent spokes",[(r2,spokes_by_index[r2]) for r2 in subsequent_spoke_idxs])
+# 		print("subsequent spokes",[(r2,spokes_by_index[r2]) for r2 in subsequent_spoke_idxs])
 	
 		affected_nodes=[]
 	
@@ -26,19 +31,18 @@ def main(G,this_folding,angle,fold_spoke_indices,nodes_by_index,spokes_by_index)
 			Point3D(rnb['pos'])
 		)
 	
-# 			print("rotation axis",r,this_spoke_name[0],this_spoke_name[1],rotation_axis)
+# 		print("rotation axis",r,this_spoke_name[0],this_spoke_name[1],rotation_axis)
+	
+		sign=this_folding[fold_spoke_indices.index(r)]
 	
 		these_affected_nodes=[]
-	
 		for node_idx in nodes_by_index:
+			
 			if node_idx > r:
-# 					print(node_idx,nodes_by_index[node_idx],i[node_idx-2])
-				these_affected_nodes+=[(n_id,this_folding[node_idx-2]) for n_id in nodes_by_index[node_idx]]
-# 			print('---')
-# 			print("affected nodes:")
+				these_affected_nodes+=[n_id for n_id in nodes_by_index[node_idx]]
+# 		print("affected nodes:",these_affected_nodes)
 
-		for n_t in these_affected_nodes:
-			n_id,sign=n_t
+		for n_id in these_affected_nodes:
 			
 			n=G.nodes[n_id]
 			affected_point=Point3D(n['pos'])
@@ -49,4 +53,6 @@ def main(G,this_folding,angle,fold_spoke_indices,nodes_by_index,spokes_by_index)
 				affected_point_post_rotation.y,
 				affected_point_post_rotation.z
 			)
+# 			if angle!=0:
+# 				illustrator.draw_graph(G)
 	return G

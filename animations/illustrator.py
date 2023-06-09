@@ -3,6 +3,8 @@ import numpy as np
 import json
 import re
 import os 
+import matplotlib.pyplot as plt
+
 def make_facia(G):
 	
 	facia=[]
@@ -34,8 +36,8 @@ def make_facia(G):
 		this_surface.sort()
 		facia.append(this_surface)
 	
-# 	for f in facia:
-# 		print(f)
+	for f in facia:
+		print(f)
 
 	return facia
 	

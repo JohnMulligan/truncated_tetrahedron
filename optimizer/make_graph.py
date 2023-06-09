@@ -4,6 +4,7 @@ import os
 import networkx as nx
 from sympy.geometry import Point,Point3D, Line3D,Plane,Segment3D
 import numpy as np
+import matplotlib.pyplot as plt
 
 def main(N,r=1000):
 
@@ -252,6 +253,4 @@ def draw_graph(G):
 if __name__=="__main__":
 	N=int(sys.argv[1])
 	g=main(N)
-	pos={node:(g.nodes[node]['x'],g.nodes[node]['y']) for node in g.nodes}
-	nx.draw(g,pos=pos,with_labels=True)
-	plt.show()
+	draw_graph(g)
