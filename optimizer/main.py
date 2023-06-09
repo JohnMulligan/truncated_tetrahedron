@@ -43,7 +43,7 @@ def evaluate_folding(G,closeness_threshold):
 	all_distances=[]
 	for n_id_a in nodelist:
 		for n_id_b in nodelist:
-			if n_id_a!=n_id_b and not (n_id_a in terminal_outernodes and n_id_b in terminal_outernodes) and not (n_id_a in ['first','last'] and n_id_b in ['first','last']):
+			if n_id_a!=n_id_b:
 				ed=get_euclidean_distance(
 					G.nodes[n_id_a]['pos'],
 					G.nodes[n_id_b]['pos']
