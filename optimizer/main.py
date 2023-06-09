@@ -158,7 +158,6 @@ def main(N=12,worker_number=0,number_of_workers=1,sampling_steps=20,threshold_fa
 			G=folder.main(
 				G=G,
 				this_folding=this_folding,
-				folding_id=folding_id,
 				angle=folding_angle,
 				fold_spoke_indices=fold_spoke_indices,
 				spokes_by_index=spokes_by_index,
@@ -177,7 +176,9 @@ def main(N=12,worker_number=0,number_of_workers=1,sampling_steps=20,threshold_fa
 					
 					matches["*".join(close_neighborings_list)]={
 						'angle':folding_angle,
-						'mean_close_neighborings':mean_close_neighborings
+						'mean_close_neighborings':mean_close_neighborings,
+						'this_folding':this_folding,
+						'this_folding_np_id':folding_id
 					}
 				
 				else:
