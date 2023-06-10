@@ -3,6 +3,7 @@ import sys
 import os
 import networkx as nx
 from sympy.geometry import Point,Point3D, Line3D,Plane,Segment3D
+# import matplotlib.pyplot as plt
 import numpy as np
 
 def main(N,r=1000):
@@ -12,7 +13,7 @@ def main(N,r=1000):
 	alphabet='ABCDEFGHIJKLMNOPQRSTUVWXYZ'
 
 	acycles=int(floor((N+2)/len(alphabet)))
-
+# 	print(acycles)
 
 	G = nx.Graph()
 
@@ -21,39 +22,44 @@ def main(N,r=1000):
 	idx=0
 	prev_v=None
 	for c in range(acycles+1):
+# 		print("C=",c)
 		if c > 0:
 			buffer=alphabet[c-1]
 		if c == acycles:
-			for a in alphabet[:(N+2)%len(alphabet)-1]:
-	# 			print('---')
-				this_v=''.join([buffer,a])
-	# 			print("++",this_v)
-				G.add_node(this_v,set='outer',index=idx)
-	# 			print(G.nodes[this_v])
-				if prev_v is not None:
-					G.add_edge(prev_v,this_v,set='outer',index=None)
-	# 				print(G.edges([this_v]))
-				prev_v=this_v
-	# 			print('---')
-				idx+=1
+			leftoverlettersindex=(N+2)%len(alphabet)-1
+# 			print("leftoverlettersindex",leftoverlettersindex)
+			if leftoverlettersindex > 0:
+				for a in alphabet[:leftoverlettersindex]:
+# 					print('???')
+					this_v=''.join([buffer,a])
+# 					print("++",this_v)
+					G.add_node(this_v,set='outer',index=idx)
+# 					print(G.nodes[this_v])
+					if prev_v is not None:
+						G.add_edge(prev_v,this_v,set='outer',index=None)
+# 						print(G.edges([this_v]))
+					prev_v=this_v
+# 					print('???')
+					idx+=1
 		else:
 			for a in alphabet:
-	# 			print('---')
-				this_v=''.join([buffer,a])
-	# 			print(this_v)
-				G.add_node(this_v,set='outer',index=idx)
-	# 			print(G.nodes[this_v])
-				if prev_v is not None:
-					G.add_edge(prev_v,this_v, set='outer',index=None)
-	# 				print(G.edges([this_v]))
-				prev_v=this_v
-	# 			print('---')
-				idx+=1
+				if alphabet.index(a)<=N:
+					print('---')
+					this_v=''.join([buffer,a])
+					print(this_v)
+					G.add_node(this_v,set='outer',index=idx)
+					print(G.nodes[this_v])
+					if prev_v is not None:
+						G.add_edge(prev_v,this_v, set='outer',index=None)
+						print(G.edges([this_v]))
+					prev_v=this_v
+					print('---')
+					idx+=1
 
 	outernodeslist=[(n,G.nodes[n]['index']) for n in G.nodes]
 	outervertexlabels=[v[0] for v in outernodeslist]
 
-# 	print("outer nodes:",outernodeslist)
+	print("outer nodes:",outernodeslist)
 
 	innernodeslist=[
 		"_".join(
@@ -66,6 +72,8 @@ def main(N,r=1000):
 
 	innernodeslist[0]="first"
 	innernodeslist.append('last')
+	
+	print("inner nodes:",innernodeslist)
 
 	prev_v=None
 
@@ -250,4 +258,4 @@ def draw_graph(G):
 if __name__=="__main__":
 	N=int(sys.argv[1])
 	g=main(N)
-	draw_graph(g)
+# 	draw_graph(g)

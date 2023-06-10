@@ -6,16 +6,14 @@ from sympy.geometry import Point,Point3D, Line3D,Plane,Segment3D
 import matplotlib.pyplot as plt
 import numpy as np
 
-def main(N):
+def main(N,r=1000):
 
 	N=N
 
-	r=1000
-
 	alphabet='ABCDEFGHIJKLMNOPQRSTUVWXYZ'
 
-	acycles=floor((N+2)/len(alphabet))
-
+	acycles=int(floor((N+2)/len(alphabet)))
+# 	print(acycles)
 
 	G = nx.Graph()
 
@@ -24,39 +22,44 @@ def main(N):
 	idx=0
 	prev_v=None
 	for c in range(acycles+1):
+# 		print("C=",c)
 		if c > 0:
 			buffer=alphabet[c-1]
 		if c == acycles:
-			for a in alphabet[:(N+2)%len(alphabet)-1]:
-	# 			print('---')
-				this_v=''.join([buffer,a])
-	# 			print("++",this_v)
-				G.add_node(this_v,set='outer',index=idx)
-	# 			print(G.nodes[this_v])
-				if prev_v is not None:
-					G.add_edge(prev_v,this_v,set='outer')
-	# 				print(G.edges([this_v]))
-				prev_v=this_v
-	# 			print('---')
-				idx+=1
+			leftoverlettersindex=(N+2)%len(alphabet)-1
+# 			print("leftoverlettersindex",leftoverlettersindex)
+			if leftoverlettersindex > 0:
+				for a in alphabet[:leftoverlettersindex]:
+# 					print('???')
+					this_v=''.join([buffer,a])
+# 					print("++",this_v)
+					G.add_node(this_v,set='outer',index=idx)
+# 					print(G.nodes[this_v])
+					if prev_v is not None:
+						G.add_edge(prev_v,this_v,set='outer',index=None)
+# 						print(G.edges([this_v]))
+					prev_v=this_v
+# 					print('???')
+					idx+=1
 		else:
 			for a in alphabet:
-	# 			print('---')
-				this_v=''.join([buffer,a])
-	# 			print(this_v)
-				G.add_node(this_v,set='outer',index=idx)
-	# 			print(G.nodes[this_v])
-				if prev_v is not None:
-					G.add_edge(prev_v,this_v, set='outer')
-	# 				print(G.edges([this_v]))
-				prev_v=this_v
-	# 			print('---')
-				idx+=1
+				if alphabet.index(a)<=N:
+					print('---')
+					this_v=''.join([buffer,a])
+					print(this_v)
+					G.add_node(this_v,set='outer',index=idx)
+					print(G.nodes[this_v])
+					if prev_v is not None:
+						G.add_edge(prev_v,this_v, set='outer',index=None)
+						print(G.edges([this_v]))
+					prev_v=this_v
+					print('---')
+					idx+=1
 
 	outernodeslist=[(n,G.nodes[n]['index']) for n in G.nodes]
 	outervertexlabels=[v[0] for v in outernodeslist]
 
-# 	print("outer nodes:",outernodeslist)
+	print("outer nodes:",outernodeslist)
 
 	innernodeslist=[
 		"_".join(
@@ -69,6 +72,8 @@ def main(N):
 
 	innernodeslist[0]="first"
 	innernodeslist.append('last')
+	
+	print("inner nodes:",innernodeslist)
 
 	prev_v=None
 
@@ -77,11 +82,11 @@ def main(N):
 	for this_v in innernodeslist:
 	
 # 		print('---')
-		G.add_node(this_v,set='inner',index=-1)
+		G.add_node(this_v,set='inner')
 # 		print(this_v)
 		if prev_v is not None:
 	# 		print("-->",prev_v,this_v)
-			G.add_edge(prev_v,this_v,set='inner')
+			G.add_edge(prev_v,this_v,set='inner',index=None)
 	
 		innernodeindices=[]
 		if this_v not in ('first','last'):
@@ -109,13 +114,13 @@ def main(N):
 			G.add_edge('first',outervertexlabels[0],set='spokes',index=0)
 		elif this_v=='last':
 			G.nodes[this_v]
-			G.add_edge('last',outervertexlabels[-2],set='spokes')
-			G.add_edge('last',outervertexlabels[-1],set='spokes')
+			G.add_edge('last',outervertexlabels[-2],set='spokes',index=None)
+			G.add_edge('last',outervertexlabels[-1],set='spokes',index=None)
 
 	G.nodes['last']['index']=max(spoke_indices)+1
 	G.edges[('last'),outervertexlabels[-2]]['index']=max(spoke_indices)+1
 	G.edges[('last'),outervertexlabels[-1]]['index']=max(spoke_indices)+2
-	G.add_edge('first',innernodeslist[1],set='inner')
+	G.add_edge('first',innernodeslist[1],set='inner',index=None)
 
 	for node in outernodeslist:
 	
@@ -208,15 +213,13 @@ def main(N):
 # 		G.nodes[node_id]['x']=node_point[0].x
 # 		G.nodes[node_id]['y']=node_point[0].y
 # 		G.nodes[node_id]['z']=node_point[0].z
-		G.add_edge("last",innernodeslist[-2])
+		G.add_edge("last",innernodeslist[-2],set="inner")
 
 	first_inner_node=G.nodes[innernodeslist[0]]
 	for i in [0,1,2]:
 		G.nodes['last']['pos']=first_inner_node['pos']
 	
 	return G
-
-
 	
 
 def draw_graph(G):
@@ -255,6 +258,4 @@ def draw_graph(G):
 if __name__=="__main__":
 	N=int(sys.argv[1])
 	g=main(N)
-	pos={node:(g.nodes[node]['x'],g.nodes[node]['y']) for node in g.nodes}
-	nx.draw(g,pos=pos,with_labels=True)
-	plt.show()
+# 	draw_graph(g)
