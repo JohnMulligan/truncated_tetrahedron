@@ -3,6 +3,9 @@
 function setup() {
   createCanvas(1000, 800, WEBGL);
   fill(204);
+  
+  
+  
 }
 
 function draw() {

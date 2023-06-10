@@ -81,7 +81,7 @@ def main(fname,animation_steps=10):
 			)
 			
 # 			if folding_angle!=0:
-			illustrator.draw_graph(G)
+# 			illustrator.draw_graph(G)
 			
 		
 			for node_id in G.nodes:

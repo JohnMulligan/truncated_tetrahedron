@@ -67,7 +67,7 @@ Where:
 	* we begin at -pi/2 and go to pi/2
 	* Here, we would test 48 angles in between
 
-![Example folding of 14-sided shape, second step](legacy/pdf/14_319_step2_example.PNG "Example folding of 14-sided shape, second step")
+![Example folding of 14-sided shape, second step](legacy/pdf/14_319_step2_example.png "Example folding of 14-sided shape, second step")
 
 Each task gets an even slice of the 2(**N-2) different ways of folding the shape, and begins walking through these, folding it from -pi/2 to pi/2 degrees, and logging when nodes appear to be approaching one another.
 

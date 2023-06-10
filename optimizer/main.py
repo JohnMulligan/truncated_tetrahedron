@@ -210,6 +210,6 @@ if __name__=="__main__":
 		min_angle=sys.argv[5]
 		max_angle=sys.argv[6]
 	except:
-		min_angle=-pi/2
+		min_angle=0
 		max_angle=pi/2
-	main(N=N,worker_number=worker_number,number_of_workers=number_of_workers,sampling_steps=sampling_steps)
+	main(N=N,worker_number=worker_number,number_of_workers=number_of_workers,sampling_steps=sampling_steps,min_angle=min_angle,max_angle=max_angle)
