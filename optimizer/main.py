@@ -158,10 +158,7 @@ def main(N=12,worker_number=0,number_of_workers=1,sampling_steps=20,threshold_fa
 			G=folder.main(
 				G=G,
 				this_folding=this_folding,
-				angle=folding_angle,
-				fold_spoke_indices=fold_spoke_indices,
-				spokes_by_index=spokes_by_index,
-				nodes_by_index=nodes_by_index
+				angle=folding_angle
 			)
 			
 			close_neighborings,mean_close_neighborings=evaluate_folding(G,threshold)

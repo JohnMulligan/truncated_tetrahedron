@@ -77,7 +77,7 @@ def main(N):
 	for this_v in innernodeslist:
 	
 # 		print('---')
-		G.add_node(this_v,set='inner')
+		G.add_node(this_v,set='inner',index=-1)
 # 		print(this_v)
 		if prev_v is not None:
 	# 		print("-->",prev_v,this_v)

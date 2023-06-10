@@ -31,7 +31,7 @@ def main(N,r=1000):
 				G.add_node(this_v,set='outer',index=idx)
 	# 			print(G.nodes[this_v])
 				if prev_v is not None:
-					G.add_edge(prev_v,this_v,set='outer')
+					G.add_edge(prev_v,this_v,set='outer',index=None)
 	# 				print(G.edges([this_v]))
 				prev_v=this_v
 	# 			print('---')
@@ -44,7 +44,7 @@ def main(N,r=1000):
 				G.add_node(this_v,set='outer',index=idx)
 	# 			print(G.nodes[this_v])
 				if prev_v is not None:
-					G.add_edge(prev_v,this_v, set='outer')
+					G.add_edge(prev_v,this_v, set='outer',index=None)
 	# 				print(G.edges([this_v]))
 				prev_v=this_v
 	# 			print('---')
@@ -78,7 +78,7 @@ def main(N,r=1000):
 # 		print(this_v)
 		if prev_v is not None:
 	# 		print("-->",prev_v,this_v)
-			G.add_edge(prev_v,this_v,set='inner')
+			G.add_edge(prev_v,this_v,set='inner',index=None)
 	
 		innernodeindices=[]
 		if this_v not in ('first','last'):
@@ -106,13 +106,13 @@ def main(N,r=1000):
 			G.add_edge('first',outervertexlabels[0],set='spokes',index=0)
 		elif this_v=='last':
 			G.nodes[this_v]
-			G.add_edge('last',outervertexlabels[-2],set='spokes')
-			G.add_edge('last',outervertexlabels[-1],set='spokes')
+			G.add_edge('last',outervertexlabels[-2],set='spokes',index=None)
+			G.add_edge('last',outervertexlabels[-1],set='spokes',index=None)
 
 	G.nodes['last']['index']=max(spoke_indices)+1
 	G.edges[('last'),outervertexlabels[-2]]['index']=max(spoke_indices)+1
 	G.edges[('last'),outervertexlabels[-1]]['index']=max(spoke_indices)+2
-	G.add_edge('first',innernodeslist[1],set='inner')
+	G.add_edge('first',innernodeslist[1],set='inner',index=None)
 
 	for node in outernodeslist:
 	
@@ -205,15 +205,13 @@ def main(N,r=1000):
 # 		G.nodes[node_id]['x']=node_point[0].x
 # 		G.nodes[node_id]['y']=node_point[0].y
 # 		G.nodes[node_id]['z']=node_point[0].z
-		G.add_edge("last",innernodeslist[-2])
+		G.add_edge("last",innernodeslist[-2],set="inner")
 
 	first_inner_node=G.nodes[innernodeslist[0]]
 	for i in [0,1,2]:
 		G.nodes['last']['pos']=first_inner_node['pos']
 	
 	return G
-
-
 	
 
 def draw_graph(G):

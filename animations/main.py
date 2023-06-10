@@ -17,10 +17,7 @@ def main(fname,animation_steps=10):
 	N=int(re.search("^[0-9]+",fname).group(0))
 	folding_idx=int(re.search("(?<=_)[0-9]+(?=\.json)",fname).group(0))
 	
-	G=make_graph.main(N)	
-	spokes={e:G.edges[e] for e in G.edges if G.edges[e]['set']=='spokes'}
-	
-	spokes_by_index={spokes[e]['index']:e for e in spokes}
+	G=make_graph.main(N)
 	
 	nodes_by_index={}
 	
@@ -35,20 +32,12 @@ def main(fname,animation_steps=10):
 	print("nodes")
 	for node_idx in nodes_by_index:
 		print(node_idx,nodes_by_index[node_idx])
-	
-	print('---')
-	print('spokes')
-	for spoke_id in spokes:
-		print(spoke_id,spokes[spoke_id],spokes[spoke_id]['index'])
-	print('---')
-	
-	fold_spoke_indices=[spokes[s_id]['index'] for s_id in spokes][1:-1]
 			
 	G=make_graph.main(N)
 	
 	start_time=time.time()
 	
-	node_idxs=sorted(list(nodes_by_index.keys()))
+	nodes_indices=[G.nodes[n]['index'] for n in G.nodes if G.nodes[n]['index'] is not None]
 		
 	illustrator.draw_faces(G,N)
 
@@ -74,10 +63,7 @@ def main(fname,animation_steps=10):
 			G=folder.main(
 				G=G,
 				this_folding=this_folding,
-				angle=folding_angle,
-				fold_spoke_indices=fold_spoke_indices,
-				spokes_by_index=spokes_by_index,
-				nodes_by_index=nodes_by_index
+				angle=folding_angle
 			)
 			
 # 			if folding_angle!=0:
