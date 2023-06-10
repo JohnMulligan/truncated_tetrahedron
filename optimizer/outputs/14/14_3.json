@@ -1,0 +1,102 @@
+{
+  "A__H*B__I*C__J*D__K*E__L*F__M*H__A*I__B*J__C*K__D*L__E*M__F": {
+    "angle": -1.3784539194322563,
+    "mean_close_neighborings": 14.31896482988327,
+    "this_folding": [
+      -1,
+      -1,
+      -1,
+      -1,
+      -1,
+      -1,
+      -1,
+      -1,
+      -1,
+      -1,
+      -1,
+      1,
+      1
+    ],
+    "this_folding_np_id": "14_3"
+  },
+  "A__I*B_C__J_K*B__J*C__K*D_E__L_M*D__L*E__M*H_I__first*I__A*J_K__B_C*J__B*K__C*L_M__D_E*L__D*M__E*first__H_I": {
+    "angle": -1.121997376282069,
+    "mean_close_neighborings": 11.655599027928213,
+    "this_folding": [
+      -1,
+      -1,
+      -1,
+      -1,
+      -1,
+      -1,
+      -1,
+      -1,
+      -1,
+      -1,
+      -1,
+      1,
+      1
+    ],
+    "this_folding_np_id": "14_3"
+  },
+  "A__J*B__K*C__L*D__M*J__A*K__B*L__C*M__D": {
+    "angle": -0.9296549689194287,
+    "mean_close_neighborings": 12.753879635337679,
+    "this_folding": [
+      -1,
+      -1,
+      -1,
+      -1,
+      -1,
+      -1,
+      -1,
+      -1,
+      -1,
+      -1,
+      -1,
+      1,
+      1
+    ],
+    "this_folding_np_id": "14_3"
+  },
+  "A__K*B_C__L_M*B__L*C__M*J_K__first*K__A*L_M__B_C*L__B*M__C*first__J_K": {
+    "angle": -0.7373125615567883,
+    "mean_close_neighborings": 45.70013262931281,
+    "this_folding": [
+      -1,
+      -1,
+      -1,
+      -1,
+      -1,
+      -1,
+      -1,
+      -1,
+      -1,
+      -1,
+      -1,
+      1,
+      1
+    ],
+    "this_folding_np_id": "14_3"
+  },
+  "A__L*B__M*L__A*M__B": {
+    "angle": -0.6090842899816946,
+    "mean_close_neighborings": 20.55306059898227,
+    "this_folding": [
+      -1,
+      -1,
+      -1,
+      -1,
+      -1,
+      -1,
+      -1,
+      -1,
+      -1,
+      -1,
+      -1,
+      1,
+      1
+    ],
+    "this_folding_np_id": "14_3"
+  }
+}

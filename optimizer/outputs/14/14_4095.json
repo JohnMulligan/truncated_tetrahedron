@@ -1,0 +1,122 @@
+{
+  "B__O*O__B": {
+    "angle": -1.5707963267948966,
+    "mean_close_neighborings": 39.1799997457866,
+    "this_folding": [
+      -1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1
+    ],
+    "this_folding_np_id": "14_4095"
+  },
+  "B__I*C__J*D__K*E__L*F__M*G__N*H__O*I__B*J__C*K__D*L__E*M__F*N__G*O__H": {
+    "angle": -1.3784539194322563,
+    "mean_close_neighborings": 14.318964829887278,
+    "this_folding": [
+      -1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1
+    ],
+    "this_folding_np_id": "14_4095"
+  },
+  "B_C__J_K*B__J*C__K*D_E__L_M*D__L*E__M*F_G__last*F__N*G__O*J_K__B_C*J__B*K__C*L_M__D_E*L__D*M__E*N__F*O__G*last__F_G": {
+    "angle": -1.121997376282069,
+    "mean_close_neighborings": 11.698120704831119,
+    "this_folding": [
+      -1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1
+    ],
+    "this_folding_np_id": "14_4095"
+  },
+  "B__K*C__L*D__M*E__N*F__O*K__B*L__C*M__D*N__E*O__F": {
+    "angle": -0.9296549689194287,
+    "mean_close_neighborings": 12.753879635279148,
+    "this_folding": [
+      -1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1
+    ],
+    "this_folding_np_id": "14_4095"
+  },
+  "B_C__L_M*B__L*C__M*D_E__last*D__N*E__O*L_M__B_C*L__B*M__C*N__D*O__E*last__D_E": {
+    "angle": -0.7373125615567883,
+    "mean_close_neighborings": 46.0553487165096,
+    "this_folding": [
+      -1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1
+    ],
+    "this_folding_np_id": "14_4095"
+  },
+  "B__M*C__N*D__O*M__B*N__C*O__D": {
+    "angle": -0.6090842899816946,
+    "mean_close_neighborings": 20.553060598964034,
+    "this_folding": [
+      -1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1
+    ],
+    "this_folding_np_id": "14_4095"
+  }
+}
