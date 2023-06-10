@@ -42,7 +42,7 @@ def make_facia(G):
 	return facia
 
 def draw_faces(G,N):
-	basedirpath='outputs/animations/'
+	basedirpath='outputs/'
 	os.makedirs(basedirpath+'%s/' %str(N), exist_ok=True)
 
 	facia=make_facia(G)
@@ -97,11 +97,14 @@ def draw_graph(G):
 
 def make_processing_animation(fname):
 	
-	ints=[int(i) for i in re.findall("[0-9]+",fname)]
+	ints=[re.sub("\.json","",i) for i in fname.split("_")]
 	
-	N,foldings_iteration,steps_count,matchhash=ints
 	
-	basedirpath='outputs/animations/'
+	print("-->",ints)
+	
+	N,foldings_iteration,folding_angle,steps_count,matchhash=ints
+	
+	basedirpath='outputs/'
 	os.makedirs(basedirpath+'%s/' %str(N), exist_ok=True)
 
 	d=open("animationblock.txt","r")

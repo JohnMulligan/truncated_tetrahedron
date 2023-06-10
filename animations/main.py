@@ -12,51 +12,6 @@ import illustrator
 from mpl_toolkits.mplot3d import Axes3D
 import folder
 
-def get_euclidean_distance(a,b):
-	
-	ax,ay,az=a
-	bx,by,bz=b
-	
-	ed=sqrt((ax-bx)**2+(ay-by)**2+(az-bz)**2)
-	
-	return ed
-	
-
-def evaluate_folding(G):
-
-	nodelist={n:0 for n in G.nodes()}
-	
-	closeness_threshold=.001
-	
-	close_neighborings={}
-	
-	for n_id_a in nodelist:
-		for n_id_b in nodelist:
-			if n_id_a!=n_id_b:
-				ed=get_euclidean_distance(
-					G.nodes[n_id_a]['pos'],
-					G.nodes[n_id_b]['pos']
-				)
-			
-				if ed < closeness_threshold:
-				
-					neighboring_id="__".join([n_id_a,n_id_b])
-				
-					if neighboring_id not in close_neighborings:
-					
-						close_neighborings[neighboring_id]=ed
-				
-					else:
-						if ed < closeness_threshold:
-						
-							close_neighborings[neighboring_id]=ed
-					
-	print("close neighborings:",close_neighborings)
-		
-		
-	
-	
-
 def main(fname,animation_steps=10):
 
 	N=int(re.search("^[0-9]+",fname).group(0))
@@ -88,27 +43,7 @@ def main(fname,animation_steps=10):
 	print('---')
 	
 	fold_spoke_indices=[spokes[s_id]['index'] for s_id in spokes][1:-1]
-			# 
-# 	print(nodes_by_index)
-	print("fold spoke indices",fold_spoke_indices)
-	
-	possible_folds=product([i for i in [-1,1]],repeat=len(fold_spoke_indices))
-	
-	number_of_possible_folds=2**(N-1)
-	# 
-	print("possible foldings:",number_of_possible_folds)
-# 	
-# 	print(len(list(possible_folds)),"possible folds")
-	
-# 	print(tasks_per_worker,"tasks per worker with",number of workers,"workers")
-	
-# 	print("worker 1 batch:",worker_start_idx,worker_end_idx)
-# 	
-# 	print("number_of_entries:	",len(list(islice(possible_folds,worker_start_idx,worker_end_idx))),"items")
-	
-	for tf in islice(possible_folds,folding_idx,folding_idx+1):
-		this_folding=tf
-		
+			
 	G=make_graph.main(N)
 	
 	start_time=time.time()
@@ -128,6 +63,8 @@ def main(fname,animation_steps=10):
 		animations={node_id:[] for node_id in G.nodes}
 		print(thismatch)
 		
+		this_folding=matches[thismatch]['this_folding']
+		
 		min_angle=0
 		max_angle=matches[thismatch]["angle"]
 		
@@ -144,24 +81,17 @@ def main(fname,animation_steps=10):
 			)
 			
 # 			if folding_angle!=0:
-# 				illustrator.draw_graph(G)
-# 			evaluate_folding(G)
+			illustrator.draw_graph(G)
+			
 		
 			for node_id in G.nodes:
 				animations[node_id].append([float(p) for p in G.nodes[node_id]['pos']])
-		outputfilename="_".join([str(N),str(folding_idx),str(animation_steps),str(hash(thismatch))])+'.json'
-		d=open('outputs/animations/%s/%s' %(str(N),outputfilename),'w')
+		outputfilename="_".join([str(N),str(folding_idx),str(max_angle),str(animation_steps),str(hash(thismatch))])+'.json'
+		d=open('outputs/%s/%s' %(str(N),outputfilename),'w')
 		d.write(json.dumps(animations))
 		d.close()
-
-		illustrator.make_processing_animation(outputfilename)
 	
 if __name__=="__main__":
 	fname=sys.argv[1]
-# 	
-# 	N=int(sys.argv[1])
-# 	worker_number=int(sys.argv[2])
-# 	number_of_workers=int(sys.argv[3])
 	animation_steps=int(sys.argv[2])
-# 	main(N=N,worker_number=worker_number,number_of_workers=number_of_workers,animation_steps=animation_steps)
 	main(fname,animation_steps)
