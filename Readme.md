@@ -23,15 +23,15 @@ I then started experimenting in the other direction, trying to fold flat shapes 
 
 I found, first empirically with paper models, then through computational optimization, that a dodecagon
 
-	* with a hexagon cut out of the middle such that
-	* the remaining ring was again an alternating series of triangles and trapezoids
-	* and that this ring could be folded
-		* into three-dimensional shapes
-		* along the ring's inner edges that the triangles & trapezoids shared
-		* always at the same angle but in different directions
-	* these shapes were odd-looking
-	* but precisely aligned various vertices & faces of the two-dimensional ring
-	* and the angle at which it was to be folded was the dihedral angle of a tetrahedron
+* with a hexagon cut out of the middle such that
+* the remaining ring was again an alternating series of triangles and trapezoids
+* and that this ring could be folded
+	* into three-dimensional shapes
+	* along the ring's inner edges that the triangles & trapezoids shared
+	* always at the same angle but in different directions
+* these shapes were odd-looking
+* but precisely aligned various vertices & faces of the two-dimensional ring
+* and the angle at which it was to be folded was the dihedral angle of a tetrahedron
 	
 So, in other words, I sort of lucked out. My manipulations of a 12-sided polygon was acting a lot like truncated tetrahedron's strips. However, all of the above took me a bit over a year of pecking away in my spare time.
 
