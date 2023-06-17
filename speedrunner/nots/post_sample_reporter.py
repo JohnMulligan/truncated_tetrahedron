@@ -1,52 +1,81 @@
+import statistics
 from math import cos, sin, sqrt, floor, pi
 import sys
 import os
 from itertools import product,islice
 import time
 import json
+import re
 
-
+def readtxtfile(filepath,delete=False):
+	d=open(filepath)
+	t=d.read()
+	d.close()
+	if delete:
+		os.delete(filepath)
+	return(t)
 
 def main(N):
 	
-	ngon_outputfiles=[i for i in os.listdir('outputs/%s/' %N) if i.endswith('json')]
+	N=int(N)
 	
-	angle_scores={}
+	basedir='outputs/%d/' %N
 	
-	vertex_scores={}
+	ngon_outputfiles=[i for i in os.listdir(basedir) if re.match('[0-9]+\.txt',i)]
 	
-	for ngon_outputfile in ngon_outputfiles:
+	checkpointfilepath=os.path.join(basedir,'checkpoint.txt')
+	
+	checkpointfile=readtxtfile(checkpointfilepath)
+	
+	number_of_possible_folds=2**(N-1)
+	
+	finished_work=[int(i) for i in checkpointfile.split('\n') if i!='']
+	
+	print("total_work on %d:" %N,number_of_possible_folds)
+	
+	print("finished work:",len(finished_work))
+	
+	consolidated=open(os.path.join(basedir,'consolidated.txt'),'a')
+	
+	for ngon_outputfilename in ngon_outputfiles:
 		
-		d=open('outputs/%s/%s' %(N,ngon_outputfile),'r')
-		t=d.read()
-		d.close()
+		ngon_outputfile=readtxtfile(os.path.join(basedir,ngon_outputfilename),delete=True)
 		
-		hits=json.loads(t)
+		consolidated.write('\n\n'+ngon_outputfile)
+	
+	consolidated.close()
+	
+	minimal_report_data={}
+	
+	consolidated=readtxtfile(os.path.join(basedir,'consolidated.txt'))
+	
+	consolidatedlines=[c for c in consolidated.split('\n\n') if c!='']
+	
+	for line in consolidatedlines:
+		j=json.loads(line)
+		close_neighborings_count=j['close_neighborings_count']
+		angle=j['angle']
+		this_folding_np_id=j['this_folding_np_id']
+		if angle not in minimal_report_data:
+			minimal_report_data[angle]={
+				'hitcount':1,
+				'close_neighborings_counts':[close_neighborings_count]
+			}
+		else:
+			minimal_report_data[angle]['hitcount']+=1
+			minimal_report_data[angle]['close_neighborings_counts'].append(close_neighborings_count)
+	
+	for angle in minimal_report_data:
 		
-		for hit in hits:
-			joints=hit.split("*")
-			vertices=[]
-			for j in joints:
-				u,v=j.split("__")
-				for w in [u,v]:
-					if w in vertex_scores:
-						vertex_scores[w]+=1
-					else:
-						vertex_scores[w]=1
-			
-			angle=hits[hit]['angle']
-			
-			roundedangle=round(angle,5)
-			if roundedangle in angle_scores:
-				angle_scores[roundedangle]+=1
-			else:
-				angle_scores[roundedangle]=1
+		hitcount=minimal_report_data[angle]['hitcount']
+		close_neighborings_counts=minimal_report_data[angle]['close_neighborings_counts']
+		
+		mean=statistics.mean(close_neighborings_counts)
+		minimum=min(close_neighborings_counts)
+		maximum=max(close_neighborings_counts)
+		print(angle,"-->","min:%d, max:%d, mean:%d. total hits:%d" %(minimum,maximum,mean,hitcount))
 	
-	for a in angle_scores:
-		print(a,a*180/pi,angle_scores[a])
-	for j in vertex_scores:
-		print(j,vertex_scores[j])
-	
+
 if __name__=="__main__":
 	N=int(sys.argv[1])
 	main(N=N)
