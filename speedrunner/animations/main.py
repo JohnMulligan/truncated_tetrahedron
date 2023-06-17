@@ -12,10 +12,10 @@ import illustrator
 from mpl_toolkits.mplot3d import Axes3D
 import folder
 
-def main(fname,animation_steps=10):
-
-	N=int(re.search("^[0-9]+",fname).group(0))
-	folding_idx=int(re.search("(?<=_)[0-9]+(?=\.json)",fname).group(0))
+def main(N,worker_id,animation_steps=10):
+	
+	N=int(N)
+	worker_id=int(worker_id)
 	
 	G=make_graph.main(N)
 	
@@ -43,19 +43,22 @@ def main(fname,animation_steps=10):
 
 	
 	
-	d=open("../optimizer/outputs/%s/%s" %(str(N),fname))
+	d=open("../nots/outputs/%s/%s.txt" %(str(N),str(worker_id)))
 	t=d.read()
-	matches=json.loads(t)
 	d.close()
+	matchstrs=[l for l in t.split("\n\n") if l!='']
 	
-	for thismatch in matches:
+	for thismatchline in matchstrs:
+		thismatch=json.loads(thismatchline)
 		animations={node_id:[] for node_id in G.nodes}
 # 		print(thismatch)
 		
-		this_folding=matches[thismatch]['this_folding']
+		this_folding=thismatch['this_folding']
+		
+		close_neighbors=thismatch['close_neighbors']
 		
 		min_angle=0
-		max_angle=matches[thismatch]["angle"]
+		max_angle=thismatch["angle"]
 		
 		for folding_angle in np.linspace(min_angle,max_angle,animation_steps):
 			G=make_graph.main(N)
@@ -72,12 +75,13 @@ def main(fname,animation_steps=10):
 		
 			for node_id in G.nodes:
 				animations[node_id].append([float(p) for p in G.nodes[node_id]['pos']])
-		outputfilename="_".join([str(N),str(folding_idx),str(max_angle),str(animation_steps),str(hash(thismatch))])+'.json'
+		outputfilename="_".join([str(N),str(hash(close_neighbors)),str(max_angle),str(animation_steps)])+'.json'
 		d=open('outputs/%s/%s' %(str(N),outputfilename),'w')
 		d.write(json.dumps(animations))
 		d.close()
 	
 if __name__=="__main__":
-	fname=sys.argv[1]
-	animation_steps=int(sys.argv[2])
-	main(fname,animation_steps)
+	N=sys.argv[1]
+	worker_id=sys.argv[2]
+	animation_steps=int(sys.argv[3])
+	main(N,worker_id,animation_steps)

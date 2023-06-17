@@ -31,7 +31,7 @@ I found, first empirically with paper models, then through computational optimiz
 	* always at the same angle but in different directions
 * these shapes were odd-looking
 * but precisely aligned various vertices & faces of the two-dimensional ring
-* and the angle at which it was to be folded was the dihedral angle of a tetrahedron
+* and the angle at which it was to be folded looked a lot like the dihedral angle of a tetrahedron (was based on the arccos of the square root of 3)
 	
 So, in other words, I sort of lucked out. My manipulations of a 12-sided polygon was acting a lot like truncated tetrahedron's strips. However, all of the above took me a bit over a year of pecking away in my spare time.
 

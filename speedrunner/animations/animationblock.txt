@@ -1,0 +1,77 @@
+
+
+function setup() {
+  createCanvas(1000, 800, WEBGL);
+  fill(204);
+  
+  
+  
+}
+
+function draw() {
+
+  background(0);
+
+___VERTICES___
+
+
+let sec=floor(millis()/1000);
+___STEPARRAY___
+
+background(0)
+
+let angle=((sec*5)%360);
+
+
+
+
+//adapted from
+//from https://discourse.processing.org/t/how-to-rotate-around-a-sphere/25072/24
+//and math.fandom.com/wiki/Ellipsoid
+//and Simon Greenwold.
+
+  let latitude = (frameCount%360)*3.141/180;
+  let longitude = (((frameCount-(latitude/2))/5)%360)*3.141/180;
+  let radius=5000;
+  
+  let cam_x = radius * cos(latitude)*cos(longitude);
+  let cam_y = radius * cos(latitude)*sin(longitude);
+  let cam_z = radius * sin(latitude);
+  camera(cam_x, cam_y, cam_z, 0, 0, 0, 0, 1, 0);
+
+/**
+ * Points and Lines. 
+ * 
+ * Points and lines can be used to draw basic geometry.
+ * Change the value of the variable 'd' to scale the form.
+ * The four variables set the positions based on the value of 'd'. 
+ */
+
+
+
+
+//let cam_x=350 * cos(angle);
+//let cam_y=350*sin(angle);
+//let cam_x=350*cos(angle);
+//let cam_y=350*sin(angle);
+//console.log(angle,cam_x,cam_y);
+
+//camera(cam_x,cam_y,-900,0,0,0,0,1,0);
+
+
+fill(127);
+
+___FACIABLOCK___
+
+}
+
+function polygon( x, y,  radius,  npoints) {
+  var angle = 3 / npoints;
+  beginShape();
+  for (var a = 0; a < TWO_PI; a += angle) {
+    var sx = x + cos(a) * radius;
+    var sy = y + sin(a) * radius;
+    vertex(sx, sy);
+  }
+  endShape(CLOSE);
+}
