@@ -1,0 +1,19 @@
+
+
+{"close_neighbors": "N_O__first*first__N_O", "close_neighborings_count": 2, "angle": 2.186269234, "mean_close_neighborings": 3.231828443998959, "this_folding": [-1, -1, 1, 1, -1, -1, -1, -1, 1, 1, -1, -1, 1, -1, -1], "this_folding_np_id": "16_6244"}
+
+{"close_neighbors": "A__H*G__N*H__A*N__G", "close_neighborings_count": 4, "angle": 2.094395102, "mean_close_neighborings": 2.963672309676588, "this_folding": [-1, -1, 1, 1, -1, -1, -1, -1, 1, 1, -1, -1, 1, -1, -1], "this_folding_np_id": "16_6244"}
+
+{"close_neighbors": "N_O__first*first__N_O", "close_neighborings_count": 2, "angle": 2.186269234, "mean_close_neighborings": 3.231828443998959, "this_folding": [-1, -1, 1, 1, -1, -1, -1, -1, 1, 1, -1, -1, 1, -1, 1], "this_folding_np_id": "16_6245"}
+
+{"close_neighbors": "A__H*G__N*H__A*N__G", "close_neighborings_count": 4, "angle": 2.094395102, "mean_close_neighborings": 2.963672309676588, "this_folding": [-1, -1, 1, 1, -1, -1, -1, -1, 1, 1, -1, -1, 1, -1, 1], "this_folding_np_id": "16_6245"}
+
+{"close_neighbors": "N_O__first*first__N_O", "close_neighborings_count": 2, "angle": 2.186269234, "mean_close_neighborings": 3.231828443998959, "this_folding": [-1, -1, 1, 1, -1, -1, -1, -1, 1, 1, -1, -1, 1, 1, -1], "this_folding_np_id": "16_6246"}
+
+{"close_neighbors": "A__H*G__N*H__A*I__P*N__G*P__I", "close_neighborings_count": 6, "angle": 2.094395102, "mean_close_neighborings": 2.963672309677225, "this_folding": [-1, -1, 1, 1, -1, -1, -1, -1, 1, 1, -1, -1, 1, 1, -1], "this_folding_np_id": "16_6246"}
+
+{"close_neighbors": "N_O__first*first__N_O", "close_neighborings_count": 2, "angle": 2.186269234, "mean_close_neighborings": 3.231828443998959, "this_folding": [-1, -1, 1, 1, -1, -1, -1, -1, 1, 1, -1, -1, 1, 1, 1], "this_folding_np_id": "16_6247"}
+
+{"close_neighbors": "A__H*G__N*H__A*I__P*N__G*P__I", "close_neighborings_count": 6, "angle": 2.094395102, "mean_close_neighborings": 2.963672309677225, "this_folding": [-1, -1, 1, 1, -1, -1, -1, -1, 1, 1, -1, -1, 1, 1, 1], "this_folding_np_id": "16_6247"}
+
+{"close_neighbors": "A__H*H__A", "close_neighborings_count": 2, "angle": 2.094395102, "mean_close_neighborings": 2.9636723096183126, "this_folding": [-1, -1, 1, 1, -1, -1, -1, -1, 1, 1, -1, 1, -1, -1, -1], "this_folding_np_id": "16_6248"}

@@ -1,0 +1,5 @@
+
+
+{"close_neighbors": "J__O*O__J", "close_neighborings_count": 2, "angle": 2.411870493, "mean_close_neighborings": 0.23075561975870998, "this_folding": [1, -1, -1, 1, -1, -1, 1, -1, -1, 1, 1, 1, 1], "this_folding_np_id": "14_4687"}
+
+{"close_neighbors": "J__O*O__J", "close_neighborings_count": 2, "angle": 2.411870493, "mean_close_neighborings": 0.2307556197683868, "this_folding": [1, -1, -1, 1, -1, -1, 1, -1, 1, -1, -1, -1, -1], "this_folding_np_id": "14_4688"}

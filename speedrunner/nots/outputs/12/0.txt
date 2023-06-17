@@ -1,0 +1,193 @@
+
+
+{"close_neighbors": "A__G*A__M*B_C__H_I*B__H*C__I*D_E__J_K*D__J*E__K*F_G__first*F_G__last*F__L*G__A*G__M*H_I__B_C*H__B*I__C*J_K__D_E*J__D*K__E*L__F*M__A*M__G*first__F_G*first__last*last__F_G*last__first", "close_neighborings_count": 26, "angle": 1.41547199, "mean_close_neighborings": 2.2107605041843317e-06, "this_folding": [-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1], "this_folding_np_id": "12_0"}
+
+{"close_neighbors": "A__G*B_C__H_I*B__H*C__I*D_E__J_K*D__J*E__K*F_G__first*F_G__last*F__L*G__A*H_I__B_C*H__B*I__C*J_K__D_E*J__D*K__E*L__F*first__F_G*first__last*last__F_G*last__first", "close_neighborings_count": 22, "angle": 1.41547199, "mean_close_neighborings": 2.070820909354705e-06, "this_folding": [-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, 1], "this_folding_np_id": "12_1"}
+
+{"close_neighbors": "A__G*B_C__H_I*B__H*C__I*D_E__J_K*D__J*E__K*F_G__first*G__A*H_I__B_C*H__B*I__C*J_K__D_E*J__D*K__E*first__F_G", "close_neighborings_count": 16, "angle": 1.41547199, "mean_close_neighborings": 1.920456930253849e-06, "this_folding": [-1, -1, -1, -1, -1, -1, -1, -1, -1, 1, -1], "this_folding_np_id": "12_2"}
+
+{"close_neighbors": "A__G*B_C__H_I*B__H*C__I*D_E__J_K*D__J*E__K*F_G__first*G__A*H_I__B_C*H__B*I__C*J_K__D_E*J__D*K__E*first__F_G", "close_neighborings_count": 16, "angle": 1.41547199, "mean_close_neighborings": 1.920456930253849e-06, "this_folding": [-1, -1, -1, -1, -1, -1, -1, -1, -1, 1, 1], "this_folding_np_id": "12_3"}
+
+{"close_neighbors": "A__G*B_C__H_I*B__H*C__I*D_E__J_K*D__J*F_G__first*G__A*H_I__B_C*H__B*I__C*J_K__D_E*J__D*first__F_G", "close_neighborings_count": 14, "angle": 1.41547199, "mean_close_neighborings": 1.9109551216796954e-06, "this_folding": [-1, -1, -1, -1, -1, -1, -1, -1, 1, -1, -1], "this_folding_np_id": "12_4"}
+
+{"close_neighbors": "A__G*B_C__H_I*B__H*C__I*D_E__J_K*D__J*F_G__first*G__A*H_I__B_C*H__B*I__C*J_K__D_E*J__D*first__F_G", "close_neighborings_count": 14, "angle": 1.41547199, "mean_close_neighborings": 1.9109551216796954e-06, "this_folding": [-1, -1, -1, -1, -1, -1, -1, -1, 1, -1, 1], "this_folding_np_id": "12_5"}
+
+{"close_neighbors": "A__G*B_C__H_I*B__H*C__I*D_E__J_K*D__J*F_G__first*G__A*H_I__B_C*H__B*I__C*J_K__D_E*J__D*first__F_G", "close_neighborings_count": 14, "angle": 1.41547199, "mean_close_neighborings": 1.9109551216796954e-06, "this_folding": [-1, -1, -1, -1, -1, -1, -1, -1, 1, 1, -1], "this_folding_np_id": "12_6"}
+
+{"close_neighbors": "A__G*B_C__H_I*B__H*C__I*D_E__J_K*D__J*F_G__first*G__A*H_I__B_C*H__B*I__C*J_K__D_E*J__D*first__F_G", "close_neighborings_count": 14, "angle": 1.41547199, "mean_close_neighborings": 1.9109551216796954e-06, "this_folding": [-1, -1, -1, -1, -1, -1, -1, -1, 1, 1, 1], "this_folding_np_id": "12_7"}
+
+{"close_neighbors": "A__G*B_C__H_I*B__H*C__I*F_G__first*G__A*H_I__B_C*H__B*I__C*first__F_G", "close_neighborings_count": 10, "angle": 1.41547199, "mean_close_neighborings": 1.9160314172587972e-06, "this_folding": [-1, -1, -1, -1, -1, -1, -1, 1, -1, -1, -1], "this_folding_np_id": "12_8"}
+
+{"close_neighbors": "A__G*B_C__H_I*B__H*C__I*F_G__first*G__A*H_I__B_C*H__B*I__C*first__F_G", "close_neighborings_count": 10, "angle": 1.41547199, "mean_close_neighborings": 1.9160314172587972e-06, "this_folding": [-1, -1, -1, -1, -1, -1, -1, 1, -1, -1, 1], "this_folding_np_id": "12_9"}
+
+{"close_neighbors": "A__G*B_C__H_I*B__H*C__I*F_G__first*G__A*H_I__B_C*H__B*I__C*first__F_G", "close_neighborings_count": 10, "angle": 1.41547199, "mean_close_neighborings": 1.9160314172587972e-06, "this_folding": [-1, -1, -1, -1, -1, -1, -1, 1, -1, 1, -1], "this_folding_np_id": "12_10"}
+
+{"close_neighbors": "A__G*B_C__H_I*B__H*C__I*F_G__first*G__A*H_I__B_C*H__B*I__C*first__F_G", "close_neighborings_count": 10, "angle": 1.41547199, "mean_close_neighborings": 1.9160314172587972e-06, "this_folding": [-1, -1, -1, -1, -1, -1, -1, 1, -1, 1, 1], "this_folding_np_id": "12_11"}
+
+{"close_neighbors": "A__G*B_C__H_I*B__H*C__I*F_G__first*G__A*H_I__B_C*H__B*I__C*first__F_G", "close_neighborings_count": 10, "angle": 1.41547199, "mean_close_neighborings": 1.9160314172587972e-06, "this_folding": [-1, -1, -1, -1, -1, -1, -1, 1, 1, -1, -1], "this_folding_np_id": "12_12"}
+
+{"close_neighbors": "A__G*B_C__H_I*B__H*C__I*F_G__first*G__A*H_I__B_C*H__B*I__C*first__F_G", "close_neighborings_count": 10, "angle": 1.41547199, "mean_close_neighborings": 1.9160314172587972e-06, "this_folding": [-1, -1, -1, -1, -1, -1, -1, 1, 1, -1, 1], "this_folding_np_id": "12_13"}
+
+{"close_neighbors": "A__G*B_C__H_I*B__H*C__I*F_G__first*G__A*H_I__B_C*H__B*I__C*first__F_G", "close_neighborings_count": 10, "angle": 1.41547199, "mean_close_neighborings": 1.9160314172587972e-06, "this_folding": [-1, -1, -1, -1, -1, -1, -1, 1, 1, 1, -1], "this_folding_np_id": "12_14"}
+
+{"close_neighbors": "A__G*B_C__H_I*B__H*C__I*F_G__first*G__A*H_I__B_C*H__B*I__C*first__F_G", "close_neighborings_count": 10, "angle": 1.41547199, "mean_close_neighborings": 1.9160314172587972e-06, "this_folding": [-1, -1, -1, -1, -1, -1, -1, 1, 1, 1, 1], "this_folding_np_id": "12_15"}
+
+{"close_neighbors": "A__G*B_C__H_I*B__H*F_G__first*G__A*H_I__B_C*H__B*first__F_G", "close_neighborings_count": 8, "angle": 1.41547199, "mean_close_neighborings": 1.8982836424861625e-06, "this_folding": [-1, -1, -1, -1, -1, -1, 1, -1, -1, -1, -1], "this_folding_np_id": "12_16"}
+
+{"close_neighbors": "A__G*B_C__H_I*B__H*F_G__first*G__A*H_I__B_C*H__B*first__F_G", "close_neighborings_count": 8, "angle": 1.41547199, "mean_close_neighborings": 1.8982836424861625e-06, "this_folding": [-1, -1, -1, -1, -1, -1, 1, -1, -1, -1, 1], "this_folding_np_id": "12_17"}
+
+{"close_neighbors": "A__G*B_C__H_I*B__H*F_G__first*G__A*H_I__B_C*H__B*first__F_G", "close_neighborings_count": 8, "angle": 1.41547199, "mean_close_neighborings": 1.8982836424861625e-06, "this_folding": [-1, -1, -1, -1, -1, -1, 1, -1, -1, 1, -1], "this_folding_np_id": "12_18"}
+
+{"close_neighbors": "A__G*B_C__H_I*B__H*F_G__first*G__A*H_I__B_C*H__B*first__F_G", "close_neighborings_count": 8, "angle": 1.41547199, "mean_close_neighborings": 1.8982836424861625e-06, "this_folding": [-1, -1, -1, -1, -1, -1, 1, -1, -1, 1, 1], "this_folding_np_id": "12_19"}
+
+{"close_neighbors": "A__G*B_C__H_I*B__H*F_G__first*G__A*H_I__B_C*H__B*first__F_G", "close_neighborings_count": 8, "angle": 1.41547199, "mean_close_neighborings": 1.8982836424861625e-06, "this_folding": [-1, -1, -1, -1, -1, -1, 1, -1, 1, -1, -1], "this_folding_np_id": "12_20"}
+
+{"close_neighbors": "A__G*B_C__H_I*B__H*F_G__first*G__A*H_I__B_C*H__B*first__F_G", "close_neighborings_count": 8, "angle": 1.41547199, "mean_close_neighborings": 1.8982836424861625e-06, "this_folding": [-1, -1, -1, -1, -1, -1, 1, -1, 1, -1, 1], "this_folding_np_id": "12_21"}
+
+{"close_neighbors": "A__G*B_C__H_I*B__H*F_G__first*G__A*H_I__B_C*H__B*first__F_G", "close_neighborings_count": 8, "angle": 1.41547199, "mean_close_neighborings": 1.8982836424861625e-06, "this_folding": [-1, -1, -1, -1, -1, -1, 1, -1, 1, 1, -1], "this_folding_np_id": "12_22"}
+
+{"close_neighbors": "A__G*B_C__H_I*B__H*F_G__first*G__A*H_I__B_C*H__B*first__F_G", "close_neighborings_count": 8, "angle": 1.41547199, "mean_close_neighborings": 1.8982836424861625e-06, "this_folding": [-1, -1, -1, -1, -1, -1, 1, -1, 1, 1, 1], "this_folding_np_id": "12_23"}
+
+{"close_neighbors": "A__G*B_C__H_I*B__H*F_G__first*G__A*H_I__B_C*H__B*first__F_G", "close_neighborings_count": 8, "angle": 1.41547199, "mean_close_neighborings": 1.8982836424861625e-06, "this_folding": [-1, -1, -1, -1, -1, -1, 1, 1, -1, -1, -1], "this_folding_np_id": "12_24"}
+
+{"close_neighbors": "A__G*B_C__H_I*B__H*F_G__first*G__A*H_I__B_C*H__B*first__F_G", "close_neighborings_count": 8, "angle": 1.41547199, "mean_close_neighborings": 1.8982836424861625e-06, "this_folding": [-1, -1, -1, -1, -1, -1, 1, 1, -1, -1, 1], "this_folding_np_id": "12_25"}
+
+{"close_neighbors": "A__G*B_C__H_I*B__H*F_G__first*G__A*H_I__B_C*H__B*first__F_G", "close_neighborings_count": 8, "angle": 1.41547199, "mean_close_neighborings": 1.8982836424861625e-06, "this_folding": [-1, -1, -1, -1, -1, -1, 1, 1, -1, 1, -1], "this_folding_np_id": "12_26"}
+
+{"close_neighbors": "A__G*B_C__H_I*B__H*F_G__first*G__A*H_I__B_C*H__B*first__F_G", "close_neighborings_count": 8, "angle": 1.41547199, "mean_close_neighborings": 1.8982836424861625e-06, "this_folding": [-1, -1, -1, -1, -1, -1, 1, 1, -1, 1, 1], "this_folding_np_id": "12_27"}
+
+{"close_neighbors": "A__G*B_C__H_I*B__H*F_G__first*G__A*H_I__B_C*H__B*first__F_G", "close_neighborings_count": 8, "angle": 1.41547199, "mean_close_neighborings": 1.8982836424861625e-06, "this_folding": [-1, -1, -1, -1, -1, -1, 1, 1, 1, -1, -1], "this_folding_np_id": "12_28"}
+
+{"close_neighbors": "A__G*B_C__H_I*B__H*F_G__first*G__A*H_I__B_C*H__B*first__F_G", "close_neighborings_count": 8, "angle": 1.41547199, "mean_close_neighborings": 1.8982836424861625e-06, "this_folding": [-1, -1, -1, -1, -1, -1, 1, 1, 1, -1, 1], "this_folding_np_id": "12_29"}
+
+{"close_neighbors": "A__G*B_C__H_I*B__H*F_G__first*F_G__last*G__A*H_I__B_C*H__B*first__F_G*first__last*last__F_G*last__first", "close_neighborings_count": 12, "angle": 1.41547199, "mean_close_neighborings": 2.0915464699067565e-06, "this_folding": [-1, -1, -1, -1, -1, -1, 1, 1, 1, 1, -1], "this_folding_np_id": "12_30"}
+
+{"close_neighbors": "A__G*A__M*B_C__H_I*B__H*F_G__first*F_G__last*G__A*G__M*H_I__B_C*H__B*M__A*M__G*first__F_G*first__last*last__F_G*last__first", "close_neighborings_count": 16, "angle": 1.41547199, "mean_close_neighborings": 2.293141957684761e-06, "this_folding": [-1, -1, -1, -1, -1, -1, 1, 1, 1, 1, 1], "this_folding_np_id": "12_31"}
+
+{"close_neighbors": "A__G*A__M*F_G__first*F_G__last*G__A*G__M*M__A*M__G*first__F_G*first__last*last__F_G*last__first", "close_neighborings_count": 12, "angle": 1.41547199, "mean_close_neighborings": 2.316072206639079e-06, "this_folding": [-1, -1, -1, -1, -1, 1, -1, -1, -1, -1, -1], "this_folding_np_id": "12_32"}
+
+{"close_neighbors": "A__G*F_G__first*F_G__last*G__A*first__F_G*first__last*last__F_G*last__first", "close_neighborings_count": 8, "angle": 1.41547199, "mean_close_neighborings": 2.188162174865027e-06, "this_folding": [-1, -1, -1, -1, -1, 1, -1, -1, -1, -1, 1], "this_folding_np_id": "12_33"}
+
+{"close_neighbors": "A__G*F_G__first*G__A*first__F_G", "close_neighborings_count": 4, "angle": 1.41547199, "mean_close_neighborings": 1.8982758041214336e-06, "this_folding": [-1, -1, -1, -1, -1, 1, -1, -1, -1, 1, -1], "this_folding_np_id": "12_34"}
+
+{"close_neighbors": "A__G*F_G__first*G__A*first__F_G", "close_neighborings_count": 4, "angle": 1.41547199, "mean_close_neighborings": 1.8982758041214336e-06, "this_folding": [-1, -1, -1, -1, -1, 1, -1, -1, -1, 1, 1], "this_folding_np_id": "12_35"}
+
+{"close_neighbors": "A__G*F_G__first*G__A*first__F_G", "close_neighborings_count": 4, "angle": 1.41547199, "mean_close_neighborings": 1.8982758041214336e-06, "this_folding": [-1, -1, -1, -1, -1, 1, -1, -1, 1, -1, -1], "this_folding_np_id": "12_36"}
+
+{"close_neighbors": "A__G*F_G__first*G__A*first__F_G", "close_neighborings_count": 4, "angle": 1.41547199, "mean_close_neighborings": 1.8982758041214336e-06, "this_folding": [-1, -1, -1, -1, -1, 1, -1, -1, 1, -1, 1], "this_folding_np_id": "12_37"}
+
+{"close_neighbors": "A__G*F_G__first*G__A*first__F_G", "close_neighborings_count": 4, "angle": 1.41547199, "mean_close_neighborings": 1.8982758041214336e-06, "this_folding": [-1, -1, -1, -1, -1, 1, -1, -1, 1, 1, -1], "this_folding_np_id": "12_38"}
+
+{"close_neighbors": "A__G*F_G__first*G__A*first__F_G", "close_neighborings_count": 4, "angle": 1.41547199, "mean_close_neighborings": 1.8982758041214336e-06, "this_folding": [-1, -1, -1, -1, -1, 1, -1, -1, 1, 1, 1], "this_folding_np_id": "12_39"}
+
+{"close_neighbors": "A__G*F_G__first*G__A*first__F_G", "close_neighborings_count": 4, "angle": 1.41547199, "mean_close_neighborings": 1.8982758041214336e-06, "this_folding": [-1, -1, -1, -1, -1, 1, -1, 1, -1, -1, -1], "this_folding_np_id": "12_40"}
+
+{"close_neighbors": "A__G*F_G__first*G__A*first__F_G", "close_neighborings_count": 4, "angle": 1.41547199, "mean_close_neighborings": 1.8982758041214336e-06, "this_folding": [-1, -1, -1, -1, -1, 1, -1, 1, -1, -1, 1], "this_folding_np_id": "12_41"}
+
+{"close_neighbors": "A__G*F_G__first*G__A*first__F_G", "close_neighborings_count": 4, "angle": 1.41547199, "mean_close_neighborings": 1.8982758041214336e-06, "this_folding": [-1, -1, -1, -1, -1, 1, -1, 1, -1, 1, -1], "this_folding_np_id": "12_42"}
+
+{"close_neighbors": "A__G*F_G__first*G__A*first__F_G", "close_neighborings_count": 4, "angle": 1.41547199, "mean_close_neighborings": 1.8982758041214336e-06, "this_folding": [-1, -1, -1, -1, -1, 1, -1, 1, -1, 1, 1], "this_folding_np_id": "12_43"}
+
+{"close_neighbors": "A__G*F_G__first*G__A*first__F_G", "close_neighborings_count": 4, "angle": 1.41547199, "mean_close_neighborings": 1.8982758041214336e-06, "this_folding": [-1, -1, -1, -1, -1, 1, -1, 1, 1, -1, -1], "this_folding_np_id": "12_44"}
+
+{"close_neighbors": "A__G*F_G__first*G__A*first__F_G", "close_neighborings_count": 4, "angle": 1.41547199, "mean_close_neighborings": 1.8982758041214336e-06, "this_folding": [-1, -1, -1, -1, -1, 1, -1, 1, 1, -1, 1], "this_folding_np_id": "12_45"}
+
+{"close_neighbors": "A__G*F_G__first*G__A*first__F_G", "close_neighborings_count": 4, "angle": 1.41547199, "mean_close_neighborings": 1.8982758041214336e-06, "this_folding": [-1, -1, -1, -1, -1, 1, -1, 1, 1, 1, -1], "this_folding_np_id": "12_46"}
+
+{"close_neighbors": "A__G*F_G__first*G__A*first__F_G", "close_neighborings_count": 4, "angle": 1.41547199, "mean_close_neighborings": 1.8982758041214336e-06, "this_folding": [-1, -1, -1, -1, -1, 1, -1, 1, 1, 1, 1], "this_folding_np_id": "12_47"}
+
+{"close_neighbors": "A__G*F_G__first*G__A*first__F_G", "close_neighborings_count": 4, "angle": 1.41547199, "mean_close_neighborings": 1.8982758041214336e-06, "this_folding": [-1, -1, -1, -1, -1, 1, 1, -1, -1, -1, -1], "this_folding_np_id": "12_48"}
+
+{"close_neighbors": "A__G*F_G__first*G__A*first__F_G", "close_neighborings_count": 4, "angle": 1.41547199, "mean_close_neighborings": 1.8982758041214336e-06, "this_folding": [-1, -1, -1, -1, -1, 1, 1, -1, -1, -1, 1], "this_folding_np_id": "12_49"}
+
+{"close_neighbors": "A__G*F_G__first*G__A*first__F_G", "close_neighborings_count": 4, "angle": 1.41547199, "mean_close_neighborings": 1.8982758041214336e-06, "this_folding": [-1, -1, -1, -1, -1, 1, 1, -1, -1, 1, -1], "this_folding_np_id": "12_50"}
+
+{"close_neighbors": "A__G*F_G__first*G__A*first__F_G", "close_neighborings_count": 4, "angle": 1.41547199, "mean_close_neighborings": 1.8982758041214336e-06, "this_folding": [-1, -1, -1, -1, -1, 1, 1, -1, -1, 1, 1], "this_folding_np_id": "12_51"}
+
+{"close_neighbors": "A__G*F_G__first*G__A*first__F_G", "close_neighborings_count": 4, "angle": 1.41547199, "mean_close_neighborings": 1.8982758041214336e-06, "this_folding": [-1, -1, -1, -1, -1, 1, 1, -1, 1, -1, -1], "this_folding_np_id": "12_52"}
+
+{"close_neighbors": "A__G*F_G__first*G__A*first__F_G", "close_neighborings_count": 4, "angle": 1.41547199, "mean_close_neighborings": 1.8982758041214336e-06, "this_folding": [-1, -1, -1, -1, -1, 1, 1, -1, 1, -1, 1], "this_folding_np_id": "12_53"}
+
+{"close_neighbors": "A__G*F_G__first*G__A*first__F_G", "close_neighborings_count": 4, "angle": 1.41547199, "mean_close_neighborings": 1.8982758041214336e-06, "this_folding": [-1, -1, -1, -1, -1, 1, 1, -1, 1, 1, -1], "this_folding_np_id": "12_54"}
+
+{"close_neighbors": "A__G*F_G__first*G__A*first__F_G", "close_neighborings_count": 4, "angle": 1.41547199, "mean_close_neighborings": 1.8982758041214336e-06, "this_folding": [-1, -1, -1, -1, -1, 1, 1, -1, 1, 1, 1], "this_folding_np_id": "12_55"}
+
+{"close_neighbors": "A__G*F_G__first*G__A*first__F_G", "close_neighborings_count": 4, "angle": 1.41547199, "mean_close_neighborings": 1.8982758041214336e-06, "this_folding": [-1, -1, -1, -1, -1, 1, 1, 1, -1, -1, -1], "this_folding_np_id": "12_56"}
+
+{"close_neighbors": "A__G*F_G__first*G__A*first__F_G", "close_neighborings_count": 4, "angle": 1.41547199, "mean_close_neighborings": 1.8982758041214336e-06, "this_folding": [-1, -1, -1, -1, -1, 1, 1, 1, -1, -1, 1], "this_folding_np_id": "12_57"}
+
+{"close_neighbors": "A__G*F_G__first*G__A*first__F_G", "close_neighborings_count": 4, "angle": 1.41547199, "mean_close_neighborings": 1.8982758041214336e-06, "this_folding": [-1, -1, -1, -1, -1, 1, 1, 1, -1, 1, -1], "this_folding_np_id": "12_58"}
+
+{"close_neighbors": "A__G*F_G__first*G__A*first__F_G", "close_neighborings_count": 4, "angle": 1.41547199, "mean_close_neighborings": 1.8982758041214336e-06, "this_folding": [-1, -1, -1, -1, -1, 1, 1, 1, -1, 1, 1], "this_folding_np_id": "12_59"}
+
+{"close_neighbors": "A__G*F_G__first*G__A*first__F_G", "close_neighborings_count": 4, "angle": 1.41547199, "mean_close_neighborings": 1.8982758041214336e-06, "this_folding": [-1, -1, -1, -1, -1, 1, 1, 1, 1, -1, -1], "this_folding_np_id": "12_60"}
+
+{"close_neighbors": "A__G*F_G__first*G__A*first__F_G", "close_neighborings_count": 4, "angle": 1.41547199, "mean_close_neighborings": 1.8982758041214336e-06, "this_folding": [-1, -1, -1, -1, -1, 1, 1, 1, 1, -1, 1], "this_folding_np_id": "12_61"}
+
+{"close_neighbors": "A__G*F_G__first*F_G__last*F__L*G__A*L__F*first__F_G*first__last*last__F_G*last__first", "close_neighborings_count": 10, "angle": 1.41547199, "mean_close_neighborings": 2.2423922357168726e-06, "this_folding": [-1, -1, -1, -1, -1, 1, 1, 1, 1, 1, -1], "this_folding_np_id": "12_62"}
+
+{"close_neighbors": "A__G*A__M*F_G__first*F_G__last*F__L*G__A*G__M*L__F*M__A*M__G*first__F_G*first__last*last__F_G*last__first", "close_neighborings_count": 14, "angle": 1.41547199, "mean_close_neighborings": 2.379159141389121e-06, "this_folding": [-1, -1, -1, -1, -1, 1, 1, 1, 1, 1, 1], "this_folding_np_id": "12_63"}
+
+{"close_neighbors": "F_G__first*F_G__last*F__L*G__M*L__F*M__G*first__F_G*first__last*last__F_G*last__first", "close_neighborings_count": 10, "angle": 1.41547199, "mean_close_neighborings": 2.1479029741365207e-06, "this_folding": [-1, -1, -1, -1, 1, -1, -1, -1, -1, -1, -1], "this_folding_np_id": "12_64"}
+
+{"close_neighbors": "F_G__first*F_G__last*F__L*L__F*first__F_G*first__last*last__F_G*last__first", "close_neighborings_count": 8, "angle": 1.41547199, "mean_close_neighborings": 2.188138756492696e-06, "this_folding": [-1, -1, -1, -1, 1, -1, -1, -1, -1, -1, 1], "this_folding_np_id": "12_65"}
+
+{"close_neighbors": "F_G__first*first__F_G", "close_neighborings_count": 2, "angle": 1.41547199, "mean_close_neighborings": 1.809536736399202e-06, "this_folding": [-1, -1, -1, -1, 1, -1, -1, -1, -1, 1, -1], "this_folding_np_id": "12_66"}
+
+{"close_neighbors": "F_G__first*first__F_G", "close_neighborings_count": 2, "angle": 1.41547199, "mean_close_neighborings": 1.809536736399202e-06, "this_folding": [-1, -1, -1, -1, 1, -1, -1, -1, -1, 1, 1], "this_folding_np_id": "12_67"}
+
+{"close_neighbors": "F_G__first*first__F_G", "close_neighborings_count": 2, "angle": 1.41547199, "mean_close_neighborings": 1.809536736399202e-06, "this_folding": [-1, -1, -1, -1, 1, -1, -1, -1, 1, -1, -1], "this_folding_np_id": "12_68"}
+
+{"close_neighbors": "F_G__first*first__F_G", "close_neighborings_count": 2, "angle": 1.41547199, "mean_close_neighborings": 1.809536736399202e-06, "this_folding": [-1, -1, -1, -1, 1, -1, -1, -1, 1, -1, 1], "this_folding_np_id": "12_69"}
+
+{"close_neighbors": "F_G__first*first__F_G", "close_neighborings_count": 2, "angle": 1.41547199, "mean_close_neighborings": 1.809536736399202e-06, "this_folding": [-1, -1, -1, -1, 1, -1, -1, -1, 1, 1, -1], "this_folding_np_id": "12_70"}
+
+{"close_neighbors": "F_G__first*first__F_G", "close_neighborings_count": 2, "angle": 1.41547199, "mean_close_neighborings": 1.809536736399202e-06, "this_folding": [-1, -1, -1, -1, 1, -1, -1, -1, 1, 1, 1], "this_folding_np_id": "12_71"}
+
+{"close_neighbors": "F_G__first*first__F_G", "close_neighborings_count": 2, "angle": 1.41547199, "mean_close_neighborings": 1.809536736399202e-06, "this_folding": [-1, -1, -1, -1, 1, -1, -1, 1, -1, -1, -1], "this_folding_np_id": "12_72"}
+
+{"close_neighbors": "F_G__first*first__F_G", "close_neighborings_count": 2, "angle": 1.41547199, "mean_close_neighborings": 1.809536736399202e-06, "this_folding": [-1, -1, -1, -1, 1, -1, -1, 1, -1, -1, 1], "this_folding_np_id": "12_73"}
+
+{"close_neighbors": "F_G__first*first__F_G", "close_neighborings_count": 2, "angle": 1.41547199, "mean_close_neighborings": 1.809536736399202e-06, "this_folding": [-1, -1, -1, -1, 1, -1, -1, 1, -1, 1, -1], "this_folding_np_id": "12_74"}
+
+{"close_neighbors": "F_G__first*first__F_G", "close_neighborings_count": 2, "angle": 1.41547199, "mean_close_neighborings": 1.809536736399202e-06, "this_folding": [-1, -1, -1, -1, 1, -1, -1, 1, -1, 1, 1], "this_folding_np_id": "12_75"}
+
+{"close_neighbors": "F_G__first*first__F_G", "close_neighborings_count": 2, "angle": 1.41547199, "mean_close_neighborings": 1.809536736399202e-06, "this_folding": [-1, -1, -1, -1, 1, -1, -1, 1, 1, -1, -1], "this_folding_np_id": "12_76"}
+
+{"close_neighbors": "F_G__first*first__F_G", "close_neighborings_count": 2, "angle": 1.41547199, "mean_close_neighborings": 1.809536736399202e-06, "this_folding": [-1, -1, -1, -1, 1, -1, -1, 1, 1, -1, 1], "this_folding_np_id": "12_77"}
+
+{"close_neighbors": "F_G__first*first__F_G", "close_neighborings_count": 2, "angle": 1.41547199, "mean_close_neighborings": 1.809536736399202e-06, "this_folding": [-1, -1, -1, -1, 1, -1, -1, 1, 1, 1, -1], "this_folding_np_id": "12_78"}
+
+{"close_neighbors": "F_G__first*first__F_G", "close_neighborings_count": 2, "angle": 1.41547199, "mean_close_neighborings": 1.809536736399202e-06, "this_folding": [-1, -1, -1, -1, 1, -1, -1, 1, 1, 1, 1], "this_folding_np_id": "12_79"}
+
+{"close_neighbors": "F_G__first*first__F_G", "close_neighborings_count": 2, "angle": 1.41547199, "mean_close_neighborings": 1.809536736399202e-06, "this_folding": [-1, -1, -1, -1, 1, -1, 1, -1, -1, -1, -1], "this_folding_np_id": "12_80"}
+
+{"close_neighbors": "F_G__first*first__F_G", "close_neighborings_count": 2, "angle": 1.41547199, "mean_close_neighborings": 1.809536736399202e-06, "this_folding": [-1, -1, -1, -1, 1, -1, 1, -1, -1, -1, 1], "this_folding_np_id": "12_81"}
+
+{"close_neighbors": "F_G__first*first__F_G", "close_neighborings_count": 2, "angle": 1.41547199, "mean_close_neighborings": 1.809536736399202e-06, "this_folding": [-1, -1, -1, -1, 1, -1, 1, -1, -1, 1, -1], "this_folding_np_id": "12_82"}
+
+{"close_neighbors": "F_G__first*first__F_G", "close_neighborings_count": 2, "angle": 1.41547199, "mean_close_neighborings": 1.809536736399202e-06, "this_folding": [-1, -1, -1, -1, 1, -1, 1, -1, -1, 1, 1], "this_folding_np_id": "12_83"}
+
+{"close_neighbors": "F_G__first*first__F_G", "close_neighborings_count": 2, "angle": 1.41547199, "mean_close_neighborings": 1.809536736399202e-06, "this_folding": [-1, -1, -1, -1, 1, -1, 1, -1, 1, -1, -1], "this_folding_np_id": "12_84"}
+
+{"close_neighbors": "F_G__first*first__F_G", "close_neighborings_count": 2, "angle": 1.41547199, "mean_close_neighborings": 1.809536736399202e-06, "this_folding": [-1, -1, -1, -1, 1, -1, 1, -1, 1, -1, 1], "this_folding_np_id": "12_85"}
+
+{"close_neighbors": "F_G__first*first__F_G", "close_neighborings_count": 2, "angle": 1.41547199, "mean_close_neighborings": 1.809536736399202e-06, "this_folding": [-1, -1, -1, -1, 1, -1, 1, -1, 1, 1, -1], "this_folding_np_id": "12_86"}
+
+{"close_neighbors": "F_G__first*first__F_G", "close_neighborings_count": 2, "angle": 1.41547199, "mean_close_neighborings": 1.809536736399202e-06, "this_folding": [-1, -1, -1, -1, 1, -1, 1, -1, 1, 1, 1], "this_folding_np_id": "12_87"}
+
+{"close_neighbors": "F_G__first*first__F_G", "close_neighborings_count": 2, "angle": 1.41547199, "mean_close_neighborings": 1.809536736399202e-06, "this_folding": [-1, -1, -1, -1, 1, -1, 1, 1, -1, -1, -1], "this_folding_np_id": "12_88"}
+
+{"close_neighbors": "F_G__first*first__F_G", "close_neighborings_count": 2, "angle": 1.41547199, "mean_close_neighborings": 1.809536736399202e-06, "this_folding": [-1, -1, -1, -1, 1, -1, 1, 1, -1, -1, 1], "this_folding_np_id": "12_89"}
+
+{"close_neighbors": "F_G__first*first__F_G", "close_neighborings_count": 2, "angle": 1.41547199, "mean_close_neighborings": 1.809536736399202e-06, "this_folding": [-1, -1, -1, -1, 1, -1, 1, 1, -1, 1, -1], "this_folding_np_id": "12_90"}
+
+{"close_neighbors": "F_G__first*first__F_G", "close_neighborings_count": 2, "angle": 1.41547199, "mean_close_neighborings": 1.809536736399202e-06, "this_folding": [-1, -1, -1, -1, 1, -1, 1, 1, -1, 1, 1], "this_folding_np_id": "12_91"}
+
+{"close_neighbors": "F_G__first*first__F_G", "close_neighborings_count": 2, "angle": 1.41547199, "mean_close_neighborings": 1.809536736399202e-06, "this_folding": [-1, -1, -1, -1, 1, -1, 1, 1, 1, -1, -1], "this_folding_np_id": "12_92"}
+
+{"close_neighbors": "F_G__first*first__F_G", "close_neighborings_count": 2, "angle": 1.41547199, "mean_close_neighborings": 1.809536736399202e-06, "this_folding": [-1, -1, -1, -1, 1, -1, 1, 1, 1, -1, 1], "this_folding_np_id": "12_93"}
+
+{"close_neighbors": "F_G__first*F_G__last*first__F_G*first__last*last__F_G*last__first", "close_neighborings_count": 6, "angle": 1.41547199, "mean_close_neighborings": 1.8508981239738505e-06, "this_folding": [-1, -1, -1, -1, 1, -1, 1, 1, 1, 1, -1], "this_folding_np_id": "12_94"}
+
+{"close_neighbors": "F_G__first*F_G__last*G__M*M__G*first__F_G*first__last*last__F_G*last__first", "close_neighborings_count": 8, "angle": 1.41547199, "mean_close_neighborings": 1.8849216320986968e-06, "this_folding": [-1, -1, -1, -1, 1, -1, 1, 1, 1, 1, 1], "this_folding_np_id": "12_95"}
