@@ -1,7 +1,8 @@
 
 
 function setup() {
-  createCanvas(1000, 800, WEBGL);
+  var canvas=createCanvas(1000, 800, WEBGL);
+  canvas.parent('processinganimationdiv');
   fill(204);
   
   

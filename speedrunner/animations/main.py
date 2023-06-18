@@ -87,7 +87,9 @@ def main(N,animation_steps=10):
 		
 				for node_id in G.nodes:
 					animations[node_id].append([float(p) for p in G.nodes[node_id]['pos']])
-			outputfilename="_".join([str(N),str(np_id),str(hash(close_neighbors)),str(max_angle),str(animation_steps)])+'.json'
+# 			I NEED A SIMPLIFIED FILENAME STRUCTURE THAT CAN SERVE AS A LOOKUP ON THE APP
+# 			outputfilename="_".join([str(N),str(hash(close_neighbors)),str(max_angle),str(animation_steps)])+'.json'
+			outputfilename="_".join([str(N),str(np_id),str(max_angle)])+'.json'
 			d=open('outputs/%s/%s' %(str(N),outputfilename),'w')
 			d.write(json.dumps(animations))
 			d.close()

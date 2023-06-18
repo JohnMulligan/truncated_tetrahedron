@@ -101,7 +101,7 @@ def make_processing_animation(fname):
 	
 	print("-->",ints)
 	
-	N,close_neighbors,max_angle,animation_steps=ints
+	N,np_id,max_angle=ints
 	
 	basedirpath='outputs/'
 	os.makedirs(basedirpath+'%s/' %str(N), exist_ok=True)

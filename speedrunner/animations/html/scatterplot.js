@@ -1,5 +1,12 @@
 // THANKS, FOLKS! https://plotly.com/javascript/3d-scatter-plots/
-d3.csv('https://raw.githubusercontent.com/plotly/datasets/master/3d-scatter.csv', function(err, rows){
+// d3.csv('https://raw.githubusercontent.com/plotly/datasets/master/3d-scatter.csv', function(err, rows){
+
+
+
+
+d3.csv('https://raw.githubusercontent.com/JohnMulligan/truncated_tetrahedron/main/speedrunner/animations/html/12.csv', function(err, rows){
+
+
 function unpack(rows, key) {
 	return rows.map(function(row)
 	{ return row[key]; });}
@@ -36,5 +43,32 @@ var layout = {margin: {
 	b: 0,
 	t: 0
   }};
+
+
+
+
 Plotly.newPlot('scatterplotdiv', data, layout);
+
+var scatterplotdiv = document.getElementById('scatterplotdiv').on('plotly_click', function(data) {
+	console.log(data)
+});
+
+
+
+});
+
+scatterplotdiv.on('plotly_click', function(data){
+	console.log(data)
+//     var pts = '';
+// 
+//     for(var i=0; i < data.points.length; i++){
+// 
+//         pts = 'x = '+data.points[i].x +'\ny = '+
+// 
+//             data.points[i].y.toPrecision(4) + '\n\n';
+// 
+//     }
+// 
+//     alert('Closest point clicked:\n\n'+pts);
+
 });
