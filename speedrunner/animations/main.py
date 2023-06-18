@@ -57,6 +57,7 @@ def main(N,animation_steps=10):
 	for f in flagged:
 		print(f)
 	
+	
 	for thismatchline in matchstrs:
 		thismatch=json.loads(thismatchline)
 		animations={node_id:[] for node_id in G.nodes}
@@ -75,6 +76,7 @@ def main(N,animation_steps=10):
 		
 		if matchpair in flagged:		
 			print("making-->",matchpair)
+			st=time.time()
 			for folding_angle in np.linspace(min_angle,max_angle,animation_steps):
 				G=make_graph.main(N)
 
@@ -93,6 +95,7 @@ def main(N,animation_steps=10):
 			d=open('outputs/%s/%s' %(str(N),outputfilename),'w')
 			d.write(json.dumps(animations))
 			d.close()
+			print("finished in %s seconds"%(str(int(time.time()-st))))
 	
 if __name__=="__main__":
 	N=sys.argv[1]

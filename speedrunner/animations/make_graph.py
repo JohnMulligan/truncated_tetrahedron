@@ -59,7 +59,7 @@ def main(N,r=1000):
 	outernodeslist=[(n,G.nodes[n]['index']) for n in G.nodes]
 	outervertexlabels=[v[0] for v in outernodeslist]
 
-	print("outer nodes:",outernodeslist)
+# 	print("outer nodes:",outernodeslist)
 
 	innernodeslist=[
 		"_".join(
@@ -73,7 +73,7 @@ def main(N,r=1000):
 	innernodeslist[0]="first"
 	innernodeslist.append('last')
 	
-	print("inner nodes:",innernodeslist)
+# 	print("inner nodes:",innernodeslist)
 
 	prev_v=None
 

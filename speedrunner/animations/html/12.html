@@ -1,10 +1,28 @@
+<html>
 <head>
 	<style>
-	body { column-count: 2 }
-	div {
-	  width: 40em;
-	  columns: 20em;
-	  column-gap: 0;
+		* {
+		  box-sizing: border-box;
+		}
+
+		/* Create two equal columns that floats next to each other */
+		.column {
+		  float: left;
+		  padding: 10px;
+		}
+
+		/* Clear floats after the columns */
+		.row:after {
+		  content: "";
+		  display: table;
+		  clear: both;
+		}
+
+		/* Responsive layout - makes the two columns stack on top of each other instead of next to each other */
+		@media screen and (max-width: 600px) {
+		  .column {
+			width: 100%;
+		  }
 	}
 	</style>
 
@@ -15,30 +33,44 @@
 	
 	
 	<script src="../outputs/12/processing_12_0_1.41547199.js"></script>
-	<script src="../outputs/12/processing_12_1023_1.41547199.js"></script>
-	<script src="../outputs/12/processing_12_1024_1.41547199.js"></script>
+	<script src="../outputs/12/processing_12_63_1.41547199.js"></script>
+	<script src="../outputs/12/processing_12_126_1.41547199.js"></script>
 	<script src="../outputs/12/processing_12_127_1.41547199.js"></script>
 	<script src="../outputs/12/processing_12_191_1.41547199.js"></script>
+	<script src="../outputs/12/processing_12_192_1.41547199.js"></script>
+	<script src="../outputs/12/processing_12_255_1.41547199.js"></script>
 	<script src="../outputs/12/processing_12_256_1.41547199.js"></script>
+	<script src="../outputs/12/processing_12_319_1.41547199.js"></script>
 	<script src="../outputs/12/processing_12_320_1.41547199.js"></script>
+	<script src="../outputs/12/processing_12_447_1.41547199.js"></script>
 	<script src="../outputs/12/processing_12_448_1.41547199.js"></script>
 	<script src="../outputs/12/processing_12_480_1.41547199.js"></script>
+	<script src="../outputs/12/processing_12_511_1.41547199.js"></script>
 	<script src="../outputs/12/processing_12_512_1.41547199.js"></script>
+	<script src="../outputs/12/processing_12_575_1.41547199.js"></script>
 	<script src="../outputs/12/processing_12_576_1.41547199.js"></script>
 	<script src="../outputs/12/processing_12_639_1.41547199.js"></script>
-	<script src="../outputs/12/processing_12_63_1.41547199.js"></script>
+	<script src="../outputs/12/processing_12_640_1.41547199.js"></script>
 	<script src="../outputs/12/processing_12_703_1.41547199.js"></script>
+	<script src="../outputs/12/processing_12_704_1.41547199.js"></script>
+	<script src="../outputs/12/processing_12_767_1.41547199.js"></script>
 	<script src="../outputs/12/processing_12_768_1.41547199.js"></script>
+	<script src="../outputs/12/processing_12_895_1.41547199.js"></script>
 	<script src="../outputs/12/processing_12_896_1.41547199.js"></script>
-	
+	<script src="../outputs/12/processing_12_1023_1.41547199.js"></script>
+	<script src="../outputs/12/processing_12_1024_1.41547199.js"></script>	
 	
 
 </head>
 
 <body>
-	<p>Copyright John Connor Mulligan, 2023</p>
-	<div id='processinganimationdiv'></div>
-	<div id='scatterplotdiv'><!-- Plotly chart will be drawn inside this DIV --></div>
+<!-- from https://www.w3schools.com/howto/tryit.asp?filename=tryhow_css_two_columns_responsive -->
+	<div class="row">
+		<p>Copyright John Connor Mulligan, 2023</p>
+		<div class="column" id='processinganimationdiv'></div>
+		<div class="column" style="width:500px;height:500px" id='scatterplotdiv'><!-- Plotly chart will be drawn inside this DIV --></div>
+	</div>
 </body>
 <script src='scatterplot_12.js'></script>
 <script src='processinganimation_12.js'></script>
+</html>
