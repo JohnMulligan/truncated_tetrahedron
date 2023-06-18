@@ -12,7 +12,7 @@ def readtxtfile(filepath,delete=False):
 	t=d.read()
 	d.close()
 	if delete:
-		os.delete(filepath)
+		os.remove(filepath)
 	return(t)
 
 def main(N):
