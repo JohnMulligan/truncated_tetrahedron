@@ -4,7 +4,7 @@
 
 
 
-d3.csv('https://raw.githubusercontent.com/JohnMulligan/truncated_tetrahedron/main/speedrunner/animations/html/12.csv', function(err, rows){
+d3.csv('https://raw.githubusercontent.com/JohnMulligan/dihedral_public/main/12.csv', function(err, rows){
 
 
 function unpack(rows, key) {
@@ -16,10 +16,8 @@ var trace1 = {
 	mode: 'markers',
 	marker: {
 		size: 12,
-		line: {
-		color: 'rgba(217, 217, 217, 0.14)',
-		width: 0.5},
-		opacity: 0.8},
+		color: 'rgb(136, 8, 8)',
+		symbol: 'circle'},
 	type: 'scatter3d'
 };
 
@@ -27,14 +25,14 @@ var trace2 = {
 	x:unpack(rows, 'x2'), y: unpack(rows, 'y2'), z: unpack(rows, 'z2'),
 	mode: 'markers',
 	marker: {
-		color: 'rgb(127, 127, 127)',
+		color: 'rgb(0, 20, 217)',
 		size: 12,
 		symbol: 'circle',
-		line: {
-		color: 'rgb(204, 204, 204)',
-		width: 1},
-		opacity: 0.8},
+		opacity: 0.2},
 	type: 'scatter3d'};
+
+// console.log("trace1",trace1)
+// console.log("trace2",trace2)
 
 var data = [trace1, trace2];
 var layout = {margin: {
@@ -52,7 +50,7 @@ Plotly.newPlot('scatterplotdiv', data, layout);
 var scatterplotdiv = document.getElementById('scatterplotdiv').on('plotly_click', function(data) {
 	var p=data.points[0]
 	var tracename=p.fullData.name
-	console.log(tracename)
+// 	console.log(tracename)
 	var x=p.x
 	var y=p.y
 	var z=p.z
@@ -62,12 +60,14 @@ var scatterplotdiv = document.getElementById('scatterplotdiv').on('plotly_click'
 	
 	var xyz=['p',N,y,x]
 // 	console.log(xyz)
-	console.log(sketchname)
+// 	console.log(sketchname)
 	var scriptname=xyz.join('_')
-	
-	sketchname=scriptname;
-	
-	console.log(sketchname)
+// 	console.log(tracename)
+	if (tracename=='trace 0'){
+// 		console.log('success!')
+		sketchname=scriptname;
+	}
+// 	console.log(sketchname)
 	
 // 	p_12_191_1_41547199
 	
@@ -79,18 +79,3 @@ var scatterplotdiv = document.getElementById('scatterplotdiv').on('plotly_click'
 
 });
 
-scatterplotdiv.on('plotly_click', function(data){
-	console.log(data)
-//     var pts = '';
-// 
-//     for(var i=0; i < data.points.length; i++){
-// 
-//         pts = 'x = '+data.points[i].x +'\ny = '+
-// 
-//             data.points[i].y.toPrecision(4) + '\n\n';
-// 
-//     }
-// 
-//     alert('Closest point clicked:\n\n'+pts);
-
-});
