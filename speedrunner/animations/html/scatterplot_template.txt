@@ -1,7 +1,7 @@
 // THANKS, FOLKS! https://plotly.com/javascript/3d-scatter-plots/
 // d3.csv('https://raw.githubusercontent.com/plotly/datasets/master/3d-scatter.csv', function(err, rows){
 
-d3.csv('https://raw.githubusercontent.com/JohnMulligan/dihedral_public/main/12.csv', function(err, rows){
+d3.csv('____csv_uri____', function(err, rows){
 
 function unpack(rows, key) {
 	return rows.map(function(row)
@@ -45,7 +45,7 @@ var scatterplotdiv = document.getElementById('scatterplotdiv').on('plotly_click'
 	var z=p.z
 	x=x.replace("\.","_")
 	
-	var N='12'
+	____var_n____
 	
 	var xyz=['p',N,y,x]
 	var scriptname=xyz.join('_')
