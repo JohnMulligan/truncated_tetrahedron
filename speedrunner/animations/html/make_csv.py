@@ -60,8 +60,16 @@ def main(N):
 								quotechar='|', quoting=csv.QUOTE_MINIMAL)
 		headers=['x1','y1','z1','x2','y2','z2']
 		spamwriter.writerow(headers)
+		
 		for xyz in sortedxyz:
-			xyzbuffered=xyz+[None,None,None]
+			
+			x,y,z=xyz
+# 		1.41547199,22,8,,,
+			
+			if os.path.exists('../outputs/%s/processing_%s_%s_%s.js' %(N,N,y,x)):
+				xyzbuffered=xyz+[None,None,None]
+			else:
+				xyzbuffered=[None,None,None]+xyz
 			spamwriter.writerow(xyzbuffered)
 			
 		

@@ -157,8 +157,14 @@ def make_processing_animation(fname):
 	animation_text=re.sub("___STEPARRAY___",steparrayblock,animation_text)	
 	animation_text=re.sub("___FACIABLOCK___",facia_block,animation_text)
 
+
+	friendly_fname=re.sub("\.json","",fname)
+	friendly_fname=re.sub("\.","_",friendly_fname)
+	final_text="function p_%s(){\n%s}" %(friendly_fname,animation_text)
+	
+
 	d=open(basedirpath+"%s/processing_%s" %(str(N),re.sub("\.json",".js",fname)),"w")
-	d.write(animation_text)
+	d.write(final_text)
 	d.close()
 	
 if __name__=="__main__":

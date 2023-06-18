@@ -1,15 +1,5 @@
+function p_12_896_1_41547199(){
 
-
-function setup() {
-  var canvas=createCanvas(1000, 800, WEBGL);
-  canvas.parent('processinganimationdiv');
-  fill(204);
-  
-  
-  
-}
-
-function draw() {
 
   background(0);
 
@@ -188,16 +178,4 @@ vertex(L_x[t],L_y[t],L_z[t]);
 vertex(M_x[t],M_y[t],M_z[t]);
 vertex(last_x[t],last_y[t],last_z[t]);
 endShape(CLOSE);
-
-}
-
-function polygon( x, y,  radius,  npoints) {
-  var angle = 3 / npoints;
-  beginShape();
-  for (var a = 0; a < TWO_PI; a += angle) {
-    var sx = x + cos(a) * radius;
-    var sy = y + sin(a) * radius;
-    vertex(sx, sy);
-  }
-  endShape(CLOSE);
 }

@@ -50,7 +50,29 @@ var layout = {margin: {
 Plotly.newPlot('scatterplotdiv', data, layout);
 
 var scatterplotdiv = document.getElementById('scatterplotdiv').on('plotly_click', function(data) {
-	console.log(data)
+	var p=data.points[0]
+	var tracename=p.fullData.name
+	console.log(tracename)
+	var x=p.x
+	var y=p.y
+	var z=p.z
+	x=x.replace("\.","_")
+	
+	var N='12'
+	
+	var xyz=['p',N,y,x]
+// 	console.log(xyz)
+	console.log(sketchname)
+	var scriptname=xyz.join('_')
+	
+	sketchname=scriptname;
+	
+	console.log(sketchname)
+	
+// 	p_12_191_1_41547199
+	
+	
+	
 });
 
 
