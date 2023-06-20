@@ -1,0 +1,29 @@
+
+
+{"close_neighbors": "A__F*A__K*B_C__L_M*B__G*B__L*C__H*C__M*D_E__last*D__I*D__N*E__J*E__O*F__A*F__K*G__B*G__L*H__C*H__M*I__D*I__N*J_K__first*J__E*J__O*K__A*K__F*L_M__B_C*L__B*L__G*M__C*M__H*N__D*N__I*O__E*O__J*first__J_K*last__D_E", "close_neighborings_count": 36, "angle": 2.41112, "mean_close_neighborings": 0.1564247620730731, "this_folding": [-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1]}
+
+{"close_neighbors": "A__F*A__K*B_C__L_M*B__G*B__L*C__H*C__M*D_E__last*D__I*D__N*E__J*E__O*F__A*F__K*G__B*G__L*H__C*H__M*I__D*I__N*J_K__first*J__E*J__O*K__A*K__F*L_M__B_C*L__B*L__G*M__C*M__H*N__D*N__I*O__E*O__J*first__J_K*last__D_E", "close_neighborings_count": 36, "angle": 2.411120101010101, "mean_close_neighborings": 0.1563583365835038, "this_folding": [-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1]}
+
+{"close_neighbors": "A__F*A__K*B_C__L_M*B__G*B__L*C__H*C__M*D_E__last*D__I*D__N*E__J*E__O*F__A*F__K*G__B*G__L*H__C*H__M*I__D*I__N*J_K__first*J__E*J__O*K__A*K__F*L_M__B_C*L__B*L__G*M__C*M__H*N__D*N__I*O__E*O__J*first__J_K*last__D_E", "close_neighborings_count": 36, "angle": 2.411120202020202, "mean_close_neighborings": 0.15629191112774557, "this_folding": [-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1]}
+
+{"close_neighbors": "A__F*A__K*B_C__L_M*B__G*B__L*C__H*C__M*D_E__last*D__I*D__N*E__J*E__O*F__A*F__K*G__B*G__L*H__C*H__M*I__D*I__N*J_K__first*J__E*J__O*K__A*K__F*L_M__B_C*L__B*L__G*M__C*M__H*N__D*N__I*O__E*O__J*first__J_K*last__D_E", "close_neighborings_count": 36, "angle": 2.411120303030303, "mean_close_neighborings": 0.15622548572388956, "this_folding": [-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1]}
+
+{"close_neighbors": "A__F*A__K*B_C__L_M*B__G*B__L*C__H*C__M*D_E__last*D__I*D__N*E__J*E__O*F__A*F__K*G__B*G__L*H__C*H__M*I__D*I__N*J_K__first*J__E*J__O*K__A*K__F*L_M__B_C*L__B*L__G*M__C*M__H*N__D*N__I*O__E*O__J*first__J_K*last__D_E", "close_neighborings_count": 36, "angle": 2.411120404040404, "mean_close_neighborings": 0.1561590602682356, "this_folding": [-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1]}
+
+{"close_neighbors": "A__F*A__K*B_C__L_M*B__G*B__L*C__H*C__M*D_E__last*D__I*D__N*E__J*E__O*F__A*F__K*G__B*G__L*H__C*H__M*I__D*I__N*J_K__first*J__E*J__O*K__A*K__F*L_M__B_C*L__B*L__G*M__C*M__H*N__D*N__I*O__E*O__J*first__J_K*last__D_E", "close_neighborings_count": 36, "angle": 2.411120505050505, "mean_close_neighborings": 0.15609263491185388, "this_folding": [-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1]}
+
+{"close_neighbors": "A__F*A__K*B_C__L_M*B__G*B__L*C__H*C__M*D_E__last*D__I*D__N*E__J*E__O*F__A*F__K*G__B*G__L*H__C*H__M*I__D*I__N*J_K__first*J__E*J__O*K__A*K__F*L_M__B_C*L__B*L__G*M__C*M__H*N__D*N__I*O__E*O__J*first__J_K*last__D_E", "close_neighborings_count": 36, "angle": 2.411120606060606, "mean_close_neighborings": 0.15602620937677192, "this_folding": [-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1]}
+
+{"close_neighbors": "A__F*A__K*B_C__L_M*B__G*B__L*C__H*C__M*D_E__last*D__I*D__N*E__J*E__O*F__A*F__K*G__B*G__L*H__C*H__M*I__D*I__N*J_K__first*J__E*J__O*K__A*K__F*L_M__B_C*L__B*L__G*M__C*M__H*N__D*N__I*O__E*O__J*first__J_K*last__D_E", "close_neighborings_count": 36, "angle": 2.411120707070707, "mean_close_neighborings": 0.15595978396532606, "this_folding": [-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1]}
+
+{"close_neighbors": "A__F*A__K*B_C__L_M*B__G*B__L*C__H*C__M*D_E__last*D__I*D__N*E__J*E__O*F__A*F__K*G__B*G__L*H__C*H__M*I__D*I__N*J_K__first*J__E*J__O*K__A*K__F*L_M__B_C*L__B*L__G*M__C*M__H*N__D*N__I*O__E*O__J*first__J_K*last__D_E", "close_neighborings_count": 36, "angle": 2.411120808080808, "mean_close_neighborings": 0.1558933586200167, "this_folding": [-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1]}
+
+{"close_neighbors": "A__F*A__K*B_C__L_M*B__G*B__L*C__H*C__M*D_E__last*D__I*D__N*E__J*E__O*F__A*F__K*G__B*G__L*H__C*H__M*I__D*I__N*J_K__first*J__E*J__O*K__A*K__F*L_M__B_C*L__B*L__G*M__C*M__H*N__D*N__I*O__E*O__J*first__J_K*last__D_E", "close_neighborings_count": 36, "angle": 2.411120909090909, "mean_close_neighborings": 0.15582693323465174, "this_folding": [-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1]}
+
+{"close_neighbors": "A__F*A__K*B_C__L_M*B__G*B__L*C__H*C__M*D_E__last*D__I*D__N*E__J*E__O*F__A*F__K*G__B*G__L*H__C*H__M*I__D*I__N*J_K__first*J__E*J__O*K__A*K__F*L_M__B_C*L__B*L__G*M__C*M__H*N__D*N__I*O__E*O__J*first__J_K*last__D_E", "close_neighborings_count": 36, "angle": 2.41112101010101, "mean_close_neighborings": 0.15576050784491746, "this_folding": [-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1]}
+
+{"close_neighbors": "A__F*A__K*B_C__L_M*B__G*B__L*C__H*C__M*D_E__last*D__I*D__N*E__J*E__O*F__A*F__K*G__B*G__L*H__C*H__M*I__D*I__N*J_K__first*J__E*J__O*K__A*K__F*L_M__B_C*L__B*L__G*M__C*M__H*N__D*N__I*O__E*O__J*first__J_K*last__D_E", "close_neighborings_count": 36, "angle": 2.411121111111111, "mean_close_neighborings": 0.15569408242218669, "this_folding": [-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1]}
+
+{"close_neighbors": "A__F*A__K*B_C__L_M*B__G*B__L*C__H*C__M*D_E__last*D__I*D__N*E__J*E__O*F__A*F__K*G__B*G__L*H__C*H__M*I__D*I__N*J_K__first*J__E*J__O*K__A*K__F*L_M__B_C*L__B*L__G*M__C*M__H*N__D*N__I*O__E*O__J*first__J_K*last__D_E", "close_neighborings_count": 36, "angle": 2.411121212121212, "mean_close_neighborings": 0.1556276571226329, "this_folding": [-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1]}
+
+{"close_neighbors": "A__F*A__K*B_C__L_M*B__G*B__L*C__H*C__M*D_E__last*D__I*D__N*E__J*E__O*F__A*F__K*G__B*G__L*H__C*H__M*I__D*I__N*J_K__first*J__E*J__O*K__A*K__F*L_M__B_C*L__B*L__G*M__C*M__H*N__D*N__I*O__E*O__J*first__J_K*last__D_E", "close_neighborings_count": 36, "angle": 2.411121313131313, "mean_close_neighborings": 0.15556123174586386, "this_folding": [-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1]}

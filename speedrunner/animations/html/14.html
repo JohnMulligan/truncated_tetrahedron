@@ -1,0 +1,89 @@
+<html>
+<head>
+	<style>
+		* {
+		  box-sizing: border-box;
+		}
+
+		/* Create two equal columns that floats next to each other */
+		.column {
+		  float: left;
+		  padding: 10px;
+		}
+
+		/* Clear floats after the columns */
+		.row:after {
+		  content: "";
+		  display: table;
+		  clear: both;
+		}
+
+		/* Responsive layout - makes the two columns stack on top of each other instead of next to each other */
+		@media screen and (max-width: 600px) {
+		  .column {
+			width: 100%;
+		  }
+	}
+	</style>
+
+	<!-- Load plotly.js into the DOM -->
+	<script src='https://cdn.plot.ly/plotly-2.9.0.min.js'></script>
+	<script src='https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.17/d3.min.js'></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.4.1/p5.js"></script>
+	
+	
+	<script src="../outputs/14/processing_14_1638_1.910629385.js"></script>
+<script src="../outputs/14/processing_14_1639_1.910629385.js"></script>
+<script src="../outputs/14/processing_14_408_1.910629385.js"></script>
+<script src="../outputs/14/processing_14_409_1.910629385.js"></script>
+<script src="../outputs/14/processing_14_2456_1.910629385.js"></script>
+<script src="../outputs/14/processing_14_2457_1.910629385.js"></script>
+<script src="../outputs/14/processing_14_3686_1.910629385.js"></script>
+<script src="../outputs/14/processing_14_3687_1.910629385.js"></script>
+<script src="../outputs/14/processing_14_1_2.411870493.js"></script>
+<script src="../outputs/14/processing_14_1664_2.411870493.js"></script>
+<script src="../outputs/14/processing_14_1024_2.411870493.js"></script>
+<script src="../outputs/14/processing_14_3840_2.411870493.js"></script>
+<script src="../outputs/14/processing_14_3071_2.411870493.js"></script>
+<script src="../outputs/14/processing_14_3072_2.411870493.js"></script>
+<script src="../outputs/14/processing_14_2815_2.411870493.js"></script>
+<script src="../outputs/14/processing_14_2816_2.411870493.js"></script>
+<script src="../outputs/14/processing_14_2047_2.411870493.js"></script>
+<script src="../outputs/14/processing_14_2048_2.411870493.js"></script>
+<script src="../outputs/14/processing_14_3456_2.411870493.js"></script>
+<script src="../outputs/14/processing_14_255_2.411870493.js"></script>
+<script src="../outputs/14/processing_14_1279_2.411870493.js"></script>
+<script src="../outputs/14/processing_14_1280_2.411870493.js"></script>
+<script src="../outputs/14/processing_14_2432_2.411870493.js"></script>
+<script src="../outputs/14/processing_14_3200_2.411870493.js"></script>
+<script src="../outputs/14/processing_14_3327_2.411870493.js"></script>
+<script src="../outputs/14/processing_14_3328_2.411870493.js"></script>
+<script src="../outputs/14/processing_14_2304_2.411870493.js"></script>
+<script src="../outputs/14/processing_14_1535_2.411870493.js"></script>
+<script src="../outputs/14/processing_14_1536_2.411870493.js"></script>
+<script src="../outputs/14/processing_14_3583_2.411870493.js"></script>
+<script src="../outputs/14/processing_14_3584_2.411870493.js"></script>
+<script src="../outputs/14/processing_14_4094_2.411870493.js"></script>
+<script src="../outputs/14/processing_14_4095_2.411870493.js"></script>
+<script src="../outputs/14/processing_14_4096_2.411870493.js"></script>
+<script src="../outputs/14/processing_14_1791_2.411870493.js"></script>
+<script src="../outputs/14/processing_14_1792_2.411870493.js"></script>
+<script src="../outputs/14/processing_14_511_2.411870493.js"></script>
+<script src="../outputs/14/processing_14_768_2.411870493.js"></script>
+<script src="../outputs/14/processing_14_2560_2.411870493.js"></script>
+<script src="../outputs/14/processing_14_2688_2.411870493.js"></script>	
+	
+
+</head>
+
+<body>
+<!-- from https://www.w3schools.com/howto/tryit.asp?filename=tryhow_css_two_columns_responsive -->
+	<div class="row">
+		<p>Copyright John Connor Mulligan, 2023</p>
+		<div class="column" id='processinganimationdiv'></div>
+		<div class="column" style="width:500px;height:500px" id='scatterplotdiv'><!-- Plotly chart will be drawn inside this DIV --></div>
+	</div>
+</body>
+<script src='scatterplot_14.js'></script>
+<script src='processinganimation_14.js'></script>
+</html>
