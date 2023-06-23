@@ -1,1 +1,0 @@
-outdir='/mnt/rdf/jcm10/tetrahedra/dodecagon'
