@@ -1,7 +1,7 @@
 // THANKS, FOLKS! https://plotly.com/javascript/3d-scatter-plots/
 // d3.csv('https://raw.githubusercontent.com/plotly/datasets/master/3d-scatter.csv', function(err, rows){
 
-d3.csv('https://raw.githubusercontent.com/JohnMulligan/dihedral_public/main/'+N.toString()+'.csv', function(err, rows){
+d3.csv('https://raw.githubusercontent.com/JohnMulligan/dihedral_public/main/12.csv', function(err, rows){
 
 function unpack(rows, key) {
 	return rows.map(function(row)

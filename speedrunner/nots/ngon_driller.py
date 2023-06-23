@@ -68,7 +68,7 @@ def evaluate_folding(G,closeness_threshold):
 		mean_close_neighborings=sum(all_close_distances)/len(all_close_distances)
 	else:
 		mean_close_neighborings=None
-	print("minimum:",min(all_distances),"mean",mean_close_neighborings)
+# 	print("minimum:",min(all_distances),"mean",mean_close_neighborings)
 	return close_neighborings,mean_close_neighborings
 
 def main(N,r=1000):
@@ -128,30 +128,33 @@ def main(N,r=1000):
 # 	d.close()
 # 	min_angle,max_angle=[float(i) for i in t.split("\t")]
 	min_angle=0
+# 	min_angle=0.46
 	max_angle=pi
-	
-	levels=range(1,10)
-	
 	sampling_steps=int((max_angle-min_angle)*100)
+	
+	levels=range(1,4)
+	
+	
 	
 	this_folding=[-1 for i in range(len(fold_spoke_indices))]
 	
-# 	if min_angle==0:
-# 		zerotrip=False
-# 	else:
-# 		zerotrip=True
 	
-	d=open("outputs/%s/drilldown.txt" %str(N),"a")
 	
 	folding_angle=min_angle
-	while folding_angle < 3.1:
-		zerotrip=False
+	zerotrip=False
+	drilldownrunning=False
+	
+	while min_angle < pi:
+		nomatch=False
+		justbottomedout=False
 		for level in levels:
 		
 			threshold=r*.1
 			print("threshold:",threshold)
 			print("min angle:",min_angle)
 			print("max angle",max_angle)
+			prev_max_angle=max_angle
+			print("prev max angle ffs",prev_max_angle)
 		
 			prev_distance=None
 			prev_angle=min_angle
@@ -161,10 +164,9 @@ def main(N,r=1000):
 			folding_angles=np.linspace(min_angle,max_angle,sampling_steps)
 		
 			#we've got to get past the first downward slope
-
 		
 			for folding_angle in folding_angles:
-				print(folding_angle)
+				print("angle",folding_angle)
 				G=make_graph.main(N,r)
 	
 				G=folder.main(
@@ -176,28 +178,49 @@ def main(N,r=1000):
 				close_neighborings,mean_close_neighborings=evaluate_folding(G,threshold)
 			
 				if mean_close_neighborings is not None:
-				
-					print(prev_distance,mean_close_neighborings,prev_distance<mean_close_neighborings)
-					if prev_distance<mean_close_neighborings and prev_distance is not None:
-						print("???",close_neighborings,mean_close_neighborings)
-						if zerotrip:
-							print("bottommed out",folding_angle,mean_close_neighborings)
-							min_angle=prev_angle-.1**(level+1)
-							max_angle=folding_angle
-							sampling_steps=100
-							prev_distance=None
-							break
+					print("--->",'\t'.join([str(i) for i in [folding_angle,mean_close_neighborings]]))
+# 					print(prev_distance,mean_close_neighborings,prev_distance<mean_close_neighborings)
+					if prev_distance is not None:
+						if prev_distance<mean_close_neighborings:
+							if not drilldownrunning:
+								prev_max_angle=folding_angle+.1**(int(level)-1)
+								drilldownrunning=True
+	# 						print("???",close_neighborings,mean_close_neighborings)
+							if zerotrip:
+								print("bottomed out",folding_angle,mean_close_neighborings)
+								min_angle=prev_angle-.1**(int(level)+1)
+								max_angle=folding_angle
+								sampling_steps=100
+								prev_distance=None
+								justbottommedout=True
+								drilldownrunning=False
+								break
 					prev_distance=mean_close_neighborings
 				else:
 					print("no close neighbors. continuing...")
 					if not zerotrip:
-						print("cleared the zero trap")
+						print("cleared the init local minimum")
 						zerotrip=True
 			
 				prev_angle=folding_angle
+			
+			if folding_angle==max_angle and not justbottommedout:
+				print('unsuccessfully ended drilldown attempt -- breaking out.')
+				justbottomedout=False
+				nomatch=True
+				break
+				
+		if not nomatch:
 			print("BEST MATCH-->",folding_angle)
+			d=open("outputs/%s/drilldown.txt" %str(N),"a")
 			d.write("\n\n"+str(folding_angle))
-			folding_angle+=.1
+			d.close()
+		print("ended drilldown attempt")
+		min_angle=prev_max_angle
+		max_angle=pi
+		sampling_steps=int((max_angle-min_angle)*100)
+		
+		
 			
 	# 		print(folding_id,"time per folding attempt:",elapsed_seconds/folds_completed, 'seconds.',"total folding time:",int(elapsed_seconds/60),"minutes")
 
