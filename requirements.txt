@@ -7,4 +7,3 @@ pyparsing
 sympy
 typing-extensions
 networkx
-matplotlib

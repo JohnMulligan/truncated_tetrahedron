@@ -1,9 +1,8 @@
-import matplotlib.pyplot as plt
 import numpy as np
 import json
 import re
 import os 
-import matplotlib.pyplot as plt
+# import matplotlib.pyplot as plt
 
 def make_facia(G):
 	
