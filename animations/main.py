@@ -9,7 +9,6 @@ import numpy as np
 import time
 import json
 import illustrator
-from mpl_toolkits.mplot3d import Axes3D
 import folder
 
 
