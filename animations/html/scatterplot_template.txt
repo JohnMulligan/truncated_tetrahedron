@@ -22,7 +22,7 @@ var trace2 = {
 	mode: 'markers',
 	marker: {
 		color: 'rgb(0, 20, 217)',
-		size: 12,
+		size: 5,
 		symbol: 'circle',
 		opacity: 0.2},
 	type: 'scatter3d'};

@@ -65,7 +65,7 @@ def evaluate_folding(G,closeness_threshold):
 						
 							close_neighborings[neighboring_id]=ed
 	
-	print(min(all_distances),all_close_distances)
+# 	print(min(all_distances),all_close_distances)
 	if len(all_close_distances)>0:
 		mean_close_neighborings=sum(all_close_distances)/len(all_close_distances)
 	else:
@@ -75,7 +75,7 @@ def evaluate_folding(G,closeness_threshold):
 
 
 def main(N,animation_steps=10):
-	
+	st = time.time()
 	N=int(N)
 	
 	G=make_graph.main(N)
@@ -116,8 +116,8 @@ def main(N,animation_steps=10):
 	
 # 	flagged=[l.split('\t') for l in t.split("\n\n") if l!='']
 	
-	for f in flagged:
-		print(f)
+# 	for f in flagged:
+# 		print(f)
 	
 	
 	for thismatchline in matchstrs:
@@ -138,7 +138,7 @@ def main(N,animation_steps=10):
 		
 		if matchpair in flagged:		
 			print("making-->",matchpair)
-			st=time.time()
+			loopst=time.time()
 			for folding_angle in np.linspace(min_angle,max_angle,animation_steps):
 				G=make_graph.main(N)
 
@@ -159,7 +159,8 @@ def main(N,animation_steps=10):
 			d=open('outputs/%s/%s' %(str(N),outputfilename),'w')
 			d.write(json.dumps(animations))
 			d.close()
-			print("finished in %s seconds"%(str(int(time.time()-st))))
+			print("loop in %s seconds"%(str(int(time.time()-st))))
+	print("finished in %s seconds"%(str(int(time.time()-st))))
 	
 if __name__=="__main__":
 	N=sys.argv[1]

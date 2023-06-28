@@ -143,25 +143,24 @@ def main(N,r=1000):
 	folding_angle=min_angle
 	
 	
-	
+	st=time.time()
 	while min_angle < pi:
 		#we begin on a departure from a local minimum
 		clearing_local_min=True
 		drilldownrunning=False
 		for level in levels:
 			threshold=r*.1
-			print("threshold:",threshold)
-			print("min angle:",min_angle)
-			print("max angle",max_angle)
+# 			print("threshold:",threshold)
+# 			print("min angle:",min_angle)
+# 			print("max angle",max_angle)
 			prev_max_angle=max_angle
-# 			print("prev max angle ffs",prev_max_angle)
 			prev_distance=None
 			prev_angle=min_angle
-			print("sampling steps:",sampling_steps)
+# 			print("sampling steps:",sampling_steps)
 			folding_angles=np.linspace(min_angle,max_angle,sampling_steps)
 			#run through all the angles in this sample space
 			for folding_angle in folding_angles:
-				print("angle",folding_angle)
+# 				print("angle",folding_angle)
 				G=make_graph.main(N,r)
 				G=folder.main(
 					G=G,
@@ -171,13 +170,13 @@ def main(N,r=1000):
 				close_neighborings,mean_close_neighborings=evaluate_folding(G,threshold)
 				#if we have any hits, then we are either approaching or departing a local min
 				if mean_close_neighborings is not None:
-					print("--->",'\t'.join([str(i) for i in [folding_angle,"prev:",prev_distance,"current:",mean_close_neighborings]]))
+# 					print("--->",'\t'.join([str(i) for i in [folding_angle,"prev:",prev_distance,"current:",mean_close_neighborings]]))
 					#if there is a previous distance logged, we can compare
 					if prev_distance is not None:
 						#departing a local min
 						if prev_distance<mean_close_neighborings:
 							if not clearing_local_min:
-								print("bottomed out",folding_angle,mean_close_neighborings)
+# 								print("bottomed out",folding_angle,mean_close_neighborings)
 								#set new params so we can narrow in
 								min_angle=prev_angle-.1**(int(level)+1)
 								max_angle=folding_angle
@@ -192,23 +191,27 @@ def main(N,r=1000):
 								prev_max_angle=max_angle+.1**(int(level)-1)
 								drilldownrunning=True
 				else:
-					print("no close neighbors. continuing...")
+# 					print("no close neighbors. continuing...")
 					clearing_local_min=False
 					drilldownrunning=False
 				#either way, we now have a comparison value as we're in hit land
 				##& so the next iteration will start comparing
 				prev_distance=mean_close_neighborings
 				prev_angle=folding_angle
-		print("BEST MATCH-->",folding_angle)
+# 		print("BEST MATCH-->",folding_angle)
 		d=open("outputs/%s/drilldown.txt" %str(N),"a")
 		d.write("\n\n"+str(folding_angle))
 		d.close()
-		print("ended drilldown attempt")
+# 		print("ended drilldown attempt")
 		min_angle=prev_max_angle
 		max_angle=pi
 		sampling_steps=int((max_angle-min_angle)*100)
 # 		print(folding_id,"time per folding attempt:",elapsed_seconds/folds_completed, 'seconds.',"total folding time:",int(elapsed_seconds/60),"minutes")
-
+	running_time=time.time()-st
+	d=open('outputs/%s/running_time.txt' %str(N),'w')
+	d.write(str(running_time))
+	d.close()
+		
 if __name__=="__main__":
 	N=int(sys.argv[1])
 	main(N)

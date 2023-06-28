@@ -14,35 +14,34 @@ def main(G,this_folding,angle):
 # 	print(fold_spoke_indices)	
 # 	print(this_folding)
 	for r in fold_spoke_indices:
-	
+		
 # 		print("---")
 		
 		this_spoke_name=[e for e in spokes.edges if spokes.edges[e[0],e[1]]['index']==r][0]
-	
+		
 		subsequent_spoke_idxs=fold_spoke_indices[r:]
-	
+		
 # 		print("subsequent spoke_idxs", subsequent_spoke_idxs)
-	
+		
 		affected_nodes=[]
 		
 		rna=G.nodes[this_spoke_name[0]]
 		rnb=G.nodes[this_spoke_name[1]]
 		rna['name']=this_spoke_name[0]
 		rnb['name']=this_spoke_name[1]
-
-
+		
 		if rna['set']=='inner':
 			tmp=rna
 			rna=rnb
 			rnb=tmp
+		
 # 		print("this spoke",r,(rna['name'],rnb['name']))
 
 		rotation_axis=Line3D(
 			Point3D(rna['pos']),
 			Point3D(rnb['pos'])
 		)
-
-
+		
 # 		print("rotation axis",r,this_spoke_name[0],this_spoke_name[1],rotation_axis)
 	
 		sign=this_folding[fold_spoke_indices.index(r)]
