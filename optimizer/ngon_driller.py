@@ -160,7 +160,7 @@ def main(N,r=1000):
 			folding_angles=np.linspace(min_angle,max_angle,sampling_steps)
 			#run through all the angles in this sample space
 			for folding_angle in folding_angles:
-# 				print("angle",folding_angle)
+				print("angle",folding_angle)
 				G=make_graph.main(N,r)
 				G=folder.main(
 					G=G,
@@ -198,8 +198,8 @@ def main(N,r=1000):
 				##& so the next iteration will start comparing
 				prev_distance=mean_close_neighborings
 				prev_angle=folding_angle
-# 		print("BEST MATCH-->",folding_angle)
-		d=open("outputs/%s/drilldown.txt" %str(N),"a")
+		print("BEST MATCH-->",folding_angle)
+		d=open("outputs/%s/known_angles.txt" %str(N),"a")
 		d.write("\n\n"+str(folding_angle))
 		d.close()
 # 		print("ended drilldown attempt")

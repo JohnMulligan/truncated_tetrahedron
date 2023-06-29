@@ -44,16 +44,16 @@ def main(N,r=1000):
 		else:
 			for a in alphabet:
 				if alphabet.index(a)<=N:
-					print('---')
+# 					print('---')
 					this_v=''.join([buffer,a])
-					print(this_v)
+# 					print(this_v)
 					G.add_node(this_v,set='outer',index=idx)
-					print(G.nodes[this_v])
+# 					print(G.nodes[this_v])
 					if prev_v is not None:
 						G.add_edge(prev_v,this_v, set='outer',index=None)
-						print(G.edges([this_v]))
+# 						print(G.edges([this_v]))
 					prev_v=this_v
-					print('---')
+# 					print('---')
 					idx+=1
 
 	outernodeslist=[(n,G.nodes[n]['index']) for n in G.nodes]
