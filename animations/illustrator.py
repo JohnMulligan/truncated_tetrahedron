@@ -1,3 +1,6 @@
+from operator import itemgetter
+import csv
+import plotly.graph_objects as go
 import numpy as np
 import json
 import re
@@ -94,6 +97,130 @@ def draw_graph(G):
 	fig.tight_layout()
 	plt.show()
 
+
+
+
+
+def readtxtfile(filepath):
+	d=open(filepath)
+	t=d.read()
+	d.close()
+	return(t)
+	
+def makeextrafiles(N):
+
+	N=int(N)
+	
+	outputfile='../optimizer/outputs/%d/consolidated.txt' %N
+	
+	consolidated=readtxtfile(outputfile)
+	
+	consolidatedlines=[c for c in consolidated.split('\n\n') if c!='']
+	
+	angles=[]
+	hits=[]
+	np_ids=[]
+	
+	xyzlist=[]
+	
+	for line in consolidatedlines:
+		j=json.loads(line)
+		this_folding_np_id=j['this_folding_np_id']
+		close_neighborings_count=j['close_neighborings_count']
+		angle=j['angle']
+		angles.append(angle)
+		hits.append(close_neighborings_count)
+		n,np_id=[int(i) for i in this_folding_np_id.split('_')]
+		xyzlist.append([angle,np_id,close_neighborings_count])
+
+	sortedxyz=sorted(xyzlist, key=itemgetter(0))
+	
+	fig = go.Figure(data=[go.Scatter3d(x=angles, y=np_ids, z=hits,
+									   mode='markers')])
+	
+	fig.update_layout(scene = dict(
+		xaxis_title="angle",
+		yaxis_title="np_id",
+		zaxis_title="hit count"
+	))
+	
+	
+# 	d=open('html_template.txt','r')
+# 	html_template=d.read()
+# 	d.close()
+# 	
+# 	htmlscriptblocklines=[]
+	processingscriptblocklines=[]
+	
+	with open('../../dihedral_flask/static/%d/%d.csv' %(N,N), 'w', newline='') as csvfile:
+		spamwriter = csv.writer(csvfile, delimiter=',',
+								quotechar='|', quoting=csv.QUOTE_MINIMAL)
+		headers=['x1','y1','z1','x2','y2','z2']
+		spamwriter.writerow(headers)
+		
+		for xyz in sortedxyz:
+			
+			x,y,z=[str(i) for i in xyz]
+			print(x,y,z)
+# 		1.41547199,22,8,,,
+			
+			if os.path.exists('../../dihedral_flask/static/%s/processing_%s_%s_%s.js' %(N,N,y,x)):
+				xyzbuffered=xyz+[None,None,None]
+# 				htmlscriptblocklines.append('<script src="../outputs/%s/processing_%s_%s_%s.js"></script>' %(N,N,y,x))
+				jsfriendlyname=re.sub("\.","_",x)
+				pfilename='p_%s_%s_%s' %(N,y,jsfriendlyname)
+				processingscriptname="if(sketchname == '%s') {%s();}" %(pfilename,pfilename)
+				processingscriptblocklines.append(processingscriptname)
+				exampleprocessingscriptname=pfilename
+			else:
+				xyzbuffered=[None,None,None]+xyz
+			spamwriter.writerow(xyzbuffered)
+			
+			
+			
+			
+# 	htmlscriptblock="\n".join(htmlscriptblocklines)
+# 	
+# 	
+# 	html=re.sub("____processing_scripts_block____",htmlscriptblock,html_template)
+# 	html_appendix="<script src='scatterplot_%s.js'></script>\n<script src='processinganimation_%s.js'></script>\n</html>" %(N,N)
+# 	html+=html_appendix
+	
+# 	d=open("%s.html" %N,'w')
+# 	d.write(html)
+# 	d.close()
+	
+	d=open("html/processinganimation_template.txt",'r')
+	js_template=d.read()
+	d.close()
+	
+	jsblock="\n".join(processingscriptblocklines)
+	js=re.sub('____sketches____',jsblock,js_template)
+	js=re.sub('____sketchnumberone____',exampleprocessingscriptname,js)
+	
+	d=open("../../dihedral_flask/static/js/processinganimation_%s.js" %N,'w')
+	d.write(js)
+	d.close()
+	
+# 	d=open("scatterplot_template.txt",'r')
+# 	scatterplot_template=d.read()
+# 	d.close()
+# 	
+# 	scatterplot=re.sub('____csv_uri____','https://raw.githubusercontent.com/JohnMulligan/dihedral_public/main/%s.csv' %N,scatterplot_template)
+# 	scatterplot=re.sub("____var_n____","var N='%s'" %N,scatterplot)
+# 	
+# 	d=open("scatterplot_%s.js" %N,"w")
+# 	d.write(scatterplot)
+# 	d.close()
+	
+	
+	
+	##there's got. to. be. a. better. way!
+	## (i need a partner who can use javascript)
+
+
+
+
 def make_processing_animation(fname):
 	
 	ints=[re.sub("\.json","",i) for i in fname.split("_")]
@@ -102,9 +229,15 @@ def make_processing_animation(fname):
 	
 	N,np_id,max_angle=ints
 	
-	basedirpath='outputs/'
-	os.makedirs(basedirpath+'%s/' %str(N), exist_ok=True)
-
+	if os.path.exists('../../dihedral_flask/static/'):
+		basedirpath_w=('../../dihedral_flask/static/')
+		os.makedirs(basedirpath_w+'%s/' %str(N), exist_ok=True)
+	else:
+		basedirpath_w='outputs/'
+	basedirpath_r='outputs/'
+	os.makedirs(basedirpath_r+'%s/' %str(N), exist_ok=True)
+	
+	
 	d=open("animationblock.txt","r")
 	t=d.read()
 	
@@ -112,14 +245,14 @@ def make_processing_animation(fname):
 	
 	d.close()
 
-	d=open(basedirpath+ "%s/%s" %(str(N),fname),"r")
+	d=open(basedirpath_r+ "%s/%s" %(str(N),fname),"r")
 	t=d.read()
 	d.close()
 	
 	j=json.loads(t)
 	vertices=j
 
-	d=open(basedirpath+ "%s/%s_faces.js" %(str(N),str(N)),'r')
+	d=open(basedirpath_r+ "%s/%s_faces.js" %(str(N),str(N)),'r')
 	facia_block=d.read()
 	d.close()
 		
@@ -162,7 +295,7 @@ def make_processing_animation(fname):
 	final_text="function p_%s(){\n%s}" %(friendly_fname,animation_text)
 	
 
-	d=open(basedirpath+"%s/processing_%s" %(str(N),re.sub("\.json",".js",fname)),"w")
+	d=open(basedirpath_w+"%s/processing_%s" %(str(N),re.sub("\.json",".js",fname)),"w")
 	d.write(final_text)
 	d.close()
 	

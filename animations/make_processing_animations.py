@@ -2,6 +2,7 @@ import os
 import re
 import illustrator
 
+
 def main():
 	
 	ngons=[i for i in os.listdir('outputs') if re.match("[0-9]+",i)]
@@ -11,6 +12,11 @@ def main():
 		animations=[i for i in os.listdir(os.path.join('outputs',ngon)) if i.endswith('.json')]
 		for animation in animations:
 			illustrator.make_processing_animation(animation)
+		illustrator.makeextrafiles(ngon)
+
+
+
+
 
 
 if __name__=="__main__":
