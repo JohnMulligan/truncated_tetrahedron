@@ -74,7 +74,7 @@ def evaluate_folding(G,closeness_threshold):
 
 
 
-def main(N,animation_steps=10):
+def main(N,worker_number,number_of_workers,animation_steps=10):
 	st = time.time()
 	N=int(N)
 	
@@ -101,8 +101,6 @@ def main(N,animation_steps=10):
 	nodes_indices=[G.nodes[n]['index'] for n in G.nodes if G.nodes[n]['index'] is not None]
 		
 	illustrator.draw_faces(G,N)
-
-	
 	
 	d=open("../optimizer/outputs/%s/consolidated.txt" %(str(N)))
 	t=d.read()
@@ -114,19 +112,24 @@ def main(N,animation_steps=10):
 	d.close()
 	flagged=[l.split('\t') for l in t.split("\n") if l!='']
 	
-# 	flagged=[l.split('\t') for l in t.split("\n\n") if l!='']
+	workbatches=np.array_split(flagged,number_of_workers)
 	
-# 	for f in flagged:
-# 		print(f)
+	this_work_batch=[list(i) for i in workbatches[worker_number]]
 	
+	print("total work remaining",len(flagged))
+	
+	print(len(list(set(['__'.join(f) for f in flagged]))))
+	print("amount of work for this worker",len(this_work_batch))
+# 	print("WORKBATCH",this_work_batch)
+	os.makedirs('outputs/%d/checkpoints' %N, exist_ok=True)
+	checkpointfilepath=('outputs/%d/checkpoints/%d.txt' %(N,worker_number))
+	d=open(checkpointfilepath,'a')
 	
 	for thismatchline in matchstrs:
 		thismatch=json.loads(thismatchline)
 		animations={node_id:[] for node_id in G.nodes}
-# 		print(thismatch)
 		this_folding_np_id=thismatch['this_folding_np_id']
 		n,np_id=[i for i in this_folding_np_id.split('_')]
-		
 		this_folding=thismatch['this_folding']
 		
 		close_neighbors=thismatch['close_neighbors']
@@ -135,8 +138,12 @@ def main(N,animation_steps=10):
 		max_angle=thismatch["angle"]
 		
 		matchpair=[str(np_id),str(max_angle)]
-		
-		if matchpair in flagged:		
+# 		print('--------------')
+# 		print(matchpair)
+# 		print(this_work_batch)
+# 		print(matchpair in this_work_batch)
+# 		print('--------------')
+		if matchpair in this_work_batch:
 			print("making-->",matchpair)
 			loopst=time.time()
 			for folding_angle in np.linspace(min_angle,max_angle,animation_steps):
@@ -149,19 +156,29 @@ def main(N,animation_steps=10):
 				)
 				
 				evaluate_folding(G,5)
+			
 		
 				for node_id in G.nodes:
 					animations[node_id].append([float(p) for p in G.nodes[node_id]['pos']])
 # 			I NEED A SIMPLIFIED FILENAME STRUCTURE THAT CAN SERVE AS A LOOKUP ON THE APP
 # 			outputfilename="_".join([str(N),str(hash(close_neighbors)),str(max_angle),str(animation_steps)])+'.json'
 			outputfilename="_".join([str(N),str(np_id),str(max_angle)])+'.json'
-			d=open('outputs/%s/%s' %(str(N),outputfilename),'w')
-			d.write(json.dumps(animations))
-			d.close()
+			e=open('outputs/%s/%s' %(str(N),outputfilename),'w')
+			e.write(json.dumps(animations))
+			e.close()
 			print("loop in %s seconds"%(str(int(time.time()-st))))
+		
+			d.write(thismatchline+"\n")
+		
+	d.close()
 	print("finished in %s seconds"%(str(int(time.time()-st))))
 	
 if __name__=="__main__":
 	N=sys.argv[1]
-	animation_steps=int(sys.argv[2])
-	main(N,animation_steps)
+	try:
+		animation_steps=int(sys.argv[2])
+	except:
+		animation_steps=10
+	worker_number=int(sys.argv[3])
+	number_of_workers=int(sys.argv[4])
+	main(N,worker_number,number_of_workers,animation_steps)
