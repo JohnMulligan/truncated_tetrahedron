@@ -102,12 +102,12 @@ def main(N,worker_number,number_of_workers,animation_steps=10):
 		
 	illustrator.draw_faces(G,N)
 	
-	d=open("../optimizer/outputs/%s/consolidated.txt" %(str(N)))
+	d=open("optimizer_outputs/%s/consolidated.txt" %(str(N)))
 	t=d.read()
 	d.close()
 	matchstrs=[l for l in t.split("\n\n") if l!='']
 	
-	d=open("../optimizer/outputs/%s/flagged.tsv" %(str(N)))
+	d=open("optimizer_outputs/%s/flagged.tsv" %(str(N)))
 	t=d.read()
 	d.close()
 	flagged=[l.split('\t') for l in t.split("\n") if l!='']
@@ -123,7 +123,6 @@ def main(N,worker_number,number_of_workers,animation_steps=10):
 # 	print("WORKBATCH",this_work_batch)
 	os.makedirs('outputs/%d/checkpoints' %N, exist_ok=True)
 	checkpointfilepath=('outputs/%d/checkpoints/%d.txt' %(N,worker_number))
-	d=open(checkpointfilepath,'a')
 	
 	for thismatchline in matchstrs:
 		thismatch=json.loads(thismatchline)
@@ -167,10 +166,10 @@ def main(N,worker_number,number_of_workers,animation_steps=10):
 			e.write(json.dumps(animations))
 			e.close()
 			print("loop in %s seconds"%(str(int(time.time()-st))))
-		
+			d=open(checkpointfilepath,'a')
 			d.write(thismatchline+"\n")
+			d.close()
 		
-	d.close()
 	print("finished in %s seconds"%(str(int(time.time()-st))))
 	
 if __name__=="__main__":

@@ -19,7 +19,7 @@ def main(N):
 	
 	N=int(N)
 	
-	flaggedbasepath="../optimizer/outputs/%d/" %N
+	flaggedbasepath="optimizer_outputs/%d/" %N
 	flaggedtxt=readtxtfile(os.path.join(flaggedbasepath,"flagged.tsv"))
 	unfinished_flagged=[l.split('\t') for l in flaggedtxt.split("\n") if l!='']
 	
@@ -36,14 +36,14 @@ def main(N):
 	
 	checkpointbasepath='outputs/%d/checkpoints' %N
 	checkpointfiles=os.listdir(checkpointbasepath)
-	
+	print(checkpointfiles)	
 	work_finished_this_run=[]
 	for checkpointfile in checkpointfiles:
 		
 		this_worker_txt=readtxtfile(os.path.join(checkpointbasepath,checkpointfile))
 		this_worker_finished_lines=[l for l in this_worker_txt.split("\n") if l!='']
 		for l in this_worker_finished_lines:
-	
+			print(l)	
 			thismatch=json.loads(l)
 			this_folding_np_id=thismatch['this_folding_np_id']
 			n,np_id=[i for i in this_folding_np_id.split('_')]
@@ -52,7 +52,6 @@ def main(N):
 			work_finished_this_run.append(item)
 	
 	print("work finished during this run:",len(work_finished_this_run))
-	print("--->",work_finished_this_run)
 	
 	revised_unfinished_work_list=[]
 	
@@ -66,7 +65,6 @@ def main(N):
 	print("new remaining work list length:",len(revised_unfinished_work_list))
 	
 	print("new finished work list length:",len(finished_flagged))
-	print(finished_flagged)
 	d=open(os.path.join(flaggedbasepath,"flagged.tsv"),"w")
 	d.write("\n".join(['\t'.join(i) for i in revised_unfinished_work_list]))
 	d.close()
