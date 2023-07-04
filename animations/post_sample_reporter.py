@@ -73,8 +73,8 @@ def main(N):
 	d.write("\n\n".join(['\t'.join(i) for i in finished_flagged]))
 	d.close()
 	
-# 	for checkpointfile in checkpointfiles:
-# 		os.remove(os.path.join(checkpointbasepath,checkpointfile))
+	for checkpointfile in checkpointfiles:
+		os.remove(os.path.join(checkpointbasepath,checkpointfile))
 	
 if __name__=="__main__":
 	N=int(sys.argv[1])

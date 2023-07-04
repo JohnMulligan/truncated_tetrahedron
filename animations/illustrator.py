@@ -5,6 +5,7 @@ import numpy as np
 import json
 import re
 import os 
+import shutil
 # import matplotlib.pyplot as plt
 
 def make_facia(G):
@@ -152,29 +153,31 @@ def makeextrafiles(N):
 # 	htmlscriptblocklines=[]
 	processingscriptblocklines=[]
 	
-	with open('../../dihedral_flask/static/%d/%d.csv' %(N,N), 'w', newline='') as csvfile:
-		spamwriter = csv.writer(csvfile, delimiter=',',
-								quotechar='|', quoting=csv.QUOTE_MINIMAL)
-		headers=['x1','y1','z1','x2','y2','z2']
-		spamwriter.writerow(headers)
+	shutil.copyfile(outputfile, '../../dihedral_flask/static/%d/consolidated.txt' %N)
+	
+# 	with open('../../dihedral_flask/static/%d/%d.csv' %(N,N), 'w', newline='') as csvfile:
+# 		spamwriter = csv.writer(csvfile, delimiter=',',
+# 								quotechar='|', quoting=csv.QUOTE_MINIMAL)
+# 		headers=['x1','y1','z1','x2','y2','z2']
+# 		spamwriter.writerow(headers)
+# 		
+	for xyz in sortedxyz:
 		
-		for xyz in sortedxyz:
-			
-			x,y,z=[str(i) for i in xyz]
-			print(x,y,z)
+		x,y,z=[str(i) for i in xyz]
+		print(x,y,z)
 # 		1.41547199,22,8,,,
-			
-			if os.path.exists('../../dihedral_flask/static/%s/processing_%s_%s_%s.js' %(N,N,y,x)):
-				xyzbuffered=xyz+[None,None,None]
+		
+		if os.path.exists('../../dihedral_flask/static/%s/processing_%s_%s_%s.js' %(N,N,y,x)):
+			xyzbuffered=xyz+[None,None,None]
 # 				htmlscriptblocklines.append('<script src="../outputs/%s/processing_%s_%s_%s.js"></script>' %(N,N,y,x))
-				jsfriendlyname=re.sub("\.","_",x)
-				pfilename='p_%s_%s_%s' %(N,y,jsfriendlyname)
-				processingscriptname="if(sketchname == '%s') {%s();}" %(pfilename,pfilename)
-				processingscriptblocklines.append(processingscriptname)
-				exampleprocessingscriptname=pfilename
-			else:
-				xyzbuffered=[None,None,None]+xyz
-			spamwriter.writerow(xyzbuffered)
+			jsfriendlyname=re.sub("\.","_",x)
+			pfilename='p_%s_%s_%s' %(N,y,jsfriendlyname)
+			processingscriptname="if(sketchname == '%s') {%s();}" %(pfilename,pfilename)
+			processingscriptblocklines.append(processingscriptname)
+			exampleprocessingscriptname=pfilename
+		else:
+			xyzbuffered=[None,None,None]+xyz
+# 			spamwriter.writerow(xyzbuffered)
 			
 			
 			

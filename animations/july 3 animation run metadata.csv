@@ -1,0 +1,4 @@
+﻿N,workers,hours,work accomplished,work remaining,prior work list,task rate (in cpu hours),required cpu hours to finish
+10,5,1,96,18,114,19.2,0.9375
+12,5,1,61,241,302,12.2,19.75409836
+14,5,1,41,544,585,8.2,66.34146341
