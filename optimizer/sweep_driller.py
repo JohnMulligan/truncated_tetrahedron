@@ -71,7 +71,7 @@ def evaluate_folding(G,closeness_threshold):
 # 	print("minimum:",min(all_distances),"mean",mean_close_neighborings)
 	return close_neighborings,mean_close_neighborings
 
-def main(N,r=1000):
+def main(N,r=1000,max_level=4):
 	
 	G=make_graph.main(N,r)
 	
@@ -132,7 +132,7 @@ def main(N,r=1000):
 	max_angle=pi
 	sampling_steps=int((max_angle-min_angle)*100)
 	
-	levels=range(1,4)
+	levels=range(1,max_level)
 	
 	
 	
@@ -214,4 +214,8 @@ def main(N,r=1000):
 		
 if __name__=="__main__":
 	N=int(sys.argv[1])
-	main(N)
+	try:
+		max_level=int(sys.argv[2])
+	except:
+		max_level=4
+	main(N,max_level=max_level)
