@@ -137,7 +137,7 @@ def main(N,max_level,current_accuracy,r=1000):
 				min_angle = base_angle-.1**level
 				max_angle = base_angle+.1**level
 			else:
-				min_angle=prev_angle
+				min_angle=prev_angle-.1**level
 				max_angle = base_angle+.1**level
 			print("level",level)
 			print("min/max",min_angle,max_angle)
