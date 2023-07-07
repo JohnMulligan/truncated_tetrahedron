@@ -1,0 +1,2 @@
+{"close_neighbors": "E__P*F__Q*P__E*Q__F", "close_neighborings_count": 4, "angle": 0.8028573645017681, "mean_close_neighborings": 0.04614197273843007, "this_folding": [1, 1, -1, 1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1], "this_folding_np_id": "16_26624"}
+{"close_neighbors": "A__M*B_C__N_O*B__N*C__O*L_M__first*M__A*N_O__B_C*N__B*O__C*first__L_M", "close_neighborings_count": 10, "angle": 0.666162344548156, "mean_close_neighborings": 0.03837034300700241, "this_folding": [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, -1, -1], "this_folding_np_id": "16_32764"}
