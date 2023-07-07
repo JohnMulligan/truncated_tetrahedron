@@ -247,8 +247,11 @@ def make_processing_animation(fname):
 	animation_template=t
 	
 	d.close()
+	
+	thisfname=basedirpath_r+ "%s/%s" %(str(N),fname)
+	print(thisfname)
 
-	d=open(basedirpath_r+ "%s/%s" %(str(N),fname),"r")
+	d=open(thisfname,"r")
 	t=d.read()
 	d.close()
 	

@@ -9,9 +9,7 @@ The "optimization" folder is designed to run as a high-throughput computing job 
 ## Background 
 This project started in 2020, as an origami experiment of sorts. Working with a truncated tetrahedron, I found that cross-sections taken in parallel with its hexagonal faces up to the peak of the adjoining triangular facets could be "unfolded" into flat strips of alternating triangles and trapezoids. I used this to build physical models, in the form of spheres, by taking advantage of the fact that truncated tetrahedra *almost* tesselate in three dimensions, and that sheet metal and paper are flexible :)
 
-*A nice rendering of this at*: [RobertLovesPi](https://robertlovespi.net/2014/05/28/seventeen-truncated-tetrahedra-in-symmetrical-formation/)
-
-![Seventeen Truncated Tetrahedra Rotating in Symmetrical Formation](https://robertlovespi.files.wordpress.com/2014/05/augmented-trunc-tetra.gif?w=584 "Seventeen Truncated Tetrahedra Rotating in Symmetrical Formation")
+*A nice rendering of this is available at*: [RobertLovesPi](https://robertlovespi.net/2014/05/28/seventeen-truncated-tetrahedra-in-symmetrical-formation/)
 
 *My models*:
 
