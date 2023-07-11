@@ -68,10 +68,7 @@ The system is currently identifying good hits, from what I can see -- both in te
 
 Running plot_hits flags local maxima, which are visually more interesting than their neighbors for reasons specific to this workflow.
 
-Naming a partivular shapenin the animations slurm script runs through all the flagged hits.
-
-, there's a hard break between that sweep on the one hand and my visual inspection of the outputs. I export the list of candidate matches after a run, and then render them in the animations folder.
-
+Naming a particular shapenin the animations slurm script runs through all the flagged hits.
 #### 3. Exporting
 
 This requires the dihedral_flask app to be installed in parallel.
