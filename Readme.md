@@ -47,8 +47,16 @@ I'm therefore going to:
 
 #### First: Find a good resolution that should yield good folding angles (HTC)
 
-this is ```find_approximate_folding_angles.py```
+this is ```find_approximate_folding_angles.py {{N}}```
 
+visual analysis of outputs with ```graph_approximate_angles.py {{N}}```. Renders:
+
+* heatmap
+* 3d scatter
+* unbinned 2d scatter
+* binned 2d scatter
+
+Seems to be yielding good results!
 
 #### Then drill down on each of those approximated folding angles (MPI, I think)
 

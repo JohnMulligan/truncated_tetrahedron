@@ -1,5 +1,12 @@
 mpmath
 networkx
 numpy
-sympy
+packaging
+pandas
 plotly
+python-dateutil
+pytz
+six
+sympy
+tenacity
+tzdata
