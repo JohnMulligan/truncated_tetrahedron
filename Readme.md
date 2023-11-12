@@ -2,22 +2,16 @@
 
 This is an ongoing project in identifying and rendering interesting symmetries of regular 2-D shapes in three dimensions.
 
-The "legacy" folder contains the early attempts to produce these outputs by hard-coding different forms I had produced using physical models.
+Legacy commits in the history here contain the early attempts to produce these outputs by hard-coding different forms I had produced using physical models.
 
 The "optimization" folder is designed to run as a high-throughput computing job capable of identifying these symmetries more or less autonomously. The "animations" folder renders these visually.
+
+more recently, I refactored this rendering to use HTC methods as well.
 
 ## Background 
 This project started in 2020, as an origami experiment of sorts. Working with a truncated tetrahedron, I found that cross-sections taken in parallel with its hexagonal faces up to the peak of the adjoining triangular facets could be "unfolded" into flat strips of alternating triangles and trapezoids. I used this to build physical models, in the form of spheres, by taking advantage of the fact that truncated tetrahedra *almost* tesselate in three dimensions, and that sheet metal and paper are flexible :)
 
-*A nice rendering of this is available at*: [RobertLovesPi](https://robertlovespi.net/2014/05/28/seventeen-truncated-tetrahedra-in-symmetrical-formation/)
-
-*My models*:
-
-![Metal sphere](legacy/pdf/IMG_7665.PNG "Metal sphere")
-
-![Paper spheres](legacy/pdf/IMG_4380.PNG "Paper spheres")
-
-I then started experimenting in the other direction, trying to fold flat shapes into regular, three-dimensional forms. I had seen something like this when I was trawling through Renaissance geometry -- Durer had a pattern in a notebook of a sprawling set of pentagons that could be cut out and folded into a dodecahedron. What I found was a little weirder than that, and I haven't been able to find anything quite like it.
+I then started experimenting in the other direction, trying to fold flat shapes into regular, three-dimensional forms. I had seen something like this when I was trawling through Renaissance geometry -- a pattern in a notebook of a sprawling set of pentagons that could be cut out and folded into a dodecahedron. What I found was a little weirder than that, and I haven't been able to find anything quite like it.
 
 I found, first empirically with paper models, then through computational optimization, that a dodecagon
 
@@ -38,6 +32,8 @@ The regularity of the solution led me to try out the same method on a decagon: c
 In May 2023 I decided to dust this project off and start testing this "method" on even-sided polygons.
 
 ## Current state
+
+
 
 ### Nov 11, 2023:
 
@@ -74,7 +70,7 @@ Haven't touched any of this yet.
 
 
 
-
+-------------------------
 
 
 ### As of June 10, 2023
@@ -87,23 +83,9 @@ I am using Networkx in Python to hold the state of the different vertices, their
 
 ##### 1. Sweeping the shapes
 
-First, we find the optimal folding angle for an N-gon. The HTC slurm script in the optimization folder is currently being kicked off like this:
+First, we find the optimal folding angles for an N-gon.
 
-	sbatch --array=0-24 scavenger.slurm 14 50
-
-Where:
-
-* array identifies the number of parallel tasks that will be run
-	* always start at 0
-	* in the above example, we're running 25 tasks
-* arg 2 identifies the number of sides
-	* it must be even
-	* here, we are considering a 14-sided shape
-* arg 3 identifies the sampling rate of folding angles
-	* we begin at -pi/2 and go to pi/2
-	* Here, we would test 48 angles in between
-
-![Example folding of 14-sided shape, second step](legacy/pdf/14_319_step2_example.png "Example folding of 14-sided shape, second step")
+currently, this is broken into 2 steps-- a sweep using HTC and a serialized drilldown.
 
 Each task gets an even slice of the 2(**N-2) different ways of folding the shape, and begins walking through these, folding it from -pi/2 to pi/2 degrees, and logging when nodes appear to be approaching one another.
 
@@ -113,7 +95,7 @@ The test for that is:
 	* relative to the shape's size
 	* which is given by the radius of the circle we used to draw the N-gon
 * at each step
-	* evaluate all different nodes' euclidean distances
+	* evaluate all nodes' euclidean distances
 	* catch all pairs that fall below the closeness threshold
 * use that subset of close neighborings
 	* and calculate a "closeness of close neighborings" average
@@ -137,15 +119,12 @@ Current issues:
 
 ##### 2. Animating the matches/hits
 
-Currently, there's a hard break between that sweep on the one hand and my visual inspection of the outputs. I export the list of candidate matches after a run, and then render them in the animations folder.
+Running plot_hits flags local maxima, which are visually more interesting than their neighbors for reasons specific to this workflow.
 
-I name a particular folding output. To stick with the previous example, we pull the 5990th folding pattern (as indexed in the binary linspace of length 2**(N-1)) for the 14-gon with:
+Naming a particular shapenin the animations slurm script runs through all the flagged hits.
+#### 3. Exporting
 
-	python3 main.py 14_5990.json 10
-	
-Where the integer at the end tells you the number of frames we'll produce in our animation (this isn't 100% accurate -- I actually reverse the frames & tack those on at the end, so that you get a smooth folding/unfolding animation). Our output filenames from this step look like:
-	
-	14_5990_-1.3143397836447095_10_-6396997197626572266.json
+This requires the dihedral_flask app to be installed in parallel.
 
 Where the underscore-joined numbers represent, in order:
 
@@ -176,3 +155,6 @@ What I need now is to have the system act a little more intelligently.
 But what does that last one look like? Some combination of the number of close neighbors and the closeness of those neighbors, I'd think. Except that I don't want to rule out, especially in larger shapes, the possibility of very long unspoolings that connect in only a few places but in interesting ways.
 
 What, then, is interesting??
+=======
+Processing.js files are written out to a static folder in that repo.
+>>>>>>> a7ec8a01c8ee721c8fb9237d7df662173ce29710
