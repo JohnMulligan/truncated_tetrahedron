@@ -61,6 +61,7 @@ def main(N,worker_number,number_of_workers):
 	
 	this_work_batch=islice(total_work_list,left_off_at_idx,this_worker_end_idx)
 	
+	print("worker start:",worker_start_idx,"worker stop",worker_stop_idx,"checkpoint",left_off_at_idx)
 	print("worker %d already completed %d of %d steps" %(worker_number,left_off_at_idx-this_worker_start_idx,work_per_worker))
 
 	#initial graph for spoke indices
