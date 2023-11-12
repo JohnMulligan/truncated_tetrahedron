@@ -2,12 +2,13 @@ from math import cos, sin, sqrt, floor, pi
 import sys
 import os
 import networkx as nx
-import make_graph
+from common import make_graph
 from itertools import product,islice
 import numpy as np
 import time
 import json
-import folder
+from common.transforms import *
+from common.evaluations import *
 
 def main(N,max_level,current_accuracy,r=1000):
 	
@@ -15,18 +16,19 @@ def main(N,max_level,current_accuracy,r=1000):
 	
 	N=int(N)
 	
-	knownanglesfile="outputs/%d/known_angles.txt" %N
+	knownanglesfile="outputs/%d/approximate_angles_consolidated.txt" %N
 	
 	d=open(knownanglesfile,'r')
 	t=d.read()
 	d.close()
-	lines=t.split('\n')
-	known_angles=[]
+	lines=[l for l in t.split('\n') if l!='']
+	
+	known_matches=[]
 	for l in lines:
-		try:
-			known_angles.append(float(l))
-		except:
-			print("error with line in angles file:",l)
+		angle_str,fold_idx_str=l.split('\t')
+		angle=float(angle_str)
+		fold_idx=int(fold_idx_str)
+		known_matches.append([angle,fold_idx])
 		
 	spokes={e:G.edges[e] for e in G.edges if G.edges[e]['set']=='spokes'}
 	
@@ -54,20 +56,22 @@ def main(N,max_level,current_accuracy,r=1000):
 	
 	fold_spoke_indices=[spokes[s_id]['index'] for s_id in spokes][1:-1]
 	
-	possible_folds=product([i for i in [-1,1]],repeat=len(fold_spoke_indices))
 	
-	#right now i'm just testing on the first (or last) folding, as it seems to hit pretty consistently
-	##but i've seen hits around index 25 as well. not clear what the logic is, and i'm not doing that insane of a parameter sweep
-	this_folding=list(possible_folds)[0]
 	
 	print("fold spoke indices",fold_spoke_indices)
 	
 	levels=range(current_accuracy,max_level)
 	threshold=r*.1
-	print(known_angles)
-	for known_angle in known_angles:
+	print(known_matches)
+	
+	for known_match in known_matches:
+		
+		base_angle,fold_idx=known_match
+		possible_folds=product([i for i in [-1,1]],repeat=len(fold_spoke_indices))
+		this_folding=islice(possible_folds,fold_idx,fold_idx+1).__next__()
+		
+		st=time.time()
 		prev_angle=None
-		base_angle=known_angle
 		print("BASE ANGLE:",base_angle)
 		for level in levels:
 			prev_distance=None
@@ -79,17 +83,17 @@ def main(N,max_level,current_accuracy,r=1000):
 				max_angle = base_angle+.1**level
 			print("level",level)
 			print("min/max",min_angle,max_angle)
-			sampling_steps=100
+			sampling_steps=10
 			folding_angles=np.linspace(min_angle,max_angle,sampling_steps)
 			for folding_angle in folding_angles:
-				print("angle",folding_angle)
 				G=make_graph.main(N,r)
-				G=folder.main(
+				G=folder(
 					G=G,
 					this_folding=this_folding,
 					angle=folding_angle
 				)
 				close_neighborings,mean_close_neighborings=evaluate_folding(G,threshold)
+				print(folding_angle,mean_close_neighborings)
 				if prev_distance is not None:
 					if prev_distance<mean_close_neighborings:
 						print("bottomed out at",prev_distance,"on angle",folding_angle)
@@ -103,10 +107,8 @@ def main(N,max_level,current_accuracy,r=1000):
 		d=open("outputs/%s/known_angles_improved.txt" %str(N),"a")
 		d.write("\n\n"+str(folding_angle))
 		d.close()
-	d=open('outputs/%s/targeted_driller_running_time.txt' %str(N),'w')
-	d.write(str(running_time))
-	d.close()
-		
+		print("angle optimized in %d seconds" %int(time.time()-st))
+
 if __name__=="__main__":
 	N=int(sys.argv[1])
 	try:

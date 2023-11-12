@@ -60,9 +60,9 @@ Seems to be yielding good results!
 
 #### Then drill down on each of those approximated folding angles (MPI, I think)
 
-this is ```targeted_driller``` -- which could be parallelized but doesn't really need it
+i then (by hand) consolidate the local minima in a txt file called ```outputs/{{N}}/approximate_angles_consolidated.txt```
 
-it does need to be refactored, though, to use the new file naming conventions
+and run ```targeted_driller.py {{{N}}}``` -- which could be parallelized but doesn't really need it, I don't think.
 
 
 #### Then find all the very good foldings on those improved folding angles
