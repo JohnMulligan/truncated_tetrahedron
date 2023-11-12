@@ -30,6 +30,7 @@ def main(N,worker_number,number_of_workers):
 	step_size=(max_angle-min_angle)/number_samples
 
 	number_of_possible_folds=2**(N-1)
+	print("possible folds:",number_of_possible_folds)
 
 	sample_angles_idxs=np.arange(number_samples)
 	possible_folds_idxs=np.arange(number_of_possible_folds)
@@ -61,7 +62,7 @@ def main(N,worker_number,number_of_workers):
 	
 	this_work_batch=islice(total_work_list,left_off_at_idx,this_worker_end_idx)
 	
-	print("worker start:",worker_start_idx,"worker stop",worker_stop_idx,"checkpoint",left_off_at_idx)
+	print("worker start:",this_worker_start_idx,"worker stop",this_worker_end_idx,"checkpoint",left_off_at_idx)
 	print("worker %d already completed %d of %d steps" %(worker_number,left_off_at_idx-this_worker_start_idx,work_per_worker))
 
 	#initial graph for spoke indices
@@ -73,15 +74,13 @@ def main(N,worker_number,number_of_workers):
 	st=time.time()
 	c=0
 	for work_item in this_work_batch:
-		fold_idx,angle_idx=work_item
+		angle_idx,fold_idx=work_item
 		
 		angles=np.arange(min_angle,max_angle,(max_angle-min_angle)/number_samples)
 		this_angle=islice(angles,angle_idx,angle_idx+1).__next__()
 		
 		possible_folds=product([i for i in [-1,1]],repeat=len(fold_spoke_indices))
 		this_folding=islice(possible_folds,fold_idx,fold_idx+1).__next__()
-		
-		print(this_folding,this_angle)
 		
 		G=make_graph.main(N,r)
 		G=folder(
