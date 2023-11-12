@@ -1,16 +1,5 @@
-cycler
-kiwisolver
 mpmath
 networkx
 numpy
-packaging
-pandas
-plotly
-pyparsing
-python-dateutil
-pytz
-six
 sympy
-tenacity
-typing_extensions
-tzdata
+plotly

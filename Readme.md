@@ -39,15 +39,53 @@ In May 2023 I decided to dust this project off and start testing this "method" o
 
 ## Current state
 
-As of June 10, 2023
+### Nov 11, 2023:
 
-### Method
+I've pulled everything from optimize down into the base folder and pushed the shared functions out to a folder named "common". And everything is cleaned up quite a bit, after our nots workshop.
+
+Previously, I assumed that all good folding angles would have hits at the zero index on the fold iterator, which is just an N-long array of 1's (always folding right). However, this didn't yield anything interesting beyond 16-sided shapes.
+
+It's worth noting, though, that this is creating exactly the blowout problem I'd been worried about. It's looking like a 20-sided shape will require 1.5M CPU hours???
+
+I'm therefore going to:
+
+#### First: Find a good resolution that should yield good folding angles (HTC)
+
+this is ```find_approximate_folding_angles.py```
+
+
+#### Then drill down on each of those approximated folding angles (MPI, I think)
+
+this is ```targeted_driller``` -- which could be parallelized but doesn't really need it
+
+it does need to be refactored, though, to use the new file naming conventions
+
+
+#### Then find all the very good foldings on those improved folding angles
+
+I've borrowed this back from my slurm workshop as ```find_folds_on_given_angles.py``` but it's untested
+
+#### Then animate these very good foldings
+
+Haven't touched any of this yet.
+
+
+
+
+
+
+
+
+
+### As of June 10, 2023
+
+#### Method
 
 There are 2**(N-1) ways of folding any of these given rings.
 
 I am using Networkx in Python to hold the state of the different vertices, their connections to one another, and their relative positions in the ring, because the folds must be performed in order.
 
-#### 1. Sweeping the shapes
+##### 1. Sweeping the shapes
 
 First, we find the optimal folding angle for an N-gon. The HTC slurm script in the optimization folder is currently being kicked off like this:
 
@@ -97,7 +135,7 @@ Current issues:
 		* determining the optimal folding angles & patterns
 		* ranking these 
 
-#### 2. Animating the matches/hits
+##### 2. Animating the matches/hits
 
 Currently, there's a hard break between that sweep on the one hand and my visual inspection of the outputs. I export the list of candidate matches after a run, and then render them in the animations folder.
 
@@ -119,7 +157,7 @@ Where the underscore-joined numbers represent, in order:
 
 I'm hoping to be able to integrate this fairly well, with all those indices, into a Flask app for exploratory visual analysis.
 
-#### 3. Missing middle steps
+##### 3. Missing middle steps
 
 What I need now is to have the system act a little more intelligently.
 
