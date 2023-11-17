@@ -61,11 +61,11 @@ def main(N,max_level,current_accuracy,r=1000):
 	print("fold spoke indices",fold_spoke_indices)
 	
 	levels=range(current_accuracy,max_level)
-	threshold=r*.1
+	print("levels-->",levels)
+	threshold=r*.01
 	print(known_matches)
 	
 	for known_match in known_matches:
-		
 		base_angle,fold_idx=known_match
 		possible_folds=product([i for i in [-1,1]],repeat=len(fold_spoke_indices))
 		this_folding=islice(possible_folds,fold_idx,fold_idx+1).__next__()
@@ -83,7 +83,7 @@ def main(N,max_level,current_accuracy,r=1000):
 				max_angle = base_angle+.1**level
 			print("level",level)
 			print("min/max",min_angle,max_angle)
-			sampling_steps=10
+			sampling_steps=20
 			folding_angles=np.linspace(min_angle,max_angle,sampling_steps)
 			for folding_angle in folding_angles:
 				G=make_graph.main(N,r)

@@ -88,9 +88,9 @@ def main(N,worker_number,number_of_workers):
 			this_folding=this_folding,
 			angle=this_angle
 		)
-		close_neighborings,mean_close_neighborings=evaluate_folding(G,threshold)
+		close_neighborings,median_close_neighborings=evaluate_folding(G,threshold)
 		if close_neighborings !={}:
-			print("->match at",this_angle,"=",mean_close_neighborings)
+			print("->match at",this_angle,"=",median_close_neighborings)
 			d=open(outputpath,'a')
 			d.write('\t'.join([str(i) for i in [this_angle,fold_idx,this_folding,mean_close_neighborings]])+'\n')
 			d.close()

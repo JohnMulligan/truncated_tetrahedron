@@ -1,4 +1,5 @@
 from math import sqrt
+from statistics import median
 
 def get_euclidean_distance(a,b):
 	ax,ay,az=a
@@ -33,9 +34,11 @@ def evaluate_folding(G,closeness_threshold):
 					else:
 						if ed < closeness_threshold:
 							close_neighborings[neighboring_id]=ed
+	
 	if len(all_close_distances)>0:
-		mean_close_neighborings=sum(all_close_distances)/len(all_close_distances)
+		median_close_neighborings=median(all_close_distances)
+# 		mean_close_neighborings=sum(all_close_distances)/len(all_close_distances)
 	else:
-		mean_close_neighborings=None
+		median_close_neighborings=None
 # 	print("minimum:",min(all_distances),"mean",mean_close_neighborings)
-	return close_neighborings,mean_close_neighborings
+	return close_neighborings,median_close_neighborings
