@@ -8,7 +8,7 @@ import numpy as np
 import time
 import json
 from common.transforms import folder,rotate
-from common.evaluations import evaluate_foldings,get_euclidean_distance
+from common.evaluations import evaluate_folding,get_euclidean_distance
 
 def main(N,worker_number,number_of_workers,r=1000):
 	

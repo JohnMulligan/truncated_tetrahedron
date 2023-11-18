@@ -3,7 +3,6 @@ import plotly.graph_objects as go
 import plotly.express as px
 import numpy as np
 import json
-import pandas as pd
 import sys
 
 def readtxtfile(filepath):
