@@ -6,7 +6,7 @@
 #SBATCH --mail-user=jcm10@rice.edu
 #SBATCH --mail-type=ALL
 #SBATCH --array=0-49
-
+module purge
 module load  GCCcore/12.3.0
 module load Python/3.11.3
 pip3 install --user -r requirements.txt 
