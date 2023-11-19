@@ -92,7 +92,7 @@ def main(N,worker_number,number_of_workers):
 		if close_neighborings !={}:
 			print("->match at",this_angle,"=",median_close_neighborings)
 			d=open(outputpath,'a')
-			d.write('\t'.join([str(i) for i in [this_angle,fold_idx,this_folding,mean_close_neighborings]])+'\n')
+			d.write('\t'.join([str(i) for i in [this_angle,fold_idx,this_folding,median]])+'\n')
 			d.close()
 		
 		d=open(checkpointpath,'w')
