@@ -58,6 +58,12 @@ visual analysis of outputs with ```graph_approximate_angles.py {{N}}```. Renders
 
 Seems to be yielding good results!
 
+However, the memory usage doubles for each N:
+
+* 1GB for N=26
+* 4 GB for N=28
+* 25 GB for N=30
+
 #### Then drill down on each of those approximated folding angles (MPI, I think)
 
 i then (by hand) consolidate the local minima in a txt file called ```outputs/{{N}}/approximate_angles_consolidated.txt```
