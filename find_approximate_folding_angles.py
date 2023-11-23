@@ -16,7 +16,8 @@ def main(N,worker_number,number_of_workers):
 	
 	#we get spurious hits at the beginning and end of the run
 	#my old drilldown had a clever way of figuring that out but it didn't work in an htc run
-	#right now i'm hard-coding a buffer from observations to take that into account
+	#right now i'm hard-coding a buffer from observations to avoid a lot of unnecessary false positives that would crud up my outputs
+	## but i might be losing some interesting cases as N becomes very large
 	zero_buffer=0.05
 
 	r=1000
@@ -92,7 +93,7 @@ def main(N,worker_number,number_of_workers):
 		if close_neighborings !={}:
 			print("->match at",this_angle,"=",median_close_neighborings)
 			d=open(outputpath,'a')
-			d.write('\t'.join([str(i) for i in [this_angle,fold_idx,this_folding,median]])+'\n')
+			d.write('\t'.join([str(i) for i in [this_angle,fold_idx,this_folding,median_close_neighborings,close_neighborings]])+'\n')
 			d.close()
 		
 		d=open(checkpointpath,'w')

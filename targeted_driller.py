@@ -23,13 +23,18 @@ def main(N,max_level,current_accuracy,r=1000):
 	d.close()
 	lines=[l for l in t.split('\n') if l!='']
 	
-	known_matches=[]
+	known_matches={}
 	for l in lines:
 		angle_str,fold_idx_str=l.split('\t')
 		angle=float(angle_str)
 		fold_idx=int(fold_idx_str)
-		known_matches.append([angle,fold_idx])
-		
+		if angle in known_matches:
+			known_matches[angle].append(fold_idx)
+		else:
+			known_matches[angle]=[fold_idx]
+	
+	test_cases=[(angle,known_matches[angle][0]) for angle in known_matches]
+	
 	spokes={e:G.edges[e] for e in G.edges if G.edges[e]['set']=='spokes'}
 	
 	spokes_by_index={spokes[e]['index']:e for e in spokes}
@@ -56,17 +61,14 @@ def main(N,max_level,current_accuracy,r=1000):
 	
 	fold_spoke_indices=[spokes[s_id]['index'] for s_id in spokes][1:-1]
 	
-	
-	
 	print("fold spoke indices",fold_spoke_indices)
 	
 	levels=range(current_accuracy,max_level)
 	print("levels-->",levels)
 	threshold=r*.01
-	print(known_matches)
 	
-	for known_match in known_matches:
-		base_angle,fold_idx=known_match
+	for test_case in test_cases:
+		base_angle,fold_idx=test_case
 		possible_folds=product([i for i in [-1,1]],repeat=len(fold_spoke_indices))
 		this_folding=islice(possible_folds,fold_idx,fold_idx+1).__next__()
 		
@@ -105,7 +107,12 @@ def main(N,max_level,current_accuracy,r=1000):
 
 		print("BEST MATCH-->",folding_angle)
 		d=open("outputs/%s/known_angles_improved.txt" %str(N),"a")
-		d.write("\n\n"+str(folding_angle))
+		
+		base_angle,fold_idx=test_case
+		fold_idxs=known_matches[base_angle]
+		for fold_idx in fold_idxs:
+			line=[str(folding_angle),str(fold_idx)]
+			d.write('\n'+'\t'.join(line))
 		d.close()
 		print("angle optimized in %d seconds" %int(time.time()-st))
 

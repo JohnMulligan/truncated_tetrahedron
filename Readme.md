@@ -31,63 +31,83 @@ The regularity of the solution led me to try out the same method on a decagon: c
 
 In May 2023 I decided to dust this project off and start testing this "method" on even-sided polygons.
 
-## Current state
-
-
-
-### Nov 11, 2023:
+## Current state (Nov, 2023)
 
 I've pulled everything from optimize down into the base folder and pushed the shared functions out to a folder named "common". And everything is cleaned up quite a bit, after our nots workshop.
 
 Previously, I assumed that all good folding angles would have hits at the zero index on the fold iterator, which is just an N-long array of 1's (always folding right). However, this didn't yield anything interesting beyond 16-sided shapes.
 
-It's worth noting, though, that this is creating exactly the blowout problem I'd been worried about. It's looking like a 20-sided shape will require 1.5M CPU hours???
+It's worth noting, though, that this is creating exactly the blowout problem I'd been worried about:
 
-I'm therefore going to:
+* A 20-sided shape will require 1.5M CPU hours
+* And the memory usage doubles with each N:
+	* 1GB for N=26
+	* 4 GB for N=28
+	* 25 GB for N=30
 
-#### First: Find a good resolution that should yield good folding angles (HTC)
+## How to use this with a SLURM job scheduler
 
-this is ```find_approximate_folding_angles.py {{N}}```
+Current 11/22/23
 
-visual analysis of outputs with ```graph_approximate_angles.py {{N}}```. Renders:
+### Approximate the folding angles
+
+HTC job that slices up the angles by 1000, and sweeps all the possible foldings:
+
+* 512 for a 10-sided shape
+* 1024 for a 12 sided shape
+* etc.
+
+Run the job with ```sbatch find_approximate_folding_angles.slurm {{N}}``` (again, N must be an even number)
+
+It checkpoints in ```outputs/{{N}}/checkpoints/```
+
+Keep kicking it off until it's done, but always use the same number of tasks (maybe I could refactor to make it more flexible). stdout files track the progress and try to estimate the remaining time.
+
+But do consider that the memory consumption doubles with each N.
+
+### Post-processing the outputs
+
+#### Visualization and cleanup (very fast)
+
+You can visualize the results with ```python graph_approximate_angles.py {{N}}```. This renders:
 
 * heatmap
 * 3d scatter
 * unbinned 2d scatter
 * binned 2d scatter
 
-Seems to be yielding good results!
+But to properly reduce these to their local optimizations, use ```python isolate_local_minima_from_approx_angles.py {{N}}```. This will
 
-However, the memory usage doubles for each N:
+* walk the hits and find the best matching angles
+* graph these as a cleaned-up heatmap for you
+* dump those hits out to ```outputs/{{N}}//approximate_angles_consolidated.txt```
 
-* 1GB for N=26
-* 4 GB for N=28
-* 25 GB for N=30
+#### Optimization
 
-#### Then drill down on each of those approximated folding angles (MPI, I think)
+Remember that we've only found approximations of good folding angles (and I'm not sure the parameter sweep of 1000 samples on 3.14 radians is granular enough with a large N).
 
-i then (by hand) consolidate the local minima in a txt file called ```outputs/{{N}}/approximate_angles_consolidated.txt```
+So we're going to optimize our folding angles out to 10 decimal places. We do this serially (though it would lend itself to an MPI job), with ```targeted_driller.py {{{N}}}```. This picks one of the folding id's for each approximated folding angle, and drills down into it -- I haven't seen it fail yet.
 
-and run ```targeted_driller.py {{{N}}}``` -- which could be parallelized but doesn't really need it, I don't think.
+That script outputs to ```outputs/{{N}}//known_angles_improved.txt```
 
+#### Exploratory data visualization
 
-#### Then find all the very good foldings on those improved folding angles
+I need to refactor my visualization code. This should all be done in a single visualization package, rather than the mixture of processing.js and plotly I tried before.
 
-I've borrowed this back from my slurm workshop as ```find_folds_on_given_angles.py``` but it's untested
+I'll need to:
 
-#### Then animate these very good foldings
+* further reduce the hits that need to be rendered:
+	* on each folding angle, find the local maxima of hit counts by folding id
+* preprocess the final xyz coords of each these maxima (folding id/angle address) in HTC
+* make a two-paned app that allows a user to call up those renderings by clicking on the graphed local maxima (see the old app at http://johnconnor.pythonanywhere.com/)
 
-Haven't touched any of this yet.
-
-
-
-
+![Sample image](/common/old_app.png)
 
 
 -------------------------
 
 
-### As of June 10, 2023
+### Previously (As of June 10, 2023)
 
 #### Method
 
@@ -112,7 +132,7 @@ The test for that is:
 	* evaluate all nodes' euclidean distances
 	* catch all pairs that fall below the closeness threshold
 * use that subset of close neighborings
-	* and calculate a "closeness of close neighborings" average
+	* and calculate a "closeness of close neighborings" median
 	* along with which nodes are close neighbors in this configuration
 * Those are all saved to json files in optimizer/outputs/N.json
 
