@@ -4,8 +4,6 @@ This is an ongoing project in identifying and rendering interesting symmetries o
 
 Legacy commits in the history here contain the early attempts to produce these outputs by hard-coding different forms I had produced using physical models.
 
-The "optimization" folder is designed to run as a high-throughput computing job capable of identifying these symmetries more or less autonomously. The "animations" folder renders these visually.
-
 more recently, I refactored this rendering to use HTC methods as well.
 
 ## Background 
