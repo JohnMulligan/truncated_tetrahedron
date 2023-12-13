@@ -9,7 +9,6 @@ import time
 import json
 from common.transforms import folder,rotate
 from common.evaluations import evaluate_folding,get_euclidean_distance
-
 import gc
 import tracemalloc
 
@@ -35,18 +34,17 @@ def main(N,worker_number,number_of_workers):
 
 	number_of_possible_folds=2**(N-1)
 	print("possible folds:",number_of_possible_folds)
+	
+	sub_batches=200
 
 	sample_angles_idxs=np.arange(number_samples)
 	possible_folds_idxs=np.arange(number_of_possible_folds)
-
-	total_work_list=product(sample_angles_idxs,possible_folds_idxs)
-
 	total_amount_of_work=len(sample_angles_idxs)*len(possible_folds_idxs)
-
 	work_per_worker=int(total_amount_of_work/number_of_workers)
+	this_worker_absolute_start_idx=work_per_worker*worker_number
+	this_worker_absolute_end_idx=work_per_worker*(worker_number+1)
 	
-	this_worker_start_idx=work_per_worker*worker_number
-	this_worker_end_idx=work_per_worker*(worker_number+1)
+	print("absolute start-->",this_worker_absolute_start_idx)
 	
 	checkpointpath='outputs/%d/checkpoints/worker_%d.txt' %(N,worker_number)
 	outputpath='outputs/%d/approximate_angles_worker_%d.txt' %(N,worker_number)
@@ -59,15 +57,30 @@ def main(N,worker_number,number_of_workers):
 		if t!='':
 			left_off_at_idx=int(t.strip())
 		else:
-			left_off_at_idx=this_worker_start_idx
+			left_off_at_idx=this_worker_absolute_start_idx
 	else:
 		os.makedirs('outputs/%s/checkpoints/' %str(N), exist_ok=True)
-		left_off_at_idx=this_worker_start_idx
+		left_off_at_idx=this_worker_absolute_start_idx	
 	
-	this_work_batch=islice(total_work_list,left_off_at_idx,this_worker_end_idx)
+	this_worker_relative_checkpoints=[this_worker_absolute_start_idx+(i)*int(work_per_worker/sub_batches) for i in range(sub_batches)]
+	this_worker_relative_checkpoints.append(this_worker_absolute_end_idx)
+	this_worker_relative_checkpoints.sort()
 	
-	print("worker start:",this_worker_start_idx,"worker stop",this_worker_end_idx,"checkpoint",left_off_at_idx)
-	print("worker %d already completed %d of %d steps" %(worker_number,left_off_at_idx-this_worker_start_idx,work_per_worker))
+	print(this_worker_relative_checkpoints)
+	
+	remainingrelativestops=[i for i in this_worker_relative_checkpoints if left_off_at_idx<i]
+	relative_end_idx=min(remainingrelativestops)
+	remainingrelativestarts=[i for i in this_worker_relative_checkpoints if relative_end_idx>i]
+	
+	relative_start_idx=min(remainingrelativestarts)
+	
+	
+	this_work_batch=islice(product(sample_angles_idxs,possible_folds_idxs),relative_start_idx,relative_end_idx)
+	
+	print("worker absolute start:",this_worker_absolute_start_idx,"worker absolute stop",this_worker_absolute_end_idx,"checkpoint",left_off_at_idx)
+	print("worker %d already completed %d of %d steps" %(worker_number,left_off_at_idx-this_worker_absolute_start_idx,work_per_worker))
+	print("worker relative start:",relative_start_idx,"worker relative stop",relative_end_idx,"checkpoint",left_off_at_idx)
+	print("worker %d already completed %d of %d steps" %(worker_number,left_off_at_idx-this_worker_absolute_start_idx,relative_end_idx-relative_start_idx))
 
 	#initial graph for spoke indices
 	G=make_graph.main(N,r)
@@ -77,14 +90,21 @@ def main(N,worker_number,number_of_workers):
 	
 	st=time.time()
 	c=0
+	
+	
+	for sample_angle_idx in range()
+	
+	
+	
+	
 	for work_item in this_work_batch:
+
 		snapshot = tracemalloc.take_snapshot()
 		top_stats= snapshot.statistics('traceback')
 		
 		for stat in top_stats[:20]:
 			print(f"{stat.count} memory blocks: {stat.size / 1024:.1f} KiB")
 			print(stat.traceback.format()[-1])
-
 
 		angle_idx,fold_idx=work_item
 		
@@ -115,10 +135,14 @@ def main(N,worker_number,number_of_workers):
 		
 		time_per_step=(time.time()-st)/c
 		
-		amount_of_remaining_work=((this_worker_end_idx-left_off_at_idx-c)*number_of_workers)
-		estimated_seconds_remaining=time_per_step*(amount_of_remaining_work)
+		relative_amount_of_remaining_work=((relative_end_idx-left_off_at_idx-c)*number_of_workers)
+		estimated_seconds_remaining=time_per_step*(relative_amount_of_remaining_work)		
+		print("estimated relative cpu hours remaining:", estimated_seconds_remaining/3600)
 		
+		total_amount_of_remaining_work=((this_worker_absolute_end_idx-left_off_at_idx-c)*number_of_workers)
+		estimated_seconds_remaining=time_per_step*(total_amount_of_remaining_work)		
 		print("estimated total cpu hours remaining:", estimated_seconds_remaining/3600)
+		
 	
 if __name__=="__main__":
 	N=int(sys.argv[1])

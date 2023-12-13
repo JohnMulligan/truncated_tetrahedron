@@ -9,13 +9,14 @@ import time
 import json
 from common.transforms import folder,rotate
 from common.evaluations import evaluate_folding,get_euclidean_distance
-
 import gc
 import tracemalloc
 
 def main(N,worker_number,number_of_workers):
 	
-	tracemalloc.start()
+# 	tracemalloc.start()
+	
+	N=int(N)
 	
 	#we get spurious hits at the beginning and end of the run
 	#my old drilldown had a clever way of figuring that out but it didn't work in an htc run
@@ -39,10 +40,8 @@ def main(N,worker_number,number_of_workers):
 	sample_angles_idxs=np.arange(number_samples)
 	possible_folds_idxs=np.arange(number_of_possible_folds)
 
-	total_work_list=product(sample_angles_idxs,possible_folds_idxs)
-
-	total_amount_of_work=len(sample_angles_idxs)*len(possible_folds_idxs)
-
+	total_amount_of_work=sample_angles_idxs.size*possible_folds_idxs.size
+	
 	work_per_worker=int(total_amount_of_work/number_of_workers)
 	
 	this_worker_start_idx=work_per_worker*worker_number
@@ -64,12 +63,10 @@ def main(N,worker_number,number_of_workers):
 		os.makedirs('outputs/%s/checkpoints/' %str(N), exist_ok=True)
 		left_off_at_idx=this_worker_start_idx
 	
-	this_work_batch=islice(total_work_list,left_off_at_idx,this_worker_end_idx)
-	
 	print("worker start:",this_worker_start_idx,"worker stop",this_worker_end_idx,"checkpoint",left_off_at_idx)
-	print("worker %d already completed %d of %d steps" %(worker_number,left_off_at_idx-this_worker_start_idx,work_per_worker))
-
-	#initial graph for spoke indices
+	
+	work_idxs=np.arange(left_off_at_idx,this_worker_end_idx)
+	
 	G=make_graph.main(N,r)
 	spokes={e:G.edges[e] for e in G.edges if G.edges[e]['set']=='spokes'}
 	spokes_by_index={spokes[e]['index']:e for e in spokes}
@@ -77,22 +74,17 @@ def main(N,worker_number,number_of_workers):
 	
 	st=time.time()
 	c=0
-	for work_item in this_work_batch:
-		snapshot = tracemalloc.take_snapshot()
-		top_stats= snapshot.statistics('traceback')
-		
-		for stat in top_stats[:20]:
-			print(f"{stat.count} memory blocks: {stat.size / 1024:.1f} KiB")
-			print(stat.traceback.format()[-1])
-
+	
+	print("worker %d already completed %d of %d steps" %(worker_number,left_off_at_idx-this_worker_start_idx,work_per_worker))
+	
+	for work_idx in work_idxs:
+		work_item=islice(product(sample_angles_idxs,possible_folds_idxs),work_idx,work_idx+1).__next__()
 
 		angle_idx,fold_idx=work_item
 		
-		angles=np.arange(min_angle,max_angle,(max_angle-min_angle)/number_samples)
-		this_angle=islice(angles,angle_idx,angle_idx+1).__next__()
+		this_angle=islice(np.arange(min_angle,max_angle,(max_angle-min_angle)/number_samples),angle_idx,angle_idx+1).__next__()
 		
-		possible_folds=product([i for i in [-1,1]],repeat=len(fold_spoke_indices))
-		this_folding=islice(possible_folds,fold_idx,fold_idx+1).__next__()
+		this_folding=islice(product([i for i in [-1,1]],repeat=len(fold_spoke_indices)),fold_idx,fold_idx+1).__next__()
 		
 		G=make_graph.main(N,r)
 		G=folder(

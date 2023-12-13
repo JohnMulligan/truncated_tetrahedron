@@ -9,13 +9,11 @@ import time
 import json
 from common.transforms import folder,rotate
 from common.evaluations import evaluate_folding,get_euclidean_distance
-
-import gc
-import tracemalloc
+import pickle
 
 def main(N,worker_number,number_of_workers):
 	
-	tracemalloc.start()
+	N=int(N)
 	
 	#we get spurious hits at the beginning and end of the run
 	#my old drilldown had a clever way of figuring that out but it didn't work in an htc run
@@ -38,19 +36,19 @@ def main(N,worker_number,number_of_workers):
 
 	sample_angles_idxs=np.arange(number_samples)
 	possible_folds_idxs=np.arange(number_of_possible_folds)
-
-	total_work_list=product(sample_angles_idxs,possible_folds_idxs)
-
+# 
+# 	total_work_list=product(sample_angles_idxs,possible_folds_idxs)
+# 
 	total_amount_of_work=len(sample_angles_idxs)*len(possible_folds_idxs)
-
+# 
 	work_per_worker=int(total_amount_of_work/number_of_workers)
-	
+# 	
 	this_worker_start_idx=work_per_worker*worker_number
 	this_worker_end_idx=work_per_worker*(worker_number+1)
-	
+# 	
 	checkpointpath='outputs/%d/checkpoints/worker_%d.txt' %(N,worker_number)
 	outputpath='outputs/%d/approximate_angles_worker_%d.txt' %(N,worker_number)
-	
+# 	
 	if os.path.exists(checkpointpath):
 		d=open(checkpointpath,'r')
 		t=d.read()
@@ -63,11 +61,11 @@ def main(N,worker_number,number_of_workers):
 	else:
 		os.makedirs('outputs/%s/checkpoints/' %str(N), exist_ok=True)
 		left_off_at_idx=this_worker_start_idx
-	
-	this_work_batch=islice(total_work_list,left_off_at_idx,this_worker_end_idx)
-	
-	print("worker start:",this_worker_start_idx,"worker stop",this_worker_end_idx,"checkpoint",left_off_at_idx)
-	print("worker %d already completed %d of %d steps" %(worker_number,left_off_at_idx-this_worker_start_idx,work_per_worker))
+# 	
+# 	this_work_batch=islice(total_work_list,left_off_at_idx,this_worker_end_idx)
+# 	
+# 	print("worker start:",this_worker_start_idx,"worker stop",this_worker_end_idx,"checkpoint",left_off_at_idx)
+# 	print("worker %d already completed %d of %d steps" %(worker_number,left_off_at_idx-this_worker_start_idx,work_per_worker))
 
 	#initial graph for spoke indices
 	G=make_graph.main(N,r)
@@ -75,17 +73,13 @@ def main(N,worker_number,number_of_workers):
 	spokes_by_index={spokes[e]['index']:e for e in spokes}
 	fold_spoke_indices=[spokes[s_id]['index'] for s_id in spokes][1:-1]
 	
+	
+	with open("%d_%d_%d.pickle" %(N,worker_number,number_of_workers), 'rb') as f:
+		this_work_batch=pickle.load(f)
+	
 	st=time.time()
 	c=0
 	for work_item in this_work_batch:
-		snapshot = tracemalloc.take_snapshot()
-		top_stats= snapshot.statistics('traceback')
-		
-		for stat in top_stats[:20]:
-			print(f"{stat.count} memory blocks: {stat.size / 1024:.1f} KiB")
-			print(stat.traceback.format()[-1])
-
-
 		angle_idx,fold_idx=work_item
 		
 		angles=np.arange(min_angle,max_angle,(max_angle-min_angle)/number_samples)

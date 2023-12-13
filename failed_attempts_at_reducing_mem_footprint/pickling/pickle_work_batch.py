@@ -9,13 +9,15 @@ import time
 import json
 from common.transforms import folder,rotate
 from common.evaluations import evaluate_folding,get_euclidean_distance
-
 import gc
 import tracemalloc
+import pickle
 
 def main(N,worker_number,number_of_workers):
 	
-	tracemalloc.start()
+# 	tracemalloc.start()
+	
+	N=int(N)
 	
 	#we get spurious hits at the beginning and end of the run
 	#my old drilldown had a clever way of figuring that out but it didn't work in an htc run
@@ -42,7 +44,7 @@ def main(N,worker_number,number_of_workers):
 	total_work_list=product(sample_angles_idxs,possible_folds_idxs)
 
 	total_amount_of_work=len(sample_angles_idxs)*len(possible_folds_idxs)
-
+	
 	work_per_worker=int(total_amount_of_work/number_of_workers)
 	
 	this_worker_start_idx=work_per_worker*worker_number
@@ -66,60 +68,9 @@ def main(N,worker_number,number_of_workers):
 	
 	this_work_batch=islice(total_work_list,left_off_at_idx,this_worker_end_idx)
 	
-	print("worker start:",this_worker_start_idx,"worker stop",this_worker_end_idx,"checkpoint",left_off_at_idx)
-	print("worker %d already completed %d of %d steps" %(worker_number,left_off_at_idx-this_worker_start_idx,work_per_worker))
+	with open("%d_%d_%d.pickle" %(N,worker_number,number_of_workers), 'wb') as f:
+		pickle.dump(this_work_batch,f)
 
-	#initial graph for spoke indices
-	G=make_graph.main(N,r)
-	spokes={e:G.edges[e] for e in G.edges if G.edges[e]['set']=='spokes'}
-	spokes_by_index={spokes[e]['index']:e for e in spokes}
-	fold_spoke_indices=[spokes[s_id]['index'] for s_id in spokes][1:-1]
-	
-	st=time.time()
-	c=0
-	for work_item in this_work_batch:
-		snapshot = tracemalloc.take_snapshot()
-		top_stats= snapshot.statistics('traceback')
-		
-		for stat in top_stats[:20]:
-			print(f"{stat.count} memory blocks: {stat.size / 1024:.1f} KiB")
-			print(stat.traceback.format()[-1])
-
-
-		angle_idx,fold_idx=work_item
-		
-		angles=np.arange(min_angle,max_angle,(max_angle-min_angle)/number_samples)
-		this_angle=islice(angles,angle_idx,angle_idx+1).__next__()
-		
-		possible_folds=product([i for i in [-1,1]],repeat=len(fold_spoke_indices))
-		this_folding=islice(possible_folds,fold_idx,fold_idx+1).__next__()
-		
-		G=make_graph.main(N,r)
-		G=folder(
-			G=G,
-			this_folding=this_folding,
-			angle=this_angle
-		)
-		close_neighborings,median_close_neighborings=evaluate_folding(G,threshold)
-		if close_neighborings !={}:
-			print("->match at",this_angle,"=",median_close_neighborings)
-			d=open(outputpath,'a')
-			d.write('\t'.join([str(i) for i in [this_angle,fold_idx,this_folding,median_close_neighborings,close_neighborings]])+'\n')
-			d.close()
-		
-		d=open(checkpointpath,'w')
-		d.write(str(c+left_off_at_idx))
-		d.close()
-		
-		c+=1
-		
-		time_per_step=(time.time()-st)/c
-		
-		amount_of_remaining_work=((this_worker_end_idx-left_off_at_idx-c)*number_of_workers)
-		estimated_seconds_remaining=time_per_step*(amount_of_remaining_work)
-		
-		print("estimated total cpu hours remaining:", estimated_seconds_remaining/3600)
-	
 if __name__=="__main__":
 	N=int(sys.argv[1])
 	worker_number=int(sys.argv[2])
