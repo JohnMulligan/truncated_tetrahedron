@@ -14,44 +14,22 @@ from common.evaluations import evaluate_folding,get_euclidean_distance
 # import gc
 # import tracemalloc
 
-#we want to strike a balance between a large radius, which makes spurious hits less likely
-#and a threshold for detecting hits that is sufficiently broad to catch the near-hits
-r=1000
-threshold=r*.010
-
-#... and the granularity that we're sampling the angles from 0 to pi at
-number_samples=1000
-
-#... also, we get spurious hits at the beginning and end of the run
-#my old drilldown had a clever way of figuring that out but it didn't work in an htc run
-#right now i'm hard-coding a buffer from observations to avoid a lot of unnecessary false positives that would crud up my outputs
-## but i might be losing some interesting cases as N becomes very large
-zero_buffer=0.05
-min_angle=0+zero_buffer
-max_angle=pi-zero_buffer
-
-def foldit(N,angle,angle_idx,folding,folding_idx,worker_number):
-		
-	G=make_graph.main(N,r)
-	G=folder(
-		G=G,
-		this_folding=folding,
-		angle=angle
-	)
-	close_neighborings,median_close_neighborings=evaluate_folding(G,threshold)
-	if close_neighborings !={}:
-		print("->match at",angle,"=",median_close_neighborings)
-		d=open(outputpath,'a')
-		d.write('\t'.join([str(i) for i in [angle,folding_idx,this_folding,median_close_neighborings,close_neighborings]])+'\n')
-		d.close()
-
-def checkpoint(checkpointpath,angle_idx,folding_idx):
-	d=open(checkpointpath,'w')
-	d.write("%d,%d" %(angle_idx,folding_idx))
-	d.close()
-
 def main(N,worker_number,number_of_workers):
-	
+	#we want to strike a balance between a large radius, which makes spurious hits less likely
+	#and a threshold for detecting hits that is sufficiently broad to catch the near-hits
+	r=1000
+	threshold=r*.010
+
+	#... and the granularity that we're sampling the angles from 0 to pi at
+	number_samples=1000
+
+	#... also, we get spurious hits at the beginning and end of the run
+	#my old drilldown had a clever way of figuring that out but it didn't work in an htc run
+	#right now i'm hard-coding a buffer from observations to avoid a lot of unnecessary false positives that would crud up my outputs
+	## but i might be losing some interesting cases as N becomes very large
+	zero_buffer=0.05
+	min_angle=0+zero_buffer
+	max_angle=pi-zero_buffer
 	st=time.time()
 	
 	step_size=(max_angle-min_angle)/number_samples
@@ -61,12 +39,30 @@ def main(N,worker_number,number_of_workers):
 	
 	print("number of angles sampled:",number_samples)
 	
-	print("total amount of work:",number_of_possible_folds*number_of_possible_folds)
+	print("total amount of work:",number_of_possible_folds*number_samples)
 	
 	print("-------")
+
+	#we are going to split this up in a kind of clever way.
+	#if we assume that we have an even number of workers (a condition that I set in __main__) then we can split up the work into a grid
+	#each zone would be
+	#width=sample angles /2 
+	#height=possible folds / (# of workers/2)
+	number_of_workers_rows=2
+	number_of_workers_cols=int(number_of_workers/2)
 	
-	worker_sample_angles_idxs=np.array_split(np.arange(number_samples),number_of_workers)[worker_number]
-	worker_possible_folds_idxs=np.array_split(np.arange(number_of_possible_folds),number_of_workers)[worker_number]
+	# print("rows",number_of_workers_rows)
+	# print("cols",number_of_workers_cols)
+
+	work_count=0
+	for worker_number in range(number_of_workers):
+		# print("***",worker_number%2,worker_number%number_of_workers_cols)
+		worker_sample_angles_idxs=np.array_split(np.arange(number_samples),number_of_workers_rows)[worker_number%2]
+		worker_possible_folds_idxs=np.array_split(np.arange(number_of_possible_folds),number_of_workers_cols)[worker_number%number_of_workers_cols]
+		print(worker_number,worker_sample_angles_idxs.size,worker_possible_folds_idxs.size,worker_sample_angles_idxs.size*worker_possible_folds_idxs.size)
+		work_count+=worker_sample_angles_idxs.size*worker_possible_folds_idxs.size
+	# print("---->",work_count)
+
 	
 	total_work_for_this_worker=	worker_sample_angles_idxs.size*worker_possible_folds_idxs.size
 	print("total work for worker number %d:" %worker_number,total_work_for_this_worker)
@@ -145,8 +141,24 @@ def main(N,worker_number,number_of_workers):
 		
 		for folding_idx in work_batch:
 			folding=islice(product([i for i in [-1,1]],repeat=len(fold_spoke_indices)),folding_idx,folding_idx+1).__next__()
-			foldit(N,angle,angle_idx,folding,folding_idx,worker_number)
-			checkpoint(checkpointpath,angle_idx,folding_idx)
+			
+			G=make_graph.main(N,r)
+			G=folder(
+				G=G,
+				this_folding=folding,
+				angle=angle
+			)
+			close_neighborings,median_close_neighborings=evaluate_folding(G,threshold)
+			if close_neighborings !={}:
+				print("->match at",angle,"=",median_close_neighborings)
+				d=open(outputpath,'a')
+				d.write('\t'.join([str(i) for i in [angle,folding_idx,folding,median_close_neighborings,close_neighborings]])+'\n')
+				d.close()
+			
+			d=open(checkpointpath,'w')
+			d.write("%d,%d" %(angle_idx,folding_idx))
+			d.close()
+
 			c+=1
 			
 			time_elapsed=time.time()-st
@@ -166,4 +178,9 @@ if __name__=="__main__":
 	N=int(sys.argv[1])
 	worker_number=int(sys.argv[2])
 	number_of_workers=int(sys.argv[3])
+
+	if not (number_of_workers)%2==0:
+		print("NUMBER OF WORKERS MUST BE EVEN")
+		exit()
+
 	main(N,worker_number,number_of_workers)
