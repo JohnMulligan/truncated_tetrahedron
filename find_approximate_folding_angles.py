@@ -35,7 +35,7 @@ def homemade_range_split(i,worker_number,number_workers):
 def main(N,worker_number,number_of_workers):
 	#we want to strike a balance between a large radius, which makes spurious hits less likely
 	#and a threshold for detecting hits that is sufficiently broad to catch the near-hits
-	r=1000
+	r=100*N
 	threshold=r*.010
 
 	#... and the granularity that we're sampling the angles from 0 to pi at
@@ -45,7 +45,7 @@ def main(N,worker_number,number_of_workers):
 	#my old drilldown had a clever way of figuring that out but it didn't work in an htc run
 	#right now i'm hard-coding a buffer from observations to avoid a lot of unnecessary false positives that would crud up my outputs
 	## but i might be losing some interesting cases as N becomes very large
-	zero_buffer=0.05
+	zero_buffer=0
 	min_angle=0+zero_buffer
 	max_angle=pi-zero_buffer
 	st=time.time()
@@ -99,7 +99,7 @@ def main(N,worker_number,number_of_workers):
 		if t!='':
 			clean=t.strip()
 			angle_idx_checkpoint,folds_idx_checkpoint=[int(i) for i in clean.split(',')]
-			angle_idx_checkpoint+=1
+			angle_idx_checkpoint
 			folds_idx_checkpoint+=1
 			
 		else:
@@ -112,15 +112,22 @@ def main(N,worker_number,number_of_workers):
 		angle_idx_checkpoint=worker_sample_angles_start_idx
 		folds_idx_checkpoint=worker_possible_folds_start_idx
 	
+	print("worker folds work",worker_folds_work)
+	print("worker angles work",worker_angles_work)
+	print("angle_idx_checkpoint",angle_idx_checkpoint)
+	print("worker_sample_angles_start_idx",worker_sample_angles_start_idx)
+	print("folds_idx_checkpoint",folds_idx_checkpoint)
+	print("worker_possible_folds_start_idx",worker_possible_folds_start_idx)
+
 	if (angle_idx_checkpoint-worker_sample_angles_start_idx)==0:
 		work_finished_by_worker=(folds_idx_checkpoint-worker_possible_folds_start_idx)
 	else:
-		work_finished_by_worker=((angle_idx_checkpoint-worker_sample_angles_start_idx)-1)*worker_folds_work*worker_angles_work+(folds_idx_checkpoint-worker_possible_folds_start_idx)
+		work_finished_by_worker=(angle_idx_checkpoint+1-worker_sample_angles_start_idx-1)*worker_folds_work+(folds_idx_checkpoint+1-(worker_possible_folds_start_idx+1))
 	
 	remaining_work_for_worker=total_work_for_this_worker-work_finished_by_worker
 	
 	print("worker %d already finished %d steps. %d remaining." %(worker_number,work_finished_by_worker,remaining_work_for_worker))
-	
+
 	#initial graph for spoke indices
 	G=make_graph.main(N,r)
 	spokes={e:G.edges[e] for e in G.edges if G.edges[e]['set']=='spokes'}
@@ -139,7 +146,7 @@ def main(N,worker_number,number_of_workers):
 	initial=True
 
 
-	for angle_idx in range(worker_sample_angles_start_idx,worker_sample_angles_end_idx+1):
+	for angle_idx in range(angle_idx_checkpoint,worker_sample_angles_end_idx+1):
 		angles=np.arange(min_angle,max_angle,step_size)
 		angle=islice(angles,angle_idx,angle_idx+1).__next__()
 		if initial:
@@ -181,8 +188,8 @@ def main(N,worker_number,number_of_workers):
 				print("estimated hours remaining for worker %d: %d" %(worker_number,estimated_hours_remaining_for_worker))
 				lastc=int(c)
 			
-			looptime=time.time()-st
-			print("seconds per loop",looptime)
+			looptime=time.time()-st_loop
+			# print("seconds per loop",looptime)
 			
 	
 if __name__=="__main__":
