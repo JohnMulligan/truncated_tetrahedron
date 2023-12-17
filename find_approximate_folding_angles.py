@@ -14,6 +14,24 @@ from common.evaluations import evaluate_folding,get_euclidean_distance
 # import gc
 # import tracemalloc
 
+def homemade_range_split(i,worker_number,number_workers):
+	'''
+		numpy's range split is a memory hog, apparently -- not an iterator
+	'''
+	work_per_worker=int(i/number_workers)
+	leftover=i%number_workers
+	start_idx=worker_number*work_per_worker
+	end_idx=work_per_worker*(worker_number+1)
+	if worker_number<leftover:
+		start_idx+=worker_number
+		end_idx+=worker_number
+	else:
+		start_idx+=leftover
+		end_idx+=leftover-1
+	if worker_number==number_workers-1:
+		end_idx=i-1
+	return start_idx,end_idx
+
 def main(N,worker_number,number_of_workers):
 	#we want to strike a balance between a large radius, which makes spurious hits less likely
 	#and a threshold for detecting hits that is sufficiently broad to catch the near-hits
@@ -21,7 +39,7 @@ def main(N,worker_number,number_of_workers):
 	threshold=r*.010
 
 	#... and the granularity that we're sampling the angles from 0 to pi at
-	number_samples=1000
+	number_angles_samples=1000
 
 	#... also, we get spurious hits at the beginning and end of the run
 	#my old drilldown had a clever way of figuring that out but it didn't work in an htc run
@@ -32,14 +50,14 @@ def main(N,worker_number,number_of_workers):
 	max_angle=pi-zero_buffer
 	st=time.time()
 	
-	step_size=(max_angle-min_angle)/number_samples
+	step_size=(max_angle-min_angle)/number_angles_samples
 
 	number_of_possible_folds=2**(N-1)
 	print("possible folds:",number_of_possible_folds)
 	
-	print("number of angles sampled:",number_samples)
+	print("number of angles sampled:",number_angles_samples)
 	
-	print("total amount of work:",number_of_possible_folds*number_samples)
+	print("total amount of work:",number_of_possible_folds*number_angles_samples)
 	
 	print("-------")
 
@@ -50,35 +68,24 @@ def main(N,worker_number,number_of_workers):
 	#height=possible folds / (# of workers/2)
 	number_of_workers_rows=2
 	number_of_workers_cols=int(number_of_workers/2)
-	
-	# print("rows",number_of_workers_rows)
-	# print("cols",number_of_workers_cols)
 
-	work_count=0
-	for worker_number in range(number_of_workers):
-		# print("***",worker_number%2,worker_number%number_of_workers_cols)
-		worker_sample_angles_idxs=np.array_split(np.arange(number_samples),number_of_workers_rows)[worker_number%2]
-		worker_possible_folds_idxs=np.array_split(np.arange(number_of_possible_folds),number_of_workers_cols)[worker_number%number_of_workers_cols]
-		print(worker_number,worker_sample_angles_idxs.size,worker_possible_folds_idxs.size,worker_sample_angles_idxs.size*worker_possible_folds_idxs.size)
-		work_count+=worker_sample_angles_idxs.size*worker_possible_folds_idxs.size
-	# print("---->",work_count)
+	folds_count=0
+	angles_count=0
+	worker_sample_angles_start_idx,worker_sample_angles_end_idx=homemade_range_split(number_angles_samples,worker_number,number_of_workers)
+	worker_possible_folds_start_idx,worker_possible_folds_end_idx=homemade_range_split(number_of_possible_folds,worker_number,number_of_workers)
 
-	
-	total_work_for_this_worker=	worker_sample_angles_idxs.size*worker_possible_folds_idxs.size
+	worker_angles_work=worker_sample_angles_end_idx-worker_sample_angles_start_idx+1
+	worker_folds_work=worker_possible_folds_end_idx-worker_possible_folds_start_idx+1
+
+	total_work_for_this_worker=	worker_angles_work*worker_folds_work
 	print("total work for worker number %d:" %worker_number,total_work_for_this_worker)
-	
-	worker_base_angle_idx=worker_sample_angles_idxs[0]
-	worker_max_angle_idx=worker_sample_angles_idxs[-1]
-	
-	worker_base_fold_idx=worker_possible_folds_idxs[0]
-	worker_max_fold_idx=worker_possible_folds_idxs[-1]
 	
 	print("worker %d sweeping angle indexes %d-%d and folding indexes %d-%d" %(
 		worker_number,
-		worker_base_angle_idx,
-		worker_max_angle_idx,
-		worker_base_fold_idx,
-		worker_max_fold_idx
+		worker_sample_angles_start_idx,
+		worker_sample_angles_end_idx,
+		worker_possible_folds_start_idx,
+		worker_possible_folds_end_idx
 	))
 	
 	checkpointpath='outputs/%d/checkpoints/worker_%d.txt' %(N,worker_number)
@@ -97,18 +104,18 @@ def main(N,worker_number,number_of_workers):
 			
 		else:
 			print("bad checkpoint file, starting from zero")
-			angle_idx_checkpoint=worker_base_angle_idx
-			folds_idx_checkpoint=worker_base_fold_idx
+			angle_idx_checkpoint=worker_sample_angles_start_idx
+			folds_idx_checkpoint=worker_possible_folds_start_idx
 			
 	else:
 		os.makedirs('outputs/%s/checkpoints/' %str(N), exist_ok=True)
-		angle_idx_checkpoint=worker_base_angle_idx
-		folds_idx_checkpoint=worker_base_fold_idx
+		angle_idx_checkpoint=worker_sample_angles_start_idx
+		folds_idx_checkpoint=worker_possible_folds_start_idx
 	
-	if (angle_idx_checkpoint-worker_base_angle_idx)==0:
-		work_finished_by_worker=(folds_idx_checkpoint-worker_base_fold_idx)
+	if (angle_idx_checkpoint-worker_sample_angles_start_idx)==0:
+		work_finished_by_worker=(folds_idx_checkpoint-worker_possible_folds_start_idx)
 	else:
-		work_finished_by_worker=((angle_idx_checkpoint-worker_base_angle_idx)-1)*worker_possible_folds_idxs.size*worker_sample_angles_idxs.size+(folds_idx_checkpoint-worker_base_fold_idx)
+		work_finished_by_worker=((angle_idx_checkpoint-worker_sample_angles_start_idx)-1)*worker_folds_work*worker_angles_work+(folds_idx_checkpoint-worker_possible_folds_start_idx)
 	
 	remaining_work_for_worker=total_work_for_this_worker-work_finished_by_worker
 	
@@ -130,18 +137,20 @@ def main(N,worker_number,number_of_workers):
 	estimation_step=10
 	
 	initial=True
-	for angle_idx in worker_sample_angles_idxs:
-		angles=np.arange(min_angle,max_angle,(max_angle-min_angle)/number_samples)
+
+
+	for angle_idx in range(worker_sample_angles_start_idx,worker_sample_angles_end_idx+1):
+		angles=np.arange(min_angle,max_angle,step_size)
 		angle=islice(angles,angle_idx,angle_idx+1).__next__()
 		if initial:
-			work_batch=islice(worker_possible_folds_idxs,(folds_idx_checkpoint-worker_base_fold_idx),worker_possible_folds_idxs.size)
+			work_batch_range=range(folds_idx_checkpoint,worker_possible_folds_end_idx+1)
 			initial=False
 		else:
-			work_batch=worker_possible_folds_idxs
-		
-		for folding_idx in work_batch:
+			work_batch_range=range(worker_possible_folds_start_idx,worker_possible_folds_end_idx+1)
+
+		for folding_idx in work_batch_range:
+			st_loop=time.time()
 			folding=islice(product([i for i in [-1,1]],repeat=len(fold_spoke_indices)),folding_idx,folding_idx+1).__next__()
-			
 			G=make_graph.main(N,r)
 			G=folder(
 				G=G,
@@ -154,7 +163,6 @@ def main(N,worker_number,number_of_workers):
 				d=open(outputpath,'a')
 				d.write('\t'.join([str(i) for i in [angle,folding_idx,folding,median_close_neighborings,close_neighborings]])+'\n')
 				d.close()
-			
 			d=open(checkpointpath,'w')
 			d.write("%d,%d" %(angle_idx,folding_idx))
 			d.close()
@@ -172,6 +180,9 @@ def main(N,worker_number,number_of_workers):
 			if c-lastc>=estimation_step:
 				print("estimated hours remaining for worker %d: %d" %(worker_number,estimated_hours_remaining_for_worker))
 				lastc=int(c)
+			
+			looptime=time.time()-st
+			print("seconds per loop",looptime)
 			
 	
 if __name__=="__main__":
