@@ -70,40 +70,31 @@ def main(N,worker_number,number_of_workers):
 	number_of_worker_rows=2
 	number_of_worker_cols=int(number_of_workers/2)
 
-	print(number_of_worker_cols)
-	exit()
-
 	#test batch splitting
 	#it's very close....
 	#the difficulty is that when I add another "leftover" column of folding indexes, I get 500 new angles to sweep.
 	#in the grand scheme of things, though, that's very very close.
 	#we'll just have to account for some workers needing a little extra time.
-	running_worker_count=0
-	for worker_idx in range(number_of_workers):
-		worker_row=worker_idx%number_of_worker_rows
-		worker_col=worker_idx%number_of_worker_cols
-		worker_sample_angles_start_idx,worker_sample_angles_end_idx=homemade_range_split(number_angles_samples,worker_row,number_of_worker_rows)
-		worker_possible_folds_start_idx,worker_possible_folds_end_idx=homemade_range_split(number_of_possible_folds,worker_col,number_of_worker_cols)
-		worker_angles_work=worker_sample_angles_end_idx-worker_sample_angles_start_idx+1
-		worker_folds_work=worker_possible_folds_end_idx-worker_possible_folds_start_idx+1
-		total_work_for_this_worker=	worker_angles_work*worker_folds_work
-		print("total work for worker number %d:" %worker_idx,total_work_for_this_worker)
+	# running_worker_count=0
+	# for worker_idx in range(number_of_workers):
+	# 	worker_row=worker_idx%number_of_worker_rows
+	# 	worker_col=worker_idx%number_of_worker_cols
+	# 	worker_sample_angles_start_idx,worker_sample_angles_end_idx=homemade_range_split(number_angles_samples,worker_row,number_of_worker_rows)
+	# 	worker_possible_folds_start_idx,worker_possible_folds_end_idx=homemade_range_split(number_of_possible_folds,worker_col,number_of_worker_cols)
+	# 	worker_angles_work=worker_sample_angles_end_idx-worker_sample_angles_start_idx+1
+	# 	worker_folds_work=worker_possible_folds_end_idx-worker_possible_folds_start_idx+1
+	# 	total_work_for_this_worker=	worker_angles_work*worker_folds_work
+	# 	print("total work for worker number %d:" %worker_idx,total_work_for_this_worker)
 		
-		print("worker %d sweeping angle indexes %d-%d and folding indexes %d-%d" %(
-			worker_idx,
-			worker_sample_angles_start_idx,
-			worker_sample_angles_end_idx,
-			worker_possible_folds_start_idx,
-			worker_possible_folds_end_idx
-		))
-		running_worker_count+=total_work_for_this_worker
-	print("total work, directly counted:",running_worker_count)
-	exit()
-
-
-
-
-
+	# 	print("worker %d sweeping angle indexes %d-%d and folding indexes %d-%d" %(
+	# 		worker_idx,
+	# 		worker_sample_angles_start_idx,
+	# 		worker_sample_angles_end_idx,
+	# 		worker_possible_folds_start_idx,
+	# 		worker_possible_folds_end_idx
+	# 	))
+	# 	running_worker_count+=total_work_for_this_worker
+	# print("total work, directly counted:",running_worker_count)
 
 	folds_count=0
 	angles_count=0
@@ -207,7 +198,7 @@ def main(N,worker_number,number_of_workers):
 			)
 			close_neighborings,median_close_neighborings=evaluate_folding(G,threshold)
 			if close_neighborings !={}:
-				print("->match at",angle,"=",median_close_neighborings)
+				print("->match. angle:",angle_idx,angle,"folding:",folding_idx,folding,"median distance:",median_close_neighborings)
 				d=open(outputpath,'a')
 				d.write('\t'.join([str(i) for i in [angle,folding_idx,folding,median_close_neighborings,close_neighborings]])+'\n')
 				d.close()
