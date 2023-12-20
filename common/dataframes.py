@@ -6,7 +6,8 @@ def approx_angle_txtfiles_to_df(basepath,approximate_angle_files):
 	approximate_angles={
 		"angle":[],
 		"folding_id":[],
-		"median_distance":[]
+		"median_distance":[],
+		"close_neighborings":[]
 	}
 
 	for aaf in approximate_angle_files:
@@ -29,7 +30,7 @@ def approx_angle_txtfiles_to_df(basepath,approximate_angle_files):
 			approximate_angles['folding_id'].append(folding_id)
 			approximate_angles['median_distance'].append(median_distance)
 			
-			if len(linevals)==5
+			if len(linevals)==5:
 				approximate_angles['close_neighborings'].append(close_neighborings)
 
 	df=pd.DataFrame.from_dict(approximate_angles)
