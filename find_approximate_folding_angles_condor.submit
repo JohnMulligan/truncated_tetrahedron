@@ -1,4 +1,5 @@
-universe = vanilla
+container_image = docker://python:3.11.3
+universe = container
 
 executable=condor_kickoff.sh
 

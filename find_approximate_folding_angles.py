@@ -9,6 +9,7 @@ import time
 import json
 from common.transforms import folder,rotate
 from common.evaluations import evaluate_folding,get_euclidean_distance
+from pathlib import Path
 
 #for granular job profiling & debugging memory leaks (be warned, though, it's a hog)
 # import gc
@@ -141,6 +142,8 @@ def main(N,worker_number,number_of_workers):
 			
 	else:
 		os.makedirs('outputs/%s/checkpoints/' %str(N), exist_ok=True)
+		Path(checkpointpath).touch()
+		Path(outputpath).touch()
 		angle_idx_checkpoint=worker_sample_angles_start_idx
 		folds_idx_checkpoint=worker_possible_folds_start_idx
 	
@@ -222,6 +225,8 @@ def main(N,worker_number,number_of_workers):
 			
 			looptime=time.time()-st_loop
 # 			print("seconds per loop",looptime)
+			if c>1000:
+				exit()
 			
 			
 	
