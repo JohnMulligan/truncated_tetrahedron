@@ -1,0 +1,11 @@
+executable=condor_kickoff.sh
+
+log=$(Process).log
+error=$(Process).error
+output=$(Process).output
+
+request_cpus=1
+request_memory=2 GB
+request_disk=1 GB
+
+arguments = 12 $(Process) 100
