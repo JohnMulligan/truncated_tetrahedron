@@ -5,8 +5,8 @@ error=$(Process).error
 output=$(Process).output
 
 request_cpus=1
-request_memory=2GB
-request_disk=1GB
+request_memory=2000M
+request_disk=1000M
 
 container_image = /cvmfs/singularity.opensciencegrid.org/opensciencegrid/osgvo-ubuntu-20.04:latest
 
