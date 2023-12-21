@@ -8,12 +8,10 @@ request_cpus=1
 request_memory=2000M
 request_disk=1000M
 
-container_image = /cvmfs/singularity.opensciencegrid.org/opensciencegrid/osgvo-ubuntu-20.04:latest
-
 arguments = 12 $(Process) 10
 
-transfer_input_files = common/* condor_kickoff.sh find_approximate_folding_angles.py requirements.txt
+transfer_input_files = requirements.txt, find_approximate_folding_angles.py, common/, outputs/
 
-transfer_output_files = outputs/12/*
+should_transfer_files = yes
 
-queue 10
+queue 1
