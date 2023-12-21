@@ -16,3 +16,4 @@ transfer_input_files = common/* condor_kickoff.sh find_approximate_folding_angle
 
 transfer_output_files = outputs/12/*
 
+queue 10
