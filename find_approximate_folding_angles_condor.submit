@@ -10,10 +10,10 @@ request_cpus=1
 request_memory=2000M
 request_disk=1000M
 
-arguments = 12 $(Process) 10
+arguments = 12 $(Process) 100
 
 transfer_input_files = requirements.txt, find_approximate_folding_angles.py, common, outputs
 
 should_transfer_files = yes
 
-queue 1
+queue 100

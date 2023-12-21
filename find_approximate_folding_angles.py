@@ -221,11 +221,7 @@ def main(N,worker_number,number_of_workers):
 				lastc=int(c)
 			
 			looptime=time.time()-st_loop
-			print("seconds per loop",looptime)
-			d=open("test_%d.txt" %worker_number,'w')
-			d.write('WROTE!')
-			d.close()
-			exit()
+# 			print("seconds per loop",looptime)
 			
 			
 	
