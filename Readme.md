@@ -29,72 +29,65 @@ The regularity of the solution led me to try out the same method on a decagon: c
 
 In May 2023 I decided to dust this project off and start testing this "method" on even-sided polygons.
 
-## CONDOR SUBMIT
-
-submit like ```condor_submit N=12 Procs=800 find_approximate_folding_angles_condor.submit```
-
-currently baked in a 5 hr walltime w an exit code 85 resubmit rule in the executable shell script
-
-## Current state (Nov, 2023)
+## Nov 2023 update
 
 I've pulled everything from optimize down into the base folder and pushed the shared functions out to a folder named "common". And everything is cleaned up quite a bit, after our nots workshop.
 
-Previously, I assumed that all good folding angles would have hits at the zero index on the fold iterator, which is just an N-long array of 1's (always folding right). However, this didn't yield anything interesting beyond 16-sided shapes.
+The job was, at this point, refactored to run as an HTC job on a slurm job scheduler.
 
-It's worth noting, though, that this is creating exactly the blowout problem I'd been worried about:
+## CONDOR SUBMIT (Dec 2023 update)
 
-* A 20-sided shape will require 1.5M CPU hours
-* And the memory usage doubles with each N:
-	* 1GB for N=26
-	* 4 GB for N=28
-	* 25 GB for N=30
+This has now been refactored to run as an HTC job on a condor job scheduler.
 
-## How to use this with a SLURM job scheduler
+* Linear scaling
+* Checkpointing
+* Hand-rolled job array workload balancing
 
-Current 11/22/23
+### Submission
 
-### Approximate the folding angles
+Submit like ```condor_submit N=12 Procs=800 find_approximate_folding_angles_condor.submit```
 
-HTC job that slices up the angles by 1000, and sweeps all the possible foldings:
+* The submit file is ```find_approximate_folding_angles_condor.submit```
+* Executable file is ```find_approximate_folding_angles.sh```
+	* Hard-coded 5-hour walltime
+	* 85 exit code resubmit
+* Script file is ```find_approximate_folding_angles.py```
+	* checkpoint files per proc are all ```checkpoint.txt```
+	* output files per proc are ```approximate_angles_worker_{PROC}.txt```
+	* output files on complete remapped to ```outputs/{N}/approximate_angles_worker_{PROC}.txt```
 
-* 512 for a 10-sided shape
-* 1024 for a 12 sided shape
-* etc.
+### Post-processing
 
-Run the job with ```sbatch find_approximate_folding_angles.slurm {{N}}``` (again, N must be an even number)
+Post-process with a simple:
 
-It checkpoints in ```outputs/{{N}}/checkpoints/```
+1. Concatenation: ```cat outputs/{N}/approximate_angles_worker_*.txt > outputs/{N}/approximate_angles.txt```
+	1. This sets up the full list of approximate angles that feeds the next step
+1. Reduction to local minima: ```python3 isolate_local_minima_from_approx_angles.py {N}```
+	1. This sets up the consolidated list, ```approximate_angles_consolidated.txt```
+1. Then optimize the consolidated angles: ```python3 isolate_local_minima_from_approx_angles.py {N}```
+	1. This should be parallelized to the number of angles that need optimization (TBD)
 
-Keep kicking it off until it's done, but always use the same number of tasks (maybe I could refactor to make it more flexible). stdout files track the progress and try to estimate the remaining time.
+## Notes on the code
 
-But do consider that the memory consumption doubles with each N.
+See longer, unrevised notes further down in this doc for a basic explanation on the method. Here, I'm describing some of the work that had to be done to properly parallelize the experiment.
 
-### Post-processing the outputs
+* Had to write my own version of numpy's array_split
+	* That was not acting like a true iterator but instead creating a huge matrix
+	* The job now appears to stay under 200MB memory for even large N's.
+* The number of possible states to test is: 
+	* ```(2**(N-1))*(Number of angles sampled)```
+	* For now, I'm sampling 1000 angles from 0 to pi.
+* As N grows, each step also takes more time to test. Could be sped up by:
+	* Using quaternions (and a GPU?)
+	* Using matrices instead of NetworkX
+* But, again, at least I've solved the memory blowout
+* There are some visualization scripts that I no longer use, e.g. ```graph_approximate_angles.py```:
+	* heatmap
+	* 3d scatter
+	* unbinned 2d scatter
+	* binned 2d scatter
 
-#### Visualization and cleanup (very fast)
-
-You can visualize the results with ```python graph_approximate_angles.py {{N}}```. This renders:
-
-* heatmap
-* 3d scatter
-* unbinned 2d scatter
-* binned 2d scatter
-
-But to properly reduce these to their local optimizations, use ```python isolate_local_minima_from_approx_angles.py {{N}}```. This will
-
-* walk the hits and find the best matching angles
-* graph these as a cleaned-up heatmap for you
-* dump those hits out to ```outputs/{{N}}//approximate_angles_consolidated.txt```
-
-#### Optimization
-
-Remember that we've only found approximations of good folding angles (and I'm not sure the parameter sweep of 1000 samples on 3.14 radians is granular enough with a large N).
-
-So we're going to optimize our folding angles out to 10 decimal places. We do this serially (though it would lend itself to an MPI job), with ```targeted_driller.py {{{N}}}```. This picks one of the folding id's for each approximated folding angle, and drills down into it -- I haven't seen it fail yet.
-
-That script outputs to ```outputs/{{N}}//known_angles_improved.txt```
-
-#### Exploratory data visualization
+## Exploratory data visualization
 
 I need to refactor my visualization code. This should all be done in a single visualization package, rather than the mixture of processing.js and plotly I tried before.
 
@@ -192,7 +185,4 @@ What I need now is to have the system act a little more intelligently.
 
 But what does that last one look like? Some combination of the number of close neighbors and the closeness of those neighbors, I'd think. Except that I don't want to rule out, especially in larger shapes, the possibility of very long unspoolings that connect in only a few places but in interesting ways.
 
-What, then, is interesting??
-=======
-Processing.js files are written out to a static folder in that repo.
->>>>>>> a7ec8a01c8ee721c8fb9237d7df662173ce29710
+What, then, is interesting?
