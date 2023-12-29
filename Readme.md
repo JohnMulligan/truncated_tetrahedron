@@ -29,6 +29,12 @@ The regularity of the solution led me to try out the same method on a decagon: c
 
 In May 2023 I decided to dust this project off and start testing this "method" on even-sided polygons.
 
+## CONDOR SUBMIT
+
+submit like ```condor_submit N=12 Procs=800 find_approximate_folding_angles_condor.submit```
+
+currently baked in a 5 hr walltime w an exit code 85 resubmit rule in the executable shell script
+
 ## Current state (Nov, 2023)
 
 I've pulled everything from optimize down into the base folder and pushed the shared functions out to a folder named "common". And everything is cleaned up quite a bit, after our nots workshop.

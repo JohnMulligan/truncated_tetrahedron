@@ -121,8 +121,8 @@ def main(N,worker_number,number_of_workers):
 		worker_possible_folds_end_idx
 	))
 	
-	checkpointpath='outputs/%d/checkpoints/worker_%d.txt' %(N,worker_number)
-	outputpath='outputs/%d/approximate_angles_worker_%d.txt' %(N,worker_number)
+	checkpointpath='checkpoint.txt'
+	outputpath='approximate_angles.txt'
 	
 	if os.path.exists(checkpointpath):
 		d=open(checkpointpath,'r')
@@ -141,7 +141,6 @@ def main(N,worker_number,number_of_workers):
 			folds_idx_checkpoint=worker_possible_folds_start_idx
 			
 	else:
-		os.makedirs('outputs/%s/checkpoints/' %str(N), exist_ok=True)
 		Path(checkpointpath).touch()
 		Path(outputpath).touch()
 		angle_idx_checkpoint=worker_sample_angles_start_idx
@@ -222,13 +221,6 @@ def main(N,worker_number,number_of_workers):
 			if c-lastc>=estimation_step:
 				print("estimated hours remaining for worker %d: %d" %(worker_number,estimated_hours_remaining_for_worker))
 				lastc=int(c)
-			
-			looptime=time.time()-st_loop
-# 			print("seconds per loop",looptime)
-			if c>1000:
-				exit()
-			
-			
 	
 if __name__=="__main__":
 	N=int(sys.argv[1])

@@ -2,5 +2,14 @@
 *__pycache__*
 .DS_Store
 *.pyc
-slurm*.out
 /checkpoints
+*.out
+*.error
+*.log
+.bash_history
+.bashrc
+.python_history
+.tcshrc
+.xonshrc
+.zshrc
+*.sif
