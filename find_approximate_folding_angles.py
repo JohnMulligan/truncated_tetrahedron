@@ -110,9 +110,9 @@ def main(N,worker_number,number_of_workers):
 	angles_count=0
 
 	if worker_idx >= number_of_worker_cols:
-			worker_row=1
-		else:
-			worker_row=0
+		worker_row=1
+	else:
+		worker_row=0
 
 	# worker_row=worker_number%number_of_worker_rows
 	worker_col=worker_number%number_of_worker_cols
