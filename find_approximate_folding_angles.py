@@ -26,10 +26,12 @@ def homemade_range_split(i,worker_number,number_workers):
 	end_idx=work_per_worker*(worker_number+1)
 	if worker_number<leftover:
 		start_idx+=worker_number
-		end_idx+=worker_number
+		if worker_number!=0:
+			start_idx-=1
+		end_idx+=worker_number+1
 	else:
-		start_idx+=leftover
-		end_idx+=leftover-1
+		start_idx+=leftover-1
+		end_idx+=leftover
 	if worker_number==number_workers-1:
 		end_idx=i-1
 	return start_idx,end_idx
