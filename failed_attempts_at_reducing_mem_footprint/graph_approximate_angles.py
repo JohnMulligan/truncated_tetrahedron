@@ -10,7 +10,7 @@ N=int(sys.argv[1])
 
 basepath='outputs/%d' %N
 
-approximate_angle_files=[f for f in os.listdir(basepath) if re.match('approximate_angles_worker_[0-9]+\.txt',f)]
+approximate_angle_files=[f for f in os.listdir(basepath) if re.match('approximate_angles_worker.txt',f)]
 
 df=approx_angle_txtfiles_to_df(basepath,approximate_angle_files)
 

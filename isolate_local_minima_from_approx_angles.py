@@ -12,6 +12,9 @@ from common.dataframes import approx_angle_txtfiles_to_df
 	outputs/{{N}}/approximate_angles_worker_{{task_id}}.txt
 	pulls out all the hits and finds the local minima
 	and then writes out to that N's "approximate_angles_consolidated.txt"
+	for the sake of efficient memory use, we should run this before committing anything to git
+	--in other words, only the consolidated file should come off the cluster
+	however, i've saved the raw outputs from 10 and 12 as examples (tarballs)
 '''
 
 N=int(sys.argv[1])
@@ -107,15 +110,15 @@ d.write('\n'.join(lines))
 d.close()
 
 
-optimized_df=pd.DataFrame.from_records(keepers)
+# optimized_df=pd.DataFrame.from_records(keepers)
 
 #heatmap
-fig = go.Figure(
-	data=go.Heatmap(
-		z=optimized_df['median_distance'],
-		y=optimized_df['folding_id'],
-		x=optimized_df['angle']
-	)
-)
+# fig = go.Figure(
+# 	data=go.Heatmap(
+# 		z=optimized_df['median_distance'],
+# 		y=optimized_df['folding_id'],
+# 		x=optimized_df['angle']
+# 	)
+# )
 
-fig.show()
+# fig.show()
