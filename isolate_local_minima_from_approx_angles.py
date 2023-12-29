@@ -85,11 +85,13 @@ for folding_id in df.folding_id.unique():
 	angles.sort()
 	for angle in angles:
 		median_distance=fid_df[fid_df['angle']==angle].median_distance.values[0]
+		close_neighborings=fid_df[fid_df['angle']==angle].close_neighborings.values[0]
 		if median_distance>prev_dist:
 			local_min={
 				'angle':float(prev_angle),
 				'folding_id':int(folding_id),
-				'median_distance':float(prev_dist)
+				'median_distance':float(prev_dist),
+				'close_neighborings':json.dumps(close_neighborings)
 			}
 			keepers.append(local_min)
 			prev_dist=10000
@@ -102,7 +104,7 @@ d=open('outputs/%d/approximate_angles_consolidated.txt' %N,'w')
 
 lines=[]
 for k in keepers:
-	linearray=[str(k['angle']),str(k['folding_id'])]
+	linearray=[str(k['angle']),str(k['folding_id']),str(k['close_neighborings'])]
 	line='\t'.join(linearray)
 	lines.append(line)
 

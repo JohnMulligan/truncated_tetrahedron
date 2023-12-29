@@ -25,9 +25,10 @@ def main(N,max_level,current_accuracy,r=1000):
 	
 	known_matches={}
 	for l in lines:
-		angle_str,fold_idx_str=l.split('\t')
+		angle_str,fold_idx_str,close_neighborings_json_str=l.split('\t')
 		angle=float(angle_str)
 		fold_idx=int(fold_idx_str)
+		close_neighborings=json.loads(close_neighborings_json_str)
 		if angle in known_matches:
 			known_matches[angle].append(fold_idx)
 		else:
