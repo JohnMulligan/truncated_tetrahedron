@@ -26,11 +26,13 @@ def homemade_range_split(i,worker_number,number_workers):
 	end_idx=work_per_worker*(worker_number+1)
 	if worker_number<leftover:
 		start_idx+=worker_number
-		if worker_number!=0:
+		if start_idx!=0:
 			start_idx-=1
 		end_idx+=worker_number+1
 	else:
-		start_idx+=leftover-1
+		start_idx+=leftover
+		if start_idx!=0:
+			start_idx-=1
 		end_idx+=leftover
 	if worker_number==number_workers-1:
 		end_idx=i-1
@@ -80,7 +82,11 @@ def main(N,worker_number,number_of_workers):
 	#we'll just have to account for some workers needing a little extra time.
 	# running_worker_count=0
 	# for worker_idx in range(number_of_workers):
-	# 	worker_row=worker_idx%number_of_worker_rows
+	# 	if worker_idx >= number_of_worker_cols:
+	# 		worker_row=1
+	# 	else:
+	# 		worker_row=0
+	# 	# worker_row=worker_idx%number_of_worker_rows
 	# 	worker_col=worker_idx%number_of_worker_cols
 	# 	worker_sample_angles_start_idx,worker_sample_angles_end_idx=homemade_range_split(number_angles_samples,worker_row,number_of_worker_rows)
 	# 	worker_possible_folds_start_idx,worker_possible_folds_end_idx=homemade_range_split(number_of_possible_folds,worker_col,number_of_worker_cols)
@@ -98,11 +104,17 @@ def main(N,worker_number,number_of_workers):
 	# 	))
 	# 	running_worker_count+=total_work_for_this_worker
 	# print("total work, directly counted:",running_worker_count)
+	# exit()
 
 	folds_count=0
 	angles_count=0
 
-	worker_row=worker_number%number_of_worker_rows
+	if worker_idx >= number_of_worker_cols:
+			worker_row=1
+		else:
+			worker_row=0
+
+	# worker_row=worker_number%number_of_worker_rows
 	worker_col=worker_number%number_of_worker_cols
 
 	worker_sample_angles_start_idx,worker_sample_angles_end_idx=homemade_range_split(number_angles_samples,worker_row,number_of_worker_rows)
