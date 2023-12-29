@@ -13,3 +13,4 @@
 .xonshrc
 .zshrc
 *.sif
+*.output
