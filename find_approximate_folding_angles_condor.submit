@@ -2,9 +2,9 @@
 
 executable=find_approximate_folding_angles.sh
 
-log=$(Process).log
-error=$(Process).error
-output=$(Process).output
+log=$(N)_$(Procs)_$(Process).log
+error=$(N)_$(Procs)_$(Process).error
+output=$(N)_$(Procs)_$(Process).output
 
 request_cpus=1
 request_memory=2000M
@@ -12,15 +12,15 @@ request_disk=1000M
 
 checkpoint_exit_code = 85
 
-transfer_checkpoint_files = approximate_angles_worker_$(Process).txt, checkpoint_$(Process).txt
+transfer_checkpoint_files = approximate_angles_worker_$(N)_$(Procs)_$(Process).txt, checkpoint_$(N)_$(Procs)_$(Process).txt
 arguments = $(N) $(Process) $(Procs)
 +is_resumable = true
 
 transfer_input_files = requirements.txt, find_approximate_folding_angles.py, common
 
-transfer_output_files = approximate_angles.txt, checkpoint.txt
+transfer_output_files = approximate_angles_worker_$(N)_$(Procs)_$(Process).txt
 
-transfer_output_remaps = "approximate_angles_worker_$(Process).txt = outputs/$(N)/approximate_angles_worker_$(Process).txt"
+transfer_output_remaps = "approximate_angles_worker_$(N)_$(Procs)_$(Process).txt = outputs/$(N)/approximate_angles_worker_$(Process).txt"
 
 should_transfer_files       = yes
 when_to_transfer_output     = ON_EXIT
