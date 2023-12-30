@@ -1,6 +1,6 @@
 +SingularityImage = "osdf:///ospool/ap21/data/johnconnor/my-container.sif"
 
-executable=condor_kickoff.sh
+executable=find_approximate_folding_angles.sh
 
 log=$(Process).log
 error=$(Process).error
@@ -12,7 +12,7 @@ request_disk=1000M
 
 checkpoint_exit_code = 85
 
-transfer_checkpoint_files = approximate_angles.txt, checkpoint.txt
+transfer_checkpoint_files = approximate_angles_worker_$(Process).txt, checkpoint_$(Process).txt
 arguments = $(N) $(Process) $(Procs)
 +is_resumable = true
 
@@ -20,7 +20,7 @@ transfer_input_files = requirements.txt, find_approximate_folding_angles.py, com
 
 transfer_output_files = approximate_angles.txt, checkpoint.txt
 
-transfer_output_remaps = "approximate_angles.txt = outputs/$(N)/approximate_angles_worker_$(Process).txt"
+transfer_output_remaps = "approximate_angles_worker_$(Process).txt = outputs/$(N)/approximate_angles_worker_$(Process).txt"
 
 should_transfer_files       = yes
 when_to_transfer_output     = ON_EXIT

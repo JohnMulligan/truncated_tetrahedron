@@ -135,8 +135,8 @@ def main(N,worker_number,number_of_workers):
 		worker_possible_folds_end_idx
 	))
 	
-	checkpointpath='checkpoint.txt'
-	outputpath='approximate_angles.txt'
+	checkpointpath='checkpoint_%d.txt' %worker_number
+	outputpath='approximate_angles_worker_%d.txt' %worker_number
 	
 	if os.path.exists(checkpointpath):
 		d=open(checkpointpath,'r')
