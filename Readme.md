@@ -52,9 +52,9 @@ Submit like ```condor_submit N=12 Procs=800 find_approximate_folding_angles_cond
 	* Hard-coded 5-hour walltime
 	* 85 exit code resubmit
 * Script file is ```find_approximate_folding_angles.py```
-	* checkpoint files per proc are all ```checkpoint.txt```
-	* output files per proc are ```approximate_angles_worker_{PROC}.txt```
-	* output files on complete remapped to ```outputs/{N}/approximate_angles_worker_{PROC}.txt```
+	* checkpoint files per proc are all ```checkpoint_$(N)_$(Procs)_$(Process).txt```
+	* output files per proc are ```approximate_angles_worker_$(N)_$(Procs)_$(Process).txt```
+	* output files on complete remapped to ```outputs/$(N)/approximate_angles_worker_$(Process).txt```
 
 ### Post-processing
 
