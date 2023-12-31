@@ -1,5 +1,6 @@
 import pandas as pd
 import os
+import re
 
 def approx_angle_txtfiles_to_df(basepath,approximate_angle_files):
 
@@ -20,9 +21,21 @@ def approx_angle_txtfiles_to_df(basepath,approximate_angle_files):
 			#i should have kept the intersections in order to score these properly for exploratory purposes later
 			if len(linevals)==4:
 				angle_str,folding_id_str,folding_pattern_str,median_distance_str=linevals
+				#I've been dropping the folding patterns, argh
+				if not len(re.findall("(-*1,)+",folding_pattern_str))>5:
+						angle_str,folding_id_str,median_distance_str,close_neighborings=linevals
+				else:
+					close_neighborings=None
 			elif len(linevals)==5:
 				angle_str,folding_id_str,folding_pattern_str,median_distance_str,close_neighborings=linevals
 			
+			print('angle_str',angle_str)
+			print('folding_id_str',folding_id_str)
+			print('median_distance_str',median_distance_str)
+			print('close_neighborings',close_neighborings)
+			
+
+
 			angle=float(angle_str)
 			folding_id=int(folding_id_str)
 			median_distance=float(median_distance_str)
@@ -30,7 +43,7 @@ def approx_angle_txtfiles_to_df(basepath,approximate_angle_files):
 			approximate_angles['folding_id'].append(folding_id)
 			approximate_angles['median_distance'].append(median_distance)
 			
-			if len(linevals)==5:
+			if close_neighborings is not None:
 				approximate_angles['close_neighborings'].append(close_neighborings)
 
 	df=pd.DataFrame.from_dict(approximate_angles)

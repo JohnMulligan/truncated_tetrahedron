@@ -104,7 +104,7 @@ d=open('outputs/%d/approximate_angles_consolidated.txt' %N,'w')
 
 lines=[]
 for k in keepers:
-	linearray=[str(k['angle']),str(k['folding_id']),str(k['close_neighborings'])]
+	linearray=[str(k['angle']),str(k['folding_id']),k['median_distance'],k['close_neighborings']]
 	line='\t'.join(linearray)
 	lines.append(line)
 
