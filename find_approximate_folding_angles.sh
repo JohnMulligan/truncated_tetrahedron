@@ -1,6 +1,6 @@
 #!/bin/bash
 
-timeout 5h python3 find_approximate_folding_angles.py $1 $2 $3
+timeout 4h python3 find_approximate_folding_angles.py $1 $2 $3
 
 timeout_exit_status=$?
 

@@ -1,4 +1,6 @@
 Bootstrap: docker
 From: python:3.9-slim
+%files
+    requirements.txt
 %post
-    pip install numpy networkx sympy
+    pip install -r requirements.txt

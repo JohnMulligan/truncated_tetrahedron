@@ -2,8 +2,8 @@ import json
 import os
 import sys
 import re
-import plotly.express as px
-import plotly.graph_objects as go
+#import plotly.express as px
+#import plotly.graph_objects as go
 import pandas as pd
 from common.dataframes import approx_angle_txtfiles_to_df
 
