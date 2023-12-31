@@ -64,7 +64,7 @@ Post-process with a simple:
 	1. This sets up the full list of approximate angles that feeds the next step
 1. Reduction to local minima: ```python3 isolate_local_minima_from_approx_angles.py {N}```
 	1. This sets up the consolidated list, ```approximate_angles_consolidated.txt```
-1. Then optimize the consolidated angles: ```python3 isolate_local_minima_from_approx_angles.py {N}```
+1. Then optimize the consolidated angles: ```python3 targeted_driller.py {N}```
 	1. This should be parallelized to the number of angles that need optimization (TBD)
 
 ## Notes on the code
