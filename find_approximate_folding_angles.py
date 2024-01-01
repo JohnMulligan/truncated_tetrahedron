@@ -41,8 +41,8 @@ def homemade_range_split(i,worker_number,number_workers):
 def main(N,worker_number,number_of_workers):
 	#we want to strike a balance between a large radius, which makes spurious hits less likely
 	#and a threshold for detecting hits that is sufficiently broad to catch the near-hits
-	r=100*N
-	threshold=r*.010
+	r=1000
+	threshold=10
 
 	#... and the granularity that we're sampling the angles from 0 to pi at
 	number_angles_samples=1000

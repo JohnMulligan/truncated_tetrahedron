@@ -16,6 +16,11 @@ def main(N,max_level,current_accuracy,r=1000):
 	
 	N=int(N)
 	
+	improved_angles_file="outputs/%s/angles_improved.txt" %str(N)
+
+	if os.path.exists(improved_angles_file):
+		os.remove(improved_angles_file)
+
 	knownanglesfile="outputs/%d/approximate_angles_consolidated.txt" %N
 	
 	d=open(knownanglesfile,'r')
@@ -23,18 +28,13 @@ def main(N,max_level,current_accuracy,r=1000):
 	d.close()
 	lines=[l for l in t.split('\n') if l!='']
 	
-	known_matches={}
+	test_cases={}
 	for l in lines:
 		angle_str,fold_idx_str,median_distance,close_neighborings_json_str=l.split('\t')
 		angle=float(angle_str)
 		fold_idx=int(fold_idx_str)
 		close_neighborings=json.loads(close_neighborings_json_str)
-		if angle in known_matches:
-			known_matches[angle].append(fold_idx)
-		else:
-			known_matches[angle]=[fold_idx]
-	
-	test_cases=[(angle,known_matches[angle][0]) for angle in known_matches]
+		test_cases[angle]=fold_idx
 	
 	spokes={e:G.edges[e] for e in G.edges if G.edges[e]['set']=='spokes'}
 	
@@ -68,8 +68,9 @@ def main(N,max_level,current_accuracy,r=1000):
 	print("levels-->",levels)
 	threshold=r*.01
 	
-	for test_case in test_cases:
-		base_angle,fold_idx=test_case
+	for base_angle in test_cases:
+		fold_idx=test_cases[base_angle]
+		test_case=[base_angle,fold_idx]
 		possible_folds=product([i for i in [-1,1]],repeat=len(fold_spoke_indices))
 		this_folding=islice(possible_folds,fold_idx,fold_idx+1).__next__()
 		
@@ -107,13 +108,10 @@ def main(N,max_level,current_accuracy,r=1000):
 				prev_distance=mean_close_neighborings
 
 		print("BEST MATCH-->",folding_angle)
-		d=open("outputs/%s/known_angles_improved.txt" %str(N),"a")
-		
+		d=open(improved_angles_file,"a")
 		base_angle,fold_idx=test_case
-		fold_idxs=known_matches[base_angle]
-		for fold_idx in fold_idxs:
-			line=[str(folding_angle),str(fold_idx)]
-			d.write('\n'+'\t'.join(line))
+		line=[str(folding_angle),str(base_angle),str(fold_idx)]
+		d.write('\n'+'\t'.join(line))
 		d.close()
 		print("angle optimized in %d seconds" %int(time.time()-st))
 
