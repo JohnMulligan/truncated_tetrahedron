@@ -91,7 +91,7 @@ for folding_id in df.folding_id.unique():
 				'angle':float(prev_angle),
 				'folding_id':int(folding_id),
 				'median_distance':float(prev_dist),
-				'close_neighborings':json.dumps(close_neighborings)
+				'close_neighborings':eval(close_neighborings)
 			}
 			keepers.append(local_min)
 			prev_dist=10000
@@ -104,7 +104,7 @@ d=open('outputs/%d/approximate_angles_consolidated.txt' %N,'w')
 
 lines=[]
 for k in keepers:
-	linearray=[str(k['angle']),str(k['folding_id']),k['median_distance'],k['close_neighborings']]
+	linearray=[str(k['angle']),str(k['folding_id']),str(k['median_distance']),json.dumps(k['close_neighborings'])]
 	line='\t'.join(linearray)
 	lines.append(line)
 

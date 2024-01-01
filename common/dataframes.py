@@ -29,12 +29,6 @@ def approx_angle_txtfiles_to_df(basepath,approximate_angle_files):
 			elif len(linevals)==5:
 				angle_str,folding_id_str,folding_pattern_str,median_distance_str,close_neighborings=linevals
 			
-			print('angle_str',angle_str)
-			print('folding_id_str',folding_id_str)
-			print('median_distance_str',median_distance_str)
-			print('close_neighborings',close_neighborings)
-			
-
 
 			angle=float(angle_str)
 			folding_id=int(folding_id_str)
