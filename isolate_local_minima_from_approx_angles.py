@@ -47,12 +47,13 @@ def find_limit_folding_angle(folding_ids_dict,angles,keepers):
 			##this happens occasionally as N grows -- edge case but i don't want to lose them
 			for row in this_angle_df.itertuples():
 				folding_id=row.folding_id
-				median_distance=row.median_distance
+				median_distance,close_neighborings=[row.median_distance,row.close_neighborings]
 				if row.folding_id not in folding_ids_dict:
 					keepers.append({
 						'angle':angle,
 						'folding_id':folding_id,
-						'median_distance':median_distance
+						'median_distance':median_distance,
+                                                'close_neighborings':close_neighborings
 					})
 		prev_angle=angle
 	return(prev_angle,keepers)
@@ -103,6 +104,7 @@ for folding_id in df.folding_id.unique():
 d=open('outputs/%d/approximate_angles_consolidated.txt' %N,'w')
 
 lines=[]
+print(keepers[0])
 for k in keepers:
 	linearray=[str(k['angle']),str(k['folding_id']),str(k['median_distance']),json.dumps(k['close_neighborings'])]
 	line='\t'.join(linearray)
