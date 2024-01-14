@@ -15,23 +15,23 @@ approximate_angle_files=[f for f in os.listdir(basepath) if re.match('approximat
 df=approx_angle_txtfiles_to_df(basepath,approximate_angle_files)
 
 #heatmap
-fig = go.Figure(data=go.Heatmap(z=df['median_distance'],y=df['folding_id'],x=df['angle']))
+fig = go.Figure(data=go.Heatmap(z=df['min_distance'],y=df['folding_id'],x=df['angle']))
 fig.show()
 
 #3d scatter
-fig = px.scatter_3d(df, x='angle', y='folding_id', z='median_distance')
+fig = px.scatter_3d(df, x='angle', y='folding_id', z='min_distance')
 fig.show()
 
 #2d scatter
-fig=px.scatter(df,x='angle',y='median_distance')
+fig=px.scatter(df,x='angle',y='min_distance')
 fig.show()
 
 #2d binned scatter (reduces the resolution of a 1000/th level sweep by 1/3)
 df2=df
 df2['anglebins']=pd.cut(df2['angle'],300)
-df3=df2.groupby('anglebins').min('median_distance')
+df3=df2.groupby('anglebins',observed=False).min('min_distance')
 
-fig=px.scatter(df3,x='angle',y='median_distance')
+fig=px.scatter(df3,x='angle',y='min_distance')
 fig.show()
 
 

@@ -69,6 +69,9 @@ Post-process with a simple:
 	1. It then sweeps an ever-tightening window of angles, increasing its accuracy by one decimal point at each step
 	1. The output file is ```outputs/{N}/angles_improved.txt```, whose columns are:
 		1. improved angle
+		1. original angle
+		1. the np_id of the folding pattern this was tested on
+		1. the min distance of that optimized folding
 	1. This should be parallelized to the number of angles that need optimization (TBD)
 
 Then do some manual checks/cleanups. Your angles_improved file will have 2 kinds of outlier:
@@ -80,6 +83,19 @@ Then do some manual checks/cleanups. Your angles_improved file will have 2 kinds
 1. Improved angles whose distances are not close enough = near misses
 	1. As in, several orders of magnitude larger than the other distances
 	1. They should be removed from the file so they're not visualized
+
+### Subsequent full sweep
+
+I appear to be losing some hits -- For instance, N=12,np_id=1984 is dropped in most runs?
+
+Two options here -- figure out why that data is being dropped, or do a subsequent re-run of every folding pattern on the optimized angles. I think the latter is preferable, because we are getting many good results already, and there's nothing unreasonable about focusing way in on the small set of angles, now optimized, which are likely then to produce better hits.
+
+
+
+
+
+
+
 
 
 
@@ -146,7 +162,7 @@ The test for that is:
 	* evaluate all nodes' euclidean distances
 	* catch all pairs that fall below the closeness threshold
 * use that subset of close neighborings
-	* and calculate a "closeness of close neighborings" median
+	* and calculate a "closeness of close neighborings" min
 	* along with which nodes are close neighbors in this configuration
 * Those are all saved to json files in optimizer/outputs/N.json
 

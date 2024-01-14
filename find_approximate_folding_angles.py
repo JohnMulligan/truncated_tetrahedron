@@ -8,7 +8,7 @@ import numpy as np
 import time
 import json
 from common.transforms import folder,rotate
-from common.evaluations import evaluate_folding,get_euclidean_distance
+from common.evaluations import get_euclidean_distance,get_loc
 from pathlib import Path
 
 #for granular job profiling & debugging memory leaks (be warned, though, it's a hog)
@@ -205,18 +205,11 @@ def main(N,worker_number,number_of_workers):
 
 		for folding_idx in work_batch_range:
 			st_loop=time.time()
-			folding=islice(product([i for i in [-1,1]],repeat=len(fold_spoke_indices)),folding_idx,folding_idx+1).__next__()
-			G=make_graph.main(N,r)
-			G=folder(
-				G=G,
-				this_folding=folding,
-				angle=angle
-			)
-			close_neighborings,median_close_neighborings=evaluate_folding(G,threshold)
+			close_neighborings,folding,min_close_neighborings,nodes_and_edges_dict=get_loc(angle,folding_idx,N,r,threshold)
 			if close_neighborings !={}:
-				print("->match. angle:",angle_idx,angle,"folding:",folding_idx,folding,"median distance:",median_close_neighborings)
+				print("->match. angle:",angle_idx,angle,"folding:",folding_idx,folding,"min distance:",min_close_neighborings)
 				d=open(outputpath,'a')
-				d.write('\t'.join([str(i) for i in [angle,folding_idx,folding,median_close_neighborings,close_neighborings]])+'\n')
+				d.write('\t'.join([str(i) for i in [angle,folding_idx,folding,min_close_neighborings,close_neighborings]])+'\n')
 				d.close()
 			d=open(checkpointpath,'w')
 			d.write("%d,%d" %(angle_idx,folding_idx))

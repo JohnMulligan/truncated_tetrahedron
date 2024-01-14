@@ -47,12 +47,12 @@ def find_limit_folding_angle(folding_ids_dict,angles,keepers):
 			##this happens occasionally as N grows -- edge case but i don't want to lose them
 			for row in this_angle_df.itertuples():
 				folding_id=row.folding_id
-				median_distance,close_neighborings=[row.median_distance,row.close_neighborings]
+				min_distance,close_neighborings=[row.min_distance,row.close_neighborings]
 				if row.folding_id not in folding_ids_dict:
 					keepers.append({
 						'angle':angle,
 						'folding_id':folding_id,
-						'median_distance':median_distance,
+						'min_distance':min_distance,
                                                 'close_neighborings':close_neighborings
 					})
 		prev_angle=angle
@@ -62,12 +62,12 @@ keepers=[]
 
 angles=list(df.angle.unique())
 angles.sort()
-initial_folding_ids_dict={row.folding_id:row.median_distance for row in df[df['angle']==angles[0]].itertuples()}
+initial_folding_ids_dict={row.folding_id:row.min_distance for row in df[df['angle']==angles[0]].itertuples()}
 initial_limit_angle,keepers=find_limit_folding_angle(initial_folding_ids_dict,angles,keepers)
 print("initial cutoff",initial_limit_angle)
 
 angles.reverse()
-final_folding_ids_dict={row.folding_id:row.median_distance for row in df[df['angle']==angles[0]].itertuples()}
+final_folding_ids_dict={row.folding_id:row.min_distance for row in df[df['angle']==angles[0]].itertuples()}
 final_limit_angle,keepers=find_limit_folding_angle(final_folding_ids_dict,angles,keepers)
 print("final cutoff",final_limit_angle)
 
@@ -78,35 +78,50 @@ df=df[df['angle']<final_limit_angle]
 
 df=df.sort_values(by=['angle'])
 
-## we now, as far as I've seen, have local distance minima on angles at specific folding ids
-for folding_id in df.folding_id.unique():
-	fid_df=df[df['folding_id']==folding_id]
-	prev_dist=10000
-	angles=fid_df.angle.unique()
-	angles.sort()
-	for angle in angles:
-		median_distance=fid_df[fid_df['angle']==angle].median_distance.values[0]
-		close_neighborings=fid_df[fid_df['angle']==angle].close_neighborings.values[0]
-		if median_distance>prev_dist:
-			local_min={
-				'angle':float(prev_angle),
-				'folding_id':int(folding_id),
-				'median_distance':float(prev_dist),
-				'close_neighborings':eval(close_neighborings)
-			}
-			keepers.append(local_min)
-			prev_dist=10000
-			break
-		else:
-			prev_dist=median_distance
-			prev_angle=angle
+dfdump=json.loads(df.to_json(orient="records"))
+
+for r in dfdump:
+	print(r)
+	outputrecord={
+		'angle':r['angle'],
+		'folding_id':r['folding_id'],
+		'min_distance':r['min_distance'],
+		'close_neighborings':eval(r['close_neighborings'])
+	}
+	keepers.append(outputrecord)
+
+
+# 
+# This is too aggressive, I think...
+# ## we now, as far as I've seen, have local distance minima on angles at specific folding ids
+# for folding_id in df.folding_id.unique():
+# 	fid_df=df[df['folding_id']==folding_id]
+# 	prev_dist=10000
+# 	angles=fid_df.angle.unique()
+# 	angles.sort()
+# 	for angle in angles:
+# 		min_distance=fid_df[fid_df['angle']==angle].min_distance.values[0]
+# 		close_neighborings=fid_df[fid_df['angle']==angle].close_neighborings.values[0]
+# 		if min_distance>prev_dist:
+# 			local_min={
+# 				'angle':float(prev_angle),
+# 				'folding_id':int(folding_id),
+# 				'min_distance':float(prev_dist),
+# 				'close_neighborings':eval(close_neighborings)
+# 			}
+# 			keepers.append(local_min)
+# 			prev_dist=10000
+# 			break
+# 		else:
+# 			prev_dist=min_distance
+# 			prev_angle=angle
 
 d=open('outputs/%d/approximate_angles_consolidated.txt' %N,'w')
 
 lines=[]
 print(keepers[0])
 for k in keepers:
-	linearray=[str(k['angle']),str(k['folding_id']),str(k['median_distance']),json.dumps(k['close_neighborings'])]
+	linearray=[str(k['angle']),str(k['folding_id']),str(k['min_distance']),json.dumps(k['close_neighborings'])]
 	line='\t'.join(linearray)
 	lines.append(line)
 
@@ -119,7 +134,7 @@ d.close()
 #heatmap
 # fig = go.Figure(
 # 	data=go.Heatmap(
-# 		z=optimized_df['median_distance'],
+# 		z=optimized_df['min_distance'],
 # 		y=optimized_df['folding_id'],
 # 		x=optimized_df['angle']
 # 	)

@@ -2,9 +2,11 @@ from math import cos, sin, sqrt, floor, pi
 import sys
 import os
 import networkx as nx
+import pandas as pd
 from common import make_graph
 from itertools import product,islice
 import numpy as np
+import re
 import time
 import json
 from common.transforms import *
@@ -17,10 +19,26 @@ def main(N,max_level,current_accuracy,r=1000):
 	N=int(N)
 	
 	improved_angles_file="outputs/%s/angles_improved.txt" %str(N)
-
+	
+	
+	#ADDING IN SOME CHECKPOINTING -- NOT PARALLELIZED
+	already_improved_angles=[]
 	if os.path.exists(improved_angles_file):
-		os.remove(improved_angles_file)
-
+		print("FILE EXISTS")
+		#os.remove(improved_angles_file)
+		#this takes much longer than expected -- so we need some kind of checkpointing rather than blowing away the prior attempt
+		d=open(improved_angles_file,'r')
+		t=d.read()
+		d.close()
+		lines=[l for l in t.split('\n') if l!='']
+		#LINES LIKE: 1.4154719913005755	1.4074335088082275	1400	1.2201723835589789e-08
+		
+		for l in lines:
+			improved_angle_str,base_angle_str,matched_folding_id_str,distance_str=l.split('\t')
+			already_improved_angles.append(base_angle_str)
+	
+	print("already improved angles-->",already_improved_angles)
+	
 	knownanglesfile="outputs/%d/approximate_angles_consolidated.txt" %N
 	
 	d=open(knownanglesfile,'r')
@@ -28,13 +46,38 @@ def main(N,max_level,current_accuracy,r=1000):
 	d.close()
 	lines=[l for l in t.split('\n') if l!='']
 	
+	records=[]
+	screened_out_angles=[]
+	for line in lines:
+		angle_str,np_id_str,min_distance_str,close_neighborings_str=line.split('\t')
+		if angle_str not in already_improved_angles:
+			record={
+				'np_id':int(np_id_str),
+				'angle_str':angle_str,
+				'min_distance':float(min_distance_str)
+			}
+			records.append(record)
+		else:
+			screened_out_angles.append(angle_str)
+	
+	print("screened out %d records" %len(list(set(screened_out_angles))))
+	
+	df=pd.DataFrame.from_records(records)
+	df2=df[['angle_str','min_distance']]
+	df2=df2.groupby(by=['angle_str']).min()
+	df2d=df2.to_dict()['min_distance']
+	for a in df2d:
+		dist=df2d[a]
+	
+	
 	test_cases={}
-	for l in lines:
-		angle_str,fold_idx_str,median_distance,close_neighborings_json_str=l.split('\t')
-		angle=float(angle_str)
-		fold_idx=int(fold_idx_str)
-		close_neighborings=json.loads(close_neighborings_json_str)
-		test_cases[angle]=fold_idx
+	for angle_str in df2d:
+		min_distance=df2d[angle_str]
+		candidate_np_id=df[(df['angle_str']==angle_str) &  (df['min_distance']==min_distance)]['np_id'].iloc[0]
+		test_cases[angle_str]=int(candidate_np_id)
+	
+	print("%d remaining" %len(test_cases))		
+	#END CHECKPOINTING
 	
 	spokes={e:G.edges[e] for e in G.edges if G.edges[e]['set']=='spokes'}
 	
@@ -49,28 +92,29 @@ def main(N,max_level,current_accuracy,r=1000):
 		else:
 			nodes_by_index[idx].append(n_id)
 	
-	print("---")
-	print("nodes")
-	for node_idx in nodes_by_index:
-		print(node_idx,nodes_by_index[node_idx])
-	
-	print('---')
-	print('spokes')
-	for spoke_id in spokes:
-		print(spoke_id,spokes[spoke_id],spokes[spoke_id]['index'])
-	print('---')
+# 	print("---")
+# 	print("nodes")
+# 	for node_idx in nodes_by_index:
+# 		print(node_idx,nodes_by_index[node_idx])
+# 	
+# 	print('---')
+# 	print('spokes')
+# 	for spoke_id in spokes:
+# 		print(spoke_id,spokes[spoke_id],spokes[spoke_id]['index'])
+# 	print('---')
 	
 	fold_spoke_indices=[spokes[s_id]['index'] for s_id in spokes][1:-1]
 	
-	print("fold spoke indices",fold_spoke_indices)
+# 	print("fold spoke indices",fold_spoke_indices)
 	
 	levels=range(current_accuracy,max_level)
 	print("levels-->",levels)
 	threshold=r*.01
 	sampling_steps=20
 	
-	for base_angle in test_cases:
-		fold_idx=test_cases[base_angle]
+	for angle_str in test_cases:
+		base_angle=float(angle_str)
+		fold_idx=test_cases[angle_str]
 		test_case=[base_angle,fold_idx]
 		possible_folds=product([i for i in [-1,1]],repeat=len(fold_spoke_indices))
 		this_folding=islice(possible_folds,fold_idx,fold_idx+1).__next__()
@@ -106,22 +150,23 @@ def main(N,max_level,current_accuracy,r=1000):
 						this_folding=this_folding,
 						angle=folding_angle
 					)
-					close_neighborings,median_close_neighborings=evaluate_folding(G,threshold)
-					print(folding_angle,median_close_neighborings)
-					if prev_distance is not None and prev_distance<median_close_neighborings:
-						print("bottomed out at",prev_distance,"on angle",folding_angle)
-						if step_count < 2:
-							print("...however, we shouldn't hit that on our first step. shifting window left...")
-							shift_left=True
-							prev_angle=folding_angle
-							break
-						else:
-							bottomed_out=True
-							prev_angle=folding_angle
-							break
+					close_neighborings,min_close_neighborings=evaluate_folding(G,threshold)
+					print(folding_angle,min_close_neighborings)
+					if prev_distance is not None:
+						if prev_distance<min_close_neighborings:
+							print("bottomed out at",prev_distance,"on angle",folding_angle)
+							if step_count < 2:
+								print("...however, we shouldn't hit that on our first step. shifting window left...")
+								shift_left=True
+								prev_angle=folding_angle
+								break
+							else:
+								bottomed_out=True
+								prev_angle=folding_angle
+								break
 					prev_angle=folding_angle
 					
-					prev_distance=median_close_neighborings
+					prev_distance=min_close_neighborings
 					step_count+=1
 				if not bottomed_out:
 					if shift_left:
@@ -139,7 +184,7 @@ def main(N,max_level,current_accuracy,r=1000):
 		print("BEST MATCH-->",folding_angle)
 		d=open(improved_angles_file,"a")
 		base_angle,fold_idx=test_case
-		line=[str(folding_angle),str(base_angle),str(fold_idx),str(median_close_neighborings)]
+		line=[str(folding_angle),angle_str,str(fold_idx),str(min_close_neighborings)]
 		d.write('\n'+'\t'.join(line))
 		d.close()
 		print("angle optimized in %d seconds" %int(time.time()-st))

@@ -1,5 +1,11 @@
 from math import sqrt
-from statistics import median
+
+from common import make_graph
+
+from math import cos, sin, sqrt, floor, pi
+
+from itertools import product,islice
+from common.transforms import folder
 
 def get_euclidean_distance(a,b):
 	ax,ay,az=a
@@ -36,9 +42,27 @@ def evaluate_folding(G,closeness_threshold):
 							close_neighborings[neighboring_id]=ed
 	
 	if len(all_close_distances)>0:
-		median_close_neighborings=median(all_close_distances)
+		min_close_neighborings=min(all_close_distances)
 # 		mean_close_neighborings=sum(all_close_distances)/len(all_close_distances)
 	else:
-		median_close_neighborings=None
+		min_close_neighborings=None
 # 	print("minimum:",min(all_distances),"mean",mean_close_neighborings)
-	return close_neighborings,median_close_neighborings
+	return close_neighborings,min_close_neighborings
+
+def get_loc(angle,folding_idx,N,r=1000,threshold=10):
+	'''
+		This is where the magic happens.
+	'''
+	if type(angle)==str:
+		angle=float(angle)
+	if type(folding_idx):
+		folding_idx==int(folding_idx)
+	G=make_graph.main(N,r)
+	spokes={e:G.edges[e] for e in G.edges if G.edges[e]['set']=='spokes'}
+	spokes_by_index={spokes[e]['index']:e for e in spokes}
+	fold_spoke_indices=[spokes[s_id]['index'] for s_id in spokes][1:-1]
+	folding=islice(product([i for i in [-1,1]],repeat=len(fold_spoke_indices)),folding_idx,folding_idx+1).__next__()
+	G=folder(G=G,this_folding=folding,angle=angle)
+	close_neighborings,min_close_neighborings=evaluate_folding(G,threshold)
+	nodes_and_edges_dict=make_graph.graph_position_dump(G)
+	return close_neighborings,folding,min_close_neighborings,nodes_and_edges_dict

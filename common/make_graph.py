@@ -123,7 +123,12 @@ def main(N,r=1000):
 	for i in [0,1,2]:
 		G.nodes['last']['pos']=first_inner_node['pos']
 	return G
-	
+
+
+def graph_position_dump(G):
+	nodes={v:G.nodes[v] for v in G}
+	edges=[e for e in G.edges()]
+	return {'nodes':nodes,'edges':edges}
 
 def draw_graph(G):
 	import plotly.graph_objs as go
