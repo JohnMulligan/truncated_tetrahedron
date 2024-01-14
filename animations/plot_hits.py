@@ -4,35 +4,17 @@ import plotly.express as px
 import numpy as np
 import json
 import sys
-
-def readtxtfile(filepath):
-	d=open(filepath)
-	t=d.read()
-	d.close()
-	return(t)
-
-def df_from_consolidatedfile(consolidatedfile):
-	consolidated=readtxtfile(consolidatedfile)
-	consolidatedlines=[c for c in consolidated.split('\n\n') if c!='']
-		
-	records=[]
-	
-	for line in consolidatedlines:
-		record=json.loads(line)
-		n,np_id=[int(i) for i in record['this_folding_np_id'].split('_')]
-		record['n']=n
-		record['np_id']=np_id
-		records.append(record)
-	df=pd.DataFrame.from_records(records)
-	df=df.sort_values(by=['np_id'])
-	print(df, df['this_folding_np_id'])
-	return df
+import pandas as pd
+from dataframes import df_from_consolidatedfile,readtxtfile
 
 def main(N):
 	N=int(N)
 	
-	consolidatedfile='../optimizer/outputs/%d/consolidated.txt' %N
-	df=df_from_consolidatedfile(consolidatedfile)
+	consolidatedfile='../outputs/%d/approximate_angles_consolidated.txt' %N
+
+	improvedanglesfile='../outputs/%d/angles_improved.txt' %N
+
+	df=df_from_consolidatedfile(N,consolidatedfile,improvedanglesfile)
 
 	localmax_angles=[]
 	localmax_np_ids=[]
@@ -86,7 +68,7 @@ def main(N):
 						localmax_np_ids.append(np_ids[idx])
 						localmax_hitcount.append(hitsarray[idx])
 	
-	d=open("../optimizer/outputs/%s/flagged.tsv" %str(N),"w")
+	d=open("../outputs/%s/flagged.tsv" %str(N),"w")
 	lines=[]
 	for idx in range(len(localmax_angles)):
 		angle=localmax_angles[idx]

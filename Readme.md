@@ -65,7 +65,24 @@ Post-process with a simple:
 1. Reduction to local minima: ```python3 isolate_local_minima_from_approx_angles.py {N}```
 	1. This sets up the consolidated list, ```approximate_angles_consolidated.txt```
 1. Then optimize the consolidated angles: ```python3 targeted_driller.py {N}```
+	1. This picks, for each good angle, one of the corresponding folding patterns
+	1. It then sweeps an ever-tightening window of angles, increasing its accuracy by one decimal point at each step
+	1. The output file is ```outputs/{N}/angles_improved.txt```, whose columns are:
+		1. improved angle
 	1. This should be parallelized to the number of angles that need optimization (TBD)
+
+Then do some manual checks/cleanups. Your angles_improved file will have 2 kinds of outlier:
+
+1. Angles that are extremely close to one another = duplicates
+	1. As in, identical out to 8 places
+	1. The angle with the best optimized distance should be taken as canonical
+	1. I've decided to merge these in the visualizations
+1. Improved angles whose distances are not close enough = near misses
+	1. As in, several orders of magnitude larger than the other distances
+	1. They should be removed from the file so they're not visualized
+
+
+
 
 ## Notes on the code
 
