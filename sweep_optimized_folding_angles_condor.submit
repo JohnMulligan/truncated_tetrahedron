@@ -1,0 +1,29 @@
++SingularityImage = "osdf:///ospool/ap21/data/johnconnor/my-container.sif"
+
+executable=sweep_optimized_folding_angles.sh
+
+log=optimized_angles_$(N)_$(Process).log
+error=optimized_angles_$(N)_$(Process).error
+output=optimized_angles_$(N)_$(Process).output
+
+request_cpus=1
+request_memory=2000M
+request_disk=1000M
+
+checkpoint_exit_code = 85
+
+transfer_checkpoint_files = optimized_angles_worker_$(N)_$(Process).txt, checkpoint_$(N)_$(Process).txt
+arguments = $(N) $(Process)
+
+transfer_input_files = requirements.txt, sweep_optimized_folding_angles.py, common, outputs/$(N)/angles_improved.txt
+
++is_resumable = true
+
+transfer_output_files = optimized_angles_worker_$(N)_$(Process).txt
+
+transfer_output_remaps = "optimized_angles_worker_$(N)_$(Process).txt = outputs/$(N)/optimized_angles_worker_$(N)_$(Process).txt"
+
+should_transfer_files       = yes
+when_to_transfer_output     = ON_EXIT
+
+queue $(Procs)

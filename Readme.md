@@ -90,15 +90,9 @@ I appear to be losing some hits -- For instance, N=12,np_id=1984 is dropped in m
 
 Two options here -- figure out why that data is being dropped, or do a subsequent re-run of every folding pattern on the optimized angles. I think the latter is preferable, because we are getting many good results already, and there's nothing unreasonable about focusing way in on the small set of angles, now optimized, which are likely then to produce better hits.
 
+Run this next step like ```condor_submit N=12 Procs=28 sweep_optimized_folding_angles_condor.submit```
 
-
-
-
-
-
-
-
-
+NOTE: Procs should always be equal to the number of lines in the ```angles_improved.txt``` file. The only thing I'm doing that's fancy in this subsequent step is keeping checkpointing in place so that the job can restart.
 
 ## Notes on the code
 

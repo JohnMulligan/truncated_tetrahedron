@@ -126,7 +126,7 @@ def main(N,r=1000):
 
 
 def graph_position_dump(G):
-	nodes={v:G.nodes[v] for v in G}
+	nodes={v:[float(x) for x in G.nodes[v]['pos']] for v in G}
 	edges=[e for e in G.edges()]
 	return {'nodes':nodes,'edges':edges}
 

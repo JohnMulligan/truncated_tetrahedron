@@ -20,6 +20,11 @@ def main(N):
 	localmax_np_ids=[]
 	localmax_hitcount=[]
 
+	angles=list(df['angle'].values)
+	d=open("outputs/%s/angles_improved_consolidated.txt" %N,'w')
+	d.write('\n'.join([str(i) for i in list(set(angles))]))
+	d.close()
+
 	for angle in df['angle'].unique():
 		print(angle)
 		df2=df[['angle','np_id','n','close_neighborings_count']]
