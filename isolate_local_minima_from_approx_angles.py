@@ -19,11 +19,20 @@ from common.dataframes import approx_angle_txtfiles_to_df
 
 N=int(sys.argv[1])
 
+try:
+	cutoff_distance=float(sys.argv[2])
+except:
+	cutoff_distance=None
+
 basepath='outputs/%d' %N
 
 approximate_angle_files=[f for f in os.listdir(basepath) if re.match('approximate_angles.txt',f)]
 
 df=approx_angle_txtfiles_to_df(basepath,approximate_angle_files)
+
+#we need to be able to set a floor on what constitutes a good hit. N=18's consolidated file came out at 3GB or 250MB compressed
+if cutoff_distance:
+	df=df[df['min_distance']<cutoff_distance]
 
 #we are going to walk over all the angles, looking for continuities in the folding id's
 #and identifying local minima on the distances
@@ -62,6 +71,7 @@ keepers=[]
 
 angles=list(df.angle.unique())
 angles.sort()
+
 initial_folding_ids_dict={row.folding_id:row.min_distance for row in df[df['angle']==angles[0]].itertuples()}
 initial_limit_angle,keepers=find_limit_folding_angle(initial_folding_ids_dict,angles,keepers)
 print("initial cutoff",initial_limit_angle)
