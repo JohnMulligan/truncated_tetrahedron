@@ -44,22 +44,23 @@ def main(N,worker_numbers):
 	#on local:
 # 	anglesfile='outputs/%d/angles_improved_consolidated.txt' %N
 	#on condor
-	anglesfile='angles_improved_consolidated.txt' %N
+	anglesfile='angles_improved_consolidated.txt'
 	d=open(anglesfile,'r')
 	t=d.read()
 	d.close()
 	lines=[l for l in t.split('\n') if t!='']
-	
+	print(lines)
 	angle=float(lines[worker_number])
-	
+	print(angle)
 	for folding_idx in range(folds_idx_checkpoint,number_of_possible_folds):
-		print("folding idx",folding_idx)
+		print("++++++++\nfolding idx",folding_idx,"\n++++++++")
 		st_loop=time.time()
 		close_neighborings,folding,min_close_neighborings,nodes_and_edges_dict=get_loc(angle,folding_idx,N,r,threshold)
 		if close_neighborings !={}:
-			print("->match. angle:",angle,
-				"folding:",folding_idx,folding,
-				"min distance:",min_close_neighborings,
+			print("-------\n->match. angle:",angle,"\n",
+				"count:",len(close_neighborings),"\n",
+				"folding:",folding_idx,folding,"\n",
+				"min distance:",min_close_neighborings
 			)
 			d=open(outputpath,'a')
 			d.write('\t'.join([str(i) for i in [
